@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /berlinappjobs-site/
 
 Sitemap: https://berlinappjobs.com/sitemap.xml
