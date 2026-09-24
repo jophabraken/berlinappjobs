@@ -12,7 +12,7 @@ def discipline(title, dept='', desc=''):
     t = (title or '').lower()
     d = (dept or '').lower()
     s = t + ' | ' + d
-    if _has(t, r'\b(mfa|zfa|mta|pta)\b', r'pflege', r'medizinische', r'zahnmedizin', r'arzt|ärzt', r'therapeut', r'apothek', r'physio', r'hebamme', r'nurse|nursing|physician|clinical'):
+    if _has(t, r'\b(mfa|zfa|mta|pta)\b', r'kranken ?pfleg|altenpfleg|pflegefach|pflegekraft|pflegedienst|gesundheits- und krankenpfleg', r'medizinische', r'zahnmedizin', r'arzt|ärzt', r'therapeut', r'apothek', r'physio', r'hebamme', r'nurse|nursing|physician|clinical'):
         return 'health'
     if _has(t, r'data scien', r'data engineer', r'data analy', r'analytics', r'\banalyst\b', r'machine learning', r'\bml\b', r'\bai (engineer|researcher|scientist)', r'business intelligence', r'\bbi\b', r'datenanaly', r'statisti'):
         return 'data'
@@ -20,6 +20,8 @@ def discipline(title, dept='', desc=''):
         return 'product'
     if _has(t, r'design', r'\bux\b', r'\bui\b', r'user research', r'illustrat', r'\bartist\b', r'animator', r'grafik', r'mediengestalt', r'creative director', r'art director', r'motion'):
         return 'design'
+    if _has(t, r'controll(er|ing)', r'procurement', r'einkauf', r'accountant', r'accounting', r'buchhalt', r'\bfp&a\b', r'payroll', r'legal', r'jurist', r'counsel', r'compliance', r'datenschutz', r'data protection officer'):
+        return 'people'
     if _has(t, r'engineer', r'developer', r'entwickler', r'programmier', r'software', r'devops', r'\bsre\b', r'\bios\b', r'android', r'backend', r'frontend', r'front-end', r'back-end', r'full.?stack', r'\bqa\b', r'quality assurance', r'tester\b', r'test automation', r'architect', r'architekt', r'\bcto\b', r'informatiker', r'it.?(security|sicherheit|admin|support|system)', r'systemadministr', r'cloud', r'platform', r'security', r'tech lead', r'game programmer', r'unity|unreal'):
         return 'eng'
     if _has(t, r'marketing', r'\bseo\b', r'\bsem\b', r'\bcrm\b', r'growth', r'user acquisition', r'\bua\b', r'brand', r'content', r'social media', r'community', r'redakt', r'editor', r'journalist', r'copywrit', r'\bpr\b', r'public relations', r'kommunikation', r'communications', r'influencer', r'creator', r'performance', r'campaign', r'kampagne', r'aso\b', r'lifecycle', r'partnership'):

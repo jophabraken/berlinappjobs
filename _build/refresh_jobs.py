@@ -10,6 +10,7 @@ What it does
   * Companies without an API (custom career pages): their jobs stay, but links that now return
     404/410 are removed.
   * Published salaries from the APIs (Ashby, Lever, Recruitee, Personio) are added.
+  * Manual/driving/warehouse/cleaning roles (MANUAL) and repeat postings (same title + city) are skipped.
 
 Safety rails (nothing is written if a hard check fails, exit code 1)
   * More than 30% of API companies fail to fetch -> abort.
@@ -49,6 +50,7 @@ def fetch(url, data=None, headers=None, timeout=40, tries=None):
         except urllib.error.HTTPError as e:
             if e.code in (400, 401, 403, 404, 410): raise
             last = e
+            if e.code == 429: time.sleep(15 * (k + 1))
         except Exception as e:
             last = e
         time.sleep(2 * (k + 1))
@@ -76,6 +78,10 @@ def sal_str(lo, hi, period='year', cur='EUR'):
         return f'€{lo:g} – €{hi:g} /h' if lo and hi and lo != hi else f'€{(lo or hi):g} /h'
     return ''
 
+# Manual, driving, warehouse, shop-floor and cleaning roles: not what an app-jobs board is for (Jop + co-CEO, 24 Sep 2026)
+MANUAL = re.compile(r'\b(fahrer|fahrerin|fahrer:in|driver|kurier|courier|rider|auslieferung|lokführer|triebfahrzeug|zugchef|zugbegleit|reiniger|reinigung|cleaner|cleaning|fahrzeugpfleg|kassierer|verkäufer|lager|warehouse|kommission|picker|packer|logistikmitarbeiter|mechatroniker|mechaniker|monteur|elektriker|elektroniker|techniker im außendienst|servicetechniker|schichtleit|produktionsmitarbeiter|maschinenführer|anlagenführer|koch|köchin|küche|service ?kraft|gastronomie|aushilfe|minijob|hausmeister|sicherheitsmitarbeiter)', re.I)
+OFFICE_ROLE = re.compile(r'manager|engineer|entwickler|developer|analyst|product|designer|scientist|consultant|architect|recruiter|marketing', re.I)
+def is_manual(t): return bool(MANUAL.search(t)) and not OFFICE_ROLE.search(t)
 PLACEHOLDER = re.compile(r'initiativbewerbung|initiative application|open application|unsolicited|talent ?pool|talentpool|general application|spontan|blindbewerbung|kein job, der zu dir passt|dein job ist nicht dabei|nicht das passende dabei|future opportunities|speculative', re.I)
 EN_CITY = {'munich': 'München', 'cologne': 'Köln', 'nuremberg': 'Nürnberg', 'frankfurt': 'Frankfurt am Main', 'hanover': 'Hannover',
            'dusseldorf': 'Düsseldorf', 'duesseldorf': 'Düsseldorf', 'muenster': 'Münster', 'wurzburg': 'Würzburg', 'brunswick': 'Braunschweig'}
@@ -171,7 +177,17 @@ def f_personio(feed):
         except Exception as e:
             last = e
     else:
-        raise last
+        # XML feed switched off for this account: the job list still works, just without descriptions
+        for b in bases:
+            try:
+                lst = jfetch(b + '/search.json'); break
+            except Exception as e:
+                last = e
+        else:
+            raise last
+        return [dict(id=str(x['id']), url=f"{b}/job/{x['id']}", t=x.get('name', ''), locs=[x.get('office', '')] + list(x.get('offices') or []), desc='',
+                     pub='', et=x.get('employment_type', ''), sal='', dept=x.get('department', ''), sen_hint=x.get('seniority', ''),
+                     country='de' if any(o in GERMAN for o in [x.get('office', '')] + list(x.get('offices') or [])) else '') for x in lst]
     out = []
     for p in root.findall('position'):
         g = lambda k: (p.findtext(k) or '').strip()
@@ -281,7 +297,7 @@ for (ats, feed), cos in feeds.items():
             for k in key_ids(jb['u']): old_by[k] = jb
         fresh, seen = [], set()
         for x in raw:
-            if not x.get('url') or not x.get('t') or PLACEHOLDER.search(x['t']): continue
+            if not x.get('url') or not x.get('t') or PLACEHOLDER.search(x['t']) or is_manual(x['t']): continue
             gl = german_loc(x.get('locs') or [], x.get('country', ''), x.get('remote', False))
             if not gl: continue
             loc, rem = gl
@@ -298,8 +314,9 @@ for (ats, feed), cos in feeds.items():
                       'lang': language(x['t'], text), 'u': x['url'], 'p': iso_date(x.get('pub')), 'sal': x.get('sal', '')}
                 if jb['sal']: stats['salaries_added'] += 1
                 stats['new'] += 1
-            if jb['u'] in seen: continue
-            seen.add(jb['u']); fresh.append(jb)
+            dup = (re.sub(r'\W+', ' ', jb['t'].lower()).strip(), jb['loc'])
+            if jb['u'] in seen or dup in seen: continue
+            seen.add(jb['u']); seen.add(dup); fresh.append(jb)
             if len(text) >= 300:
                 new_desc.append({'src': f'{ats}:{feed}', 'id': x['id'], 'url': jb['u'], 't': x['t'], 'loc': loc, 'desc': x.get('desc', ''), 'et': x.get('et', ''),
                                  'pub': str(x.get('pub') or ''), 'rem': str(rem)})
@@ -312,7 +329,8 @@ for (ats, feed), cos in feeds.items():
         closed = len({j['u'] for j in old} - {j['u'] for j in fresh})
         stats['closed'] += closed
         if len(fresh) != len(old) or closed:
-            report.append(f'- {c["n"]} ({ats}): {len(old)} → {len(fresh)} jobs ({closed} closed)')
+            flag = ' ⚠ big jump, worth a look' if len(fresh) >= max(3 * len(old), len(old) + 25) else ''
+            report.append(f'- {c["n"]} ({ats}): {len(old)} → {len(fresh)} jobs ({closed} closed){flag}')
         c['jobs'] = fresh; c['total'] = len(fresh)
 
 # ---- custom career pages: drop only jobs whose link is gone (404/410)
