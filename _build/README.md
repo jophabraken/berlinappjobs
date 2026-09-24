@@ -23,12 +23,22 @@ Needs Python 3.10+ and `pip install bleach`. It takes about 5 seconds.
 | `build_jobpages.py` | One page per job with JobPosting markup, `sitemap-jobs.xml` |
 | `build_home.py` | The homepage, with pre-rendered numbers and job links for crawlers |
 | `paths.py` | Paths and the build date (the date of the last data refresh, not today) |
+| `refresh_jobs.py` | Weekly job refresh from the hiring systems' public APIs (see Automation) |
+| `classify.py` | Discipline, seniority and language labels for newly found jobs |
+| `regions.py` | City → German state, for JobPosting addresses |
+| `cleanup_stale.py` | Removes company/city pages that are no longer in `sitemap.xml` (e.g. a city below 10 jobs) |
 
 Rules:
 - Edit sources here, never the generated HTML. The next build overwrites it.
 - Job pages carry `validThrough` = fetch date + 30 days, so refresh the data at least every 3–4 weeks.
 
 ## Automation
+
+- `.github/workflows/refresh-jobs.yml`: every Monday it runs `refresh_jobs.py` (live jobs from Greenhouse, Lever, Ashby,
+  Personio, SmartRecruiters, Recruitee and softgarden, plus a dead-link check for custom career pages),
+  rebuilds, checks and publishes. A manual run defaults to *preview*, which commits to branch `refresh-preview`
+  and leaves `main` alone. The summary is in `_build/refresh_report.md`. Safety rails: nothing is written if more
+  than 30% of feeds fail or the job count drops by more than 30%.
 
 - `.github/workflows/build-site.yml`: when `_build/**` changes on `main`, it rebuilds the site, runs
   `check_site.py`, commits the generated pages, pings IndexNow and asks GitHub Pages to publish. So a pull

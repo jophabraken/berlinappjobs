@@ -1,0 +1,66 @@
+# Weekly job refresh: fetch live jobs from the companies' hiring systems, rebuild the site, publish.
+# Manual runs default to "preview": everything is committed to the branch `refresh-preview` instead of
+# main, so the result can be checked first (see _build/refresh_report.md on that branch).
+name: Refresh jobs
+on:
+  schedule:
+    - cron: '0 4 * * 1'   # Mondays 04:00 UTC (06:00 Berlin summer time)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'preview = commit to branch refresh-preview; publish = commit to main (goes live)'
+        type: choice
+        options: [preview, publish]
+        default: preview
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: build-site
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install bleach
+      - name: Fetch jobs
+        run: python3 _build/refresh_jobs.py
+      - name: Build
+        run: python3 _build/build_all.py
+      - name: Check
+        run: python3 _build/check_site.py
+      - name: Show report
+        if: always()
+        run: cat _build/refresh_report.md >> "$GITHUB_STEP_SUMMARY" || true
+      - name: Commit
+        id: commit
+        env:
+          MODE: ${{ github.event.inputs.mode || 'publish' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          git commit -m "Weekly job refresh $(date -u +%Y-%m-%d) [skip ci]"
+          if [ "$MODE" = "preview" ]; then
+            git push -f origin HEAD:refresh-preview
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git push origin HEAD:main
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Ping IndexNow
+        if: steps.commit.outputs.changed == 'true'
+        run: python3 _build/indexnow.py
+      - name: Request a Pages build
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          curl -s -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" || true
