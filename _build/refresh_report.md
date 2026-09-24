@@ -1,0 +1,130 @@
+# Job refresh 2026-09-24
+
+- API feeds: 105, failed: 3; custom career pages link-checked: 938 links, 59 removed
+- Jobs: 2240 → 2378 (new 665, closed 275, still open 845)
+- Published salaries added: 57; companies kept as-is because of a suspicious result: 0
+- Result: written
+
+## Changes by company
+
+- 1. FC Köln (personio): 15 → 10 jobs (13 closed)
+- ANTENNE BAYERN (custom): removed 1 dead links
+- ATP Autoteile GmbH (personio): 8 → 5 jobs (3 closed)
+- AVIV Germany GmbH (smartrecruiters): 3 → 0 jobs (3 closed)
+- Aktion Mensch e.V. (personio): 10 → 8 jobs (2 closed)
+- Atolls (greenhouse): 10 → 3 jobs (7 closed)
+- Awesome Prototype - Football Manager Game Creators (custom): removed 2 dead links
+- Bling Services GmbH (personio): 3 → 4 jobs (0 closed)
+- Bonial.com (recruitee): 3 → 9 jobs (0 closed)
+- Buhl Data Service GmbH (personio): 9 → 8 jobs (1 closed)
+- Bundesinstitut für Risikobewertung (custom): removed 1 dead links
+- CEWE (custom): removed 1 dead links
+- CHECK24 GmbH (custom): removed 1 dead links
+- Cornelsen Verlag GmbH (custom): removed 1 dead links
+- DER SPIEGEL GmbH & Co. KG (softgarden): 11 → 10 jobs (1 closed)
+- DeepL (ashby): 6 → 8 jobs (0 closed)
+- DeepL SE (ashby): 1 → 8 jobs (0 closed)
+- Dyn Media GmbH (personio): 5 → 4 jobs (1 closed)
+- EGYM (ashby): 6 → 33 jobs (0 closed) ⚠ big jump, worth a look
+- Edurino GmbH (personio): 4 → 2 jobs (3 closed)
+- EintrachtTech GmbH (custom): removed 6 dead links
+- Enpal B.V. (ashby): 71 → 60 jobs (22 closed)
+- Finanztip Verbraucherinformation GmbH (personio): 5 → 11 jobs (0 closed)
+- Finflow GmbH (personio): 8 → 9 jobs (1 closed)
+- Flix SE (greenhouse): 24 → 47 jobs (13 closed)
+- Freecash (ashby): 36 → 33 jobs (5 closed)
+- GOREHA GmbH (personio): 5 → 4 jobs (1 closed)
+- GetYourGuide (greenhouse): 39 → 38 jobs (6 closed)
+- Good Hood GmbH (personio): 4 → 7 jobs (0 closed)
+- Governikus Service GmbH (personio): 14 → 13 jobs (1 closed)
+- Grover Group GmbH (greenhouse): 5 → 3 jobs (2 closed)
+- Handelsblatt GmbH (custom): removed 3 dead links
+- HanseMerkur Krankenversicherung AG (custom): removed 3 dead links
+- Hanseatic Bank GmbH & Co KG (custom): 4/4 links 404, looks like a site change, kept all
+- HelloFresh SE (greenhouse): 34 → 60 jobs (20 closed)
+- Helpling group (personio): 4 → 5 jobs (0 closed)
+- HomeToGo (personio): 5 → 7 jobs (1 closed)
+- Hörmann KG Antriebstechnik (custom): removed 1 dead links
+- IDnow GmbH (greenhouse): 8 → 8 jobs (7 closed)
+- IDnow GmbH (iTM) (greenhouse): 8 → 8 jobs (7 closed)
+- IONITY GmbH (personio): 9 → 7 jobs (3 closed)
+- Immobilien Scout GmbH (custom): removed 7 dead links
+- InStaff & Jobs GmbH (personio): 2 → 4 jobs (0 closed)
+- InnoGames GmbH (lever): 6 → 6 jobs (1 closed)
+- Intelligent Apps GmbH (greenhouse): 27 → 23 jobs (10 closed)
+- JustPlay GmbH (ashby): 3 → 4 jobs (0 closed)
+- Knowunity (ashby): 7 → 5 jobs (2 closed)
+- Kolibri Games (lever): 2 → 4 jobs (0 closed)
+- L'Osteria Pizza e Pasta (custom): 4/7 links 404, looks like a site change, kept all
+- LIQUI MOLY GmbH (personio): 17 → 18 jobs (1 closed)
+- LOTTO24 AG (ashby): 8 → 14 jobs (1 closed)
+- Lautsprecher Teufel GmbH (personio): 4 → 9 jobs (0 closed)
+- Lotum two GmbH (custom): 6/6 links 404, looks like a site change, kept all
+- MILES Mobility GmbH (personio): 16 → 20 jobs (6 closed)
+- Media Pioneer Publishing AG (personio): 12 → 13 jobs (0 closed)
+- MeinProspekt (recruitee): 3 → 9 jobs (0 closed)
+- MetaFlow (personio): 5 → 4 jobs (1 closed)
+- Müller Handels GmbH & Co. KG (custom): removed 1 dead links
+- N26 AG (greenhouse): 46 → 46 jobs (14 closed)
+- NORDSEE GmbH (custom): removed 2 dead links
+- NeuroNation (personio): 9 → 7 jobs (3 closed)
+- Nufin GmbH (ashby): 23 → 25 jobs (3 closed)
+- OUTLETCITY AG (custom): removed 1 dead links
+- PUMA SE (custom): removed 1 dead links
+- Palette CAD AG (personio): 1 → 6 jobs (0 closed)
+- Plantura (personio): 2 → 1 jobs (1 closed)
+- QUIN Technologies GmbH (personio): 7 → 8 jobs (0 closed)
+- RADIO BOB GmbH & Co. KG (softgarden): fetch failed, kept 4 jobs. HTTPError: HTTP Error 404: Not Found
+- REGIOCAST GmbH & Co.KG (softgarden): fetch failed, kept 12 jobs. HTTPError: HTTP Error 404: Not Found
+- Raisin SE (greenhouse): 28 → 26 jobs (5 closed)
+- Rausgegangen GmbH (personio): 3 → 2 jobs (1 closed)
+- S-Bahn Berlin (custom): removed 1 dead links
+- SOFTGAMES Mobile Entertainment Services (recruitee): 5 → 4 jobs (4 closed)
+- Scalable AG (smartrecruiters): 36 → 60 jobs (9 closed)
+- Sdui (personio): fetch failed, kept 6 jobs. HTTPError: HTTP Error 429: Too Many Requests
+- Segmüller (custom): removed 2 dead links
+- Sellwerk GmbH & Co. KG (custom): removed 3 dead links
+- Sixt (custom): removed 2 dead links
+- Solakon GmbH (personio): 8 → 6 jobs (2 closed)
+- Stiftung Warentest (custom): removed 1 dead links
+- Stillfront Supremacy GmbH (custom): 11/11 links 404, looks like a site change, kept all
+- Ströer Media Brands GmbH (smartrecruiters): 1 → 60 jobs (1 closed) ⚠ big jump, worth a look
+- SumUp (greenhouse): 10 → 55 jobs (6 closed) ⚠ big jump, worth a look
+- Taxfix SE (ashby): 18 → 18 jobs (1 closed)
+- TeamBank AG (custom): removed 4 dead links
+- TeleClinic GmbH (custom): removed 1 dead links
+- Tipp24 (ashby): 8 → 14 jobs (1 closed)
+- Too Good To Go (greenhouse): fetch failed, kept 7 jobs. HTTPError: HTTP Error 404: Not Found
+- Trade Republic Bank GmbH (greenhouse): 27 → 5 jobs (22 closed)
+- TÜV NORD Service GmbH & Co. KG (custom): removed 1 dead links
+- Urban Sports GmbH (greenhouse): 2 → 3 jobs (0 closed)
+- VHV Versicherungen (custom): removed 1 dead links
+- Vaia (personio): 2 → 4 jobs (0 closed)
+- Vivid Money GmbH (personio): 13 → 8 jobs (6 closed)
+- Vivira Health Lab GmbH (personio): 4 → 3 jobs (1 closed)
+- Vogel-System (personio): 7 → 10 jobs (0 closed)
+- WebID Solutions GmbH (softgarden): 8 → 8 jobs (1 closed)
+- Westdeutsche Lotterie GmbH & Co. OHG (custom): removed 1 dead links
+- Westermann GmbH & Co. KG (softgarden): 18 → 19 jobs (3 closed)
+- Zalando SE (custom): removed 4 dead links
+- bitiba GmbH (custom): removed 2 dead links
+- celebrate apps (recruitee): 2 → 4 jobs (0 closed)
+- dwins GmbH (custom): removed 1 dead links
+- falkemedia digital GmbH (personio): 7 → 4 jobs (3 closed)
+- foodora (Delivery Hero) (smartrecruiters): 9 → 20 jobs (5 closed)
+- gematik (custom): removed 2 dead links
+- idealo internet GmbH (recruitee): 6 → 20 jobs (0 closed)
+- kfzteile24 GmbH (recruitee): 2 → 8 jobs (1 closed)
+- komoot GmbH (custom): 7/7 links 404, looks like a site change, kept all
+- moebel.de Einrichten & Wohnen GmbH (personio): 2 → 1 jobs (1 closed)
+- nextbike (personio): 19 → 11 jobs (9 closed)
+- ryd GmbH (personio): 5 → 6 jobs (0 closed)
+- sevDesk GmbH (personio): 2 → 0 jobs (2 closed)
+- simpleclub GmbH (personio): 2 → 0 jobs (2 closed)
+- smava (greenhouse): 26 → 26 jobs (7 closed)
+- sofatutor.com (recruitee): 1 → 2 jobs (0 closed)
+- taz, die tageszeitung (custom): removed 1 dead links
+- tonies GmbH (personio): 14 → 15 jobs (0 closed)
+- trivago N.V. (greenhouse): 11 → 8 jobs (3 closed)
+- vetevo GmbH (personio): 5 → 3 jobs (2 closed)
+- zollsoft GmbH (personio): 62 → 52 jobs (11 closed)
