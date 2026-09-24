@@ -1,0 +1,47 @@
+# Rebuilds the site whenever the sources in _build/ change on main, so a pull request only has to
+# touch the sources. Generated pages are committed back to main and GitHub Pages publishes them.
+name: Build site
+on:
+  push:
+    branches: [main]
+    paths: ['_build/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: build-site
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install bleach
+      - name: Build
+        run: python3 _build/build_all.py
+      - name: Check
+        run: python3 _build/check_site.py
+      - name: Commit generated pages
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "changed=false" >> "$GITHUB_OUTPUT"; echo "Nothing to commit"; exit 0; fi
+          git commit -m "Build site from ${GITHUB_SHA::7} [skip ci]"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      - name: Ping IndexNow
+        if: steps.commit.outputs.changed == 'true'
+        run: python3 _build/indexnow.py
+      - name: Request a Pages build
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          curl -s -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" || true

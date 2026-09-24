@@ -1,0 +1,23 @@
+# Every pull request: build the site in a scratch folder and run the checks, so a broken change
+# shows a red X before anyone merges it.
+name: Check pull request
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install bleach
+      - name: Build into a scratch copy
+        run: |
+          mkdir -p /tmp/site && rsync -a --exclude .git ./ /tmp/site/
+          cd /tmp/site && python3 _build/build_all.py
+      - name: Check
+        run: python3 /tmp/site/_build/check_site.py /tmp/site
