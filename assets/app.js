@@ -404,36 +404,21 @@
     const other = idx.filter(x => x.g.lang !== L && !(x.g.pair && mineSlugs.has(x.g.pair)));
     return { mine, other };
   }
-  const gcard = ({ g, i }) => `<div class="gcard" data-gi="${i}">
+  // Each guide is a real page at /guides/<slug>/ (its own URL to share, rank and track), so cards are plain links.
+  const gurl = g => '/guides/' + encodeURIComponent(g.slug) + '/';
+  const gcard = ({ g }) => `<a class="gcard" href="${gurl(g)}" hreflang="${g.lang}">
       <div class="gt">${esc(g.title)}</div>
       <div class="gd">${esc(g.desc)}</div>
       <div class="gmeta"><span class="glang">${g.lang.toUpperCase()}</span><span class="gread">${t('readGuide')} →</span></div>
-    </div>`;
+    </a>`;
   function renderGuides() {
-    $('guideReader').hidden = true;
-    $('guideList').hidden = false;
     const { mine, other } = guideSets();
     $('guideList').innerHTML = mine.map(gcard).join('') +
       (other.length ? `<div class="gother"><button class="gmore" id="gmore">${guidesShowOther ? t('fewerGuides') : t('moreGuides')(other.length)}</button></div>` +
         (guidesShowOther ? `<h3 class="gotherh">${t('otherLangH')}</h3>` + other.map(gcard).join('') : '') : '');
   }
-  function openGuide(i) {
-    const g = GUIDES_LIST[i]; if (!g) return;
-    $('guideBody').innerHTML = g.html;
-    $('guideList').hidden = true;
-    $('guideReader').hidden = false;
-    $('guideCta').textContent = t('ctaJobs');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  $('guideList').addEventListener('click', e => { if (e.target.closest('#gmore')) { guidesShowOther = !guidesShowOther; renderGuides(); return; } const c = e.target.closest('.gcard'); if (c) openGuide(+c.dataset.gi); });
-  $('guideBack').addEventListener('click', renderGuides);
-  $('guideCta').addEventListener('click', () => setTab('jobs'));
-  function renderFootGuides() {
-    if (!GUIDES_LIST.length) { $('footGuides').innerHTML = ''; return; }
-    $('footGuides').innerHTML = `<div class="footguides"><b style="color:var(--muted)">${t('footGuidesT')}:</b> ` +
-      guideSets().mine.map(({ g, i }) => `<a href="#guides" data-gi="${i}">${esc(g.title)}</a>`).join('') + '</div>';
-  }
-  $('footGuides').addEventListener('click', e => { const a = e.target.closest('a[data-gi]'); if (a) { e.preventDefault(); setTab('guides'); openGuide(+a.dataset.gi); } });
+  $('guideList').addEventListener('click', e => { if (e.target.closest('#gmore')) { guidesShowOther = !guidesShowOther; renderGuides(); } });
+  if (location.hash === '#guides') setTab('guides', true);   // deep link to the Guides tab (after the guide code above is defined)
 
   // ---------- companies ----------
   function renderCos() {
@@ -724,7 +709,7 @@
     $('empty').innerHTML = `<b>${t('emptyT')}</b>${t('emptyB')}`;
     $('more').textContent = t('more'); $('lbmore').textContent = t('lbMore');
     $('cosH2').textContent = t('cosH2'); $('cosSub').textContent = t('cosSub');
-    $('tb-guides').textContent = t('tGuides'); $('bnMore').textContent = t('moreNav'); $('ms-cos').textContent = t('tCos'); $('ms-guides').textContent = t('tGuides'); $('ms-promo').textContent = t('promo'); $('guidesH2').textContent = t('guidesH2'); $('guidesSub').textContent = t('guidesSub'); $('guideBackT').textContent = t('backGuides'); renderFootGuides(); if (!$('guides').hidden) renderGuides();
+    $('tb-guides').textContent = t('tGuides'); $('bnMore').textContent = t('moreNav'); $('ms-cos').textContent = t('tCos'); $('ms-guides').textContent = t('tGuides'); $('ms-promo').textContent = t('promo'); $('guidesH2').textContent = t('guidesH2'); $('guidesSub').textContent = t('guidesSub'); if (!$('guides').hidden) renderGuides();
     $('mapH2').textContent = t('mapH2'); $('mapSub').textContent = t('mapSub');
     document.querySelector('.maplegend').innerHTML = t('legend');
     $('cpH1').textContent = t('cpH1'); $('cpH2').textContent = t('cpH2');
