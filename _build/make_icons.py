@@ -2,9 +2,12 @@
 """Favicon files at the site root, drawn from one vector shape: a yellow rounded square with a black "B"
 (Archivo Black glyph outline). Standard library only, so CI needs nothing extra.
 Writes favicon.svg, favicon.ico (16/32/48), favicon-96x96.png and apple-touch-icon.png (180, square corners;
-iOS rounds them itself). Files are only rewritten when their bytes change.
+iOS rounds them itself) and logo.png (512, the logo in the homepage's Organization structured data).
+Files are only rewritten when their bytes change.
 Then points every generated page at these files: the generators still emit an inline data: SVG icon, which
-browsers show but Google Search ignores (it needs a crawlable favicon URL). Runs last in build_all.py."""
+browsers show but Google Search ignores (it needs a crawlable favicon URL). In the same pass every page gets the
+social preview image (og-image.png at the site root, 1200x630, committed as a file) for LinkedIn/Slack/WhatsApp.
+Runs last in build_all.py."""
 import os, re, struct, zlib, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from paths import OUT
@@ -13,6 +16,12 @@ ICONS = ('<link rel="icon" href="/favicon.ico" sizes="48x48">'
          '<link rel="icon" href="/favicon.svg" type="image/svg+xml">'
          '<link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96">'
          '<link rel="apple-touch-icon" href="/apple-touch-icon.png">')
+SOCIAL = ('<meta property="og:image" content="https://berlinappjobs.com/og-image.png">'
+          '<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'
+          '<meta property="og:image:alt" content="Berlin App Jobs: jobs at Germany\'s top app companies">'
+          '<meta name="twitter:card" content="summary_large_image">'
+          '<meta name="twitter:image" content="https://berlinappjobs.com/og-image.png">')
+TWITTER_CARD = re.compile(r'<meta name="twitter:card" content="[^"]*">\n?')
 INLINE = re.compile(r'<link rel="icon" href="data:image/svg\+xml,[^"]*">')
 
 YELLOW, INK = (0xFF, 0xD4, 0x00), (0x13, 0x13, 0x10)
@@ -104,7 +113,8 @@ if __name__ == '__main__':
     files = {'favicon.svg': svg(),
              'favicon.ico': ico([(n, png(n, render(n))) for n in (16, 32, 48)]),
              'favicon-96x96.png': png(96, render(96)),
-             'apple-touch-icon.png': png(180, render(180, corner=False))}
+             'apple-touch-icon.png': png(180, render(180, corner=False)),
+             'logo.png': png(512, render(512, corner=False))}
     changed = [k for k, v in files.items() if write(k, v)]
     pages = 0
     for root, dirs, names in os.walk(OUT):
@@ -112,7 +122,8 @@ if __name__ == '__main__':
         for nm in names:
             if not nm.endswith('.html'): continue
             p = os.path.join(root, nm); h = open(p, encoding='utf-8').read()
-            new = INLINE.sub(ICONS, h, count=1)
+            if not INLINE.search(h): continue
+            new = INLINE.sub(ICONS + SOCIAL, TWITTER_CARD.sub('', h), count=1)
             if new != h: open(p, 'w', encoding='utf-8').write(new); pages += 1
-    print('pages pointed at favicon files:', pages)
+    print('pages pointed at favicon + social image files:', pages)
     print('icons:', ', '.join(f'{k} {len(v):,} B' for k, v in files.items()), '| changed:', changed or 'none')

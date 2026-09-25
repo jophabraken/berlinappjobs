@@ -84,8 +84,6 @@ h2{font-family:Archivo;font-weight:800;font-size:20px;margin:30px 0 10px}
 .card .cd{color:var(--muted);font-size:13px;margin-top:5px}
 .applist a{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);border-radius:8px;padding:8px 12px;margin:0 8px 8px 0;text-decoration:none;background:var(--surface);font-weight:600;font-size:13.5px}
 .applist a:hover{background:var(--chip)}
-footer{margin-top:52px;border-top:1px solid var(--line);padding-top:16px;color:var(--faint);font-size:13px;line-height:1.9}
-footer a{color:var(--muted);text-decoration:none;margin-right:16px;border-bottom:1px solid var(--line)}footer a:hover{color:var(--accent)}
 .secnote{color:var(--faint);font-size:13px;margin:2px 0 14px}
 """
 
@@ -106,9 +104,10 @@ def head(title, desc, url, extra=""):
 <div class="spacer"></div><a class="nav" href="/jobs/">Jobs</a><a class="nav" href="/companies/">Companies</a><a class="nav" href="/guides/">Guides</a></div></div>
 <div class="wrap">"""
 
-FOOT=('<footer><div style="margin-bottom:10px">'
-      '<a href="/">Job board</a><a href="/companies/">Companies</a><a href="/jobs/">Jobs by role & city</a><a href="/guides/">Guides</a>'
-      '</div><div>Berlin App Jobs, jobs at the companies behind Germany\'s top apps. Live weekly from company hiring systems.</div></footer>')
+# site-wide footer (footer.py): FOOT for German pages, FOOT_EN for English ones
+from footer import site_footer
+FOOT=site_footer('de', COS, GUIDES, slugify, city_slug, DISC, B.get('checked',''))
+FOOT_EN=site_footer('en', COS, GUIDES, slugify, city_slug, DISC, B.get('checked',''))
 
 # jobs per company city (city pages exist only for cities with >= 10 jobs, see city_pages below)
 CITY_JOBS=collections.Counter()
@@ -143,12 +142,48 @@ used=set(); company_index=[]
 comps=[c for c in COS if c.get('tier',3)<=2 and c.get('n')]
 # sort by roles then installs
 comps.sort(key=lambda c:(-(len(c.get('jobs',[])) or 0), -(c.get('v') or 0)))
-for c in comps:
+for c in comps:   # slugs first, so pages can link to similar companies
     slug=slugify(c['n'])
     base=slug; k=2
     while slug in used: slug=f"{base}-{k}"; k+=1
     used.add(slug)
     c['_slug']=slug
+NOINDEX=[]   # company pages without parsed jobs: kept for visitors and links, hidden from Google (thin content)
+_truthy=lambda v: v is True or str(v).strip().lower() in ('true','1','yes')
+def _join(xs):
+    xs=list(xs); return xs[0] if len(xs)==1 else ', '.join(xs[:-1])+' und '+xs[-1]
+def company_overview(c, city, jobs):
+    """A short, factual summary from the company's own job data (no guessing), plus similar employers."""
+    n=len(jobs); name=esc(c['n'])
+    disc=collections.Counter(j.get('d') for j in jobs)
+    top=[f"{DISC[d][1]} ({k})" for d,k in disc.most_common() if d in DISC][:3]
+    en=sum(1 for j in jobs if j.get('lang')=='en'); rem=sum(1 for j in jobs if _truthy(j.get('rem')))
+    sal=sum(1 for j in jobs if j.get('sal')); entry=sum(1 for j in jobs if j.get('s') in ('intern','junior'))
+    senior=sum(1 for j in jobs if j.get('s') in ('senior','lead'))
+    locs=collections.Counter(re.split(r'[,/|(]',j.get('loc') or city or '')[0].strip() or city for j in jobs)
+    p=[f"{name} sucht aktuell {n} {'Person' if n==1 else 'Leute'}" + (f", vor allem in {_join(top)}." if top else ".")]
+    if en==n: p.append("Alle Anzeigen sind auf Englisch, Deutsch ist hier meist keine Voraussetzung.")
+    elif en: p.append(f"{en} von {n} Anzeigen sind auf Englisch ({round(100*en/n)} %), der Rest auf Deutsch.")
+    else: p.append("Alle Anzeigen sind auf Deutsch, gute Deutschkenntnisse werden also meist erwartet.")
+    lv=[]
+    if entry: lv.append(f"{entry} für Einsteiger (Praktikum, Werkstudent, Junior)")
+    if senior: lv.append(f"{senior} für Senior- und Lead-Rollen")
+    if lv: p.append("Davon "+_join(lv)+".")
+    if rem: p.append(f"{rem} {'Stelle ist' if rem==1 else 'Stellen sind'} remote oder hybrid möglich.")
+    p.append(f"{sal} {'Anzeige nennt' if sal==1 else 'Anzeigen nennen'} ein Gehalt." if sal else "Keine der Anzeigen nennt ein Gehalt.")
+    if len(locs)>1: p.append("Standorte: "+_join(esc(l) for l,_ in locs.most_common(4) if l)+".")
+    apps=[a for a in c.get('apps') or [] if a.get('t')][:2]
+    if apps: p.append("Bekannt für "+_join(f"{esc(htmlmod.unescape(a['t']))}"+(f" ({esc(a['i'])} Downloads bei Google Play)" if a.get('i') else '') for a in apps)+".")
+    html='<h2>Überblick</h2><p>'+' '.join(p)+'</p>'
+    peers=[o for o in comps if o is not c and o.get('jobs') and (o.get('city') or '')==city][:6]
+    same_city=len(peers)>=3
+    if not same_city: peers=[o for o in comps if o is not c and o.get('jobs')][:6]
+    if peers:
+        html+=f'<h2>Ähnliche Arbeitgeber{(" in "+esc(city)) if city and same_city else ""}</h2><div class="applist">'
+        html+=''.join(f'<a href="/companies/{o["_slug"]}/">{esc(o["n"])} &middot; {len(o["jobs"])} Stellen</a>' for o in peers)+'</div>'
+    return html
+for c in comps:
+    slug=c['_slug']
     city=c.get('city','') or ''
     njobs=len(c.get('jobs',[])); total=c.get('total',njobs) or njobs
     apps=c.get('apps',[]) or []
@@ -190,14 +225,15 @@ for c in comps:
     if njobs: ld.append(jobposting_list([dict(jb,_co=c['n']) for jb in c['jobs']]))
     cta=(f'<a class="cta" href="/?q={esc(quote(c["n"]))}">Diese Firma im Jobboard ansehen &rarr;</a>')
     citylink=f'<a class="nav" style="color:var(--accent);margin:0" href="/jobs/{city_slug(city)}/">Mehr App-Jobs in {esc(city)}</a>' if city and njobs and CITY_JOBS.get(city, 0) >= 10 else ''  # only cities that get a page
-    doc=head(title,desc,url,extra="\n"+jsonld(ld))
+    if not njobs: NOINDEX.append(f"companies/{slug}")
+    doc=head(title,desc,url,extra=("\n"+'<meta name="robots" content="noindex, follow">' if not njobs else "")+"\n"+jsonld(ld))
     doc+=f'<nav class="crumb"><a href="/">Home</a> / <a href="/companies/">Companies</a> / {esc(c["n"])}</nav>'
     doc+=f'<h1>Jobs bei {esc(c["n"])}</h1>'
     doc+=f'<p class="sub">{esc(desc)}</p>'
     doc+=f'<div class="meta">'+(f'<span class="pill">{esc(city)}</span>' if city else '')+(f'<span class="pill">{njobs or total} offene Stellen</span>')+f'<span>Aktualisiert {TODAY}</span></div>'
-    doc+=apphtml+roleshtml
+    doc+=(company_overview(c, city, c['jobs']) if njobs else '')+apphtml+roleshtml
     doc+='<div style="margin-top:18px">'+cta+' '+citylink+'</div>'
-    doc+=FOOT+'</div></body></html>'
+    doc+='</div>'+FOOT+'</body></html>'
     d=os.path.join(comp_dir,slug); os.makedirs(d,exist_ok=True)
     open(os.path.join(d,"index.html"),"w",encoding='utf-8').write(doc)
     company_index.append((c['n'],slug,city,njobs,total))
@@ -215,7 +251,7 @@ def companies_hub():
     doc+='<nav class="crumb"><a href="/">Home</a> / Companies</nav>'
     doc+=f'<h1>App-Unternehmen mit offenen Stellen</h1>'
     doc+=f'<p class="sub">Die {len(company_index)} Unternehmen hinter Deutschlands meistgenutzten Apps, die aktuell einstellen. Jede Firma mit ihren Apps, offenen Rollen und Direktbewerbung.</p>'
-    doc+=f'<div class="grid">{cards}</div>'+FOOT+'</div></body></html>'
+    doc+=f'<div class="grid">{cards}</div>'+'</div>'+FOOT+'</body></html>'
     open(os.path.join(comp_dir,"index.html"),"w",encoding='utf-8').write(doc)
 companies_hub()
 
@@ -266,7 +302,7 @@ for (d,city),jl in sorted(rc_pages,key=lambda x:-len(x[1])):
     doc+=f'<h2>Offene {esc(dname)}-Stellen in {esc(city)}</h2>'+role_rows(jl)
     doc+=f'<h2>Unternehmen, die einstellen</h2><p class="secnote">'+", ".join(esc(x) for x in cos[:40])+'</p>'
     if CITY_JOBS.get(city, 0) >= 10: doc+=f'<div style="margin-top:16px"><a class="nav" style="color:var(--accent);margin:0" href="/jobs/{cslug}/">Alle App-Jobs in {esc(city)} &rarr;</a></div>'
-    doc+=FOOT+'</div></body></html>'
+    doc+='</div>'+FOOT+'</body></html>'
     dd=os.path.join(jobs_dir,dslug,cslug); os.makedirs(dd,exist_ok=True)
     open(os.path.join(dd,"index.html"),"w",encoding='utf-8').write(doc)
 
@@ -295,7 +331,7 @@ for city,jl in sorted(city_pages,key=lambda x:-len(x[1])):
     doc+=f'<a class="cta" href="/?city={esc(quote(city))}">Alle {city}-Stellen im Jobboard &rarr;</a>'
     if rl: doc+=f'<h2>Nach Disziplin</h2><div class="grid">{rl}</div>'
     doc+=f'<h2>Neueste offene Stellen</h2>'+role_rows(jl,limit=60)
-    doc+=FOOT+'</div></body></html>'
+    doc+='</div>'+FOOT+'</body></html>'
     dd=os.path.join(jobs_dir,cslug); os.makedirs(dd,exist_ok=True)
     open(os.path.join(dd,"index.html"),"w",encoding='utf-8').write(doc)
 
@@ -312,14 +348,16 @@ def jobs_hub():
     doc+='<p class="sub">Offene Stellen bei den Unternehmen hinter Deutschlands Top-Apps, aufgeschluesselt nach Disziplin und Stadt. Jede Seite live aus den Bewerbungssystemen.</p>'
     doc+='<h2>Nach Stadt</h2><div class="grid">'+citycards+'</div>'
     doc+='<h2>Nach Rolle und Stadt</h2><div class="grid">'+rolecards+'</div>'
-    doc+=FOOT+'</div></body></html>'
+    doc+='</div>'+FOOT+'</body></html>'
     open(os.path.join(jobs_dir,"index.html"),"w",encoding='utf-8').write(doc)
 jobs_hub()
 
 # ============ SITEMAP (full) ============
 urls=[(SITE+"/","1.0"),(SITE+"/guides/","0.8"),(SITE+"/companies/","0.8"),(SITE+"/jobs/","0.8")]
 for g in GUIDES: urls.append((f'{SITE}/guides/{g["slug"]}/',"0.7"))
-for n,slug,city,nj,total in company_index: urls.append((f'{SITE}/companies/{slug}/',"0.6"))
+for n,slug,city,nj,total in company_index:
+    if nj: urls.append((f'{SITE}/companies/{slug}/',"0.6"))   # pages without parsed jobs are noindex, so not in the sitemap
+json.dump(sorted(NOINDEX), open(os.path.join(DATA,'noindex_pages.json'),'w'), indent=0)   # cleanup_stale.py keeps these
 for d,city,dname,slug,n in rc_index: urls.append((f'{SITE}/jobs/{slug}/',"0.6"))
 for city,cslug,n in city_index: urls.append((f'{SITE}/jobs/{cslug}/',"0.6"))
 sm='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

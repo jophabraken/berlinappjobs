@@ -124,9 +124,6 @@ article li{margin:5px 0}
 .related a:hover{background:var(--chip)}
 .related .rt{font-weight:800;font-size:15.5px}
 .related .rd{color:var(--muted);font-size:13px;margin-top:3px}
-footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;color:var(--faint);font-size:13px;line-height:1.9}
-footer a{color:var(--muted);text-decoration:none;margin-right:16px;border-bottom:1px solid var(--line)}
-footer a:hover{color:var(--accent)}
 .hubgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;margin-top:20px}
 .hubsec{font-family:Archivo;font-weight:900;font-size:20px;text-transform:uppercase;letter-spacing:.03em;margin:34px 0 0}
 .hubsec span{font-size:13px;color:var(--faint);font-weight:700;margin-left:6px}
@@ -168,15 +165,12 @@ def related_block(a):
                 f'<div class="rd">{esc(x["desc"][:110])}</div></a>')
     return f'<div class="related"><h2>{head}</h2>{cards}</div>'
 
+# site-wide footer from footer.py, via build_programmatic.py (same links and rules on every page)
+_PS = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'build_programmatic.py')
+_ns = {'__file__': _PS}
+_src = open(_PS, encoding='utf-8').read(); exec(_src[:_src.index('def jsonld(objs):')], _ns)
 def footer_block(lang):
-    label = "More guides" if lang=="en" else "Mehr Guides"
-    links=""
-    for x in ALL[:8]:
-        links+=f'<a href="/guides/{x["slug"]}/">{esc(x["title"])}</a>'
-    board = "Job board" if lang=="en" else "Jobboard"
-    return (f'<footer><div style="margin-bottom:10px"><a href="/">{board}</a>'
-            f'<a href="/guides/">{label}</a></div>{links}'
-            '<div style="margin-top:14px">Berlin App Jobs, jobs at the companies behind Germany\'s top apps.</div></footer>')
+    return _ns['FOOT'] if lang == 'de' else _ns['FOOT_EN']
 
 def article_jsonld(a, url):
     g=[{
@@ -254,8 +248,8 @@ def render_article(a):
 {faq_html}
 </article>
 {related_block(a)}
-{footer_block(a['lang'])}
 </div>
+{footer_block(a['lang'])}
 </body>
 </html>"""
     return doc
@@ -302,8 +296,8 @@ def hub():
 <p class="hublead">Practical guides to working at the companies behind Germany's top apps: what roles pay, who is hiring, which cities, and how to get in. New guides added regularly.</p>
 <p class="hubjump"><a href="#en">English</a> &middot; <a href="#de">Deutsch</a></p>
 {cards}
-{footer_block('en')}
 </div>
+{footer_block('en')}
 </body>
 </html>"""
 open(os.path.join(GUIDES_DIR,"index.html"),"w",encoding='utf-8').write(hub())

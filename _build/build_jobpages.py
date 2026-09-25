@@ -3,7 +3,7 @@
 # Only jobs whose full description we have from the hiring system's feed (descriptions.json)
 # and that are still live in that feed. Writes /job/<slug>/ pages, sitemap-jobs.xml and
 # /tmp/berlin/jobpages_map.json (ATS url -> our job page URL) for internal links.
-import json, os, re, hashlib, datetime, shutil
+import json, os, re, hashlib, datetime, shutil, html
 import bleach
 
 SRC = open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'build_programmatic.py'), encoding='utf-8').read()
@@ -141,6 +141,34 @@ def postal_address(c, city):
     a["addressCountry"] = "DE"
     return a
 
+# Title and meta description: short and made of the job's facts. Gender tags like "(m/w/d)" are dropped from the
+# <title> only (the page H1 and JobPosting keep the full title), and legal suffixes from the company name.
+GENDER = re.compile(r'\s*[(\[]\s*(?:(?:[mwfdxi]|div|gn\*?|all\s+genders?|alle\s+geschlechter)\s*[/|,*.]?\s*)+[)\]]', re.I)
+LEGAL = re.compile(r'\s+(?:GmbH\s*&\s*Co\.?\s*KG(?:aA)?|GmbH|AG|SE|KG|KGaA|UG|mbH|e\.\s?V\.|Ltd\.?|Inc\.?|B\.V\.|S\.A\.)(?=\s|$|,).*$')
+def short_title(t):
+    t = re.sub(r'\s+', ' ', GENDER.sub('', t or '')).strip(' -–|,')
+    return t or re.sub(r'\s+', ' ', t).strip()
+def short_co(n):
+    return LEGAL.sub('', n).strip() or n
+ET_LABEL = {"FULL_TIME": ("Vollzeit", "Full-time"), "PART_TIME": ("Teilzeit", "Part-time"), "INTERN": ("Praktikum", "Internship"),
+            "CONTRACTOR": ("Freelance", "Freelance"), "TEMPORARY": ("Befristet", "Temporary")}
+def contract_label(et, jt, k):
+    if re.search(r'ausbildung|azubi|apprentice', jt, re.I): return ("Ausbildung", "Apprenticeship")[k]
+    if 'PART_TIME' in et and 'INTERN' in et: return ("Werkstudent", "Working student")[k]
+    return ET_LABEL[et[-1]][k]
+def job_desc(jt, co, where, de, et, remote, sal, desc_html):
+    """~155 chars, unique per job: company, place, role, contract, remote, salary, then the ad's own opening words."""
+    k = 0 if de else 1
+    facts = [contract_label(et, jt, k)]
+    if remote: facts.append("remote/hybrid möglich" if de else "remote/hybrid possible")
+    if sal: facts.append(("Gehalt " if de else "salary ") + sal.split('•')[0].strip())
+    s = f"{co}, {where}: {jt}. ".replace(', Remote:', ' (Remote):') + ', '.join(facts) + '. '
+    body = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', desc_html)).replace('\xa0', ' ')).strip()
+    s += body
+    if len(s) > 158:
+        s = s[:158].rsplit(' ', 1)[0].rstrip(' ,.;:-–(') + '…'
+    return s
+
 for rec in pages:
     c, jb, m, desc, slug = rec['c'], rec['jb'], rec['m'], rec['desc'], rec['slug']
     url = f"{SITE}/job/{slug}/"
@@ -177,13 +205,16 @@ for rec in pages:
             f'<a class="row" href="/job/{r["slug"]}/"><div class="m"><div class="t">{esc(r["jb"]["t"])}</div>'
             f'<div class="d">{esc(r["jb"].get("loc") or city)}</div></div><span class="apply">{L("Ansehen", "View")}</span></a>' for r in others)
     where = loc.strip() if (loc or '').strip().lower() in ('remote', 'deutschland') else ' / '.join(cities)
-    jt = re.sub(r'\s+', ' ', jb['t']).strip()
-    title_tag = (f"{jt} bei {cname} in {where}" if de else f"{jt} at {cname} in {where}").replace(' in Remote', ' (Remote)')
-    meta_desc = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', desc)).strip()[:150]
+    jt = short_title(jb['t'])
+    co = short_co(cname)
+    at = '' if co.lower() in jt.lower() else (f" bei {co}" if de else f" at {co}")   # "... beim 1. FC Köln" already names it
+    title_tag = f"{jt}{at} in {where}".replace(' in Remote', ' (Remote)')
+    full_title = title_tag + " | Berlin App Jobs" if len(title_tag) <= 62 else title_tag   # Google cuts titles at ~60 chars
+    meta_desc = job_desc(jt, co, where, de, et, remote, jb.get('sal'), desc)
     crumbs = breadcrumb([("Start" if de else "Home", SITE + "/"), (cname, f"{SITE}/companies/{cslug}/" if cslug else SITE + "/"), (jb['t'], url)])
     pills = [esc(loc)] + (["Remote"] if remote else []) + [{"FULL_TIME": L("Vollzeit", "Full-time"), "PART_TIME": L("Teilzeit", "Part-time"), "INTERN": L("Praktikum", "Internship"), "CONTRACTOR": "Freelance", "TEMPORARY": L("Befristet", "Temporary")}[et[-1]]]
     if jb.get('sal'): pills.append(esc(jb['sal'].split('•')[0].strip()))
-    body = (head(title_tag + " | Berlin App Jobs", meta_desc, url, EXTRA_CSS + "\n" + jsonld([jp, crumbs])).replace('<html lang="de">', f'<html lang="{"de" if de else "en"}">')
+    body = (head(full_title, meta_desc, url, EXTRA_CSS + "\n" + jsonld([jp, crumbs])).replace('<html lang="de">', f'<html lang="{"de" if de else "en"}">')
       + f'<nav class="crumb"><a href="/">{L("Start", "Home")}</a> / '
       + (f'<a href="/companies/{cslug}/">{esc(cname)}</a>' if cslug else esc(cname)) + f' / {esc(jb["t"])}</nav>'
       + f'<h1>{esc(jb["t"])}</h1>'
@@ -196,7 +227,7 @@ for rec in pages:
       + other_html
       + (f'<p style="margin-top:22px"><a href="/companies/{cslug}/">{L("Alle Infos und Apps von", "All info and apps from")} {esc(cname)} &rarr;</a> &middot; ' if cslug else '<p style="margin-top:22px">')
       + f'<a href="/">{L("Alle Stellen auf dem Board", "All jobs on the board")} &rarr;</a></p>'
-      + FOOT + '</div>' + EXPIRE_JS + '</body></html>')
+      + '</div>' + (FOOT if de else FOOT_EN) + EXPIRE_JS + '</body></html>')
     d = os.path.join(JOB_DIR, slug); os.makedirs(d, exist_ok=True)
     open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(body)
 

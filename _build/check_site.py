@@ -16,6 +16,9 @@ def file_of(path):
     return f if os.path.exists(f) or os.path.exists(os.path.join(f, 'index.html')) else False
 counts = {k: len(glob.glob(os.path.join(ROOT, k, '*', 'index.html'))) for k in ('job', 'companies', 'guides')}
 titles = {}
+try:   # pages build_programmatic.py deliberately marks noindex (company pages without parsed jobs)
+    import json; NOINDEX_OK = set(json.load(open(os.path.join(ROOT, '_build', 'data', 'noindex_pages.json'))))
+except (FileNotFoundError, ValueError): NOINDEX_OK = set()
 broken = set()
 for p in pages:
     h = open(p, encoding='utf-8').read()
@@ -27,7 +30,8 @@ for p in pages:
     if nh1 != 1: warn.append(f'{u}: {nh1}× h1')
     t = re.search(r'<title>(.*?)</title>', h, re.S)
     if t: titles.setdefault(t.group(1).strip(), []).append(u)
-    if re.search(r'<meta name="robots" content="[^"]*noindex', h): warn.append(f'{u}: noindex')
+    if re.search(r'<meta name="robots" content="[^"]*noindex', h) and u.replace(SITE + '/', '').strip('/') not in NOINDEX_OK:
+        warn.append(f'{u}: noindex')
     body = re.sub(r'<script\b.*?</script>', '', h, flags=re.S)
     for href in re.findall(r'href="(/[^"#?]*)', body):
         if file_of(href) is False: broken.add((u, href))

@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 """Remove company/city/role pages from earlier builds that the current build no longer generates
 (e.g. a city that dropped below 10 jobs). Otherwise they linger with dead links and old counts.
-The current set of pages is whatever build_programmatic.py just listed in sitemap.xml."""
+The current set of pages is whatever build_programmatic.py just listed in sitemap.xml, plus its noindex list."""
 import os, re, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from paths import OUT
 SITE = 'https://berlinappjobs.com'
 listed = {u.replace(SITE, '').strip('/') for u in re.findall(r'<loc>([^<]+)</loc>', open(os.path.join(OUT, 'sitemap.xml'), encoding='utf-8').read())}
+# noindex pages (company pages without parsed jobs) are current but deliberately not in the sitemap
+import json
+from paths import DATA
+try: listed |= set(json.load(open(os.path.join(DATA, 'noindex_pages.json'))))
+except FileNotFoundError: pass
 removed = []
 for top in ('jobs', 'companies'):
     for root, dirs, files in os.walk(os.path.join(OUT, top), topdown=False):

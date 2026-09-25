@@ -427,7 +427,7 @@ ARTICLES2 += [
 <li>[[aestimium GmbH|aestimium]]: the team behind the empfohlen.de app, around 19 roles, mostly senior engineering and data.</li>
 <li>[[Stillfront Supremacy GmbH|Stillfront Supremacy]]: game studio (Supremacy: Call of War), around 11 roles.</li>
 <li>[[ABOUT YOU SE & Co. KG|ABOUT YOU]]: fashion e-commerce, around 10 roles.</li>
-<li>[[LOTTO24 AG|LOTTO24]] and [[Tipp24]]: lottery apps, several roles with remote options.</li>
+<li>[[LOTTO24]] (also behind Tipp24): lottery apps, several roles with remote options.</li>
 <li>[[InnoGames GmbH|InnoGames]]: Forge of Empires, with published salary ranges.</li>
 <li>[[Star Finanz GmbH|Star Finanz]] (the S-pushTAN and Sparkasse app maker), [[freenet.de GmbH|freenet]], Rexx Systems, DER SPIEGEL and the DAK mobile team: a mix of English and German roles.</li>
 </ul>
@@ -445,7 +445,7 @@ ARTICLES2 += [
    ["Can I work in tech in Hamburg without German?",
     "Yes, at many companies. About 60 percent of roles at Hamburg app companies are advertised in English, especially at game studios, e-commerce and venture-backed companies."],
    ["Which Hamburg companies hire in English?",
-    "Intelligent Apps, aestimium, Stillfront Supremacy, ABOUT YOU, LOTTO24, Tipp24 and InnoGames, among others."],
+    "Intelligent Apps, aestimium, Stillfront Supremacy, ABOUT YOU, LOTTO24 and InnoGames, among others."],
    ["Is Hamburg good for game developers?",
     "Yes. Hamburg is Germany's second games hub after Berlin, home to InnoGames, Goodgame Studios, Stillfront Supremacy and Playa Games."]
  ]
@@ -475,7 +475,7 @@ ARTICLES2 += [
 <li>[[Vivid Money GmbH|Vivid Money]] (Berlin), [[komoot GmbH|komoot]] und [[IONITY GmbH|IONITY]]: jeweils rund 7.</li>
 <li>[[SOFTGAMES Mobile Entertainment Services|Softgames]] (Berlin) und [[GOREHA GmbH|GOREHA]]: jeweils 5, alle voll remote.</li>
 <li>[[Yazio]] (Erfurt): alle 4 Stellen remote, darunter Senior Mobile Engineers für Kotlin Multiplatform.</li>
-<li>[[LOTTO24 AG|LOTTO24]], [[Tipp24]], [[AMBOSS]] und MetaFlow: mehrere Remote-Rollen.</li>
+<li>[[LOTTO24]] (auch Tipp24), [[AMBOSS]] und MetaFlow: mehrere Remote-Rollen.</li>
 </ul>
 <p>Auffällig: komoot, Yazio und Nextcloud sind Firmen, die remote nicht als Ausnahme behandeln, sondern als Arbeitsmodell. Bei den großen Berliner Fintechs und Marktplätzen ist dagegen fast immer Hybrid mit Bürotagen üblich.</p>
 
@@ -747,7 +747,7 @@ ARTICLES2 += [
 <li>[[trivago N.V.|trivago]]: die Hotelsuche mit über 100 Mio. Installationen, rund 11 Stellen, darunter Data Science für AI Search.</li>
 <li>[[tonies GmbH|tonies]]: die Toniebox und ihre App, rund 14 Stellen, viele davon remote.</li>
 <li>[[Handelsblatt GmbH|Handelsblatt]]: rund 22 Stellen in Produkt, Sales und Content.</li>
-<li>[[IDnow GmbH (iTM)|IDnow]]: Identitätsprüfung, rund 8 Stellen.</li>
+<li>[[IDnow]]: Identitätsprüfung, rund 8 Stellen.</li>
 <li>[[sipgate]]: Telefonie-Apps, rund 6 Stellen, darunter Produktmanagement.</li>
 <li>Außerdem ERGO, die Rheinbahn (Mobilitäts-App redy) und TorAlarm (GoalAlert, über 5 Mio. Installationen).</li>
 </ul>

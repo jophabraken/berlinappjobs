@@ -71,7 +71,10 @@ assert 'seo-pre' in body
 
 # ---- assets (content-hashed for caching) ----
 os.makedirs(os.path.join(OUT, 'assets'), exist_ok=True)
-data_out = board_js.rstrip() + '\n' + guides_js.rstrip() + '\n' + geo_js.rstrip() + '\n'
+# Guides open as their own pages (/guides/<slug>/), so the app only needs title/desc/slug, not each guide's full text.
+GUIDES = json.loads(guides_js[guides_js.find('=') + 1:].strip().rstrip(';'))
+guides_slim = 'const GUIDES = ' + json.dumps([{k: g.get(k) for k in ('slug', 'lang', 'title', 'desc', 'pair')} for g in GUIDES], ensure_ascii=False) + ';\n'
+data_out = board_js.rstrip() + '\n' + guides_slim + geo_js.rstrip() + '\n'
 def asset(name, text):
     h = hashlib.sha1(text.encode('utf-8')).hexdigest()[:10]
     open(os.path.join(OUT, 'assets', name), 'w', encoding='utf-8').write(text)
@@ -79,23 +82,11 @@ def asset(name, text):
 data_url = asset('data.js', data_out)
 app_url = asset('app.js', app.strip() + '\n')
 
-# ---- footer: crawlable links to the most useful pages ----
-city_counts = {}
-for c in cos:
-    if c.get('jobs'): city_counts[c.get('city') or 'Berlin'] = city_counts.get(c.get('city') or 'Berlin', 0) + len(c['jobs'])
-def city_slug(x):
-    x = x.replace('ä', 'ae').replace('ö', 'oe').replace('ü', 'ue').replace('ß', 'ss').replace('Ä', 'Ae').replace('Ö', 'Oe').replace('Ü', 'Ue')
-    return re.sub(r'[^a-z0-9]+', '-', x.lower()).strip('-')
-city_links = [(cty, city_slug(cty)) for cty, n in sorted(city_counts.items(), key=lambda kv: -kv[1])[:10]
-              if os.path.isdir(os.path.join(OUT, 'jobs', city_slug(cty)))]
-foot_cities = ' &middot; '.join(f'<a href="/jobs/{s}/">App jobs {esc(cty)}</a>' for cty, s in city_links)
-foot = ('<footer style="max-width:1140px;margin:0 auto;padding:26px 20px;border-top:1px solid rgba(128,128,128,.25);font:13px/1.9 Archivo,system-ui,sans-serif">'
-        '<div style="font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Explore</div>'
-        '<a href="/companies/">All app companies</a> &middot; <a href="/jobs/">Jobs by role &amp; city</a> &middot; <a href="/guides/">Guides</a><br>'
-        f'<span style="opacity:.6">By city: </span>{foot_cities}<br>'
-        '<span style="opacity:.6">Popular: </span><a href="/jobs/entwickler/berlin/">Entwickler-Jobs Berlin</a> &middot; '
-        '<a href="/guides/app-developer-jobs-berlin/">App developer jobs in Berlin</a> &middot; '
-        '<a href="/guides/app-entwickler-gehalt-deutschland-2026/">App-Entwickler Gehalt 2026</a></footer>')
+# ---- footer: the site-wide footer from footer.py (crawlable links to the hub pages), English version ----
+_PS = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'build_programmatic.py')
+_ns = {'__file__': _PS}
+_src = open(_PS, encoding='utf-8').read(); exec(_src[:_src.index('def jsonld(objs):')], _ns)
+foot = _ns['FOOT_EN']
 
 # ---- head ----
 TITLE = "Berlin App Jobs: jobs at the companies behind Germany's top apps"
@@ -103,7 +94,8 @@ DESC = (f"{n_jobs:,} live roles at {n_cos} companies behind Germany's top mobile
         "marketing jobs in Berlin, Munich, Hamburg and remote. Direct apply, salaries where published.")
 ld = {"@context": "https://schema.org", "@graph": [
     {"@type": "WebSite", "@id": SITE + "/#website", "name": "Berlin App Jobs", "alternateName": "berlinappjobs.com", "url": SITE + "/", "inLanguage": ["en", "de"]},
-    {"@type": "Organization", "@id": SITE + "/#org", "name": "Berlin App Jobs", "url": SITE + "/"}]}
+    {"@type": "Organization", "@id": SITE + "/#org", "name": "Berlin App Jobs", "url": SITE + "/",
+     "logo": {"@type": "ImageObject", "url": SITE + "/logo.png", "width": 512, "height": 512}}]}
 FAV = tpl[tpl.index('<link rel="icon"'):tpl.index('>', tpl.index('<link rel="icon"')) + 1]
 head = f'''<!doctype html>
 <html lang="en">
