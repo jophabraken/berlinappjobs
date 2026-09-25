@@ -20,4 +20,7 @@ REGION = {
  'Höhr-Grenzhausen': _RP, 'Koblenz': _RP, 'Trier': _RP,
  'Büdelsdorf': _SH, 'Kiel': _SH, 'Schönkirchen': _SH,
  'Völklingen': _SL, 'Erfurt': _TH, 'Jena': _TH, 'Leipzig': _SN, 'Magdeburg': _ST, 'Schönefeld': _BB,
+ # job locations from the feeds (not company cities), for /job/ pages
+ 'Dortmund': _NW, 'Mönchengladbach': _NW, 'Neuss': _NW, 'Regensburg': _BY, 'Esslingen am Neckar': _BW, 'Gaildorf': _BW,
+ 'Konstanz': _BW, 'Mainz': _RP, 'Dresden': _SN, 'Chemnitz': _SN, 'Teltow': _BB,
 }
