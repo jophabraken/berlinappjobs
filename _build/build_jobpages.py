@@ -109,6 +109,24 @@ for c in COS:
 
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from regions import REGION
+# Feed values can be strings: descriptions.json stores rem as "True"/"False", and bool("False") is True.
+def truthy(v): return v is True or str(v).strip().lower() in ('true', '1', 'yes')
+CITY_ALIAS = {'munich': 'München', 'muenchen': 'München', 'cologne': 'Köln', 'koeln': 'Köln', 'nuremberg': 'Nürnberg',
+              'frankfurt': 'Frankfurt am Main', 'hanover': 'Hannover', 'duesseldorf': 'Düsseldorf', 'esslingen': 'Esslingen am Neckar',
+              'immenstadt': 'Immenstadt i. Allgäu', 'freiburg': 'Freiburg im Breisgau'}
+_KNOWN = sorted(REGION, key=len, reverse=True)
+def job_cities(loc, fallback):
+    """The job's own city/cities from the feed location ('Berlin / Hamburg', 'Office Frankfurt/Hybrid', 'Munich').
+    Only known German cities (regions.py) are used, never a guess; otherwise the company city, as before."""
+    out = []
+    for p in re.split(r'[/,|]', loc or ''):
+        p = re.sub(r'\(.*?\)|\b(office|hybrid|remote|home.?office)\b', ' ', p, flags=re.I)
+        p = re.sub(r'\s+', ' ', p).strip(' -')
+        p = CITY_ALIAS.get(p.lower(), p)
+        if p in REGION and p not in out: out.append(p)
+    if not out:   # city only in brackets, e.g. 'Green Campus (Kiel)'
+        out = [k for k in _KNOWN if re.search(r'\(' + re.escape(k) + r'\)', loc or '')][:1]
+    return out or [fallback]
 def postal_address(c, city):
     """PostalAddress for the company's office in `city`. Street and postcode only when the company's
     registered address is in that same city (never guessed); state from the city."""
@@ -128,7 +146,8 @@ for rec in pages:
     url = f"{SITE}/job/{slug}/"
     city = c.get('city') or 'Berlin'
     loc = jb.get('loc') or m.get('loc') or city
-    remote = bool(jb.get('rem') or m.get('rem')) or bool(re.search(r'remote|home.?office', f"{jb['t']} {loc}", re.I))
+    cities = job_cities(loc, city)
+    remote = truthy(jb.get('rem')) or truthy(m.get('rem')) or bool(re.search(r'remote|home.?office', f"{jb['t']} {loc}", re.I))
     de = is_de(desc)
     posted = iso(m.get('pub')) or iso(m.get('upd')) or iso(jb.get('p')) or FETCHED
     et = emp_type(m, jb)
@@ -140,7 +159,7 @@ for rec in pages:
         "datePosted": posted, "validThrough": VALID_THROUGH + "T23:59:59+02:00",
         "employmentType": et if len(et) > 1 else et[0],
         "hiringOrganization": {"@type": "Organization", "name": cname, **({"sameAs": c['careers']} if c.get('careers') else {})},
-        "jobLocation": {"@type": "Place", "address": postal_address(c, city)},
+        "jobLocation": [{"@type": "Place", "address": postal_address(c, x)} for x in cities] if len(cities) > 1 else {"@type": "Place", "address": postal_address(c, cities[0])},
         "directApply": False,
         "identifier": {"@type": "PropertyValue", "name": cname, "value": str(m.get('id') or slug)},
         "url": url,
@@ -157,7 +176,9 @@ for rec in pages:
         other_html = f"<h2>{L('Weitere Stellen bei', 'More jobs at')} {esc(cname)}</h2>" + ''.join(
             f'<a class="row" href="/job/{r["slug"]}/"><div class="m"><div class="t">{esc(r["jb"]["t"])}</div>'
             f'<div class="d">{esc(r["jb"].get("loc") or city)}</div></div><span class="apply">{L("Ansehen", "View")}</span></a>' for r in others)
-    title_tag = f"{jb['t']} bei {cname} in {city}" if de else f"{jb['t']} at {cname} in {city}"
+    where = loc.strip() if (loc or '').strip().lower() in ('remote', 'deutschland') else ' / '.join(cities)
+    jt = re.sub(r'\s+', ' ', jb['t']).strip()
+    title_tag = (f"{jt} bei {cname} in {where}" if de else f"{jt} at {cname} in {where}").replace(' in Remote', ' (Remote)')
     meta_desc = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', desc)).strip()[:150]
     crumbs = breadcrumb([("Start" if de else "Home", SITE + "/"), (cname, f"{SITE}/companies/{cslug}/" if cslug else SITE + "/"), (jb['t'], url)])
     pills = [esc(loc)] + (["Remote"] if remote else []) + [{"FULL_TIME": L("Vollzeit", "Full-time"), "PART_TIME": L("Teilzeit", "Part-time"), "INTERN": L("Praktikum", "Internship"), "CONTRACTOR": "Freelance", "TEMPORARY": L("Befristet", "Temporary")}[et[-1]]]
