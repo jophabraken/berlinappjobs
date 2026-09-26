@@ -1,14 +1,22 @@
 # -*- coding: utf-8 -*-
-"""Weekly job refresh. Re-fetches every company whose hiring system has a public API and
+"""Daily job refresh. Re-fetches every company whose hiring system we can read and
 updates _build/data/board_data.js (the board) and _build/data/descriptions.json.gz (job pages).
 
 What it does
-  * Greenhouse, Lever, Ashby, Personio (XML), SmartRecruiters, Recruitee, softgarden: fetch live jobs,
-    keep German locations (plus remote), drop placeholder ads, cap 60 per company.
+  * Greenhouse, Lever, Ashby, Personio (XML), SmartRecruiters, Recruitee, softgarden, plus (in ats_more.py)
+    Workday, Workable, BambooHR, JOIN, Teamtailor and any careers site whose job pages carry schema.org
+    JobPosting data ("crawl"): fetch live jobs, keep German locations (plus remote), drop placeholder ads,
+    cap 60 per company.
+  * Hiring-system detection: companies without a readable feed are checked for the hiring system behind
+    their careers page (up to BAJ_DETECT_MAX per run, each re-checked after 30 days). A find is only used
+    after it returned German jobs that fit the board; it is then saved on the company (ats, feed, crawl)
+    and refreshed from then on. Results and a log per company: _build/data/ats_detect.json.
   * Jobs we already had keep their labels (discipline, seniority, language); new jobs get labels
     from classify.py. Closed jobs disappear.
-  * Companies without an API (custom career pages): their jobs stay, but links that now return
-    404/410 are removed.
+  * Companies still without a readable feed (custom career pages): their jobs stay, but links that now
+    return 404/410 are removed.
+  * Crawled sites: a job we already have counts as closed when its page is gone or no longer carries a
+    JobPosting; a page that could not be loaded keeps the job.
   * Published salaries from the APIs (Ashby, Lever, Recruitee, Personio) are added.
   * Manual/driving/warehouse/cleaning roles (MANUAL) and repeat postings (same title + city) are skipped.
 
@@ -18,8 +26,9 @@ Safety rails (nothing is written if a hard check fails, exit code 1)
   * A company that fetched fine but suddenly has 0 German jobs (had >= 5) keeps its old jobs.
   * Ashby boards never shrink by more than half in one run.
   * A company whose fetch fails keeps its old jobs and descriptions.
+  * A crawled site where no page carries JobPosting data any more counts as a failed fetch.
 
-Usage: python3 _build/refresh_jobs.py [--dry-run]
+Usage: python3 _build/refresh_jobs.py [--dry-run] [--no-detect]
 Writes a summary to _build/refresh_report.md either way.
 """
 import concurrent.futures as cf, datetime, gzip, html, json, os, re, sys, time, urllib.error, urllib.parse, urllib.request
@@ -253,6 +262,10 @@ def f_softgarden(feed):
 FETCHERS = {'greenhouse': f_greenhouse, 'lever': f_lever, 'ashby': f_ashby, 'personio': f_personio, 'smartrecruiters': f_smartrecruiters,
             'recruitee': f_recruitee, 'softgarden': f_softgarden}
 
+import ats_more
+ats_more.init(fetch, sal_str, german_loc)
+FETCHERS.update(ats_more.FETCHERS)
+
 def ats_of(c):
     a = (c.get('ats') or '').lower().split()[0] if c.get('ats') else ''
     return a if a in FETCHERS and c.get('feed') and c['feed'].startswith(('http', 'yazio')) else ''
@@ -264,17 +277,58 @@ def key_ids(u):
     u = u or ''
     return {u.split('?')[0].rstrip('/')} | set(re.findall(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|\d{6,}', u))
 
+# ---- hiring-system detection for companies without a readable feed
+DETECT_FILE = os.path.join(DATA, 'ats_detect.json')
+try: DET = json.load(open(DETECT_FILE, encoding='utf-8'))
+except Exception: DET = {}
+DETECT_MAX = int(os.environ.get('BAJ_DETECT_MAX', '70'))
+DETECT_SECONDS = int(os.environ.get('BAJ_DETECT_SECONDS', '600'))
+def due(name):
+    d = (DET.get(name) or {}).get('checked')
+    try: return not d or (TODAY - datetime.date.fromisoformat(d)).days >= 30
+    except Exception: return True
+todo = [c for c in B['companies'] if c.get('tier') == 1 and c.get('jobs') and not ats_of(c) and due(c['n'])]
+todo.sort(key=lambda c: (c['n'] in DET, -len(c['jobs'])))   # never checked first, then most jobs
+todo = [] if '--no-detect' in sys.argv else todo[:DETECT_MAX]
+pre_results, detected, det_checked = {}, [], 0
+T0 = time.time()
+def det(c):
+    if time.time() - T0 > DETECT_SECONDS: return c, None, None
+    log = []
+    try: r = ats_more.detect(c, FETCHERS, PLACEHOLDER, is_manual, log)
+    except Exception as e: r = None; log.append(f'error {type(e).__name__}: {str(e)[:100]}')
+    return c, r, log
+with cf.ThreadPoolExecutor(8) as ex:
+    for c, r, log in ex.map(det, todo):
+        if log is None: continue   # out of time, next run
+        det_checked += 1
+        entry = {'checked': TODAY.isoformat(), 'was': c.get('ats') or '', 'feed_was': c.get('feed') or '', 'log': log[-8:]}
+        if r:
+            ats, feed, cfg, raw = r
+            entry.update(found=ats, feed=feed)
+            c['ats'], c['feed'] = ats, feed
+            if cfg: c['crawl'] = {k: v for k, v in cfg.items() if k not in ('known', 'skip', 'skip_new')}
+            pre_results[(ats, feed)] = raw
+            detected.append(f'- {c["n"]}: {ats} ({feed}), had {len(c["jobs"])} jobs')
+        DET[c['n']] = dict((DET.get(c['n']) or {}), **entry)
+
 feeds = {}
 for c in B['companies']:
     if c.get('tier') == 1 and ats_of(c):
         feeds.setdefault((ats_of(c), c['feed'] if c['feed'] != 'yazio' else 'yazio'), []).append(c)
+for (ats, feed), cos in feeds.items():   # crawl settings: link pattern, the jobs we have (re-checked), pages known not to be jobs
+    if ats in ats_more.CRAWL_ATS:
+        cfg = dict(next((c['crawl'] for c in cos if c.get('crawl')), None) or ats_more.preset(ats, feed) or {})
+        cfg['known'] = [j['u'] for c in cos for j in c.get('jobs') or [] if j.get('u')]
+        cfg['skip'] = [u for c in cos for u in (DET.get(c['n']) or {}).get('skip', [])]
+        ats_more.CRAWL[feed] = cfg
 
-results, errors = {}, {}
+results, errors = dict(pre_results), {}
 def run(key):
     ats, feed = key
     return key, FETCHERS[ats](feed)
 with cf.ThreadPoolExecutor(10) as ex:
-    futs = {ex.submit(run, k): k for k in feeds}
+    futs = {ex.submit(run, k): k for k in feeds if k not in pre_results}
     for f in cf.as_completed(futs):
         try:
             k, jobs = f.result(); results[k] = jobs
@@ -297,6 +351,11 @@ for (ats, feed), cos in feeds.items():
             for k in key_ids(jb['u']): old_by[k] = jb
         fresh, seen = [], set()
         for x in raw:
+            if x.get('keep'):   # crawled page that could not be loaded this time: keep the job as it was
+                prev = next((old_by[k] for k in key_ids(x['url']) if k in old_by), None)
+                if prev and prev['u'] not in seen:
+                    seen.add(prev['u']); seen.add((re.sub(r'\W+', ' ', prev['t'].lower()).strip(), prev['loc'])); fresh.append(dict(prev)); stats['updated'] += 1
+                continue
             if not x.get('url') or not x.get('t') or PLACEHOLDER.search(x['t']) or is_manual(x['t']): continue
             gl = german_loc(x.get('locs') or [], x.get('country', ''), x.get('remote', False))
             if not gl: continue
@@ -365,9 +424,11 @@ B['checked'] = f'{TODAY.day} {["Jan", "Feb", "March", "April", "May", "June", "J
 head = [f'# Job refresh {TODAY.isoformat()}' + (' (dry run)' if DRY else ''), '',
         f'- API feeds: {len(feeds)}, failed: {len(errors)}; custom career pages link-checked: {len(urls)} links, {dead_total} removed',
         f'- Jobs: {before_total} → {after_total} (new {stats["new"]}, closed {stats["closed"]}, still open {stats["updated"]})',
+        f'- Hiring-system detection: {det_checked} companies checked, {len(detected)} now read directly' + (f' ({len(todo) - det_checked} left for the next run)' if len(todo) > det_checked else ''),
         f'- Published salaries added: {stats["salaries_added"]}; companies kept as-is because of a suspicious result: {stats["suspicious"]}',
         f'- Result: ' + ('ABORTED, nothing written: ' + '; '.join(hard) if hard else ('not written (dry run)' if DRY else 'written')), '', '## Changes by company', '']
-open(os.path.join(BUILD, 'refresh_report.md'), 'w', encoding='utf-8').write('\n'.join(head + sorted(report)) + '\n')
+det_part = (['', '## Hiring systems found', ''] + detected) if detected else []
+open(os.path.join(BUILD, 'refresh_report.md'), 'w', encoding='utf-8').write('\n'.join(head + sorted(report) + det_part) + '\n')
 print('\n'.join(head))
 if hard: sys.exit(1)
 if DRY: sys.exit(0)
@@ -375,6 +436,13 @@ if DRY: sys.exit(0)
 # ---- write board + descriptions
 out = SRC[:I0] + 'const BOARD = ' + json.dumps(B, ensure_ascii=False, separators=(',', ':')) + ';\n' + SRC[J0:]
 open(os.path.join(DATA, 'board_data.js'), 'w', encoding='utf-8').write(out)
+for (ats, feed), cos in feeds.items():   # remember crawled pages that are not job ads, so they are not opened every day
+    new_skip = (ats_more.CRAWL.get(feed) or {}).get('skip_new') or []
+    for c in cos:
+        if new_skip:
+            e = DET.setdefault(c['n'], {})
+            e['skip'] = list(dict.fromkeys((e.get('skip') or []) + new_skip))[-300:]
+json.dump(DET, open(DETECT_FILE, 'w', encoding='utf-8'), ensure_ascii=False, indent=1, sort_keys=True)
 refetched = {f'{a}:{f}' for (a, f) in results}
 live = {jb['u'].split('?')[0].rstrip('/') for c in B['companies'] for jb in c.get('jobs') or []}
 fresh_urls = {x['url'].split('?')[0].rstrip('/') for x in new_desc}
