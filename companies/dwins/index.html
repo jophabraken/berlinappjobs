@@ -7,19 +7,54 @@
 <meta property="og:title" content="dwins Jobs: 2 offene Stellen (Sept. 2026) | Berlin App Jobs"><meta property="og:description" content="Offene Stellen bei dwins GmbH in Frankfurt am Main. 2 Rollen live aus dem Bewerbungssystem, mit Direktbewerbung. Team hinter Finanzguru – Finance Manager."><meta property="og:url" content="https://berlinappjobs.com/companies/dwins/">
 <link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta property="og:image" content="https://berlinappjobs.com/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Berlin App Jobs: jobs at Germany's top app companies"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://berlinappjobs.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
 <link rel="alternate" type="application/atom+xml" title="New app jobs" href="/feed.xml">
 <style>
+#top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:#131310}
+#top .bar{max-width:1140px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:nowrap}
+#top .bar>*{flex-shrink:0}
+#top .wordmark{text-decoration:none;display:flex;align-items:stretch;font:900 13px/1 Archivo,sans-serif;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+#top .wordmark .wm1{background:#FFD400;color:#131310;padding:7px 9px}
+#top .wordmark .wm2{background:#fff;color:#131310;padding:7px 9px;border-left:2.5px solid #131310}
+#top .topstats{color:#8A887B;font-size:12.5px;font-variant-numeric:tabular-nums;line-height:1.5}
+#top .topstats b{color:#FFD400;font-weight:600}
+#top nav.tabs{display:flex;gap:4px;background:#26261F;border-radius:4px;padding:3px}
+#top nav.tabs a{color:#B8B5A3;font:600 12.5px/1.5 Archivo,sans-serif;padding:6px 11px;border-radius:3px;text-decoration:none}
+#top nav.tabs a:hover{color:#F4F1E0}
+#top nav.tabs a.on{background:#FFD400;color:#131310}
+#top .promo{margin-left:auto;background:#FFD400;color:#131310;border-radius:3px;padding:8px 14px;font:700 12.5px/1.5 Archivo,sans-serif;white-space:nowrap;text-decoration:none}
+#top .promo:hover{filter:brightness(1.06)}
+#top .langtog{display:flex;gap:6px;margin-left:4px}
+#top .langtog a{border:1.5px solid #3a3a34;padding:3px;border-radius:4px;line-height:0;opacity:.5;display:block}
+#top .langtog a svg{display:block;border-radius:2px}
+#top .langtog a.on{opacity:1;border-color:#FFD400}
+#top .langtog a:hover{opacity:.85}
+#bottomNav,#moreSheet,#moreShade{display:none}
+@media (max-width:1080px){#top .topstats{display:none}}
+@media (max-width:880px){
+  #top .bar{padding:10px 16px}
+  #top nav.tabs,#top .promo{display:none}
+  #top .langtog{margin-left:auto}
+  #top .wordmark{font-size:12px}
+  body{padding-bottom:calc(58px + env(safe-area-inset-bottom,0px))}
+  #bottomNav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:44;background:#131310;border-top:1px solid #2c2c24;padding-bottom:env(safe-area-inset-bottom,0px)}
+  #bottomNav a,#bottomNav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;color:#8A887B;font:700 10px Archivo,sans-serif;padding:8px 2px 7px;cursor:pointer;min-height:52px;text-decoration:none}
+  #bottomNav svg{width:23px;height:23px}
+  #bottomNav .on{color:#FFD400}
+  #moreShade{display:block;position:fixed;inset:0;z-index:46;background:rgba(8,10,22,.5);opacity:0;pointer-events:none;transition:opacity .2s}
+  #moreShade.open{opacity:1;pointer-events:auto}
+  #moreSheet{display:flex;flex-direction:column;position:fixed;left:0;right:0;bottom:0;z-index:47;background:var(--surface,#fff);border-top:2.5px solid var(--ink,#131310);border-radius:16px 16px 0 0;transform:translateY(101%);transition:transform .26s cubic-bezier(.3,1,.4,1);padding:8px 12px calc(12px + env(safe-area-inset-bottom,0px));box-shadow:0 -12px 40px rgba(0,0,0,.28)}
+  #moreSheet.open{transform:none}
+  #moreSheet a{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line,#131310);color:var(--ink,#131310);font:700 16px Archivo,sans-serif;padding:16px 6px;text-decoration:none}
+  #moreSheet a:last-child{border-bottom:0}
+  #moreSheet a::after{content:"\2192";margin-left:auto;color:var(--faint,#75756B)}
+}
+
 :root{--bg:#F7F6EF;--surface:#fff;--ink:#131310;--muted:#52524A;--faint:#75756B;--line:#131310;--accent:#FFD400;--chip:#F1EFE3}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#131310;--surface:#1D1D18;--ink:#F4F1E0;--muted:#B8B5A3;--faint:#8A887B;--line:#4A4940;--chip:#26261F}}
 *{box-sizing:border-box}html{scroll-padding-top:70px}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-#top{position:sticky;top:0;z-index:20;background:#131310}
-#top .bar{max-width:900px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:14px}
-.wordmark{display:flex;font-weight:900;font-size:13px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;line-height:1}
-.wordmark .a{background:#FFD400;color:#131310;padding:7px 9px}.wordmark .b{background:#fff;color:#131310;padding:7px 9px;border-left:2.5px solid #131310}
-#top .spacer{flex:1}#top .nav{color:#B8B5A3;text-decoration:none;font-weight:700;font-size:13px;margin-left:14px}#top .nav:hover{color:#FFD400}
 .wrap{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .crumb{font-size:13px;color:var(--faint);margin:22px 0 6px}.crumb a{color:var(--faint);text-decoration:none}.crumb a:hover{color:var(--accent)}
 h1{font-family:Archivo;font-weight:900;font-size:clamp(26px,4.6vw,38px);line-height:1.12;letter-spacing:-.01em;margin:6px 0 8px;text-wrap:balance}
@@ -50,8 +85,7 @@ h2{font-family:Archivo;font-weight:800;font-size:20px;margin:30px 0 10px}
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://berlinappjobs.com/"}, {"@type": "ListItem", "position": 2, "name": "Companies", "item": "https://berlinappjobs.com/companies/"}, {"@type": "ListItem", "position": 3, "name": "dwins GmbH", "item": "https://berlinappjobs.com/companies/dwins/"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Teamlead (w/m/d) Sales Vorsorge (LV/KV)", "url": "https://finanzguru.de/jobs/2772179/bewerben"}, {"@type": "ListItem", "position": 2, "name": "Werkstudent:in (w/m/d) Outbound im Versicherungsvertrieb", "url": "https://finanzguru.de/jobs/2792583/bewerben"}]}</script>
 </head><body>
-<div id="top"><div class="bar"><a class="wordmark" href="/"><span class="a">Berlin</span><span class="b">App Jobs</span></a>
-<div class="spacer"></div><a class="nav" href="/jobs/">Jobs</a><a class="nav" href="/companies/">Companies</a><a class="nav" href="/guides/">Guides</a></div></div>
+<div id="top"><div class="bar"><a class="wordmark" href="/" aria-label="Berlin App Jobs: all jobs"><span class="wm1">Berlin</span><span class="wm2">App Jobs</span></a><div class="topstats"><b>2339</b> Stellen &middot; <b>340</b> Firmen stellen ein</div><nav class="tabs" aria-label="Berlin App Jobs"><a href="/#jobs">Jobs</a><a href="/#charts">Charts</a><a href="/#studios" class="on">Unternehmen</a><a href="/#maptab">Karte</a><a href="/#guides">Ratgeber</a></nav><a class="promo" href="/#promote">Werbung schalten</a><nav class="langtog" title="Sprache / Language"><a href="/?lang=en" hreflang="en" aria-label="English"><svg viewBox="0 0 60 30" width="22" height="15" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30 M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30 M60,0 0,30" stroke="#C8102E" stroke-width="3.5"/><path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/><path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/></svg></a><a href="#" hreflang="de" aria-label="Deutsch" class="on" aria-current="true"><svg viewBox="0 0 5 3" width="22" height="15" aria-hidden="true"><rect width="5" height="3" fill="#111"/><rect y="1" width="5" height="1" fill="#D00"/><rect y="2" width="5" height="1" fill="#FFCE00"/></svg></a></nav></div></div><nav id="bottomNav" aria-label="Primary"><a href="/#jobs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18v11H3z"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span>Jobs</span></a><a href="/#charts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V11M12 20V4M19 20v-6"/></svg><span>Charts</span></a><a href="/#maptab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.6 7-12a7 7 0 1 0-14 0c0 5.4 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg><span>Karte</span></a><button type="button" id="bnMoreBtn" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>Mehr</span></button></nav><div id="moreShade"></div><nav id="moreSheet" aria-label="Mehr"><a href="/#studios">Unternehmen</a><a href="/#guides">Ratgeber</a><a href="/#promote">Werbung schalten</a></nav><script>(function(){var b=document.getElementById('bnMoreBtn'),s=document.getElementById('moreSheet'),h=document.getElementById('moreShade');if(!b||!s||!h)return;function t(o){s.classList.toggle('open',o);h.classList.toggle('open',o);}b.addEventListener('click',function(){t(!s.classList.contains('open'));});h.addEventListener('click',function(){t(false);});})();</script>
 <div class="wrap"><nav class="crumb"><a href="/">Home</a> / <a href="/companies/">Companies</a> / dwins GmbH</nav><h1>Jobs bei dwins GmbH</h1><p class="sub">Offene Stellen bei dwins GmbH in Frankfurt am Main. 2 Rollen live aus dem Bewerbungssystem, mit Direktbewerbung. Team hinter Finanzguru – Finance Manager.</p><div class="meta"><span class="pill">Frankfurt am Main</span><span class="pill">2 offene Stellen</span><span>Aktualisiert 2026-09-24</span></div><h2>Überblick</h2><p>dwins GmbH sucht aktuell 2 Leute, vor allem in Sales (2). 1 von 2 Anzeigen sind auf Englisch (50 %), der Rest auf Deutsch. Davon 1 für Einsteiger (Praktikum, Werkstudent, Junior) und 1 für Senior- und Lead-Rollen. 2 Stellen sind remote oder hybrid möglich. Keine der Anzeigen nennt ein Gehalt. Bekannt für Finanzguru – Finance Manager (1M+ Downloads bei Google Play).</p><h2>Ähnliche Arbeitgeber in Frankfurt am Main</h2><div class="applist"><a href="/companies/bloomwell/">Bloomwell GmbH &middot; 17 Stellen</a><a href="/companies/suewag-vertrieb-and/">Süwag Vertrieb AG &amp; Co. KG &middot; 16 Stellen</a><a href="/companies/eintrachttech/">EintrachtTech GmbH &middot; 8 Stellen</a><a href="/companies/ing/">ING Deutschland &middot; 5 Stellen</a><a href="/companies/1822direkt-ges-der-frankfurter-sparkasse/">1822direkt Ges. der Frankfurter Sparkasse mbH &middot; 4 Stellen</a><a href="/companies/meet5/">Meet5 GmbH &middot; 3 Stellen</a></div><h2>Apps</h2><div class="applist"><a href="https://play.google.com/store/apps/details?id=de.dwins.financeguru" target="_blank" rel="noopener nofollow">Finanzguru – Finance Manager &middot; 1M+</a></div><h2>Offene Stellen (2)</h2><a class="row" href="https://finanzguru.de/jobs/2772179/bewerben" target="_blank" rel="noopener nofollow"><div class="m"><div class="t">Teamlead (w/m/d) Sales Vorsorge (LV/KV)</div><div class="d">Remote (DE) &middot; Sales</div></div><span class="apply">Bewerben &#8599;</span></a><a class="row" href="https://finanzguru.de/jobs/2792583/bewerben" target="_blank" rel="noopener nofollow"><div class="m"><div class="t">Werkstudent:in (w/m/d) Outbound im Versicherungsvertrieb</div><div class="d">Remote (DE) &middot; Sales</div></div><span class="apply">Bewerben &#8599;</span></a><div style="margin-top:18px"><a class="cta" href="/?q=dwins%20GmbH">Diese Firma im Jobboard ansehen &rarr;</a> <a class="nav" style="color:var(--accent);margin:0" href="/jobs/frankfurt-am-main/">Mehr App-Jobs in Frankfurt am Main</a></div></div><style>
 footer.sfoot{border:0;padding:0;line-height:1.6}.sfoot a{margin:0;border:0}
 .sfoot{background:#131310;color:#B8B5A3;margin-top:56px;font:14px/1.6 Archivo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
