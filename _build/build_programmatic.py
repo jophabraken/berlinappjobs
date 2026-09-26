@@ -70,6 +70,7 @@ h2{font-family:Archivo;font-weight:800;font-size:20px;margin:30px 0 10px}
 .row,.card{transition:transform 140ms cubic-bezier(.2,.8,.2,1),box-shadow 140ms cubic-bezier(.2,.8,.2,1),background-color 140ms}
 @media (hover:hover){.row:hover,.card:hover{transform:translateY(-2px);box-shadow:0 6px 0 -1px var(--line)}}
 .row:active,.card:active{transform:translateY(0);box-shadow:0 2px 0 -1px var(--line);transition-duration:60ms}
+@media (hover:none){.row,.card{-webkit-tap-highlight-color:transparent}.row:active,.card:active{transform:scale(.975);box-shadow:none;background:var(--chip);transition-duration:70ms}}
 @media (prefers-reduced-motion:reduce){.row,.card{transition:none}.row:hover,.card:hover,.row:active,.card:active{transform:none}}
 .row .m{flex:1;min-width:0}
 .row .t{font-weight:700;font-size:15px}
