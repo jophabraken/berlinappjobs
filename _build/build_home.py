@@ -74,7 +74,8 @@ os.makedirs(os.path.join(OUT, 'assets'), exist_ok=True)
 # Guides open as their own pages (/guides/<slug>/), so the app only needs title/desc/slug, not each guide's full text.
 GUIDES = json.loads(guides_js[guides_js.find('=') + 1:].strip().rstrip(';'))
 guides_slim = 'const GUIDES = ' + json.dumps([{k: g.get(k) for k in ('slug', 'lang', 'title', 'desc', 'pair')} for g in GUIDES], ensure_ascii=False) + ';\n'
-data_out = board_js.rstrip() + '\n' + guides_slim + geo_js.rstrip() + '\n'
+jobpage_js = 'const JOBPAGE = ' + json.dumps({k: v.replace(SITE, '') for k, v in JOBPAGE.items()}, ensure_ascii=False, separators=(',', ':')) + ';\n'   # job URL -> /job/<slug>/, so cards open the full ad
+data_out = board_js.rstrip() + '\n' + guides_slim + jobpage_js + geo_js.rstrip() + '\n'
 def asset(name, text):
     h = hashlib.sha1(text.encode('utf-8')).hexdigest()[:10]
     open(os.path.join(OUT, 'assets', name), 'w', encoding='utf-8').write(text)

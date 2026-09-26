@@ -82,21 +82,14 @@ FAV = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 
        "font-family='Arial,sans-serif' font-size='68' font-weight='900' text-anchor='middle' "
        "fill='%23131310'%3EB%3C/text%3E%3C/svg%3E")
 
-CSS = """
+import header as site_hdr   # the same header as the job board
+CSS = site_hdr.CSS + """
 :root{--bg:#F7F6EF;--surface:#fff;--ink:#131310;--muted:#52524A;--faint:#75756B;--line:#131310;--accent:#FFD400;--chip:#F1EFE3}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#131310;--surface:#1D1D18;--ink:#F4F1E0;--muted:#B8B5A3;--faint:#8A887B;--line:#4A4940;--chip:#26261F}}
 *{box-sizing:border-box}
 html{scroll-padding-top:70px}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,system-ui,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-#top{position:sticky;top:0;z-index:20;background:#131310}
-#top .bar{max-width:820px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:14px}
-.wordmark{display:flex;font-weight:900;font-size:13px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;line-height:1}
-.wordmark .a{background:#FFD400;color:#131310;padding:7px 9px}
-.wordmark .b{background:#fff;color:#131310;padding:7px 9px;border-left:2.5px solid #131310}
-#top .spacer{flex:1}
-#top .nav{color:#B8B5A3;text-decoration:none;font-weight:700;font-size:13px}
-#top .nav:hover{color:#FFD400}
 .wrap{max-width:820px;margin:0 auto;padding:0 20px 80px}
 .crumb{font-size:13px;color:var(--faint);margin:22px 0 6px}
 .crumb a{color:var(--faint);text-decoration:none}.crumb a:hover{color:var(--accent)}
@@ -140,14 +133,13 @@ h1.hubh{font-family:Archivo;font-weight:900;font-size:clamp(26px,5vw,38px);margi
 
 def esc(s): return htmlmod.escape(s, quote=True)
 
-def top_bar(lang):
-    jobs = "Jobs" if lang=="en" else "Jobs"
-    return ('<div id="top"><div class="bar">'
-            '<a class="wordmark" href="/"><span class="a">Berlin</span><span class="b">App Jobs</span></a>'
-            '<div class="spacer"></div>'
-            '<a class="nav" href="/guides/">Guides</a>'
-            f'<a class="nav" href="/" style="margin-left:14px">{jobs} &rarr;</a>'
-            '</div></div>')
+def top_bar(lang, a=None):
+    """The board's header (header.py), with the Guides tab active; flags link to the guide's other-language version."""
+    alt = {}
+    if a is not None and a.get("hreflang") in by_slug:
+        p = by_slug[a["hreflang"]]
+        alt = {a["lang"]: f'/guides/{a["slug"]}/', p["lang"]: f'/guides/{p["slug"]}/'}
+    return ''.join(site_hdr.site_header(lang, 'guides', alt, *_ns['site_counts']()))
 
 def related_block(a):
     lang=a["lang"]
@@ -232,12 +224,12 @@ def render_article(a):
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="{FAV}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
 <style>{CSS}</style>
 {article_jsonld(a,url)}
 </head>
 <body>
-{top_bar(a['lang'])}
+{top_bar(a['lang'], a)}
 <div class="wrap">
 <nav class="crumb"><a href="/">{crumbhome}</a> / <a href="/guides/">Guides</a> / {esc(a['title'])}</nav>
 <article>
@@ -285,7 +277,7 @@ def hub():
 <meta property="og:title" content="Guides: App Jobs in Germany"><meta property="og:url" content="{url}">
 <link rel="icon" href="{FAV}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
 <style>{CSS}</style>
 </head>
 <body>

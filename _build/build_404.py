@@ -13,7 +13,7 @@ cities = [(c, city_slug(c), n) for c, n in CITY_JOBS.most_common(8)
 city_links = ''.join(f'<a class="card" href="/jobs/{s}/"><div class="ct">App jobs in {esc(c)}</div><div class="cd">{n} open roles</div></a>'
                      for c, s, n in cities)
 doc = head("Page not found | Berlin App Jobs", "This page doesn't exist (anymore). Browse current jobs at Germany's app companies.",
-           SITE + "/404.html", extra='\n<meta name="robots" content="noindex">')
+           SITE + "/404.html", extra='\n<meta name="robots" content="noindex">', lang="en", active="")
 doc = doc.replace('<link rel="canonical" href="' + SITE + '/404.html">\n', '')   # a 404 has no canonical URL
 doc += ('<h1 style="margin-top:34px">This page isn\'t here (anymore)</h1>'
         '<p class="sub">If you followed a link to a job, it has most likely been filled or closed: we remove closed roles every day. '

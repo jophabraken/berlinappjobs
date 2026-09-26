@@ -392,19 +392,58 @@ for (ats, feed), cos in feeds.items():
             report.append(f'- {c["n"]} ({ats}): {len(old)} → {len(fresh)} jobs ({closed} closed){flag}')
         c['jobs'] = fresh; c['total'] = len(fresh)
 
-# ---- custom career pages: drop only jobs whose link is gone (404/410)
-def alive(u):
+# ---- job pages: link check for custom career pages, and full descriptions from the job's own page
+# Jobs without a full description get no job page on the site. Many careers sites put the whole ad on each
+# job page as schema.org JobPosting data (for Google for Jobs), so we read it from there:
+#   * custom career pages: their job links are opened for the link check anyway, so the page is also read;
+#   * feed jobs whose feed has no description (e.g. Personio accounts with the XML feed switched off):
+#     up to BAJ_BACKFILL_MAX pages per run; pages without JobPosting data are retried after 14 days.
+HAVE_DESC = {x['url'].rstrip('/') for x in D['jobs'] if x.get('url') and len(txt(x.get('desc'))) >= 300} | {x['url'].rstrip('/') for x in new_desc}
+NODESC = DET.setdefault('_nodesc', {})   # job URL -> last day its page had no usable description
+def nodesc_due(u):
+    d = NODESC.get(u)
+    try: return not d or (TODAY - datetime.date.fromisoformat(d)).days >= 14
+    except Exception: return True
+def page_check(u):
+    """(alive, page html or None). Only 404/410 count as gone; network trouble is not proof the job is closed."""
     try:
-        req = urllib.request.Request(u, headers={'User-Agent': UA}, method='GET')
-        with urllib.request.urlopen(req, timeout=int(os.environ.get('BAJ_LINK_TIMEOUT', '20'))) as r: return True
+        req = urllib.request.Request(u, headers={'User-Agent': UA, **ats_more.HTML_H}, method='GET')
+        with urllib.request.urlopen(req, timeout=int(os.environ.get('BAJ_LINK_TIMEOUT', '20'))) as r:
+            return True, r.read(3_000_000).decode('utf-8', 'replace')
     except urllib.error.HTTPError as e:
-        return e.code not in (404, 410)
+        return e.code not in (404, 410), None
     except Exception:
-        return True   # network trouble is not proof the job is gone
+        return True, None
+def desc_record(jb, raw, src):
+    return {'src': src, 'id': jb['u'], 'url': jb['u'], 't': jb['t'], 'loc': jb.get('loc', ''), 'desc': raw['desc'], 'et': raw.get('et', ''),
+            'pub': raw.get('pub') or jb.get('p') or '', 'rem': str(bool(jb.get('rem')))}
+desc_added = dict(custom=0, backfill=0)
 custom = [c for c in B['companies'] if c.get('jobs') and not ats_of(c)]
 urls = sorted({jb['u'] for c in custom for jb in c['jobs'] if jb.get('u', '').startswith('http')})
 with cf.ThreadPoolExecutor(16) as ex:
-    status = dict(zip(urls, ex.map(alive, urls)))
+    checked = dict(zip(urls, ex.map(page_check, urls)))
+status = {u: v[0] for u, v in checked.items()}
+for c in custom:
+    for jb in c['jobs']:
+        page = (checked.get(jb['u']) or (None, None))[1]
+        if page and jb['u'].rstrip('/') not in HAVE_DESC:
+            raw = ats_more.desc_from_page(page, jb['u'], jb['t'])
+            if raw and len(txt(raw['desc'])) >= 300:
+                new_desc.append(desc_record(jb, raw, 'page')); HAVE_DESC.add(jb['u'].rstrip('/')); desc_added['custom'] += 1
+BACKFILL_MAX = int(os.environ.get('BAJ_BACKFILL_MAX', '400'))
+need = [(c, jb) for (ats, feed), cos in feeds.items() if ats not in ats_more.CRAWL_ATS and results.get((ats, feed)) is not None
+        for c in cos for jb in c.get('jobs') or []
+        if jb.get('u', '').startswith('http') and jb['u'].rstrip('/') not in HAVE_DESC and nodesc_due(jb['u'])][:BACKFILL_MAX]
+with cf.ThreadPoolExecutor(12) as ex:
+    pages_bf = list(ex.map(lambda cj: page_check(cj[1]['u'])[1], need))
+for (c, jb), page in zip(need, pages_bf):
+    raw = ats_more.desc_from_page(page, jb['u'], jb['t']) if page else None
+    if raw and len(txt(raw['desc'])) >= 300:
+        new_desc.append(desc_record(jb, raw, 'page')); HAVE_DESC.add(jb['u'].rstrip('/')); desc_added['backfill'] += 1; NODESC.pop(jb['u'], None)
+    elif page is not None:
+        NODESC[jb['u']] = TODAY.isoformat()
+live_now = {jb['u'] for c in B['companies'] for jb in c.get('jobs') or []}
+for u in [u for u in NODESC if u not in live_now]: NODESC.pop(u, None)   # forget closed jobs
 dead_total = 0
 for c in custom:
     dead = [jb for jb in c['jobs'] if status.get(jb['u']) is False]
@@ -424,6 +463,7 @@ B['checked'] = f'{TODAY.day} {["Jan", "Feb", "March", "April", "May", "June", "J
 head = [f'# Job refresh {TODAY.isoformat()}' + (' (dry run)' if DRY else ''), '',
         f'- API feeds: {len(feeds)}, failed: {len(errors)}; custom career pages link-checked: {len(urls)} links, {dead_total} removed',
         f'- Jobs: {before_total} → {after_total} (new {stats["new"]}, closed {stats["closed"]}, still open {stats["updated"]})',
+        f'- Full descriptions read from job pages: {desc_added["custom"]} (custom career pages) + {desc_added["backfill"]} (feeds without descriptions, {len(need)} pages checked)',
         f'- Hiring-system detection: {det_checked} companies checked, {len(detected)} now read directly' + (f' ({len(todo) - det_checked} left for the next run)' if len(todo) > det_checked else ''),
         f'- Published salaries added: {stats["salaries_added"]}; companies kept as-is because of a suspicious result: {stats["suspicious"]}',
         f'- Result: ' + ('ABORTED, nothing written: ' + '; '.join(hard) if hard else ('not written (dry run)' if DRY else 'written')), '', '## Changes by company', '']
@@ -444,9 +484,9 @@ for (ats, feed), cos in feeds.items():   # remember crawled pages that are not j
             e['skip'] = list(dict.fromkeys((e.get('skip') or []) + new_skip))[-300:]
 json.dump(DET, open(DETECT_FILE, 'w', encoding='utf-8'), ensure_ascii=False, indent=1, sort_keys=True)
 refetched = {f'{a}:{f}' for (a, f) in results}
-live = {jb['u'].split('?')[0].rstrip('/') for c in B['companies'] for jb in c.get('jobs') or []}
-fresh_urls = {x['url'].split('?')[0].rstrip('/') for x in new_desc}
-kept = [x for x in D['jobs'] if (x.get('url') or '').split('?')[0].rstrip('/') in live - fresh_urls]   # e.g. companies whose fetch failed this week
+live = {jb['u'].rstrip('/') for c in B['companies'] for jb in c.get('jobs') or []}   # full URLs: some sites differ only after '?'
+fresh_urls = {x['url'].rstrip('/') for x in new_desc}
+kept = [x for x in D['jobs'] if (x.get('url') or '').rstrip('/') in live - fresh_urls]   # e.g. companies whose fetch failed this week
 D = {'fetched': NOW.isoformat(), 'log': {k: len([x for x in new_desc if x['src'] == k]) for k in refetched}, 'jobs': new_desc + kept}
 with gzip.open(os.path.join(DATA, 'descriptions.json.gz'), 'wt', encoding='utf-8', compresslevel=9) as f:
     json.dump(D, f, ensure_ascii=False)

@@ -15,7 +15,7 @@ mail = esc(site_config.CONTACT_EMAIL)
 
 url = SITE + '/about/'
 doc = head("About Berlin App Jobs: where the jobs come from", "How Berlin App Jobs works: which companies are listed, where every job comes from, "
-           "how often it is refreshed, and how employers can correct or remove a listing.", url, lang="en")
+           "how often it is refreshed, and how employers can correct or remove a listing.", url, lang="en", active="")
 doc += f'''<nav class="crumb"><a href="/">Home</a> / About</nav>
 <h1>About Berlin App Jobs</h1>
 <p class="sub">Berlin App Jobs lists open roles at the companies behind Germany's most-used mobile apps: {n_jobs:,} roles at {n_cos} companies right now,
@@ -51,7 +51,7 @@ imp = site_config.IMPRESSUM
 if imp:
     u = SITE + '/impressum/'
     d = head("Impressum | Berlin App Jobs", "Impressum und Kontakt von Berlin App Jobs (Angaben gemäß § 5 DDG).", u,
-             extra='\n<meta name="robots" content="noindex, follow">')
+             extra='\n<meta name="robots" content="noindex, follow">', active="")
     d += ('<nav class="crumb"><a href="/">Home</a> / Impressum</nav><h1>Impressum</h1><h2>Angaben gemäß § 5 DDG</h2><p>'
           + '<br>'.join(esc(imp[k]) for k in ('name', 'street', 'city') if imp.get(k)) + '</p><h2>Kontakt</h2><p>'
           + (f'E-Mail: <a href="mailto:{esc(imp["email"])}">{esc(imp["email"])}</a>' if imp.get('email') else '')

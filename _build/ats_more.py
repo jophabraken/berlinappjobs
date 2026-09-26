@@ -249,17 +249,18 @@ def f_crawl(feed, cfg=None):
         except Exception:
             return u, 'error', None
         ps = postings(page)
-        return u, ('ok' if ps else 'nojob'), ps
+        # exactly one JobPosting = a job page; several = a list page (its jobs have their own pages)
+        return u, ('ok' if len(ps) == 1 else 'multi' if ps else 'nojob'), ps
     with cf.ThreadPoolExecutor(6) as ex:
         res = list(ex.map(one, todo))
     raws, expired, nojob, fetched_ok = [], [], [], 0
     for u, st, ps in res:
-        if st == 'error':
+        if st == 'error' or (st == 'multi' and u in known_n):
             if u in known_n: raws.append({'keep': True, 'url': u, 'id': u})
             continue
         fetched_ok += 1
         if st != 'ok':
-            if st == 'nojob' and u not in known_n: nojob.append(u)
+            if u not in known_n: nojob.append(u)
             continue
         for o in ps[:1]:
             r = posting_to_raw(o, u)
@@ -457,4 +458,17 @@ def detect(c, fetchers, placeholder, is_manual, log):
             r = attempt('crawl', cfg['lists'][0], cfg, generic=True)
             if r: return r
         elif urls: log.append('job links too generic to crawl')
+    return None
+
+# ---------------------------------------------------------------- description from a job's own page
+def _tokens(t): return set(re.findall(r'[a-zäöüß0-9]{3,}', (t or '').lower())) - {'m/w/d', 'mwd', 'all', 'genders', 'der', 'die', 'das', 'and', 'und', 'for', 'the'}
+def same_title(a, b):
+    ta, tb = _tokens(a), _tokens(b)
+    return bool(ta and tb) and len(ta & tb) / min(len(ta), len(tb)) >= 0.6
+
+def desc_from_page(page, url, title):
+    """The JobPosting on a job's own page that belongs to this job (title must match), as a raw job, or None."""
+    for o in postings(page or ''):
+        r = posting_to_raw(o, url)
+        if r['t'] and same_title(r['t'], title): return r
     return None

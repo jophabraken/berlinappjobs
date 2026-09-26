@@ -49,17 +49,13 @@ DISC={
  'health':('health','Health'),
 }
 
-CSS="""
+import header as site_hdr   # the same header as the job board, on every static page
+CSS=site_hdr.CSS+"""
 :root{--bg:#F7F6EF;--surface:#fff;--ink:#131310;--muted:#52524A;--faint:#75756B;--line:#131310;--accent:#FFD400;--chip:#F1EFE3}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#131310;--surface:#1D1D18;--ink:#F4F1E0;--muted:#B8B5A3;--faint:#8A887B;--line:#4A4940;--chip:#26261F}}
 *{box-sizing:border-box}html{scroll-padding-top:70px}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-#top{position:sticky;top:0;z-index:20;background:#131310}
-#top .bar{max-width:900px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:14px}
-.wordmark{display:flex;font-weight:900;font-size:13px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;line-height:1}
-.wordmark .a{background:#FFD400;color:#131310;padding:7px 9px}.wordmark .b{background:#fff;color:#131310;padding:7px 9px;border-left:2.5px solid #131310}
-#top .spacer{flex:1}#top .nav{color:#B8B5A3;text-decoration:none;font-weight:700;font-size:13px;margin-left:14px}#top .nav:hover{color:#FFD400}
 .wrap{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .crumb{font-size:13px;color:var(--faint);margin:22px 0 6px}.crumb a{color:var(--faint);text-decoration:none}.crumb a:hover{color:var(--accent)}
 h1{font-family:Archivo;font-weight:900;font-size:clamp(26px,4.6vw,38px);line-height:1.12;letter-spacing:-.01em;margin:6px 0 8px;text-wrap:balance}
@@ -91,7 +87,14 @@ def alt_links(alt):
     """hreflang pairs for pages that exist in German and English: alt = {'de': url, 'en': url}."""
     return ''.join(f'<link rel="alternate" hreflang="{k}" href="{v}">' for k, v in (alt or {}).items())
 
-def head(title, desc, url, extra="", lang="de", alt=None):
+_COUNTS = []
+def site_counts():
+    """(open roles, companies hiring): the same numbers as in the board's header."""
+    if not _COUNTS:
+        _COUNTS.extend([sum(len(c.get('jobs') or []) for c in COS), sum(1 for c in COS if (c.get('tier') or 9) <= 2)])
+    return _COUNTS
+
+def head(title, desc, url, extra="", lang="de", alt=None, active="jobs"):
     return f"""<!doctype html><html lang="{lang}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{esc(title)}</title>
@@ -101,12 +104,11 @@ def head(title, desc, url, extra="", lang="de", alt=None):
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}">
 <link rel="icon" href="{FAV}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
 <link rel="alternate" type="application/atom+xml" title="New app jobs" href="/feed.xml">{alt_links(alt)}
 <style>{CSS}</style>{extra}
 </head><body>
-<div id="top"><div class="bar"><a class="wordmark" href="/"><span class="a">Berlin</span><span class="b">App Jobs</span></a>
-<div class="spacer"></div><a class="nav" href="{'/en' if lang=='en' else ''}/jobs/">Jobs</a><a class="nav" href="/companies/">Companies</a><a class="nav" href="/guides/">Guides</a></div></div>
+{''.join(site_hdr.site_header(lang, active, {k: v.replace(SITE, '') for k, v in (alt or {}).items()}, *site_counts()))}
 <div class="wrap">"""
 
 # site-wide footer (footer.py): FOOT for German pages, FOOT_EN for English ones
@@ -241,7 +243,7 @@ for c in comps:
     cta=(f'<a class="cta" href="/?q={esc(quote(c["n"]))}">Diese Firma im Jobboard ansehen &rarr;</a>')
     citylink=f'<a class="nav" style="color:var(--accent);margin:0" href="/jobs/{city_slug(city)}/">Mehr App-Jobs in {esc(city)}</a>' if city and njobs and CITY_JOBS.get(city, 0) >= 10 else ''  # only cities that get a page
     if not njobs: NOINDEX.append(f"companies/{slug}")
-    doc=head(title,desc,url,extra=("\n"+'<meta name="robots" content="noindex, follow">' if not njobs else "")+"\n"+jsonld(ld))
+    doc=head(title,desc,url,extra=("\n"+'<meta name="robots" content="noindex, follow">' if not njobs else "")+"\n"+jsonld(ld),active="companies")
     doc+=f'<nav class="crumb"><a href="/">Home</a> / <a href="/companies/">Companies</a> / {esc(c["n"])}</nav>'
     doc+=f'<h1>Jobs bei {esc(c["n"])}</h1>'
     doc+=f'<p class="sub">{esc(desc)}</p>'
@@ -262,7 +264,7 @@ def companies_hub():
                 f'<div class="cd">'+(esc(city)+' &middot; ' if city else '')+ (f'{nj} offene Stellen' if nj else f'{total} Stellen')+'</div></a>')
     doc=head("App-Unternehmen in Deutschland: alle Firmen & Jobs | Berlin App Jobs",
              f"Alle {len(company_index)} Unternehmen hinter Deutschlands Top-Apps mit offenen Stellen. Apps, Rollen, Standort und Direktbewerbung.",
-             url)
+             url, active="companies")
     doc+='<nav class="crumb"><a href="/">Home</a> / Companies</nav>'
     doc+=f'<h1>App-Unternehmen mit offenen Stellen</h1>'
     doc+=f'<p class="sub">Die {len(company_index)} Unternehmen hinter Deutschlands meistgenutzten Apps, die aktuell einstellen. Jede Firma mit ihren Apps, offenen Rollen und Direktbewerbung.</p>'

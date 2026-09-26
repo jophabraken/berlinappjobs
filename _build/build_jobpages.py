@@ -3,23 +3,28 @@
 # Only jobs whose full description we have from the hiring system's feed (descriptions.json)
 # and that are still live in that feed. Writes /job/<slug>/ pages, sitemap-jobs.xml and
 # /tmp/berlin/jobpages_map.json (ATS url -> our job page URL) for internal links.
-import json, os, re, hashlib, datetime, shutil, html
+import json, os, re, hashlib, datetime, shutil, html, urllib.parse
 import bleach
 
 SRC = open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'build_programmatic.py'), encoding='utf-8').read()
 exec(SRC[:SRC.index('def jsonld(objs):')])   # CSS, head(), FOOT, esc(), slugify(), B, COS, SITE, OUT, FAV
+_BS = open(os.path.join(DATA, 'board_data.js'), encoding='utf-8').read(); _i = _BS.find('const IOS = '); _j = _BS.find('\nconst ', _i + 5)
+IOS = json.loads(_BS[_i + 12:_j].strip().rstrip(';')) if _i >= 0 else {}   # Play app id -> App Store link
 exec(SRC[SRC.index('def jsonld(objs):'):SRC.index('def jobposting_list')])  # jsonld(), breadcrumb()
 
 D = json.load(__import__('gzip').open(os.path.join(DATA,'descriptions.json.gz'), 'rt', encoding='utf-8'))
 FETCHED = D['fetched'][:10]
 VALID_THROUGH = (datetime.date.fromisoformat(FETCHED) + datetime.timedelta(days=30)).isoformat()
-idx = {}
+idx = {}; _base = {}
 for j in D['jobs']:
     for k in filter(None, [j.get('url'), str(j.get('id') or '')]):
-        idx.setdefault(k.split('?')[0].rstrip('/'), j)
+        idx.setdefault(k.rstrip('/'), j)
+        _base.setdefault(k.split('?')[0].rstrip('/'), []).append(j)
+for k, v in _base.items():   # a query-less URL is only a key when it points at exactly one job
+    if len({id(x) for x in v}) == 1: idx.setdefault(k, v[0])
 
 def match(u):
-    m = idx.get(u.split('?')[0].rstrip('/'))
+    m = idx.get(u.rstrip('/')) or idx.get(u.split('?')[0].rstrip('/'))
     if m: return m
     for i in reversed(re.findall(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|\d{6,}', u)):
         if i in idx: return idx[i]
@@ -82,12 +87,55 @@ shutil.rmtree(JOB_DIR, ignore_errors=True)   # local build dir only; the repo co
 os.makedirs(JOB_DIR, exist_ok=True)
 
 EXPIRE_JS = ("<script>(function(){var v='" + VALID_THROUGH + "';if(new Date()>new Date(v+'T23:59:59')){var b=document.getElementById('expired');if(b)b.hidden=false;var a=document.querySelectorAll('.applybtn');for(var i=0;i<a.length;i++)a[i].style.display='none';}})();</script>")
+def costrip(c, cname, cslug, L):
+    """The app behind the job, under the title: icon, app name, store links, installs, link to the company page."""
+    app = (c.get('apps') or [{}])[0]
+    icon = f'<img src="{esc(c["icon"])}" alt="" width="48" height="48">' if (c.get('icon') or '').startswith('data:image') else ''
+    ios = IOS.get(app.get('id') or '')
+    stores = ''
+    if app.get('id'):
+        stores += (f'<a class="store" href="https://play.google.com/store/apps/details?id={urllib.parse.quote(app["id"])}" '
+                   f'target="_blank" rel="noopener nofollow">Google Play &#8599;</a>')
+    if ios and ios.get('url'):
+        stores += f'<a class="store" href="{esc(ios["url"])}" target="_blank" rel="noopener nofollow">App Store &#8599;</a>'
+    n_roles = len(c.get('jobs') or [])
+    bits = [L('von', 'by') + ' ' + esc(cname)]
+    if app.get('i'): bits.append(esc(app['i']) + L(' Downloads (Android)', ' installs (Android)'))
+    if cslug:
+        bits.append(f'<a href="/companies/{cslug}/">' + (L(f'{n_roles} offene Stellen', f'{n_roles} open roles') if n_roles > 1 else L('Zum Unternehmen', 'Company page')) + ' &rarr;</a>')
+    return (f'<div class="costrip">{icon}<div class="ct"><span class="lbl">{L("Die App", "The app")}</span>'
+            f'<b>{esc(app.get("t") or cname)}</b><span class="by">{" &middot; ".join(bits)}</span></div>'
+            + (f'<div class="stores">{stores}</div>' if stores else '') + '</div>')
+
+# "All jobs" goes back in history when the visitor came from the board (keeps their filters and scroll position);
+# the dark Apply bar appears once the first Apply button has scrolled out of view.
+BACK_JS = ("<script>(function(){var b=document.getElementById('backlink');try{var r=document.referrer&&new URL(document.referrer);"
+           "if(r&&r.origin===location.origin&&(r.pathname==='/'||r.pathname==='/index.html')&&history.length>1)b.addEventListener('click',function(e){e.preventDefault();history.back();});}catch(e){}"
+           "var s=document.getElementById('stick'),a=document.querySelector('.applybtn');if(s&&a&&'IntersectionObserver' in window)"
+           "new IntersectionObserver(function(es){var on=!es[0].isIntersecting&&es[0].boundingClientRect.top<0;s.classList.toggle('on',on);s.setAttribute('aria-hidden',on?'false':'true');}).observe(a);})();</script>")
 EXTRA_CSS = """<style>
 .jd{background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:18px 20px;margin-top:14px;font-size:15.5px;line-height:1.65;overflow-wrap:anywhere}
 .jd h2,.jd h3,.jd h4{font-family:Archivo;font-weight:800;font-size:17px;margin:20px 0 6px}
 .jd ul{padding-left:20px}.jd p{margin:0 0 12px}
 .expired{background:#FFE9E3;color:#7A1F0C;border:1.5px solid #7A1F0C;border-radius:8px;padding:12px 14px;margin:10px 0;font-weight:700}
 .note{color:var(--faint);font-size:12.5px;margin-top:10px}
+.costrip{display:flex;align-items:center;gap:13px;flex-wrap:wrap;background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;margin:14px 0 6px}
+.costrip img{width:48px;height:48px;border-radius:9px;flex:none}.costrip .ct{min-width:0;flex:1 1 220px}
+.costrip .lbl{display:block;font:800 10.5px/1.2 Archivo,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.costrip b{display:block;font-size:16px;line-height:1.3;margin-top:2px}
+.costrip .by{color:var(--muted);font-size:12.5px}.costrip .by a{color:var(--ink);font-weight:700;text-decoration:none}.costrip .by a:hover{text-decoration:underline}
+.costrip .stores{display:flex;gap:8px;flex-wrap:wrap}
+.costrip .store{border:1.5px solid var(--line);border-radius:6px;padding:7px 11px;font-weight:800;font-size:13px;text-decoration:none;white-space:nowrap;background:var(--bg)}
+.costrip .store:hover{background:#131310;color:#FFD400;border-color:#131310}
+.back{display:inline-block;margin:18px 0 -8px;font-weight:800;font-size:13.5px;color:var(--ink);text-decoration:none}
+.back:hover{text-decoration:underline}
+.stick{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#131310;color:#F4F1E0;transform:translateY(110%);transition:transform .2s;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}
+.stick.on{transform:none}
+.stick .in{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.stick .tx{min-width:0;flex:1}.stick .tx b{display:block;font:800 14.5px Archivo,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stick .tx span{font-size:12px;color:#B8B5A3}
+.stick .cta{margin:0;flex:none;white-space:nowrap}
+@media (max-width:880px){.stick{bottom:calc(52px + env(safe-area-inset-bottom,0px));padding-bottom:10px;border-bottom:1px solid #2c2c24}}
 </style>"""
 
 pages = []; mapping = {}; per_co = {}
@@ -225,11 +273,13 @@ for rec in pages:
     crumbs = breadcrumb([("Start" if de else "Home", SITE + "/"), (cname, f"{SITE}/companies/{cslug}/" if cslug else SITE + "/"), (jb['t'], url)])
     pills = [esc(loc)] + (["Remote"] if fully_remote else [L("Remote möglich", "Remote possible")] if remote else []) + [{"FULL_TIME": L("Vollzeit", "Full-time"), "PART_TIME": L("Teilzeit", "Part-time"), "INTERN": L("Praktikum", "Internship"), "CONTRACTOR": "Freelance", "TEMPORARY": L("Befristet", "Temporary")}[et[-1]]]
     if jb.get('sal'): pills.append(esc(jb['sal'].split('•')[0].strip()))
-    body = (head(full_title, meta_desc, url, EXTRA_CSS + "\n" + jsonld([jp, crumbs])).replace('<html lang="de">', f'<html lang="{"de" if de else "en"}">')
+    body = (head(full_title, meta_desc, url, EXTRA_CSS + "\n" + jsonld([jp, crumbs]), lang="de" if de else "en").replace('<html lang="de">', f'<html lang="{"de" if de else "en"}">')
+      + f'<a class="back" href="/" id="backlink">&larr; {L("Alle Stellen", "All jobs")}</a>'
       + f'<nav class="crumb"><a href="/">{L("Start", "Home")}</a> / '
       + (f'<a href="/companies/{cslug}/">{esc(cname)}</a>' if cslug else esc(cname)) + f' / {esc(jb["t"])}</nav>'
       + f'<h1>{esc(jb["t"])}</h1>'
       + f'<div class="meta"><b>{esc(cname)}</b>' + ''.join(f'<span class="pill">{p}</span>' for p in pills) + f'<span>{L("Veröffentlicht", "Posted")} {posted}</span></div>'
+      + costrip(c, cname, cslug, L)
       + f'<div id="expired" class="expired" hidden>{L("Diese Anzeige ist möglicherweise nicht mehr aktuell. Prüfe die Stelle auf der Karriereseite des Unternehmens.", "This posting may no longer be open. Check the role on the company careers page.")}</div>'
       + f'<a class="cta applybtn" href="{esc(jb["u"])}" target="_blank" rel="noopener nofollow">{L("Jetzt beim Unternehmen bewerben", "Apply on the company site")} &#8599;</a>'
       + f'<div class="jd">{desc}</div>'
@@ -238,7 +288,10 @@ for rec in pages:
       + other_html
       + (f'<p style="margin-top:22px"><a href="/companies/{cslug}/">{L("Alle Infos und Apps von", "All info and apps from")} {esc(cname)} &rarr;</a> &middot; ' if cslug else '<p style="margin-top:22px">')
       + f'<a href="/">{L("Alle Stellen auf dem Board", "All jobs on the board")} &rarr;</a></p>'
-      + '</div>' + (FOOT if de else FOOT_EN) + EXPIRE_JS + '</body></html>')
+      + '</div>'
+      + f'<div class="stick" id="stick" aria-hidden="true"><div class="in"><div class="tx"><b>{esc(jb["t"])}</b><span>{esc(cname)} &middot; {esc(loc)}</span></div>'
+      + f'<a class="cta applybtn" href="{esc(jb["u"])}" target="_blank" rel="noopener nofollow" tabindex="-1">{L("Bewerben", "Apply")} &#8599;</a></div></div>'
+      + (FOOT if de else FOOT_EN) + EXPIRE_JS + BACK_JS + '</body></html>')
     d = os.path.join(JOB_DIR, slug); os.makedirs(d, exist_ok=True)
     open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(body)
 
