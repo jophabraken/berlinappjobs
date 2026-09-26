@@ -33,6 +33,8 @@ ICONS = {
 }
 
 CSS = """
+/* the board renders text with the browser's default smoothing; the static pages' body uses antialiased, so reset it here */
+#top,#bottomNav,#moreSheet{-webkit-font-smoothing:auto;-moz-osx-font-smoothing:auto}
 #top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:#131310}
 #top .bar{max-width:1140px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:nowrap}
 #top .bar>*{flex-shrink:0}

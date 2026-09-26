@@ -632,7 +632,7 @@
   const t = k => T[L][k];
 
   let JOBS = [];
-  COS.forEach((c, ci) => { c.ci = ci; c.city = c.city || 'Berlin'; (c.jobs || []).forEach(j => JOBS.push({ ...j, c })); });
+  COS.forEach((c, ci) => { c.ci = ci; c.city = c.city || 'Berlin'; (c.jobs || []).forEach((j, ji) => JOBS.push({ ...j, c, ji })); });   // ji: position in c.jobs (several jobs can share one URL)
   JOBS.forEach(j => {
     const hay = (j.t + ' ' + (j.loc || '')).toLowerCase();
     j.wp = /hybrid/.test(hay) ? 'hybrid' : (j.rem ? 'remote' : 'office');
@@ -783,7 +783,7 @@
     const isNew = !firstVisit && j.p && !seen.has(j.u) ? '<span class="newb">NEW</span>' : '';
     const m = metrics[j.c.n];
     const loc = esc(j.loc === 'Berlin' || j.loc === 'Remote' ? j.c.city : j.loc);
-    return `<div class="job${spon ? ' spon' : ''}" data-ci="${j.c.ci}" data-ju="${esc(j.u)}"${pg ? ` data-pg="${esc(pg)}"` : ''} ${spon ? `data-spdev="${esc(j.c.n)}"` : ''}>
+    return `<div class="job${spon ? ' spon' : ''}" data-ci="${j.c.ci}" data-ji="${j.ji}" data-ju="${esc(j.u)}"${pg ? ` data-pg="${esc(pg)}"` : ''} ${spon ? `data-spdev="${esc(j.c.n)}"` : ''}>
       ${icoHtml(j.c)}
       <div class="jbody">
         <div class="jtop">
@@ -888,7 +888,7 @@
       if (e.metaKey || e.ctrlKey) { window.open(row.dataset.pg, '_blank'); return; }
       location.href = row.dataset.pg; return;
     }
-    openCo(+row.dataset.ci, row.dataset.ju);
+    openCo(+row.dataset.ci, +row.dataset.ji);
   });
   setTimeout(() => { JOBS.forEach(j => seen.add(j.u)); LS.set('baj_seen', [...seen].slice(-3000)); }, 5000);
 
@@ -1000,17 +1000,17 @@
     const pg = PAGES[j.u];
     return `<div class="cp-job${focus ? ' focus' : ''}"><div><div class="t">${pg ? `<a class="jl" href="${esc(pg)}">${esc(j.t)}</a>` : esc(j.t)}</div><div class="m">${esc(j.loc === 'Berlin' ? c.city : j.loc)} · ${t('wp')[wp]}${j.sal ? ' · <b>' + esc(salShort(j.sal)) + '</b>' : ''}${j.p ? ' · ' + relTime(j.p) : ''}</div></div><a class="${focus ? 'cpapply' : ''}" href="${esc(j.u)}" target="_blank" rel="noopener" data-spc="${esc(c.n)}">${t('apply')}</a></div>`;
   }
-  function openCo(ci, focusU) {
+  function openCo(ci, focusI) {   // focusI: index in c.jobs of the role that was clicked; it goes first
     const c = COS[ci]; hideTip();
     $('cp-ic').innerHTML = icoHtml(c);
     $('cp-name').textContent = c.n;
     $('cp-addr').textContent = c.addr;
     $('cp-legal').textContent = c.legal && c.legal !== c.n ? t('regAs') + c.legal : '';
     $('cp-ext').hidden = !c.ext;
-    const jobs = (c.jobs || []).slice();
-    if (focusU) jobs.sort((a, b) => (a.u === focusU ? -1 : 0) - (b.u === focusU ? -1 : 0));
+    const all = c.jobs || [], hasFocus = Number.isInteger(focusI) && all[focusI];
+    const jobs = hasFocus ? [all[focusI], ...all.filter((_, i) => i !== focusI)] : all.slice();
     $('cp-jobs').innerHTML = jobs.length
-      ? jobs.map(j => cpJobRow(j, c, focusU && j.u === focusU)).join('')
+      ? jobs.map((j, i) => cpJobRow(j, c, hasFocus && i === 0)).join('')
       : (c.tier === 2
           ? `<a class="cp-extroles" href="${esc(c.careers || '#')}" target="_blank" rel="noopener"><div><div class="ttl">${c.total ? t('rolesOn')(c.total) : t('seeCareers')}</div><div class="sub">${t('extrolesSub')}</div></div><span class="arr">↗</span></a>`
           : `<div class="cp-job"><div class="t" style="color:var(--muted)">${t('noRoles')}</div></div>`);
@@ -1023,6 +1023,7 @@
         <div class="meta">${a.i ? esc(a.i) + t('instA') : ''}${ios ? (a.i ? ' · ' : '') + fmtN(ios.rc) + t('ratI') : ''}</div></div>
         <div class="stores"><a href="https://play.google.com/store/apps/details?id=${encodeURIComponent(a.id)}" target="_blank" rel="noopener">Play</a>${ios ? `<a href="${esc(ios.url)}" target="_blank" rel="noopener">iOS</a>` : ''}</div></div>`;
     }).join('');
+    const cpBody = $('cp').querySelector('.body'); if (cpBody) cpBody.scrollTop = 0;   // start at the clicked role
     $('shade').classList.add('on'); $('cp').classList.add('on');
   }
   function closeAll() { $('shade').classList.remove('on'); $('cp').classList.remove('on'); $('pm').classList.remove('on'); }

@@ -224,7 +224,7 @@ def render_article(a):
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="{FAV}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&display=swap">
 <style>{CSS}</style>
 {article_jsonld(a,url)}
 </head>
@@ -277,7 +277,7 @@ def hub():
 <meta property="og:title" content="Guides: App Jobs in Germany"><meta property="og:url" content="{url}">
 <link rel="icon" href="{FAV}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&display=swap">
 <style>{CSS}</style>
 </head>
 <body>

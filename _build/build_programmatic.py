@@ -104,7 +104,7 @@ def head(title, desc, url, extra="", lang="de", alt=None, active="jobs"):
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}">
 <link rel="icon" href="{FAV}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&display=swap">
 <link rel="alternate" type="application/atom+xml" title="New app jobs" href="/feed.xml">{alt_links(alt)}
 <style>{CSS}</style>{extra}
 </head><body>
