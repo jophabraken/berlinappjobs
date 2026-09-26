@@ -81,6 +81,10 @@
     }
   };
   let L = LS.get('ak_lang', (navigator.language || '').startsWith('de') ? 'de' : 'en');
+  try {   // ?lang=de|en from the flags in the header of the static pages
+    const ql = new URLSearchParams(location.search).get('lang');
+    if (ql === 'de' || ql === 'en') { L = ql; LS.set('ak_lang', L); history.replaceState(null, '', location.pathname + location.hash); }
+  } catch (e) {}
   const t = k => T[L][k];
 
   let JOBS = [];
@@ -226,13 +230,16 @@
   $('salOnly').addEventListener('change', e => { state.salOnly = e.target.checked; state.shown = 50; render(); });
   $('reset').addEventListener('click', () => { state.q = ''; state.d = ''; state.city = ''; state.sen = ''; state.typ = ''; state.wp = ''; state.lg = ''; state.date = ''; state.salOnly = false; state.saved = false; state.shown = 50; $('q').value = ''; if ($('mq')) $('mq').value = ''; $('salOnly').checked = false; fillSelects(); render(); });
 
+  const PAGES = typeof JOBPAGE !== 'undefined' ? JOBPAGE : {};   // job URL -> our full job page (/job/<slug>/)
+  function rememberList() { try { sessionStorage.setItem('baj_back', JSON.stringify({ shown: state.shown, y: window.scrollY, at: Date.now() })); } catch (e) {} }
   function jobRow(j, spon) {
     const app = j.c.apps[0];
+    const pg = PAGES[j.u];
     const inst = INST(j.c.v);
     const isNew = !firstVisit && j.p && !seen.has(j.u) ? '<span class="newb">NEW</span>' : '';
     const m = metrics[j.c.n];
     const loc = esc(j.loc === 'Berlin' || j.loc === 'Remote' ? j.c.city : j.loc);
-    return `<div class="job${spon ? ' spon' : ''}" data-ci="${j.c.ci}" data-ju="${esc(j.u)}" ${spon ? `data-spdev="${esc(j.c.n)}"` : ''}>
+    return `<div class="job${spon ? ' spon' : ''}" data-ci="${j.c.ci}" data-ju="${esc(j.u)}"${pg ? ` data-pg="${esc(pg)}"` : ''} ${spon ? `data-spdev="${esc(j.c.n)}"` : ''}>
       ${icoHtml(j.c)}
       <div class="jbody">
         <div class="jtop">
@@ -240,7 +247,7 @@
           <span class="jco">${esc(j.c.n)}</span>${isNew}${spon ? `<span class="sponb">${t('sponsored')}</span>` : ''}
           <span class="ago">${relTime(j.p)}</span>
         </div>
-        <div class="jt"><span class="tt">${esc(j.t)}</span></div>
+        <div class="jt"><span class="tt">${pg ? `<a class="jl" href="${esc(pg)}">${esc(j.t)}</a>` : esc(j.t)}</span></div>
         <div class="jmeta">
           <span>${loc}</span>
           <span>${t('wp')[j.wp]}</span>
@@ -328,7 +335,16 @@
     if (sv) { e.stopPropagation(); const u = sv.dataset.u; savedSet.has(u) ? savedSet.delete(u) : savedSet.add(u); LS.set('baj_sav', [...savedSet]); render(); return; }
     const ap = e.target.closest('.apply');
     if (ap) { e.stopPropagation(); if (ap.dataset.spc) bump(ap.dataset.spc, 'c', ap.getAttribute('href')); return; }
-    const row = e.target.closest('.job'); if (row) openCo(+row.dataset.ci, row.dataset.ju);
+    const row = e.target.closest('.job'); if (!row) return;
+    // A role with a full job page opens that page; the logo and company name open the company panel.
+    const toCompany = e.target.closest('.jco, .job > img, .job > .co-ic');
+    if (row.dataset.pg && !toCompany) {
+      rememberList();
+      if (e.target.closest('a.jl')) return;                       // the title link itself (also handles cmd/ctrl-click)
+      if (e.metaKey || e.ctrlKey) { window.open(row.dataset.pg, '_blank'); return; }
+      location.href = row.dataset.pg; return;
+    }
+    openCo(+row.dataset.ci, row.dataset.ju);
   });
   setTimeout(() => { JOBS.forEach(j => seen.add(j.u)); LS.set('baj_seen', [...seen].slice(-3000)); }, 5000);
 
@@ -437,7 +453,8 @@
   // ---------- company panel ----------
   function cpJobRow(j, c, focus) {
     const wp = /hybrid/.test((j.t + ' ' + (j.loc || '')).toLowerCase()) ? 'hybrid' : (j.rem ? 'remote' : 'office');
-    return `<div class="cp-job${focus ? ' focus' : ''}"><div><div class="t">${esc(j.t)}</div><div class="m">${esc(j.loc === 'Berlin' ? c.city : j.loc)} · ${t('wp')[wp]}${j.sal ? ' · <b>' + esc(salShort(j.sal)) + '</b>' : ''}${j.p ? ' · ' + relTime(j.p) : ''}</div></div><a class="${focus ? 'cpapply' : ''}" href="${esc(j.u)}" target="_blank" rel="noopener" data-spc="${esc(c.n)}">${t('apply')}</a></div>`;
+    const pg = PAGES[j.u];
+    return `<div class="cp-job${focus ? ' focus' : ''}"><div><div class="t">${pg ? `<a class="jl" href="${esc(pg)}">${esc(j.t)}</a>` : esc(j.t)}</div><div class="m">${esc(j.loc === 'Berlin' ? c.city : j.loc)} · ${t('wp')[wp]}${j.sal ? ' · <b>' + esc(salShort(j.sal)) + '</b>' : ''}${j.p ? ' · ' + relTime(j.p) : ''}</div></div><a class="${focus ? 'cpapply' : ''}" href="${esc(j.u)}" target="_blank" rel="noopener" data-spc="${esc(c.n)}">${t('apply')}</a></div>`;
   }
   function openCo(ci, focusU) {
     const c = COS[ci]; hideTip();
@@ -483,6 +500,7 @@
   }
 
   $('promoBtn').addEventListener('click', () => { renderPm(); $('shade').classList.add('on'); $('pm').classList.add('on'); });
+  if (location.hash === '#promote') { renderPm(); $('shade').classList.add('on'); $('pm').classList.add('on'); }   // "Promote your company" on the static pages
   $('pm-x').addEventListener('click', closeAll);
 
   // ---------- map (Germany, opens zoomed on Berlin) ----------
@@ -735,4 +753,14 @@
   });
 
   applyLang();
+  // Back from a job page: show as many roles as before and return to the same spot in the list.
+  try {
+    const nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
+    const back = JSON.parse(sessionStorage.getItem('baj_back') || 'null');
+    if (back && nav.type === 'back_forward' && Date.now() - back.at < 3600e3) {
+      if (back.shown > state.shown) { state.shown = back.shown; render(); }
+      requestAnimationFrame(() => window.scrollTo(0, back.y));
+    }
+  } catch (e) {}
+  window.addEventListener('pageshow', e => { if (e.persisted) closeAll(); });
 })();
