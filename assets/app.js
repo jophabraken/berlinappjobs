@@ -7,6 +7,26 @@
   const DSHORT = { eng: 'ENG', data: 'DATA', product: 'PROD', design: 'DSGN', marketing: 'MKT', sales: 'SALES', support: 'OPS', people: 'PPL', health: 'MED', other: 'MISC' };
   const INST = v => v >= 1e9 ? '1B+' : v >= 5e8 ? '500M+' : v >= 1e8 ? '100M+' : v >= 5e7 ? '50M+' : v >= 1e7 ? '10M+' : v >= 5e6 ? '5M+' : v >= 1e6 ? '1M+' : v >= 5e5 ? '500K+' : v >= 1e5 ? '100K+' : v >= 5e4 ? '50K+' : v >= 1e4 ? '10K+' : v > 0 ? '<10K' : '';
   const fmtN = n => n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 1) + 'M' : n >= 1e3 ? (n / 1e3).toFixed(n >= 1e4 ? 0 : 1) + 'K' : String(n);
+  const REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // 4. sliding highlight: one .pill per button group, moved to the .on button (the group's HTML may be re-rendered)
+  function slidePill(box, instant) {
+    if (!box) return;
+    let pill = box.querySelector(':scope > .pill');
+    if (!pill) {
+      pill = document.createElement('span'); pill.className = 'pill'; pill.setAttribute('aria-hidden', 'true'); box.prepend(pill);
+      if (box.dataset.px) { pill.style.transition = 'none'; Object.assign(pill.style, JSON.parse(box.dataset.px)); void pill.offsetWidth; pill.style.transition = ''; }
+      else instant = true;
+    }
+    const b = box.querySelector(':scope > button.on');
+    if (!b || !b.offsetWidth) { pill.style.opacity = '0'; box.classList.remove('has-pill'); delete box.dataset.px; return; }
+    const st = { width: b.offsetWidth + 'px', height: b.offsetHeight + 'px', transform: `translate(${b.offsetLeft}px, ${b.offsetTop}px)`, opacity: '1' };
+    if (instant || REDUCE) pill.style.transition = 'none';
+    Object.assign(pill.style, st); box.dataset.px = JSON.stringify(st); box.classList.add('has-pill');
+    if (instant || REDUCE) { void pill.offsetWidth; pill.style.transition = ''; }
+  }
+  const slideAll = () => ['tabs', 'storetoggle', 'discList'].forEach(id => slidePill(document.getElementById(id), true));
+  window.addEventListener('resize', slideAll);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(slideAll);
   const LS = { get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
   const salShort = s => { if (!s) return ''; let x = String(s).split('•')[0].split('·')[0].split('|')[0].trim(); return x.replace(/\s*[-–]\s*/g, '–'); };
   const salNum = s => { if (!s) return 0; const m = String(s).replace(/[.,](?=\d{3}\b)/g, '').match(/\d{2,}/g); if (!m) return 0; let n = Math.max(...m.map(Number)); if (/k/i.test(s) && n < 1000) n *= 1000; return n; };
@@ -132,6 +152,7 @@
     if (t === 'maptab' && !mapBuilt) { buildMap(); mapBuilt = true; }
     if (t === 'guides') renderGuides();
     if (!init) try { history.replaceState(null, '', '#' + t); } catch (e) {}
+    slidePill($('tabs'), init);
   }
   $('tabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setTab(b.dataset.tab); });
   $('wordmark').addEventListener('click', e => { e.preventDefault(); setTab('jobs'); if (typeof closeAll === 'function') closeAll(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
@@ -214,6 +235,7 @@
     }).join('');
     $('savedN').textContent = savedSet.size;
     $('savedBtn').classList.toggle('on', state.saved);
+    slidePill($('discList'));
   }
   function fillSelects() {
     const fill = (id, pairs, val) => { $(id).innerHTML = pairs.map(([v, l]) => `<option value="${v}">${l}</option>`).join(''); $(id).value = val; };
@@ -232,6 +254,15 @@
 
   const PAGES = typeof JOBPAGE !== 'undefined' ? JOBPAGE : {};   // job URL -> our full job page (/job/<slug>/)
   function rememberList() { try { sessionStorage.setItem('baj_back', JSON.stringify({ shown: state.shown, y: window.scrollY, at: Date.now() })); } catch (e) {} }
+  // 7. the clicked card's logo and title get view-transition names, so the browser morphs them into the job page
+  function nameForTransition(row) {
+    document.querySelectorAll('[data-vt]').forEach(el => { el.style.viewTransitionName = ''; el.removeAttribute('data-vt'); });
+    if (!row) return;
+    const logo = row.querySelector(':scope > img, :scope > .co-ic'), title = row.querySelector('.jt a.jl') || row.querySelector('.jt .tt');
+    if (logo) { logo.style.viewTransitionName = 'job-logo'; logo.setAttribute('data-vt', ''); }
+    if (title) { title.style.viewTransitionName = 'job-title'; title.setAttribute('data-vt', ''); }
+    try { const s = JSON.parse(sessionStorage.getItem('baj_back') || '{}'); s.pg = row.dataset.pg; sessionStorage.setItem('baj_back', JSON.stringify(s)); } catch (e) {}
+  }
   function jobRow(j, spon) {
     const app = j.c.apps[0];
     const pg = PAGES[j.u];
@@ -332,14 +363,22 @@
   $('more').addEventListener('click', () => { state.shown += 80; render(); });
   $('list').addEventListener('click', e => {
     const sv = e.target.closest('.sav');
-    if (sv) { e.stopPropagation(); const u = sv.dataset.u; savedSet.has(u) ? savedSet.delete(u) : savedSet.add(u); LS.set('baj_sav', [...savedSet]); render(); return; }
+    if (sv) {
+      e.stopPropagation(); const u = sv.dataset.u, nowSaved = !savedSet.has(u);
+      nowSaved ? savedSet.add(u) : savedSet.delete(u); LS.set('baj_sav', [...savedSet]); render();
+      if (nowSaved && !REDUCE) {   // 2. pop the star (re-rendered) and bump the Saved count
+        const el = [...$('list').querySelectorAll('.sav')].find(x => x.dataset.u === u); if (el) el.classList.add('pop');
+        const n = $('savedN'); n.classList.remove('bump'); void n.offsetWidth; n.classList.add('bump');
+      }
+      return;
+    }
     const ap = e.target.closest('.apply');
     if (ap) { e.stopPropagation(); if (ap.dataset.spc) bump(ap.dataset.spc, 'c', ap.getAttribute('href')); return; }
     const row = e.target.closest('.job'); if (!row) return;
     // A role with a full job page opens that page; the logo and company name open the company panel.
     const toCompany = e.target.closest('.jco, .job > img, .job > .co-ic');
     if (row.dataset.pg && !toCompany) {
-      rememberList();
+      rememberList(); nameForTransition(row);
       if (e.target.closest('a.jl')) return;                       // the title link itself (also handles cmd/ctrl-click)
       if (e.metaKey || e.ctrlKey) { window.open(row.dataset.pg, '_blank'); return; }
       location.href = row.dataset.pg; return;
@@ -379,6 +418,7 @@
       const b = e.target.closest('button'); if (!b) return;
       lbState.store = b.dataset.store; lbState.shown = 100;
       document.querySelectorAll('#storetoggle button').forEach(x => x.classList.toggle('on', x === b));
+      slidePill($('storetoggle'));
       renderLb();
     });
     function renderLb() {
@@ -451,10 +491,10 @@
   $('studios').addEventListener('click', e => { const el = e.target.closest('.sc'); if (el) openCo(+el.dataset.ci); });
 
   // ---------- company panel ----------
-  function cpJobRow(j, c, focus) {
+  function cpJobRow(j, c, focus, idx) {
     const wp = /hybrid/.test((j.t + ' ' + (j.loc || '')).toLowerCase()) ? 'hybrid' : (j.rem ? 'remote' : 'office');
     const pg = PAGES[j.u];
-    return `<div class="cp-job${focus ? ' focus' : ''}"><div><div class="t">${pg ? `<a class="jl" href="${esc(pg)}">${esc(j.t)}</a>` : esc(j.t)}</div><div class="m">${esc(j.loc === 'Berlin' ? c.city : j.loc)} · ${t('wp')[wp]}${j.sal ? ' · <b>' + esc(salShort(j.sal)) + '</b>' : ''}${j.p ? ' · ' + relTime(j.p) : ''}</div></div><a class="${focus ? 'cpapply' : ''}" href="${esc(j.u)}" target="_blank" rel="noopener" data-spc="${esc(c.n)}">${t('apply')}</a></div>`;
+    return `<div class="cp-job${focus ? ' focus' : ''}" style="--i:${idx || 0}"><div><div class="t">${pg ? `<a class="jl" href="${esc(pg)}">${esc(j.t)}</a>` : esc(j.t)}</div><div class="m">${esc(j.loc === 'Berlin' ? c.city : j.loc)} · ${t('wp')[wp]}${j.sal ? ' · <b>' + esc(salShort(j.sal)) + '</b>' : ''}${j.p ? ' · ' + relTime(j.p) : ''}</div></div><a class="${focus ? 'cpapply' : ''}" href="${esc(j.u)}" target="_blank" rel="noopener" data-spc="${esc(c.n)}">${t('apply')}</a></div>`;
   }
   function openCo(ci, focusI) {   // focusI: index in c.jobs of the role that was clicked; it goes first
     const c = COS[ci]; hideTip();
@@ -466,7 +506,7 @@
     const all = c.jobs || [], hasFocus = Number.isInteger(focusI) && all[focusI];
     const jobs = hasFocus ? [all[focusI], ...all.filter((_, i) => i !== focusI)] : all.slice();
     $('cp-jobs').innerHTML = jobs.length
-      ? jobs.map((j, i) => cpJobRow(j, c, hasFocus && i === 0)).join('')
+      ? jobs.map((j, i) => cpJobRow(j, c, hasFocus && i === 0, Math.min(i, 8))).join('')
       : (c.tier === 2
           ? `<a class="cp-extroles" href="${esc(c.careers || '#')}" target="_blank" rel="noopener"><div><div class="ttl">${c.total ? t('rolesOn')(c.total) : t('seeCareers')}</div><div class="sub">${t('extrolesSub')}</div></div><span class="arr">↗</span></a>`
           : `<div class="cp-job"><div class="t" style="color:var(--muted)">${t('noRoles')}</div></div>`);
@@ -747,6 +787,7 @@
     renderCos();
     render();
     if (window.__renderLb) window.__renderLb();
+    slideAll();
   }
   $('langtog').addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b || b.dataset.lang === L) return;
@@ -760,8 +801,18 @@
     const back = JSON.parse(sessionStorage.getItem('baj_back') || 'null');
     if (back && nav.type === 'back_forward' && Date.now() - back.at < 3600e3) {
       if (back.shown > state.shown) { state.shown = back.shown; render(); }
-      requestAnimationFrame(() => window.scrollTo(0, back.y));
+      window.scrollTo(0, back.y); requestAnimationFrame(() => window.scrollTo(0, back.y));
     }
   } catch (e) {}
+  // 7. coming back from a job page: give its card the names again so the job page morphs back into it
+  window.addEventListener('pagereveal', e => {
+    let pg = ''; try { pg = (JSON.parse(sessionStorage.getItem('baj_back') || '{}').pg) || ''; } catch (x) {}
+    const row = pg && [...document.querySelectorAll('#list .job[data-pg]')].find(r => r.dataset.pg === pg);
+    if (!e.viewTransition || !row) { nameForTransition(null); return; }
+    nameForTransition(row);
+    e.viewTransition.finished.finally(() => nameForTransition(null));
+    setTimeout(() => nameForTransition(null), 1000);   // fallback cleanup
+  });
+  setTimeout(slideAll, 0);
   window.addEventListener('pageshow', e => { if (e.persisted) closeAll(); });
 })();
