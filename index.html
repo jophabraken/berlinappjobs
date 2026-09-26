@@ -430,7 +430,37 @@
   #top { view-transition-name: site-top; }
   ::view-transition-group(*) { animation-duration: 300ms; animation-timing-function: var(--ease-panel); }
   ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 200ms; }
+  /* ---- phone micro-animations (mobile proposals 1, 2, 3, 4, 6) ---- */
+  /* 1. cards press in the moment a finger lands (touch screens have no hover) */
+  .job, .sc, .lb, #bottomNav button { -webkit-tap-highlight-color: transparent; }
+  @media (hover: none) {
+    .job:active, .sc:active, .lb:active { transform: scale(.975); box-shadow: none; background: var(--surface-2); transition-duration: 70ms; }
+    .job.spon:active { background: #FFEE8A; }
+  }
+  /* 2. the Filters button bumps when you save (the Saved count lives in the filter sheet on phones) */
+  #mFilters.bump { animation: bajBump 360ms var(--ease-pop); }
+  /* 3. filter sheet: drag handle, follows the finger, "Show N jobs" number rolls */
+  #side.drag { transition: none !important; }
+  @media (max-width: 880px) {
+    #sheetHead { position: sticky; touch-action: none; cursor: grab; padding-top: 14px; }
+    #sheetHead::before { content: ""; position: absolute; top: 0; left: 50%; width: 38px; height: 5px; margin-left: -19px; border-radius: 3px; background: var(--line); opacity: .35; }
+  }
+  #applyBtn .num { display: inline-block; font-variant-numeric: tabular-nums; }
+  #applyBtn .num.tick { animation: bajTick 240ms var(--ease-out); }
+  @keyframes bajTick { 0% { transform: none; opacity: 1; } 45% { transform: translateY(-40%); opacity: 0; } 55% { transform: translateY(40%); opacity: 0; } 100% { transform: none; opacity: 1; } }
+  /* 4. bottom bar: tapped icon pops, a yellow line slides to the active item */
+  #bottomNav { view-transition-name: site-bottom; }
+  #bottomNav .bndot { position: absolute; top: 0; left: 0; height: 2.5px; width: 0; background: #FFD400; border-radius: 0 0 2px 2px; pointer-events: none; transition: transform 260ms var(--ease-panel), width 260ms var(--ease-panel); }
+  #bottomNav button.pop svg { animation: bajNavPop 300ms var(--ease-pop); }
+  @keyframes bajNavPop { 0% { transform: scale(1); } 40% { transform: scale(1.18) translateY(-1px); } 100% { transform: scale(1); } }
+  #bottomNav button:active svg { transform: scale(.9); }
+  /* 6. swipe the company panel to the right to close it */
+  #cp, #cp .body { touch-action: pan-y; overscroll-behavior-x: none; }   /* .body scrolls, so it needs pan-y too, or the browser takes horizontal swipes */
+  #cp.drag { transition: none !important; }
   @media (prefers-reduced-motion: reduce) {
+    .job:active, .sc:active, .lb:active { transform: none !important; }
+    #mFilters.bump, #applyBtn .num.tick, #bottomNav button.pop svg { animation: none !important; }
+    #bottomNav .bndot { transition: none !important; }
     .job, .sc, .lb, .pill { transition: none !important; }
     .job:hover, .sc:hover, .lb:hover, .job:active, .sc:active, .lb:active { transform: none !important; }
     .sav.pop, #savedN.bump, #cp.on .cp-job.focus, #cp.on .cp-job:not(.focus) { animation: none !important; }
@@ -601,7 +631,7 @@
   </div>
 </div>
 <script src="/assets/data.js?v=47bf2a4e19" defer></script>
-<script src="/assets/app.js?v=dbaeb21a5a" defer></script>
+<script src="/assets/app.js?v=09984519e2" defer></script>
 <style>
 footer.sfoot{border:0;padding:0;line-height:1.6}.sfoot a{margin:0;border:0}
 .sfoot{background:#131310;color:#B8B5A3;margin-top:56px;font:14px/1.6 Archivo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}

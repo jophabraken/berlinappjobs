@@ -24,7 +24,17 @@
     Object.assign(pill.style, st); box.dataset.px = JSON.stringify(st); box.classList.add('has-pill');
     if (instant || REDUCE) { void pill.offsetWidth; pill.style.transition = ''; }
   }
-  const slideAll = () => ['tabs', 'storetoggle', 'discList'].forEach(id => slidePill(document.getElementById(id), true));
+  // 4. bottom bar (phones): a yellow line slides to the active item
+  function placeNavDot(instant) {
+    const nav = document.getElementById('bottomNav'); if (!nav) return;
+    let dot = nav.querySelector('.bndot'); if (!dot) { dot = document.createElement('span'); dot.className = 'bndot'; dot.setAttribute('aria-hidden', 'true'); nav.prepend(dot); instant = true; }
+    const b = nav.querySelector('button.on');
+    if (!b || !b.offsetWidth) { dot.style.width = '0'; return; }
+    if (instant || REDUCE) dot.style.transition = 'none';
+    dot.style.width = (b.offsetWidth * .5) + 'px'; dot.style.transform = `translateX(${b.offsetLeft + b.offsetWidth * .25}px)`;
+    if (instant || REDUCE) { void dot.offsetWidth; dot.style.transition = ''; }
+  }
+  const slideAll = () => { ['tabs', 'storetoggle', 'discList'].forEach(id => slidePill(document.getElementById(id), true)); placeNavDot(true); };
   window.addEventListener('resize', slideAll);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(slideAll);
   const LS = { get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
@@ -149,6 +159,7 @@
     hideTip();
     document.querySelectorAll('#tabs button, #bottomNav button').forEach(b => b.classList.toggle('on', b.dataset.tab === t));
     const moreBtn = document.querySelector('#bottomNav button[data-act="more"]'); if (moreBtn) moreBtn.classList.toggle('on', t === 'studios' || t === 'guides');
+    placeNavDot(init);
     if (t === 'maptab' && !mapBuilt) { buildMap(); mapBuilt = true; }
     if (t === 'guides') renderGuides();
     if (!init) try { history.replaceState(null, '', '#' + t); } catch (e) {}
@@ -158,7 +169,8 @@
   $('wordmark').addEventListener('click', e => { e.preventDefault(); setTab('jobs'); if (typeof closeAll === 'function') closeAll(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
   function openMore() { $('moreSheet').classList.add('open'); $('shade').classList.add('on'); }
   function closeMore() { $('moreSheet').classList.remove('open'); $('shade').classList.remove('on'); }
-  document.getElementById('bottomNav').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; if (b.dataset.act === 'more') { openMore(); return; } setTab(b.dataset.tab); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  document.getElementById('bottomNav').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
+    if (!REDUCE) { b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); } if (b.dataset.act === 'more') { openMore(); return; } setTab(b.dataset.tab); window.scrollTo({ top: 0, behavior: 'smooth' }); });
   $('moreSheet').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; closeMore(); const a = b.dataset.more; if (a === 'promo') { renderPm(); $('shade').classList.add('on'); $('pm').classList.add('on'); } else { setTab(a); window.scrollTo({ top: 0, behavior: 'smooth' }); } });
   setTab(['#studios', '#maptab', '#charts'].includes(location.hash) ? location.hash.slice(1) : 'jobs', true);
 
@@ -330,7 +342,38 @@
   });
   // mobile sheet + search mirror
   function openSheet() { $('side').classList.add('open'); $('shade').classList.add('on'); }
-  function closeSheet() { $('side').classList.remove('open'); $('shade').classList.remove('on'); }
+  function closeSheet() { const sd = $('side'); sd.classList.remove('open'); sd.style.transform = ''; $('shade').classList.remove('on'); $('shade').style.opacity = ''; }
+  // 3. "Show N jobs": the number rolls when it changes while the sheet is open
+  let applyN = null, applyT;
+  function setApplyCount(total) {
+    const html = n => esc(t('showN')(n)).replace(String(n), `<span class="num">${n}</span>`);
+    const btn = $('applyBtn'), open = $('side').classList.contains('open');
+    if (applyN === null || applyN === total || !open || REDUCE) { btn.innerHTML = html(total); applyN = total; return; }
+    const num = btn.querySelector('.num'); applyN = total; clearTimeout(applyT);
+    if (!num) { btn.innerHTML = html(total); return; }
+    num.classList.remove('tick'); void num.offsetWidth; num.classList.add('tick');
+    const prev = +num.textContent;
+    applyT = setTimeout(() => { if (total === 1 || prev === 1) btn.innerHTML = html(total); else num.textContent = total; }, 110);   // swap mid-roll
+  }
+  // 3. drag the filter sheet down by its handle to close it
+  (function () {
+    const sd = $('side'), head = $('sheetHead'), sh = $('shade'); let y0 = null, t0 = 0, dy = 0;
+    head.addEventListener('pointerdown', e => {
+      if (!sd.classList.contains('open') || e.target.closest('button')) return;
+      y0 = e.clientY; t0 = performance.now(); dy = 0; sd.classList.add('drag');
+      try { head.setPointerCapture(e.pointerId); } catch (x) {}
+    });
+    head.addEventListener('pointermove', e => {
+      if (y0 === null) return; dy = e.clientY - y0;
+      sd.style.transform = `translateY(${dy < 0 ? dy * .25 : dy}px)`; sh.style.opacity = String(Math.max(0, 1 - Math.max(0, dy) / 300));
+    });
+    const end = () => {
+      if (y0 === null) return; const v = dy / Math.max(1, performance.now() - t0); y0 = null;
+      sd.classList.remove('drag'); sh.style.opacity = '';
+      if (dy > 90 || v > .6) closeSheet(); else sd.style.transform = '';
+    };
+    head.addEventListener('pointerup', end); head.addEventListener('pointercancel', end);
+  })();
   $('mFilters').addEventListener('click', openSheet);
   $('sheetClose').addEventListener('click', closeSheet);
   $('applyBtn').addEventListener('click', closeSheet);
@@ -353,7 +396,7 @@
     const total = list.length + pinned.length;
     $('count').textContent = t('nRoles')(total, state.saved);
     $('empty').hidden = total > 0;
-    $('applyBtn').textContent = t('showN')(total);
+    setApplyCount(total);
     renderActiveChips();
     $('list').innerHTML = pinned.map(j => jobRow(j, true)).join('') +
       list.slice(0, state.shown).map(j => jobRow(j, false)).join('');
@@ -369,6 +412,8 @@
       if (nowSaved && !REDUCE) {   // 2. pop the star (re-rendered) and bump the Saved count
         const el = [...$('list').querySelectorAll('.sav')].find(x => x.dataset.u === u); if (el) el.classList.add('pop');
         const n = $('savedN'); n.classList.remove('bump'); void n.offsetWidth; n.classList.add('bump');
+        const mf = $('mFilters'); if (mf && mf.offsetWidth) { mf.classList.remove('bump'); void mf.offsetWidth; mf.classList.add('bump'); }
+        try { if (navigator.vibrate && matchMedia('(hover: none)').matches) navigator.vibrate(10); } catch (x) {}   // Android only; iPhones ignore it
       }
       return;
     }
@@ -522,7 +567,30 @@
     const cpBody = $('cp').querySelector('.body'); if (cpBody) cpBody.scrollTop = 0;   // start at the clicked role
     $('shade').classList.add('on'); $('cp').classList.add('on');
   }
-  function closeAll() { $('shade').classList.remove('on'); $('cp').classList.remove('on'); $('pm').classList.remove('on'); }
+  function closeAll() { $('shade').classList.remove('on'); $('shade').style.opacity = ''; $('cp').classList.remove('on'); $('cp').style.transform = ''; $('pm').classList.remove('on'); }
+  // 6. swipe the company panel to the right to close it (touch only; vertical moves still scroll the panel)
+  (function () {
+    const cp = $('cp'), sh = $('shade'); let x0 = null, y0 = 0, t0 = 0, dx = 0, horiz = null;
+    cp.addEventListener('pointerdown', e => { if (e.pointerType !== 'touch' || !cp.classList.contains('on')) return; x0 = e.clientX; y0 = e.clientY; t0 = performance.now(); dx = 0; horiz = null; });
+    cp.addEventListener('pointermove', e => {
+      if (x0 === null) return;
+      const mx = e.clientX - x0, my = e.clientY - y0;
+      if (horiz === null && Math.hypot(mx, my) > 8) {
+        horiz = Math.abs(mx) > Math.abs(my) * 1.2 && mx > 0;
+        if (horiz) { cp.classList.add('drag'); try { cp.setPointerCapture(e.pointerId); } catch (x) {} } else { x0 = null; return; }
+      }
+      if (!horiz) return;
+      dx = Math.max(0, mx); cp.style.transform = `translateX(${dx}px)`; sh.style.opacity = String(Math.max(0, 1 - dx / cp.offsetWidth));
+    });
+    const end = () => {
+      if (x0 === null) return; x0 = null; if (!horiz) return;
+      const v = dx / Math.max(1, performance.now() - t0);
+      cp.classList.remove('drag'); sh.style.opacity = '';
+      if (dx > cp.offsetWidth * .3 || v > .5) closeAll(); else cp.style.transform = '';
+    };
+    cp.addEventListener('pointerup', end); cp.addEventListener('pointercancel', end);
+    cp.addEventListener('click', e => { if (horiz && dx > 8) { e.preventDefault(); e.stopPropagation(); } }, true);   // a swipe is not a tap on a link
+  })();
   $('cp-jobs').addEventListener('click', e => { const a = e.target.closest('a[data-spc]'); if (a && sponDevs().has(a.dataset.spc)) bump(a.dataset.spc, 'c', a.getAttribute('href')); });
   $('cp-x').addEventListener('click', closeAll);
   $('shade').addEventListener('click', closeAll);
