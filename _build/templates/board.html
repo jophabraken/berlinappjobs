@@ -11,24 +11,7 @@
     --chip: #F1EFE3; --shadow: 0 8px 24px rgba(19, 19, 16, 0.22); --mapbg: #131310;
     --spon: #FFF4B8; --spon-line: #131310;
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #131310; --surface: #1D1D18; --surface-2: #181813;
-      --ink: #F4F1E0; --muted: #B8B5A3; --faint: #8A887B;
-      --line: #4A4940; --accent: #FFD400; --accent-soft: rgba(255, 212, 0, 0.13);
-      --accent-ink: #131310; --good: #6FBF6D; --good-soft: rgba(111, 191, 109, 0.16);
-      --chip: #26261F; --shadow: 0 12px 36px rgba(0, 0, 0, 0.5); --mapbg: #0B0B09;
-      --spon: #2A2812; --spon-line: #FFD400;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #131310; --surface: #1D1D18; --surface-2: #181813;
-    --ink: #F4F1E0; --muted: #B8B5A3; --faint: #8A887B;
-    --line: #4A4940; --accent: #FFD400; --accent-soft: rgba(255, 212, 0, 0.13);
-    --accent-ink: #131310; --good: #6FBF6D; --good-soft: rgba(111, 191, 109, 0.16);
-    --chip: #26261F; --shadow: 0 12px 36px rgba(0, 0, 0, 0.5); --mapbg: #0B0B09;
-    --spon: #2A2812; --spon-line: #FFD400;
-  }
+  :root { color-scheme: only light; }   /* light only (Jop, 2026-09-26): no dark theme, and no browser auto-darkening */
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Archivo", system-ui, sans-serif; font-size: 15px; line-height: 1.5; }
   .wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px 80px; }

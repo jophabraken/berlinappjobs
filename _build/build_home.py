@@ -102,7 +102,7 @@ head = f'''<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="only light">
 <title>{esc(TITLE)}</title>
 <meta name="description" content="{esc(DESC)}">
 <link rel="canonical" href="{SITE}/">

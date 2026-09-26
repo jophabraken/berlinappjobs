@@ -85,7 +85,7 @@ FAV = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 
 import header as site_hdr   # the same header as the job board
 CSS = site_hdr.CSS + """
 :root{--bg:#F7F6EF;--surface:#fff;--ink:#131310;--muted:#52524A;--faint:#75756B;--line:#131310;--accent:#FFD400;--chip:#F1EFE3}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#131310;--surface:#1D1D18;--ink:#F4F1E0;--muted:#B8B5A3;--faint:#8A887B;--line:#4A4940;--chip:#26261F}}
+:root{color-scheme:only light}
 *{box-sizing:border-box}
 html{scroll-padding-top:70px}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,system-ui,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
@@ -211,7 +211,7 @@ def render_article(a):
 <html lang="{a['lang']}">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="only light">
 <title>{esc(a['metaTitle'])}</title>
 <meta name="description" content="{esc(a['desc'])}">
 <link rel="canonical" href="{url}">
@@ -269,7 +269,7 @@ def hub():
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="only light">
 <title>Guides: App Jobs in Germany | Berlin App Jobs</title>
 <meta name="description" content="Practical guides to finding a job at the companies behind Germany's top apps: salaries, roles, cities, and how to get in. English and German.">
 <link rel="canonical" href="{url}">
