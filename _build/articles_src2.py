@@ -68,7 +68,7 @@ ARTICLES2 = [
    ["Welche bekannten Apps kommen aus Berlin?",
     "Unter anderem SoundCloud, Zalando, N26, Trade Republic, Babbel, Clue, Kleinanzeigen, OneFootball, GetYourGuide, HelloFresh, Taxfix, Blinkist und Ecosia."],
    ["Welche Berliner App-Firmen stellen gerade ein?",
-    "Aktuell unter anderem N26, GetYourGuide, Freecash, HelloFresh, Trade Republic, ImmoScout24, Taxfix und Zalando. Die Liste auf dem Board wird wöchentlich aktualisiert."],
+    "Aktuell unter anderem N26, GetYourGuide, Freecash, HelloFresh, Trade Republic, ImmoScout24, Taxfix und Zalando. Die Liste auf dem Board wird täglich aktualisiert."],
    ["Woher stammen die Downloadzahlen?",
     "Aus den öffentlichen Installations-Brackets des Google Play Store (Android, weltweit, gesamte Lebenszeit). Apple veröffentlicht keine Downloadzahlen."]
  ]
@@ -286,7 +286,7 @@ ARTICLES2 = [
 <p>In Berlin sind rund drei Viertel der Stellen auf Englisch ausgeschrieben, in München rund 70 Prozent, in Hamburg rund 60 Prozent. Außerhalb der drei großen Städte überwiegen deutsche Anzeigen deutlich.</p>
 
 <h2>Methodik</h2>
-<p>Erfasst werden Unternehmen, deren Apps in den deutschen Google-Play-Top-Charts stehen und die eine deutsche Geschäftsadresse haben. Die Stellen stammen direkt aus deren Bewerbungssystemen (etwa Greenhouse, Personio, Ashby) und werden wöchentlich aktualisiert. Doppelte Einträge, Initiativbewerbungen und Stellen außerhalb Deutschlands werden herausgefiltert. Bei großen Konzernen zählen wir nur einen Teil der Stellen.</p>
+<p>Erfasst werden Unternehmen, deren Apps in den deutschen Google-Play-Top-Charts stehen und die eine deutsche Geschäftsadresse haben. Die Stellen stammen direkt aus deren Bewerbungssystemen (etwa Greenhouse, Personio, Ashby) und werden täglich aktualisiert. Doppelte Einträge, Initiativbewerbungen und Stellen außerhalb Deutschlands werden herausgefiltert. Bei großen Konzernen zählen wir nur einen Teil der Stellen.</p>
 """,
  "faq": [
    ["Wie viele Jobs gibt es bei App-Unternehmen in Deutschland?",

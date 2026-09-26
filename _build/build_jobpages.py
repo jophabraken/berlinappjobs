@@ -152,6 +152,9 @@ def short_co(n):
     return LEGAL.sub('', n).strip() or n
 ET_LABEL = {"FULL_TIME": ("Vollzeit", "Full-time"), "PART_TIME": ("Teilzeit", "Part-time"), "INTERN": ("Praktikum", "Internship"),
             "CONTRACTOR": ("Freelance", "Freelance"), "TEMPORARY": ("Befristet", "Temporary")}
+FULLY_REMOTE = re.compile(r'fully[ -]remote|100\s*%\s*remote|remote[ -]first|remote[ -]only|work from anywhere|full[ -]remote|'
+                          r'vollständig remote|komplett remote|ausschließlich remote|100\s*%\s*(?:im\s+)?home[ -]?office|'
+                          r'komplett im home[ -]?office|vollständig im home[ -]?office', re.I)
 def contract_label(et, jt, k):
     if re.search(r'ausbildung|azubi|apprentice', jt, re.I): return ("Ausbildung", "Apprenticeship")[k]
     if 'PART_TIME' in et and 'INTERN' in et: return ("Werkstudent", "Working student")[k]
@@ -176,6 +179,14 @@ for rec in pages:
     loc = jb.get('loc') or m.get('loc') or city
     cities = job_cities(loc, city)
     remote = truthy(jb.get('rem')) or truthy(m.get('rem')) or bool(re.search(r'remote|home.?office', f"{jb['t']} {loc}", re.I))
+    # Google: TELECOMMUTE only for fully remote jobs ("Don't mark up jobs that allow occasional work-from-home").
+    # Hiring systems' remote flag often means remote-friendly or hybrid, so a job counts as fully remote only if its
+    # location names no city (e.g. "Remote", "Deutschland") or the ad itself says fully remote / remote-first.
+    known_city = any(x for x in job_cities(loc, None))
+    ad_text = re.sub(r'<[^>]+>', ' ', desc)
+    hybrid = bool(re.search(r'\bhybrid', f"{jb['t']} {loc}", re.I))
+    says_fully = bool(FULLY_REMOTE.search(f"{jb['t']} {ad_text}"))
+    fully_remote = remote and not hybrid and (says_fully or not known_city)
     de = is_de(desc)
     posted = iso(m.get('pub')) or iso(m.get('upd')) or iso(jb.get('p')) or FETCHED
     et = emp_type(m, jb)
@@ -192,7 +203,7 @@ for rec in pages:
         "identifier": {"@type": "PropertyValue", "name": cname, "value": str(m.get('id') or slug)},
         "url": url,
     }
-    if remote:
+    if fully_remote:
         jp["jobLocationType"] = "TELECOMMUTE"
         jp["applicantLocationRequirements"] = {"@type": "Country", "name": "DE"}
     sal = salary(jb.get('sal'))
@@ -209,10 +220,10 @@ for rec in pages:
     co = short_co(cname)
     at = '' if co.lower() in jt.lower() else (f" bei {co}" if de else f" at {co}")   # "... beim 1. FC Köln" already names it
     title_tag = f"{jt}{at} in {where}".replace(' in Remote', ' (Remote)')
-    full_title = title_tag + " | Berlin App Jobs" if len(title_tag) <= 62 else title_tag   # Google cuts titles at ~60 chars
+    full_title = title_tag + " | Berlin App Jobs" if len(title_tag) <= 45 else title_tag   # brand only if the whole title fits in ~63 chars
     meta_desc = job_desc(jt, co, where, de, et, remote, jb.get('sal'), desc)
     crumbs = breadcrumb([("Start" if de else "Home", SITE + "/"), (cname, f"{SITE}/companies/{cslug}/" if cslug else SITE + "/"), (jb['t'], url)])
-    pills = [esc(loc)] + (["Remote"] if remote else []) + [{"FULL_TIME": L("Vollzeit", "Full-time"), "PART_TIME": L("Teilzeit", "Part-time"), "INTERN": L("Praktikum", "Internship"), "CONTRACTOR": "Freelance", "TEMPORARY": L("Befristet", "Temporary")}[et[-1]]]
+    pills = [esc(loc)] + (["Remote"] if fully_remote else [L("Remote möglich", "Remote possible")] if remote else []) + [{"FULL_TIME": L("Vollzeit", "Full-time"), "PART_TIME": L("Teilzeit", "Part-time"), "INTERN": L("Praktikum", "Internship"), "CONTRACTOR": "Freelance", "TEMPORARY": L("Befristet", "Temporary")}[et[-1]]]
     if jb.get('sal'): pills.append(esc(jb['sal'].split('•')[0].strip()))
     body = (head(full_title, meta_desc, url, EXTRA_CSS + "\n" + jsonld([jp, crumbs])).replace('<html lang="de">', f'<html lang="{"de" if de else "en"}">')
       + f'<nav class="crumb"><a href="/">{L("Start", "Home")}</a> / '

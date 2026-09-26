@@ -105,6 +105,7 @@ head = f'''<!doctype html>
 <title>{esc(TITLE)}</title>
 <meta name="description" content="{esc(DESC)}">
 <link rel="canonical" href="{SITE}/">
+<link rel="alternate" type="application/atom+xml" title="New app jobs" href="/feed.xml">
 {FAV}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Berlin App Jobs">

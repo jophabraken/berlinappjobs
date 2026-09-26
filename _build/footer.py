@@ -10,12 +10,16 @@ build_programmatic.py calls site_footer() once per language and exposes the resu
 the other generators take those two strings from it. The rules for which pages exist are the same as in
 build_programmatic.py: a city page needs 10+ jobs, a role x city page 5+, a company page needs parsed jobs."""
 import collections, re, html as htmlmod
+import site_config
 
 def _esc(s): return htmlmod.escape(str(s), quote=True)
 LEGAL = re.compile(r'\s+(?:GmbH\s*&\s*Co\.?\s*KG(?:aA)?|GmbH|AG|SE|KG|KGaA|UG|mbH|e\.\s?V\.|Ltd\.?|Inc\.?|B\.V\.|S\.A\.)(?=\s|$|,).*$')
 def short_name(n):
     n = n.split('|')[0].strip()
     return LEGAL.sub('', n).strip() or n
+# URL slugs of the English role pages (/en/jobs/<slug>/<city>/), see build_programmatic.py
+ROLE_EN_SLUG = {'eng': 'developer', 'product': 'product-management', 'design': 'design', 'data': 'data', 'marketing': 'marketing',
+                'sales': 'sales', 'support': 'customer-support', 'people': 'people-hr', 'health': 'health'}
 ROLE_ORDER = ['eng', 'product', 'design', 'data', 'marketing', 'sales', 'support', 'people', 'health']
 
 ROLE_EN = {'eng': 'Developer', 'product': 'Product management', 'design': 'Design', 'data': 'Data & analytics',
@@ -43,20 +47,22 @@ footer.sfoot{border:0;padding:0;line-height:1.6}.sfoot a{margin:0;border:0}
 </style>"""
 
 T = {
-    'en': dict(tag="Live jobs at the companies behind Germany's top apps, pulled every week straight from their own hiring systems. Apply directly, no middleman.",
+    'en': dict(tag="Live jobs at the companies behind Germany's top apps, pulled every day straight from their own hiring systems. Apply directly, no middleman.",
                upd="{n:,} open roles · updated {d}", cta="Browse all jobs &rarr;",
                h_city="Jobs by city", h_role="Jobs in Berlin", h_cos="Companies hiring", h_guides="Guides",
                city="App jobs in {x}", role="{x} jobs in Berlin", co="{x} jobs",
                all_city="All cities &amp; roles &rarr;", all_berlin="All jobs in Berlin &rarr;", cos="Companies", all_cos="All companies &rarr;", all_guides="All guides &rarr;",
                src="Jobs come from each company's own hiring system. Install figures: Google Play.",
-               board="Job board", contact="Contact"),
-    'de': dict(tag="Aktuelle Jobs bei den Unternehmen hinter Deutschlands Top-Apps, jede Woche direkt aus ihren Bewerbungssystemen. Direkt bewerben, ohne Vermittler.",
+               board="Job board", contact="Contact", about="About", impressum="Imprint", news="New jobs by email",
+               eng_berlin="English-speaking jobs in Berlin"),
+    'de': dict(tag="Aktuelle Jobs bei den Unternehmen hinter Deutschlands Top-Apps, jeden Tag direkt aus ihren Bewerbungssystemen. Direkt bewerben, ohne Vermittler.",
                upd="{n:,} offene Stellen · aktualisiert {d}", cta="Alle Jobs ansehen &rarr;",
                h_city="Jobs nach Stadt", h_role="Jobs in Berlin", h_cos="Top-Arbeitgeber", h_guides="Ratgeber",
                city="App-Jobs in {x}", role="{x}-Jobs in Berlin", co="Jobs bei {x}",
                all_city="Alle Städte &amp; Bereiche &rarr;", all_berlin="Alle Jobs in Berlin &rarr;", cos="Unternehmen", all_cos="Alle Unternehmen &rarr;", all_guides="Alle Ratgeber &rarr;",
                src="Die Stellen kommen aus den Bewerbungssystemen der Unternehmen. Downloadzahlen: Google Play.",
-               board="Jobboard", contact="Kontakt"),
+               board="Jobboard", contact="Kontakt", about="Über uns", impressum="Impressum", news="Neue Jobs per E-Mail",
+               eng_berlin="Englischsprachige Jobs in Berlin"),
 }
 
 def site_footer(lang, COS, guides, slugify, city_slug, disc, checked=''):
@@ -82,13 +88,20 @@ def site_footer(lang, COS, guides, slugify, city_slug, disc, checked=''):
     gl = [g for g in guides if g.get('lang') == lang] + [g for g in guides if g.get('lang') != lang]
     gl = gl[:6]
     n_jobs = sum(len(c.get('jobs') or []) for c in COS)
+    en = lang == 'en'
+    pre = '/en' if en else ''   # English pages link to the English hubs, German pages to the German ones
+    berlin_en = sum(1 for c in COS if (c.get('city') or '') == 'Berlin' for jb in c.get('jobs') or [] if jb.get('lang') == 'en')
+    rslug = (lambda d: ROLE_EN_SLUG[d]) if en else (lambda d: disc[d][0])
+    eng_item = ([(f'{pre}/jobs/{"english-speaking" if en else "englischsprachig"}/{city_slug("Berlin")}/', t['eng_berlin'])]
+                if berlin_en >= 10 else [])
 
     def col(h, items, all_href, all_label):
         lis = ''.join(f'<li><a href="{href}">{label}</a></li>' for href, label in items)
         return f'<div><p class="sf-h">{h}</p><ul>{lis}<li class="sf-all"><a href="{all_href}">{all_label}</a></li></ul></div>'
     role_name = (lambda d: disc[d][1]) if lang == 'de' else (lambda d: ROLE_EN.get(d, disc[d][1]))
-    cols = (col(t['h_city'], [(f'/jobs/{city_slug(x)}/', t['city'].format(x=_esc(x))) for x in cities], '/jobs/', t['all_city'])
-            + col(t['h_role'], [(f'/jobs/{disc[d][0]}/{city_slug("Berlin")}/', t['role'].format(x=_esc(role_name(d)))) for d in roles], f'/jobs/{city_slug("Berlin")}/', t['all_berlin'])
+    cols = (col(t['h_city'], [(f'{pre}/jobs/{city_slug(x)}/', t['city'].format(x=_esc(x))) for x in cities], f'{pre}/jobs/', t['all_city'])
+            + col(t['h_role'], eng_item + [(f'{pre}/jobs/{rslug(d)}/{city_slug("Berlin")}/', t['role'].format(x=_esc(role_name(d)))) for d in roles][:7 - len(eng_item)],
+                  f'{pre}/jobs/{city_slug("Berlin")}/', t['all_berlin'])
             + col(t['h_cos'], [(f'/companies/{slugs[id(c)]}/', t['co'].format(x=_esc(short_name(c['n'])))) for c in top], '/companies/', t['all_cos'])
             + col(t['h_guides'], [(f'/guides/{_esc(g["slug"])}/', _esc(g['title'])) for g in gl], '/guides/', t['all_guides']))
     year = (checked or '2026')[-4:] if (checked or '')[-4:].isdigit() else '2026'
@@ -99,5 +112,8 @@ def site_footer(lang, COS, guides, slugify, city_slug, disc, checked=''):
             f'<nav class="sf-cols" aria-label="{_esc(t["h_city"])}, {_esc(t["h_cos"])}, {_esc(t["h_guides"])}">{cols}</nav></div>'
             f'<div class="sf-bot"><span>&copy; {year} Berlin App Jobs. {t["src"]}</span>'
             f'<nav aria-label="Berlin App Jobs"><a href="/">{t["board"]}</a><a href="/companies/">{t["cos"]}</a>'
-            f'<a href="/guides/">{t["h_guides"]}</a><a href="mailto:jophabraken@gmail.com">{t["contact"]}</a></nav></div>'
+            f'<a href="/guides/">{t["h_guides"]}</a><a href="/about/">{t["about"]}</a>'
+            + (f'<a href="{_esc(site_config.NEWSLETTER_URL)}">{t["news"]}</a>' if site_config.NEWSLETTER_URL else '')
+            + f'<a href="mailto:{_esc(site_config.CONTACT_EMAIL)}">{t["contact"]}</a>'
+            + (f'<a href="/impressum/">{t["impressum"]}</a>' if site_config.IMPRESSUM else '') + '</nav></div>'
             '</div></footer>')

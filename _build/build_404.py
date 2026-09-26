@@ -16,7 +16,7 @@ doc = head("Page not found | Berlin App Jobs", "This page doesn't exist (anymore
            SITE + "/404.html", extra='\n<meta name="robots" content="noindex">')
 doc = doc.replace('<link rel="canonical" href="' + SITE + '/404.html">\n', '')   # a 404 has no canonical URL
 doc += ('<h1 style="margin-top:34px">This page isn\'t here (anymore)</h1>'
-        '<p class="sub">If you followed a link to a job, it has most likely been filled or closed: we remove closed roles every week. '
+        '<p class="sub">If you followed a link to a job, it has most likely been filled or closed: we remove closed roles every day. '
         f'There are <b>{n_jobs:,}</b> open roles on the board right now.</p>'
         '<p class="sub" lang="de">Diese Seite gibt es nicht (mehr). Falls du einem Link zu einer Stelle gefolgt bist, ist sie vermutlich '
         'besetzt oder geschlossen. Hier findest du alle aktuellen Stellen.</p>'

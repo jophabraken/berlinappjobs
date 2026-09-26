@@ -13,7 +13,7 @@ from paths import DATA
 try: listed |= set(json.load(open(os.path.join(DATA, 'noindex_pages.json'))))
 except FileNotFoundError: pass
 removed = []
-for top in ('jobs', 'companies'):
+for top in ('jobs', 'companies', 'en'):
     for root, dirs, files in os.walk(os.path.join(OUT, top), topdown=False):
         rel = os.path.relpath(root, OUT).replace(os.sep, '/')
         if rel in listed or 'index.html' not in files: continue

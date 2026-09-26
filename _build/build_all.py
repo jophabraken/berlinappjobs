@@ -4,10 +4,10 @@ Order matters: guides first (needs /companies/ from the previous build for links
 then job pages (writes jobpages_map.json), company/city pages again (now linking to job pages),
 guides again (so company links match the final /companies/), company/city pages once more (writes the full
 sitemap.xml, which build_seo.py overwrites with a short one), removal of pages no longer in that sitemap,
-then the homepage, the 404 page, and last the favicon + social image tags (make_icons.py)."""
+then the homepage, the 404, about and feed pages, and last the favicon + social image tags (make_icons.py)."""
 import os, runpy, sys, time
 HERE = os.path.dirname(os.path.abspath(__file__))
-for step in ['build_seo.py', 'build_programmatic.py', 'build_jobpages.py', 'build_programmatic.py', 'build_seo.py', 'build_programmatic.py', 'cleanup_stale.py', 'build_home.py', 'build_404.py', 'make_icons.py']:
+for step in ['build_seo.py', 'build_programmatic.py', 'build_jobpages.py', 'build_programmatic.py', 'build_seo.py', 'build_programmatic.py', 'cleanup_stale.py', 'build_home.py', 'build_404.py', 'build_about.py', 'build_feed.py', 'make_icons.py']:
     t = time.time(); print(f'== {step}', flush=True)
     runpy.run_path(os.path.join(HERE, step), run_name='__main__')
     print(f'   done in {time.time() - t:.1f}s', flush=True)
