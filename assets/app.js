@@ -59,8 +59,8 @@
       disc: { '': 'All roles', eng: 'Engineering', data: 'Data', product: 'Product', design: 'Design', marketing: 'Marketing', sales: 'Sales', support: 'Ops & Support', people: 'People & Finance', health: 'Health', other: 'Other' },
       sen: { intern: 'Intern/WS', junior: 'Junior', senior: 'Senior', lead: 'Lead+' },
       nRoles: (n, s) => n + ' role' + (n === 1 ? '' : 's') + (s ? ' saved' : ''), remoteOk: 'remote-ok', remote: 'Remote', sponsored: 'Sponsored', clicks: 'clicks', apply: 'Apply ↗', today: 'today', dAgo: d => d + 'd ago', moAgo: m => m + 'mo ago', androidP: ' Android',
-      emptyT: 'No roles match', emptyB: "Clear a filter or two, or check the Companies tab for boards we couldn't parse.",
-      linkT: "Also hiring, on boards we can't parse", linkB: 'Live openings, but no readable feed. Worth a direct look.', careers: 'Careers ↗', more: 'Show more roles', nOpen: n => '~' + n + ' roles',
+      emptyT: 'No roles match', emptyB: 'Try fewer filters or another search.', emptyBtn: 'Clear search and filters', toastSaved: 'Saved', toastView: 'View', toastUndo: 'Undo', clearQ: 'Clear search',
+      linkT: 'More companies hiring', linkB: "Their roles are only on their own careers site, so we can't list them one by one yet.", careers: 'Careers ↗', more: 'Show more roles', nOpen: n => '~' + n + ' roles',
       cosH2: 'Hiring companies', cosSub: 'Every German app company with open roles, most roles first. Click one for its jobs and apps.', openRoles: n => n + ' open role' + (n > 1 ? 's' : ''), hiringLink: 'hiring · careers page', dorm: n => 'Not hiring right now (' + n + ' companies)',
       lbH2: 'The app leaderboard', lbSubPlay: n => 'The ' + n + ' German app companies currently hiring, from the DE Play Store top charts, ranked by lifetime Android installs (review count breaks ties).', lbSubIos: n => n + ' currently-hiring apps matched on the German App Store, ranked by lifetime rating count. Apple publishes no download numbers.', lbFind: 'Find an app…', all: 'All', hiring: 'hiring', instSub: 'Android installs', revSub: ' reviews', rateSub: 'DE ratings · ★ ', lbMore: 'Show the full ranking', lbEmptyT: 'Nothing matches', lbEmptyB: 'Try another category or store.',
       mapH2: 'Where the jobs are: Germany', cityTip: (n, r) => n + (n === 1 ? ' company' : ' companies') + ' hiring · ' + r + ' open roles', zoomIn: 'Click to zoom in', mapSub: 'Opens on Berlin. Zoom out (or hit DE) for all of Germany: yellow bubbles are cities, sized by open roles. Tap a city to fly in, tap a logo for that company\'s roles. Small dots are companies not hiring right now.', legend: '<b>Size = open roles</b> · yellow ring = hiring · thick ring = sponsor · dots = not hiring', notHiring: 'not hiring right now', openN: n => n + ' open roles', sponsor: 'sponsor',
@@ -92,8 +92,8 @@
       disc: { '': 'Alle Stellen', eng: 'Engineering', data: 'Data', product: 'Produkt', design: 'Design', marketing: 'Marketing', sales: 'Sales', support: 'Ops & Support', people: 'People & Finance', health: 'Gesundheit', other: 'Sonstige' },
       sen: { intern: 'Praktikum/WS', junior: 'Junior', senior: 'Senior', lead: 'Lead+' },
       nRoles: (n, s) => n + (n === 1 ? ' Stelle' : ' Stellen') + (s ? ' gemerkt' : ''), remoteOk: 'remote möglich', remote: 'Remote', sponsored: 'Gesponsert', clicks: 'Klicks', apply: 'Bewerben ↗', today: 'heute', dAgo: d => 'vor ' + d + ' Tg.', moAgo: m => 'vor ' + m + ' Mon.', androidP: ' Android',
-      emptyT: 'Keine passenden Stellen', emptyB: 'Entferne einen Filter oder schau im Unternehmen-Tab nach Karriereseiten ohne lesbaren Feed.',
-      linkT: 'Stellen auch offen: Feeds nicht lesbar', linkB: 'Offene Stellen vorhanden, aber kein lesbarer Feed. Ein direkter Blick lohnt sich.', careers: 'Karriere ↗', more: 'Mehr Stellen anzeigen', nOpen: n => '~' + n + ' Stellen',
+      emptyT: 'Keine passenden Stellen', emptyB: 'Versuch es mit weniger Filtern oder einer anderen Suche.', emptyBtn: 'Suche und Filter zurücksetzen', toastSaved: 'Gemerkt', toastView: 'Ansehen', toastUndo: 'Rückgängig', clearQ: 'Suche löschen',
+      linkT: 'Weitere Firmen, die einstellen', linkB: 'Ihre Stellen stehen nur auf der eigenen Karriereseite, deshalb listen wir sie noch nicht einzeln.', careers: 'Karriere ↗', more: 'Mehr Stellen anzeigen', nOpen: n => '~' + n + ' Stellen',
       cosH2: 'Unternehmen, die einstellen', cosSub: 'Alle deutschen App-Unternehmen mit offenen Stellen, sortiert nach Anzahl. Klick für Jobs und Apps.', openRoles: n => n + (n > 1 ? ' offene Stellen' : ' offene Stelle'), hiringLink: 'stellt ein · Karriereseite', dorm: n => 'Aktuell keine offenen Stellen (' + n + ' Unternehmen)',
       lbH2: 'Das App-Ranking', lbSubPlay: n => 'Die ' + n + ' deutschen App-Unternehmen mit offenen Stellen, aus den DE Play-Store-Charts, sortiert nach Android-Installationen (Bewertungszahl entscheidet bei Gleichstand).', lbSubIos: n => n + ' davon mit offenen Stellen im deutschen App Store, sortiert nach Bewertungsanzahl. Apple veröffentlicht keine Download-Zahlen.', lbFind: 'App finden…', all: 'Alle', hiring: 'stellt ein', instSub: 'Android-Installationen', revSub: ' Bewertungen', rateSub: 'DE-Bewertungen · ★ ', lbMore: 'Komplettes Ranking anzeigen', lbEmptyT: 'Nichts gefunden', lbEmptyB: 'Andere Kategorie oder anderen Store probieren.',
       mapH2: 'Wo die Jobs sind: Deutschland', cityTip: (n, r) => n + (n === 1 ? ' Firma stellt' : ' Firmen stellen') + ' ein · ' + r + ' offene Stellen', zoomIn: 'Klicken zum Hineinzoomen', mapSub: 'Startet mit Berlin. Herauszoomen (oder DE tippen) zeigt ganz Deutschland: gelbe Blasen sind Städte, Größe nach offenen Stellen. Stadt antippen zum Hineinfliegen, Logo antippen für die Stellen. Kleine Punkte: Unternehmen ohne offene Stellen.', legend: '<b>Größe = offene Stellen</b> · gelber Ring = stellt ein · dicker Ring = Sponsor · Punkte = keine Stellen', notHiring: 'aktuell keine offenen Stellen', openN: n => n + ' offene Stellen', sponsor: 'Sponsor',
@@ -153,7 +153,7 @@
 
   // ---------- tabs ----------
   const tabs = ['jobs', 'charts', 'studios', 'maptab', 'guides'];
-  let mapBuilt = false;
+  let mapBuilt = false, mapIconsIn = null;
   function setTab(t, init) {
     tabs.forEach(x => { $(x).hidden = x !== t; });
     hideTip();
@@ -232,8 +232,11 @@
     else list.sort((a, b) => featRank(a) - featRank(b) || b.c.v - a.c.v || a.c.n.localeCompare(b.c.n));
     return list;
   }
-  function icoHtml(c) {
-    if (c.icon) return `<img src="${c.icon}" alt="" loading="lazy">`;
+  // 5. company logos come in their own file (assets/icons.js), loaded after the board is up; until then logos are blank shimmering tiles
+  let iconsIn = typeof ICONS_URL === 'undefined';
+  function icoHtml(c, fade) {
+    if (c.icon) return `<img src="${c.icon}" alt="" loading="lazy"${fade && !REDUCE ? ' class="fadein"' : ''}>`;
+    if (!iconsIn) return `<span class="co-ic pend" data-ci="${c.ci}"></span>`;
     return `<span class="co-ic">${esc(c.n.split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase())}</span>`;
   }
 
@@ -259,9 +262,10 @@
   $('q').value = state.q;
   $('salOnly').checked = !!state.salOnly;
   let deb;
-  $('q').addEventListener('input', e => { clearTimeout(deb); deb = setTimeout(() => { state.q = e.target.value.trim().toLowerCase(); state.shown = 50; render(); }, 120); });
+  $('q').addEventListener('input', e => { clearTimeout(deb); deb = setTimeout(() => { state.q = e.target.value.trim().toLowerCase(); state.shown = 50; if ($('mq')) $('mq').value = e.target.value; render(); }, 120); });
   ['sen', 'typ', 'wp', 'lg', 'date', 'sort', 'city'].forEach(id => $(id).addEventListener('change', e => { state[id] = e.target.value; state.shown = 50; render(); }));
   $('salOnly').addEventListener('change', e => { state.salOnly = e.target.checked; state.shown = 50; render(); });
+  document.addEventListener('click', e => { if (e.target.closest('#emptyReset')) $('reset').click(); });
   $('reset').addEventListener('click', () => { state.q = ''; state.d = ''; state.city = ''; state.sen = ''; state.typ = ''; state.wp = ''; state.lg = ''; state.date = ''; state.salOnly = false; state.saved = false; state.shown = 50; $('q').value = ''; if ($('mq')) $('mq').value = ''; $('salOnly').checked = false; fillSelects(); render(); });
 
   const PAGES = typeof JOBPAGE !== 'undefined' ? JOBPAGE : {};   // job URL -> our full job page (/job/<slug>/)
@@ -342,7 +346,10 @@
   });
   // mobile sheet + search mirror
   function openSheet() { $('side').classList.add('open'); $('shade').classList.add('on'); }
-  function closeSheet() { const sd = $('side'); sd.classList.remove('open'); sd.style.transform = ''; $('shade').classList.remove('on'); $('shade').style.opacity = ''; }
+  function closeSheet() {
+    const sd = $('side'), was = sd.classList.contains('open'); sd.classList.remove('open'); sd.style.transform = ''; $('shade').classList.remove('on'); $('shade').style.opacity = '';
+    if (was && pendingTop) { pendingTop = false; setTimeout(resultsTop, 60); }   // after the page is unlocked
+  }
   // 3. "Show N jobs": the number rolls when it changes while the sheet is open
   let applyN = null, applyT;
   function setApplyCount(total) {
@@ -394,14 +401,68 @@
       list = list.filter(j => !pu.has(j.u));
     }
     const total = list.length + pinned.length;
-    $('count').textContent = t('nRoles')(total, state.saved);
+    setCount(total, state.saved);
     $('empty').hidden = total > 0;
     setApplyCount(total);
     renderActiveChips();
     $('list').innerHTML = pinned.map(j => jobRow(j, true)).join('') +
       list.slice(0, state.shown).map(j => jobRow(j, false)).join('');
     $('morebar').hidden = list.length <= state.shown;
+    firstCards();
+    syncClear();
     if (io) $('list').querySelectorAll('.job[data-spdev]').forEach(el => io.observe(el));
+    fixMetaSeps();
+    // filters changed while scrolled down the list: bring the top of the new results into view
+    const sig = JSON.stringify([state.q, state.d, state.city, state.sen, state.typ, state.wp, state.lg, state.date, state.sort, state.salOnly, state.saved]);
+    if (lastSig !== null && sig !== lastSig) { if ($('side').classList.contains('open')) pendingTop = true; else resultsTop(); }
+    lastSig = sig;
+  }
+  let lastSig = null, pendingTop = false;
+  // 1. the role count under the search field rolls when the number changes (e.g. while typing)
+  let countN = null, countS = null, countT;
+  function setCount(total, saved) {
+    const el = $('count'), html = n => esc(t('nRoles')(n, saved)).replace(String(n), `<span class="num">${n}</span>`), num = el.querySelector('.num');
+    if (countN === null || countN === total || countS !== saved || !num || REDUCE) { clearTimeout(countT); el.innerHTML = html(total); countN = total; countS = saved; return; }
+    const prev = countN; countN = total; clearTimeout(countT);
+    num.classList.remove('tick'); void num.offsetWidth; num.classList.add('tick');
+    countT = setTimeout(() => { if (total === 1 || prev === 1) el.innerHTML = html(total); else num.textContent = total; }, 110);   // swap mid-roll
+  }
+  // 5. the first cards fade in where the placeholder cards were
+  function firstCards() {
+    const root = document.documentElement; if (!root.classList.contains('bajload')) return;
+    root.classList.remove('bajload');
+    if (REDUCE) return;
+    [...$('list').children].slice(0, 10).forEach((el, i) => { el.style.setProperty('--i', i); el.classList.add('enter'); el.addEventListener('animationend', () => el.classList.remove('enter'), { once: true }); });
+  }
+  // 1. search fields: an x to clear them, shown while there is text
+  const QIDS = ['q', 'mq', 'lbq'];
+  function syncClear() { QIDS.forEach(id => { const el = $(id); if (el && el.parentNode.classList.contains('qwrap')) el.parentNode.classList.toggle('has', el.value !== ''); }); }
+  QIDS.forEach(id => {
+    const el = $(id); if (!el || !el.parentNode.classList.contains('qwrap')) return;
+    const x = el.parentNode.querySelector('.qx');
+    el.addEventListener('input', syncClear);
+    x.addEventListener('pointerdown', e => e.preventDefault());   // keep the keyboard open
+    x.addEventListener('click', () => {
+      el.value = ''; if (id === 'q' && $('mq')) $('mq').value = ''; if (id === 'mq') $('q').value = '';
+      el.dispatchEvent(new Event('input', { bubbles: true })); syncClear();
+      if (document.activeElement !== el && matchMedia('(hover: hover)').matches) el.focus();
+    });
+  });
+  // a meta line that wraps would start with "·": drop the separator on items that begin a new line
+  // (a line break element goes before such an item: without its "·" it could otherwise fit back on the line above)
+  function fixMetaSeps() {
+    const metas = [...document.querySelectorAll('#list .jmeta')];
+    metas.forEach(m => { m.querySelectorAll(':scope > i.brk').forEach(b => b.remove()); m.querySelectorAll(':scope > .nl').forEach(el => el.classList.remove('nl')); });
+    const starts = [];   // measure everything first, then change the DOM once
+    metas.forEach(m => { let top = null; [...m.children].filter(el => el.offsetParent !== null).forEach((el, i) => { if (i && el.offsetTop > top + 4) starts.push(el); top = el.offsetTop; }); });
+    starts.forEach(el => { el.classList.add('nl'); const b = document.createElement('i'); b.className = 'brk'; el.before(b); });
+  }
+  let metaT; window.addEventListener('resize', () => { clearTimeout(metaT); metaT = setTimeout(fixMetaSeps, 150); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fixMetaSeps);
+  function resultsTop() {
+    const mb = document.getElementById('mbar'), off = (document.getElementById('top').offsetHeight || 0) + (mb && getComputedStyle(mb).display !== 'none' ? mb.offsetHeight : 0) + 8;
+    const y = $('count').getBoundingClientRect().top + window.scrollY - off;
+    if (window.scrollY > y + 4) window.scrollTo({ top: Math.max(0, y), behavior: REDUCE ? 'auto' : 'smooth' });
   }
   $('more').addEventListener('click', () => { state.shown += 80; render(); });
   $('list').addEventListener('click', e => {
@@ -409,6 +470,7 @@
     if (sv) {
       e.stopPropagation(); const u = sv.dataset.u, nowSaved = !savedSet.has(u);
       nowSaved ? savedSet.add(u) : savedSet.delete(u); LS.set('baj_sav', [...savedSet]); render();
+      nowSaved ? showToast(u) : hideToast();
       if (nowSaved && !REDUCE) {   // 2. pop the star (re-rendered) and bump the Saved count
         const el = [...$('list').querySelectorAll('.sav')].find(x => x.dataset.u === u); if (el) el.classList.add('pop');
         const n = $('savedN'); n.classList.remove('bump'); void n.offsetWidth; n.classList.add('bump');
@@ -430,6 +492,19 @@
     }
     openCo(+row.dataset.ci, +row.dataset.ji);
   });
+  // 3. "Saved · View · Undo": confirms the save, shows where saved roles are, and undoes a mis-tap
+  let toastU = null, toastT;
+  function showToast(u) {
+    toastU = u; $('toastT').textContent = t('toastSaved'); $('toastView').textContent = t('toastView'); $('toastUndo').textContent = t('toastUndo');
+    const el = $('toast'); if (el.classList.contains('on') && !REDUCE) { el.classList.remove('on'); void el.offsetWidth; }
+    el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(hideToast, 3000);
+  }
+  function hideToast() { clearTimeout(toastT); $('toast').classList.remove('on'); }
+  $('toast').addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') clearTimeout(toastT); });
+  $('toast').addEventListener('pointerleave', e => { if (e.pointerType === 'mouse' && $('toast').classList.contains('on')) toastT = setTimeout(hideToast, 1500); });
+  $('toastUndo').addEventListener('click', () => { if (toastU && savedSet.delete(toastU)) { LS.set('baj_sav', [...savedSet]); render(); } hideToast(); });
+  $('toastView').addEventListener('click', () => { hideToast(); if (typeof closeAll === 'function') closeAll(); setTab('jobs'); state.saved = true; state.shown = 50; render(); resultsTop(); });
+
   setTimeout(() => { JOBS.forEach(j => seen.add(j.u)); LS.set('baj_seen', [...seen].slice(-3000)); }, 5000);
 
   const linkCos = COS.filter(c => c.tier === 2 && !(c.jobs || []).length);
@@ -475,7 +550,7 @@
       let list = src.filter(e => (!lbState.cat || e.g === lbState.cat) && (!lbState.q || (e.t + ' ' + e.dev).toLowerCase().includes(lbState.q)));
       $('lblist').innerHTML = list.slice(0, lbState.shown).map((e, i) => {
         const co = byDev[e.dev]; const hire = co && co.tier <= 2;
-        const icon = ICONS[e.id] ? `<img src="${ICONS[e.id]}" alt="" loading="lazy">` : (co && co.icon ? `<img src="${co.icon}" alt="" loading="lazy">` : `<span class="co-ic">${esc(e.t[0])}</span>`);
+        const icon = ICONS[e.id] ? `<img src="${ICONS[e.id]}" alt="" loading="lazy">` : (co && co.icon ? `<img src="${co.icon}" alt="" loading="lazy">` : iconsIn ? `<span class="co-ic">${esc(e.t[0])}</span>` : '<span class="co-ic pend"></span>');
         const rank = i + 1;
         const right = lbState.store === 'play'
           ? `<div class="big">${esc(e.inst)}</div><div class="sub">${t('instSub')}${e.rev ? ' · ' + fmtN(e.rev) + t('revSub') : ''}</div>`
@@ -594,7 +669,27 @@
   $('cp-jobs').addEventListener('click', e => { const a = e.target.closest('a[data-spc]'); if (a && sponDevs().has(a.dataset.spc)) bump(a.dataset.spc, 'c', a.getAttribute('href')); });
   $('cp-x').addEventListener('click', closeAll);
   $('shade').addEventListener('click', closeAll);
-  addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') { closeAll(); closeSheet(); closeMore(); } });
+  // Enter in a search field closes the phone keyboard, so the results are visible
+  ['q', 'mq', 'lbq'].forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); el.blur(); } }); });
+  // header height for the sticky search bar below it (phones)
+  const setTopH = () => { const t = document.getElementById('top'); if (t) document.documentElement.style.setProperty('--topH', t.offsetHeight + 'px'); };
+  setTopH(); window.addEventListener('resize', setTopH);
+  // overlays (filter sheet, company panel, More sheet, promote dialog): lock the page behind them on phones,
+  // and let the phone's Back button / back swipe close them instead of leaving the board
+  (function () {
+    const els = ['side', 'cp', 'moreSheet', 'pm'].map(id => document.getElementById(id)).filter(Boolean);
+    const isOpen = () => els.some(el => el.classList.contains('open') || el.classList.contains('on'));
+    let wasOpen = false, popping = false;
+    const sync = () => {
+      const open = isOpen(); document.documentElement.classList.toggle('lock', open);
+      if (open && !wasOpen) { try { history.pushState({ bajModal: 1 }, '', location.href); } catch (e) {} }
+      if (!open && wasOpen && !popping && history.state && history.state.bajModal) { try { history.back(); } catch (e) {} }
+      wasOpen = open; popping = false;
+    };
+    const mo = new MutationObserver(sync); els.forEach(el => mo.observe(el, { attributes: true, attributeFilter: ['class'] }));
+    window.addEventListener('popstate', () => { if (isOpen()) { popping = true; closeAll(); closeSheet(); closeMore(); } });
+  })();
 
   // ---------- promote modal ----------
   function renderPm() {
@@ -618,6 +713,14 @@
   function buildMap() {
     const svg = $('bmap'), NS = 'http://www.w3.org/2000/svg';
     const el = (n, at, p) => { const e = document.createElementNS(NS, n); for (const k in at) e.setAttribute(k, at[k]); (p || svg).appendChild(e); return e; };
+    // a marker's logo (a dark disc until the logos have loaded, see mapIconsIn)
+    function mapIcon(g, c, r, before) {
+      const add = (n, at) => { const e = el(n, at, g); if (before) g.insertBefore(e, before); return e; };
+      if (c.icon) { const im = add('image', { href: c.icon, x: -r, y: -r, width: 2 * r, height: 2 * r, 'clip-path': 'url(#bcp' + r + ')', preserveAspectRatio: 'xMidYMid slice' }); if (before && !REDUCE) im.classList.add('fadein'); }
+      else if (!iconsIn) { c._pend = add('circle', { r: r - 1, fill: '#1A2138' }); c._r = r; }
+      else { add('circle', { r: r - 1, fill: '#1A2138' }); const tt = add('text', { fill: '#B8B5A3', 'text-anchor': 'middle', dy: 4, 'font-size': r * 0.8, 'font-weight': 700 }); tt.textContent = c.n[0]; }
+    }
+    mapIconsIn = () => COS.forEach(c => { if (!c._pend || !c._g) return; const nx = c._pend.nextSibling; c._pend.remove(); c._pend = null; mapIcon(c._g, c, c._r, nx); });
     const [BX0, BFX, BY0, BFY] = GEO.bx;
     const world = el('g', {});
     const defs = el('defs', {}, world);
@@ -677,8 +780,7 @@
       const r = Math.round(R(c));
       const g = el('g', { class: 'bmk hire' + (sd.has(c.n) ? ' sponm' : ''), 'data-ci': c.ci }, gM);
       el('circle', { class: 'ring', r: r + 1.2 }, g);
-      if (c.icon) el('image', { href: c.icon, x: -r, y: -r, width: 2 * r, height: 2 * r, 'clip-path': 'url(#bcp' + r + ')', preserveAspectRatio: 'xMidYMid slice' }, g);
-      else { el('circle', { r: r - 1, fill: '#1A2138' }, g); const tt = el('text', { fill: '#B8B5A3', 'text-anchor': 'middle', dy: 4, 'font-size': r * 0.8, 'font-weight': 700 }, g); tt.textContent = c.n[0]; }
+      mapIcon(g, c, r);
       el('circle', { class: 'cntbg', cx: r * 0.78, cy: -r * 0.78, r: 8.5 }, g);
       const tt = el('text', { class: 'cnt', x: r * 0.78, y: -r * 0.78, dy: 3.5 }, g);
       tt.textContent = n > 99 ? '99' : n;
@@ -830,10 +932,11 @@
     $('promoBtn').textContent = t('promo');
     $('introH1').innerHTML = t('introH1'); $('introSub').textContent = t('introSub');
     $('q').placeholder = t('search'); if ($('mq')) $('mq').placeholder = t('search');
+    document.querySelectorAll('.qx').forEach(b => b.setAttribute('aria-label', t('clearQ')));
     $('salOnlyLbl').textContent = t('salOnly'); $('mFiltersT').textContent = t('filtersBtn'); $('sheetHeadT').textContent = t('filterHead');
     $('hCity').textContent = t('hCity'); $('hDisc').textContent = t('hDisc'); $('hDet').textContent = t('hDet');
     $('savedLbl').textContent = t('saved'); $('reset').textContent = t('reset');
-    $('empty').innerHTML = `<b>${t('emptyT')}</b>${t('emptyB')}`;
+    $('empty').innerHTML = `<b>${t('emptyT')}</b>${t('emptyB')}<br><button type="button" class="emptyreset" id="emptyReset">${t('emptyBtn')}</button>`;
     $('more').textContent = t('more'); $('lbmore').textContent = t('lbMore');
     $('cosH2').textContent = t('cosH2'); $('cosSub').textContent = t('cosSub');
     $('tb-guides').textContent = t('tGuides'); $('bnMore').textContent = t('moreNav'); $('ms-cos').textContent = t('tCos'); $('ms-guides').textContent = t('tGuides'); $('ms-promo').textContent = t('promo'); $('guidesH2').textContent = t('guidesH2'); $('guidesSub').textContent = t('guidesSub'); if (!$('guides').hidden) renderGuides();
@@ -863,6 +966,24 @@
   });
 
   applyLang();
+  // 5. logos: fetched after the board is up, then swapped in where the blank tiles are
+  function applyIcons() {
+    const d = window.BAJ_ICONS; if (!d || iconsIn) return; iconsIn = true;
+    Object.keys(d.co || {}).forEach(ci => { if (COS[ci]) COS[ci].icon = d.co[ci]; });
+    Object.assign(ICONS, d.ch || {});
+    document.querySelectorAll('.co-ic.pend[data-ci]').forEach(el => { const c = COS[el.dataset.ci]; if (c) el.outerHTML = icoHtml(c, true); });
+    if (window.__renderLb) window.__renderLb();
+    if (mapIconsIn) mapIconsIn();
+  }
+  if (!iconsIn) {
+    if (window.BAJ_ICONS) applyIcons();
+    else {
+      window.addEventListener('baj-icons', applyIcons);
+      const sc = document.createElement('script'); sc.src = ICONS_URL; sc.async = true;
+      sc.onerror = () => { iconsIn = true; document.querySelectorAll('.co-ic.pend[data-ci]').forEach(el => { const c = COS[el.dataset.ci]; if (c) el.outerHTML = icoHtml(c); }); if (window.__renderLb) window.__renderLb(); if (mapIconsIn) mapIconsIn(); };
+      document.head.appendChild(sc);
+    }
+  }
   // Back from a job page: show as many roles as before and return to the same spot in the list.
   try {
     const nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
