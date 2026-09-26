@@ -55,6 +55,17 @@ CSS = """
 #top .langtog a.on{opacity:1;border-color:#FFD400}
 #top .langtog a:hover{opacity:.85}
 #bottomNav,#moreSheet,#moreShade{display:none}
+/* clean touch behaviour: no double-tap zoom, bigger flag touch areas, no "sticky hover" after a tap (same as board.html) */
+a,button,select,label{touch-action:manipulation}
+#top .langtog a{position:relative}#top .langtog a::after{content:"";position:absolute;inset:-9px -4px}
+#moreSheet{overscroll-behavior:contain}
+@media (hover:none){
+  html #top .langtog a:hover{opacity:.5}html #top .langtog a.on:hover{opacity:1}html #top nav.tabs a:hover{color:#B8B5A3}html #top nav.tabs a.on:hover{color:#131310}
+  html .row:hover,html .card:hover,html .hubcard:hover,html .related a:hover,html .applist a:hover{background:var(--surface)}
+  html .cta:hover{background:#FFD400;color:#131310}html .costrip .store:hover{background:var(--bg);color:var(--ink);border-color:var(--line)}
+  html .crumb a:hover{color:var(--faint)}html .back:hover,html .costrip .by a:hover{text-decoration:none}
+}
+@media (prefers-reduced-motion:reduce){#top{transition:none}}
 /* page transitions between the board and these pages (same settings as board.html); off under reduced motion */
 @media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
 #top{view-transition-name:site-top}
@@ -65,6 +76,9 @@ CSS = """
   #top .bar{padding:10px 16px}
   #top nav.tabs,#top .promo{display:none}
   #top .langtog{margin-left:auto}
+  /* the header slides away while scrolling down and comes back on the way up (HIDE_JS; same as the board) */
+  #top{transition:transform 220ms cubic-bezier(.3,1,.4,1)}
+  html.hdr-hide #top{transform:translateY(calc(-100% - env(safe-area-inset-top,0px)))}
   #top .wordmark{font-size:12px}
   body{padding-bottom:calc(58px + env(safe-area-inset-bottom,0px))}
   #bottomNav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:44;background:#131310;border-top:1px solid #2c2c24;padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -88,6 +102,20 @@ CSS = """
 MORE_JS = ("<script>(function(){var b=document.getElementById('bnMoreBtn'),s=document.getElementById('moreSheet'),h=document.getElementById('moreShade');"
            "if(!b||!s||!h)return;function t(o){s.classList.toggle('open',o);h.classList.toggle('open',o);}"
            "b.addEventListener('click',function(){t(!s.classList.contains('open'));});h.addEventListener('click',function(){t(false);});})();</script>")
+
+# Phones: hide the header after 12px of scrolling down, bring it back after 12px up. Never near the top of the page,
+# never while an overlay is open (html.lock, set by the board). Used on the board too (build_home.py adds it).
+HIDE_JS = ("<script>(function(){var top=document.getElementById('top');if(!top||!window.matchMedia)return;"
+           "var mq=matchMedia('(max-width: 880px)'),root=document.documentElement,lastY=window.scrollY,acc=0,hid=false,busy=false;"
+           "function set(h){if(h===hid)return;hid=h;root.classList.toggle('hdr-hide',h);}"
+           "function tick(){busy=false;var max=Math.max(0,(document.scrollingElement||root).scrollHeight-innerHeight),"
+           "y=Math.min(Math.max(0,window.scrollY),max),dy=y-lastY;lastY=y;"
+           "if(root.classList.contains('lock'))return;"
+           "if(!mq.matches||y<top.offsetHeight+80){set(false);acc=0;return;}"
+           "if(dy===0)return;if((dy>0)!==(acc>0))acc=0;acc+=dy;if(acc>12)set(true);else if(acc<-12)set(false);}"
+           "addEventListener('scroll',function(){if(!busy){busy=true;requestAnimationFrame(tick);}},{passive:true});"
+           "mq.addEventListener&&mq.addEventListener('change',function(){if(!mq.matches)set(false);});"
+           "document.addEventListener('focusin',function(e){if(e.target&&e.target.closest&&e.target.closest('#top'))set(false);});})();</script>")
 
 def site_header(lang='en', active='jobs', alt=None, n_jobs=0, n_cos=0):
     """Header HTML (goes right after <body>). active: jobs | charts | companies | map | guides | ''.
@@ -115,5 +143,5 @@ def site_header(lang='en', active='jobs', alt=None, n_jobs=0, n_cos=0):
               + f'<button type="button" id="bnMoreBtn"{ON if active in ("companies", "guides") else ""}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
               f'stroke-width="1.9" stroke-linecap="round">{ICONS["more"]}</svg><span>{_esc(L["more"])}</span></button></nav>'
               f'<div id="moreShade"></div><nav id="moreSheet" aria-label="{_esc(L["more"])}"><a href="/#studios">{_esc(L["companies"])}</a>'
-              f'<a href="/#guides">{_esc(L["guides"])}</a><a href="/#promote">{_esc(L["promo"])}</a></nav>' + MORE_JS)
+              f'<a href="/#guides">{_esc(L["guides"])}</a><a href="/#promote">{_esc(L["promo"])}</a></nav>' + MORE_JS + HIDE_JS)
     return top, bottom

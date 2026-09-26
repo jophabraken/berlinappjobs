@@ -128,7 +128,7 @@ EXTRA_CSS = """<style>
 .costrip .store{border:1.5px solid var(--line);border-radius:6px;padding:7px 11px;font-weight:800;font-size:13px;text-decoration:none;white-space:nowrap;background:var(--bg)}
 .costrip .store:hover{background:#131310;color:#FFD400;border-color:#131310}
 h1{view-transition-name:job-title;width:fit-content;max-width:100%}.costrip img{view-transition-name:job-logo}   /* the board card morphs into these */
-.back{display:inline-block;margin:18px 0 -8px;font-weight:800;font-size:13.5px;color:var(--ink);text-decoration:none}
+.back{display:inline-block;margin:8px 0 -18px;padding:10px 0;font-weight:800;font-size:13.5px;color:var(--ink);text-decoration:none}
 .back:hover{text-decoration:underline}
 .stick{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#131310;color:#F4F1E0;transform:translateY(110%);transition:transform .2s;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}
 .stick.on{transform:none}

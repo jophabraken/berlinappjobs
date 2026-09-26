@@ -13,6 +13,7 @@ running JavaScript, this script:
 import json, os, re, sys, hashlib, html as htmlmod
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from paths import OUT, DATA, TPL
+import header as site_hdr
 
 SITE = 'https://berlinappjobs.com'
 esc = lambda s: htmlmod.escape(str(s), quote=True)
@@ -63,10 +64,13 @@ items = ''.join(
 static_list = (f'<div class="seo-pre"><h2>Newest app jobs in Berlin and Germany</h2><ul>{items}</ul>'
                f'<p><a href="/jobs/">All {n_jobs:,} roles by city and discipline</a> · <a href="/en/companies/">All {n_cos} hiring companies</a></p></div>')
 
-body = body.replace('<b id="st-jobs">0</b>', f'<b id="st-jobs">{n_jobs:,}</b>')
+body = body.replace('<b id="st-jobs">0</b>', f'<b id="st-jobs">{n_jobs}</b>')   # no thousands separator: same as the app and header.py
 body = body.replace('<b id="st-cos">0</b>', f'<b id="st-cos">{n_cos}</b>')
-body = body.replace('<div id="count"></div>', f'<div id="count">{n_jobs:,} roles</div>')
-body = body.replace('<div id="list"></div>', f'<div id="list">{static_list}</div>')
+body = body.replace('<div id="count"></div>', f'<div id="count">{n_jobs} roles</div>')
+# placeholder cards: shown instead of the static list while the board loads (html.bajload, set in <head>); crawlers and no-JS visitors get the list
+skel = ''.join(f'<div class="skel" aria-hidden="true"><span class="sk-ic"></span><span class="sk-b"><i style="width:{a}%"></i><i style="width:{b}%"></i><i style="width:{c}%"></i></span></div>'
+               for a, b, c in ((26, 74, 48), (32, 58, 40), (22, 80, 52), (30, 64, 44), (24, 70, 36), (28, 54, 46)))
+body = body.replace('<div id="list"></div>', f'<div id="list">{skel}{static_list}</div>')
 assert 'seo-pre' in body
 
 # ---- assets (content-hashed for caching) ----
@@ -75,11 +79,23 @@ os.makedirs(os.path.join(OUT, 'assets'), exist_ok=True)
 GUIDES = json.loads(guides_js[guides_js.find('=') + 1:].strip().rstrip(';'))
 guides_slim = 'const GUIDES = ' + json.dumps([{k: g.get(k) for k in ('slug', 'lang', 'title', 'desc', 'pair')} for g in GUIDES], ensure_ascii=False) + ';\n'
 jobpage_js = 'const JOBPAGE = ' + json.dumps({k: v.replace(SITE, '') for k, v in JOBPAGE.items()}, ensure_ascii=False, separators=(',', ':')) + ';\n'   # job URL -> /job/<slug>/, so cards open the full ad
-data_out = board_js.rstrip() + '\n' + guides_slim + jobpage_js + geo_js.rstrip() + '\n'
 def asset(name, text):
     h = hashlib.sha1(text.encode('utf-8')).hexdigest()[:10]
     open(os.path.join(OUT, 'assets', name), 'w', encoding='utf-8').write(text)
     return f'/assets/{name}?v={h}'
+# Logos are ~2/3 of the data. They go to their own file, which the app loads once the cards are showing:
+# BOARD without the company icons, ICONS (chart app icons) empty; icons.js hands both over (window.BAJ_ICONS).
+lines = board_js.rstrip().split('\n')
+assert any(l.startswith('const BOARD = ') for l in lines) and any(l.startswith('const ICONS = ') for l in lines), 'board_data.js layout changed?'
+co_icons = {}
+for ci, c in enumerate(B['companies']):
+    if c.get('icon'): co_icons[str(ci)] = c.pop('icon')
+ch_icons = next(json.loads(l[len('const ICONS = '):].rstrip().rstrip(';')) for l in lines if l.startswith('const ICONS = '))
+lines = ['const BOARD = ' + json.dumps(B, ensure_ascii=False, separators=(',', ':')) + ';' if l.startswith('const BOARD = ')
+         else 'const ICONS = {};' if l.startswith('const ICONS = ') else l for l in lines]
+icons_url = asset('icons.js', 'window.BAJ_ICONS = ' + json.dumps({'co': co_icons, 'ch': ch_icons}, ensure_ascii=False, separators=(',', ':'))
+                  + ";\nwindow.dispatchEvent(new Event('baj-icons'));\n")
+data_out = '\n'.join(lines) + '\n' + guides_slim + jobpage_js + geo_js.rstrip() + '\n' + f"const ICONS_URL = '{icons_url}';\n"
 data_url = asset('data.js', data_out)
 app_url = asset('app.js', app.strip() + '\n')
 
@@ -117,6 +133,7 @@ head = f'''<!doctype html>
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="{data_url}" as="script">
+<script>document.documentElement.classList.add('bajload');setTimeout(function(){{document.documentElement.classList.remove('bajload')}},12000)</script>
 {head_extra.rstrip()}
 <style>
   .seo-pre h2 {{ font: 800 15px "Archivo", sans-serif; text-transform: uppercase; letter-spacing: .04em; margin: 6px 0 10px; }}
@@ -129,6 +146,6 @@ head = f'''<!doctype html>
 </head>
 <body>
 '''
-doc = head + body.rstrip() + f'\n<script src="{data_url}" defer></script>\n<script src="{app_url}" defer></script>\n' + foot + '\n</body>\n</html>\n'
+doc = head + body.rstrip() + f'\n<script src="{data_url}" defer></script>\n<script src="{app_url}" defer></script>\n' + site_hdr.HIDE_JS + '\n' + foot + '\n</body>\n</html>\n'
 open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8').write(doc)
-print(f'index.html {len(doc.encode()):,} bytes · data.js {len(data_out.encode()):,} · app.js {len(app.encode()):,} · pre-rendered jobs {len(top)} · {n_jobs} roles / {n_cos} companies')
+print(f'index.html {len(doc.encode()):,} bytes · data.js {len(data_out.encode()):,} · icons.js {sum(map(len, co_icons.values())) + sum(map(len, ch_icons.values())):,} · app.js {len(app.encode()):,} · pre-rendered jobs {len(top)} · {n_jobs} roles / {n_cos} companies')
