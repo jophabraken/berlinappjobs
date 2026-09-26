@@ -102,7 +102,7 @@ def site_footer(lang, COS, guides, slugify, city_slug, disc, checked=''):
     cols = (col(t['h_city'], [(f'{pre}/jobs/{city_slug(x)}/', t['city'].format(x=_esc(x))) for x in cities], f'{pre}/jobs/', t['all_city'])
             + col(t['h_role'], eng_item + [(f'{pre}/jobs/{rslug(d)}/{city_slug("Berlin")}/', t['role'].format(x=_esc(role_name(d)))) for d in roles][:7 - len(eng_item)],
                   f'{pre}/jobs/{city_slug("Berlin")}/', t['all_berlin'])
-            + col(t['h_cos'], [(f'/companies/{slugs[id(c)]}/', t['co'].format(x=_esc(short_name(c['n'])))) for c in top], '/companies/', t['all_cos'])
+            + col(t['h_cos'], [(f'{pre}/companies/{slugs[id(c)]}/', t['co'].format(x=_esc(short_name(c['n'])))) for c in top], f'{pre}/companies/', t['all_cos'])
             + col(t['h_guides'], [(f'/guides/{_esc(g["slug"])}/', _esc(g['title'])) for g in gl], '/guides/', t['all_guides']))
     year = (checked or '2026')[-4:] if (checked or '')[-4:].isdigit() else '2026'
     return (CSS + '<footer class="sfoot"><div class="sf-in"><div class="sf-top">'
@@ -111,7 +111,7 @@ def site_footer(lang, COS, guides, slugify, city_slug, disc, checked=''):
             f'<a class="sf-cta" href="/">{t["cta"]}</a></div>'
             f'<nav class="sf-cols" aria-label="{_esc(t["h_city"])}, {_esc(t["h_cos"])}, {_esc(t["h_guides"])}">{cols}</nav></div>'
             f'<div class="sf-bot"><span>&copy; {year} Berlin App Jobs. {t["src"]}</span>'
-            f'<nav aria-label="Berlin App Jobs"><a href="/">{t["board"]}</a><a href="/companies/">{t["cos"]}</a>'
+            f'<nav aria-label="Berlin App Jobs"><a href="/">{t["board"]}</a><a href="{pre}/companies/">{t["cos"]}</a>'
             f'<a href="/guides/">{t["h_guides"]}</a><a href="/about/">{t["about"]}</a>'
             + (f'<a href="{_esc(site_config.NEWSLETTER_URL)}">{t["news"]}</a>' if site_config.NEWSLETTER_URL else '')
             + f'<a href="mailto:{_esc(site_config.CONTACT_EMAIL)}">{t["contact"]}</a>'

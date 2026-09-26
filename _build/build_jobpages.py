@@ -102,7 +102,7 @@ def costrip(c, cname, cslug, L):
     bits = [L('von', 'by') + ' ' + esc(cname)]
     if app.get('i'): bits.append(esc(app['i']) + L(' Downloads (Android)', ' installs (Android)'))
     if cslug:
-        bits.append(f'<a href="/companies/{cslug}/">' + (L(f'{n_roles} offene Stellen', f'{n_roles} open roles') if n_roles > 1 else L('Zum Unternehmen', 'Company page')) + ' &rarr;</a>')
+        bits.append(f'<a href="{L("", "/en")}/companies/{cslug}/">' + (L(f'{n_roles} offene Stellen', f'{n_roles} open roles') if n_roles > 1 else L('Zum Unternehmen', 'Company page')) + ' &rarr;</a>')
     return (f'<div class="costrip">{icon}<div class="ct"><span class="lbl">{L("Die App", "The app")}</span>'
             f'<b>{esc(app.get("t") or cname)}</b><span class="by">{" &middot; ".join(bits)}</span></div>'
             + (f'<div class="stores">{stores}</div>' if stores else '') + '</div>')
@@ -271,13 +271,13 @@ for rec in pages:
     title_tag = f"{jt}{at} in {where}".replace(' in Remote', ' (Remote)')
     full_title = title_tag + " | Berlin App Jobs" if len(title_tag) <= 45 else title_tag   # brand only if the whole title fits in ~63 chars
     meta_desc = job_desc(jt, co, where, de, et, remote, jb.get('sal'), desc)
-    crumbs = breadcrumb([("Start" if de else "Home", SITE + "/"), (cname, f"{SITE}/companies/{cslug}/" if cslug else SITE + "/"), (jb['t'], url)])
+    crumbs = breadcrumb([("Start" if de else "Home", SITE + "/"), (cname, f"{SITE}{'' if de else '/en'}/companies/{cslug}/" if cslug else SITE + "/"), (jb['t'], url)])
     pills = [esc(loc)] + (["Remote"] if fully_remote else [L("Remote möglich", "Remote possible")] if remote else []) + [{"FULL_TIME": L("Vollzeit", "Full-time"), "PART_TIME": L("Teilzeit", "Part-time"), "INTERN": L("Praktikum", "Internship"), "CONTRACTOR": "Freelance", "TEMPORARY": L("Befristet", "Temporary")}[et[-1]]]
     if jb.get('sal'): pills.append(esc(jb['sal'].split('•')[0].strip()))
     body = (head(full_title, meta_desc, url, EXTRA_CSS + "\n" + jsonld([jp, crumbs]), lang="de" if de else "en").replace('<html lang="de">', f'<html lang="{"de" if de else "en"}">')
       + f'<a class="back" href="/" id="backlink">&larr; {L("Alle Stellen", "All jobs")}</a>'
       + f'<nav class="crumb"><a href="/">{L("Start", "Home")}</a> / '
-      + (f'<a href="/companies/{cslug}/">{esc(cname)}</a>' if cslug else esc(cname)) + f' / {esc(jb["t"])}</nav>'
+      + (f'<a href="{L("", "/en")}/companies/{cslug}/">{esc(cname)}</a>' if cslug else esc(cname)) + f' / {esc(jb["t"])}</nav>'
       + f'<h1>{esc(jb["t"])}</h1>'
       + f'<div class="meta"><b>{esc(cname)}</b>' + ''.join(f'<span class="pill">{p}</span>' for p in pills) + f'<span>{L("Veröffentlicht", "Posted")} {posted}</span></div>'
       + costrip(c, cname, cslug, L)
@@ -287,7 +287,7 @@ for rec in pages:
       + f'<a class="cta applybtn" href="{esc(jb["u"])}" target="_blank" rel="noopener nofollow" style="margin-top:16px">{L("Jetzt beim Unternehmen bewerben", "Apply on the company site")} &#8599;</a>'
       + f'<p class="note">{L("Quelle: Bewerbungssystem von", "Source: hiring system of")} {esc(cname)}, {L("zuletzt geprüft am", "last checked")} {FETCHED}. {L("Du bewirbst dich direkt beim Unternehmen.", "You apply directly with the company.")}</p>'
       + other_html
-      + (f'<p style="margin-top:22px"><a href="/companies/{cslug}/">{L("Alle Infos und Apps von", "All info and apps from")} {esc(cname)} &rarr;</a> &middot; ' if cslug else '<p style="margin-top:22px">')
+      + (f'<p style="margin-top:22px"><a href="{L("", "/en")}/companies/{cslug}/">{L("Alle Infos und Apps von", "All info and apps from")} {esc(cname)} &rarr;</a> &middot; ' if cslug else '<p style="margin-top:22px">')
       + f'<a href="/">{L("Alle Stellen auf dem Board", "All jobs on the board")} &rarr;</a></p>'
       + '</div>'
       + f'<div class="stick" id="stick" aria-hidden="true"><div class="in"><div class="tx"><b>{esc(jb["t"])}</b><span>{esc(cname)} &middot; {esc(loc)}</span></div>'

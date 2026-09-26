@@ -23,7 +23,7 @@ doc += ('<h1 style="margin-top:34px">This page isn\'t here (anymore)</h1>'
         '<a class="cta" href="/">See all open jobs &rarr;</a>'
         + (f'<h2>Jobs by city</h2><div class="grid">{city_links}</div>' if city_links else '')
         + '<h2>Or browse</h2><div class="grid">'
-          '<a class="card" href="/companies/"><div class="ct">All app companies</div><div class="cd">Who is hiring, with their apps</div></a>'
+          '<a class="card" href="/en/companies/"><div class="ct">All app companies</div><div class="cd">Who is hiring, with their apps</div></a>'
           '<a class="card" href="/jobs/"><div class="ct">Jobs by role &amp; city</div><div class="cd">Engineering, product, design, data and more</div></a>'
           '<a class="card" href="/guides/"><div class="ct">Guides</div><div class="cd">Salaries, English-speaking jobs, how to get hired</div></a>'
           '</div>'

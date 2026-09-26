@@ -14,13 +14,13 @@ def _slugify(name):
     return re.sub(r'[^a-zA-Z0-9]+','-',n).strip('-').lower()
 
 _missing=[]
-def _colinks(h):
+def _colinks(h, lang='de'):
     def rep(m):
         name,label=(m.group(1).split('|',1)+[None])[:2]
         label=label or name
         sl=_slugify(name)
         if os.path.isdir(os.path.join(OUT,'companies',sl)):
-            return f'<a href="/companies/{sl}/">{label}</a>'
+            return f'<a href="{"/en" if lang == "en" else ""}/companies/{sl}/">{label}</a>'   # English guides link to English company pages
         _missing.append(name); return label
     return re.sub(r'\[\[([^\]]+)\]\]',rep,h)
 
@@ -46,7 +46,7 @@ for _a in ARTICLES1:
         _a['faq']=[[_uml_text(q),_uml_text(x)] for q,x in _a['faq']]
 for _a in ARTICLES2:
     _a.setdefault('date','2026-09-22')
-    _a['html']=_colinks(_a['html'])
+    _a['html']=_colinks(_a['html'], _a.get('lang', 'de'))
 ARTICLES = ARTICLES1 + ARTICLES2
 
 SITE = "https://berlinappjobs.com"

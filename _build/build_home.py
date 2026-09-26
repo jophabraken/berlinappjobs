@@ -61,7 +61,7 @@ items = ''.join(
     f'<li><a href="{esc(u)}">{esc(jb["t"])}</a><span>{esc(c["n"])} · {esc(jb.get("loc") or c.get("city") or "")}</span></li>'
     for p, c, jb, u in top)
 static_list = (f'<div class="seo-pre"><h2>Newest app jobs in Berlin and Germany</h2><ul>{items}</ul>'
-               f'<p><a href="/jobs/">All {n_jobs:,} roles by city and discipline</a> · <a href="/companies/">All {n_cos} hiring companies</a></p></div>')
+               f'<p><a href="/jobs/">All {n_jobs:,} roles by city and discipline</a> · <a href="/en/companies/">All {n_cos} hiring companies</a></p></div>')
 
 body = body.replace('<b id="st-jobs">0</b>', f'<b id="st-jobs">{n_jobs:,}</b>')
 body = body.replace('<b id="st-cos">0</b>', f'<b id="st-cos">{n_cos}</b>')

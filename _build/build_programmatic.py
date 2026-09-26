@@ -171,51 +171,79 @@ for c in comps:   # slugs first, so pages can link to similar companies
     c['_slug']=slug
 NOINDEX=[]   # company pages without parsed jobs: kept for visitors and links, hidden from Google (thin content)
 _truthy=lambda v: v is True or str(v).strip().lower() in ('true','1','yes')
-def _join(xs):
-    xs=list(xs); return xs[0] if len(xs)==1 else ', '.join(xs[:-1])+' und '+xs[-1]
-def company_overview(c, city, jobs):
+def _join(xs, lang="de"):
+    xs=list(xs); return xs[0] if len(xs)==1 else ', '.join(xs[:-1])+(' und ' if lang=="de" else ' and ')+xs[-1]
+def co_url(slug, lang):
+    """Company page path: German /companies/<slug>/, English /en/companies/<slug>/ (hreflang pairs)."""
+    return f"{'/en' if lang=='en' else ''}/companies/{slug}/"
+def company_overview(c, city, jobs, lang="de"):
     """A short, factual summary from the company's own job data (no guessing), plus similar employers."""
+    de = lang == "de"
     n=len(jobs); name=esc(c['n'])
     disc=collections.Counter(j.get('d') for j in jobs)
-    top=[f"{DISC[d][1]} ({k})" for d,k in disc.most_common() if d in DISC][:3]
+    dname = (lambda d: DISC[d][1]) if de else (lambda d: ROLE_EN.get(d, DISC[d][1]))
+    top=[f"{dname(d)} ({k})" for d,k in disc.most_common() if d in DISC][:3]
     en=sum(1 for j in jobs if j.get('lang')=='en'); rem=sum(1 for j in jobs if _truthy(j.get('rem')))
     sal=sum(1 for j in jobs if j.get('sal')); entry=sum(1 for j in jobs if j.get('s') in ('intern','junior'))
     senior=sum(1 for j in jobs if j.get('s') in ('senior','lead'))
     locs=collections.Counter(re.split(r'[,/|(]',j.get('loc') or city or '')[0].strip() or city for j in jobs)
-    p=[f"{name} sucht aktuell {n} {'Person' if n==1 else 'Leute'}" + (f", vor allem in {_join(top)}." if top else ".")]
-    if en==n: p.append("Alle Anzeigen sind auf Englisch, Deutsch ist hier meist keine Voraussetzung.")
-    elif en: p.append(f"{en} von {n} Anzeigen sind auf Englisch ({round(100*en/n)} %), der Rest auf Deutsch.")
-    else: p.append("Alle Anzeigen sind auf Deutsch, gute Deutschkenntnisse werden also meist erwartet.")
-    lv=[]
-    if entry: lv.append(f"{entry} für Einsteiger (Praktikum, Werkstudent, Junior)")
-    if senior: lv.append(f"{senior} für Senior- und Lead-Rollen")
-    if lv: p.append("Davon "+_join(lv)+".")
-    if rem: p.append(f"{rem} {'Stelle ist' if rem==1 else 'Stellen sind'} remote oder hybrid möglich.")
-    p.append(f"{sal} {'Anzeige nennt' if sal==1 else 'Anzeigen nennen'} ein Gehalt." if sal else "Keine der Anzeigen nennt ein Gehalt.")
-    if len(locs)>1: p.append("Standorte: "+_join(esc(l) for l,_ in locs.most_common(4) if l)+".")
+    J = lambda xs: _join(xs, lang)
     apps=[a for a in c.get('apps') or [] if a.get('t')][:2]
-    if apps: p.append("Bekannt für "+_join(f"{esc(htmlmod.unescape(a['t']))}"+(f" ({esc(a['i'])} Downloads bei Google Play)" if a.get('i') else '') for a in apps)+".")
-    html='<h2>Überblick</h2><p>'+' '.join(p)+'</p>'
+    if de:
+        p=[f"{name} sucht aktuell {n} {'Person' if n==1 else 'Leute'}" + (f", vor allem in {J(top)}." if top else ".")]
+        if en==n: p.append("Alle Anzeigen sind auf Englisch, Deutsch ist hier meist keine Voraussetzung.")
+        elif en: p.append(f"{en} von {n} Anzeigen sind auf Englisch ({round(100*en/n)} %), der Rest auf Deutsch.")
+        else: p.append("Alle Anzeigen sind auf Deutsch, gute Deutschkenntnisse werden also meist erwartet.")
+        lv=[]
+        if entry: lv.append(f"{entry} für Einsteiger (Praktikum, Werkstudent, Junior)")
+        if senior: lv.append(f"{senior} für Senior- und Lead-Rollen")
+        if lv: p.append("Davon "+J(lv)+".")
+        if rem: p.append(f"{rem} {'Stelle ist' if rem==1 else 'Stellen sind'} remote oder hybrid möglich.")
+        p.append(f"{sal} {'Anzeige nennt' if sal==1 else 'Anzeigen nennen'} ein Gehalt." if sal else "Keine der Anzeigen nennt ein Gehalt.")
+        if len(locs)>1: p.append("Standorte: "+J(esc(l) for l,_ in locs.most_common(4) if l)+".")
+        if apps: p.append("Bekannt für "+J(f"{esc(htmlmod.unescape(a['t']))}"+(f" ({esc(a['i'])} Downloads bei Google Play)" if a.get('i') else '') for a in apps)+".")
+    else:
+        p=[f"{name} is hiring for {n} {'role' if n==1 else 'roles'} right now" + (f", mostly in {J(top)}." if top else ".")]
+        if en==n: p.append("Every ad is in English, so German is usually not required.")
+        elif en: p.append(f"{en} of {n} ads are in English ({round(100*en/n)}%), the rest in German.")
+        else: p.append("All ads are in German, so good German is usually expected.")
+        lv=[]
+        if entry: lv.append(f"{entry} for newcomers (internship, working student, junior)")
+        if senior: lv.append(f"{senior} for senior and lead roles")
+        if lv: p.append("That includes "+J(lv)+".")
+        if rem: p.append(f"{rem} {'role allows' if rem==1 else 'roles allow'} remote or hybrid work.")
+        p.append(f"{sal} {'ad shows' if sal==1 else 'ads show'} a salary." if sal else "None of the ads shows a salary.")
+        if len(locs)>1: p.append("Locations: "+J(esc(l) for l,_ in locs.most_common(4) if l)+".")
+        if apps: p.append("Known for "+J(f"{esc(htmlmod.unescape(a['t']))}"+(f" ({esc(a['i'])} installs on Google Play)" if a.get('i') else '') for a in apps)+".")
+    html=('<h2>Überblick</h2>' if de else '<h2>Overview</h2>')+'<p>'+' '.join(p)+'</p>'
     peers=[o for o in comps if o is not c and o.get('jobs') and (o.get('city') or '')==city][:6]
     same_city=len(peers)>=3
     if not same_city: peers=[o for o in comps if o is not c and o.get('jobs')][:6]
     if peers:
-        html+=f'<h2>Ähnliche Arbeitgeber{(" in "+esc(city)) if city and same_city else ""}</h2><div class="applist">'
-        html+=''.join(f'<a href="/companies/{o["_slug"]}/">{esc(o["n"])} &middot; {len(o["jobs"])} Stellen</a>' for o in peers)+'</div>'
+        head_ = ("Ähnliche Arbeitgeber" if de else "Similar employers") + ((" in "+esc(city)) if city and same_city else "")
+        html+=f'<h2>{head_}</h2><div class="applist">'
+        html+=''.join(f'<a href="{co_url(o["_slug"], lang)}">{esc(o["n"])} &middot; {len(o["jobs"])} {"Stellen" if de else "roles"}</a>' for o in peers)+'</div>'
     return html
-for c in comps:
+
+def company_page(c, lang):
+    """One company page. German at /companies/<slug>/, English at /en/companies/<slug>/, hreflang pairs both ways."""
+    de = lang == "de"; T = lambda a, b: a if de else b
     slug=c['_slug']
     city=c.get('city','') or ''
     njobs=len(c.get('jobs',[])); total=c.get('total',njobs) or njobs
     apps=c.get('apps',[]) or []
-    appnames=", ".join(a['t'] for a in apps[:3])
-    title=(fit_title(f"{short_name(c['n'])} Jobs: {njobs} offene Stellen ({MONTH_DE})") if njobs
-           else f"{c['n']} Jobs 2026 - offene Stellen | Berlin App Jobs")
-    desc=(f"Offene Stellen bei {c['n']}"+(f" in {city}" if city else "")+f". "
-          + (f"{njobs} Rollen live aus dem Bewerbungssystem, mit Direktbewerbung." if njobs else f"{total} offene Stellen.")
-          + (f" Team hinter {apps[0]['t']}." if apps else ""))
-    url=f"{SITE}/companies/{slug}/"
-    # apps block
+    if njobs: title=fit_title(T(f"{short_name(c['n'])} Jobs: {njobs} offene Stellen ({MONTH_DE})", f"{short_name(c['n'])} Jobs: {njobs} open roles ({MONTH_EN})"))
+    else: title=T(f"{c['n']} Jobs 2026 - offene Stellen | Berlin App Jobs", f"{c['n']} Jobs 2026: open roles | Berlin App Jobs")
+    if de:
+        desc=(f"Offene Stellen bei {c['n']}"+(f" in {city}" if city else "")+f". "
+              + (f"{njobs} Rollen live aus dem Bewerbungssystem, mit Direktbewerbung." if njobs else f"{total} offene Stellen.")
+              + (f" Team hinter {apps[0]['t']}." if apps else ""))
+    else:
+        desc=(f"Open roles at {c['n']}"+(f" in {city}" if city else "")+". "
+              + (f"{njobs} roles live from their hiring system, apply directly." if njobs else f"{total} open roles.")
+              + (f" The team behind {apps[0]['t']}." if apps else ""))
+    url=SITE+co_url(slug, lang)
+    alt={'de': SITE+co_url(slug, 'de'), 'en': SITE+co_url(slug, 'en')}
     apphtml=""
     if apps:
         apphtml='<h2>Apps</h2><div class="applist">'
@@ -225,57 +253,67 @@ for c in comps:
             if play: apphtml+=f'<a href="{esc(play)}" target="_blank" rel="noopener nofollow">{esc(a["t"])}{inst}</a>'
             else: apphtml+=f'<span class="applist"><a>{esc(a["t"])}{inst}</a></span>'
         apphtml+='</div>'
-    # roles block
-    roleshtml=""
     if njobs:
-        roleshtml='<h2>Offene Stellen ('+str(njobs)+')</h2>'
+        roleshtml=f'<h2>{T("Offene Stellen", "Open roles")} ({njobs})</h2>'
         for jb in c['jobs']:
-            dloc=esc(jb.get('loc','') or city); dd=DISC.get(jb.get('d',''),('','') )[1]
+            dloc=esc(jb.get('loc','') or city)
+            dd=(DISC.get(jb.get('d',''),('',''))[1]) if de else ROLE_EN.get(jb.get('d',''), DISC.get(jb.get('d',''),('',''))[1])
             jpu=JOBPAGE.get(jb.get("u",""))
             roleshtml+=((f'<a class="row" href="{jpu}">' if jpu else f'<a class="row" href="{esc(jb.get("u","#"))}" target="_blank" rel="noopener nofollow">')+
                         f'<div class="m"><div class="t">{esc(jb["t"])}</div>'
                         f'<div class="d">{dloc}{" &middot; "+esc(dd) if dd else ""}</div></div>'
-                        +(f'<span class="apply">Details</span></a>' if jpu else f'<span class="apply">Bewerben &#8599;</span></a>'))
+                        +(f'<span class="apply">Details</span></a>' if jpu else f'<span class="apply">{T("Bewerben", "Apply")} &#8599;</span></a>'))
     else:
-        roleshtml=(f'<h2>Offene Stellen</h2><p class="sub">{c["n"]} hat aktuell rund {total} offene Stellen. '
-                   f'Diese werden noch nicht einzeln geparst.</p>'
-                   f'<a class="cta" href="{esc(c.get("careers") or "#")}" target="_blank" rel="noopener nofollow">Alle {total} Stellen auf der Karriereseite &#8599;</a>')
-    for jb in c.get('jobs',[]): jb['_co']=c['n']
+        roleshtml=(T(f'<h2>Offene Stellen</h2><p class="sub">{esc(c["n"])} hat aktuell rund {total} offene Stellen. Diese werden noch nicht einzeln geparst.</p>',
+                     f'<h2>Open roles</h2><p class="sub">{esc(c["n"])} has around {total} open roles right now. We don\'t list them one by one yet.</p>')
+                   + f'<a class="cta" href="{esc(c.get("careers") or "#")}" target="_blank" rel="noopener nofollow">'
+                   + T(f'Alle {total} Stellen auf der Karriereseite', f'All {total} roles on their careers page') + ' &#8599;</a>')
+    hub=SITE+T('/companies/', '/en/companies/')
     ld=[{"@context":"https://schema.org","@type":"Organization","name":c['n'],"url":url,
          **({"address":{"@type":"PostalAddress","streetAddress":c.get('addr',''),"addressLocality":city,"addressCountry":"DE"}} if c.get('addr') else {})},
-        breadcrumb([("Home",SITE+"/"),("Companies",SITE+"/companies/"),(c['n'],url)])]
+        breadcrumb([("Home",SITE+"/"),(T("Companies", "Companies"),hub),(c['n'],url)])]
     if njobs: ld.append(jobposting_list([dict(jb,_co=c['n']) for jb in c['jobs']]))
-    cta=(f'<a class="cta" href="/?q={esc(quote(c["n"]))}">Diese Firma im Jobboard ansehen &rarr;</a>')
-    citylink=f'<a class="nav" style="color:var(--accent);margin:0" href="/jobs/{city_slug(city)}/">Mehr App-Jobs in {esc(city)}</a>' if city and njobs and CITY_JOBS.get(city, 0) >= 10 else ''  # only cities that get a page
-    if not njobs: NOINDEX.append(f"companies/{slug}")
-    doc=head(title,desc,url,extra=("\n"+'<meta name="robots" content="noindex, follow">' if not njobs else "")+"\n"+jsonld(ld),active="companies")
-    doc+=f'<nav class="crumb"><a href="/">Home</a> / <a href="/companies/">Companies</a> / {esc(c["n"])}</nav>'
-    doc+=f'<h1>Jobs bei {esc(c["n"])}</h1>'
+    cta=f'<a class="cta" href="/?q={esc(quote(c["n"]))}">{T("Diese Firma im Jobboard ansehen", "See them on the job board")} &rarr;</a>'
+    citylink=(f'<a class="nav" style="color:var(--accent);margin:0" href="{T("", "/en")}/jobs/{city_slug(city)}/">{T("Mehr App-Jobs in", "More app jobs in")} {esc(city)}</a>'
+              if city and njobs and CITY_JOBS.get(city, 0) >= 10 else '')   # only cities that get a page (same threshold in both languages)
+    if not njobs: NOINDEX.append(co_url(slug, lang).strip('/'))
+    doc=head(title,desc,url,extra=("\n"+'<meta name="robots" content="noindex, follow">' if not njobs else "")+"\n"+jsonld(ld),lang=lang,alt=alt,active="companies")
+    doc+=f'<nav class="crumb"><a href="/">Home</a> / <a href="{T("/companies/", "/en/companies/")}">Companies</a> / {esc(c["n"])}</nav>'
+    doc+=f'<h1>{T("Jobs bei", "Jobs at")} {esc(c["n"])}</h1>'
     doc+=f'<p class="sub">{esc(desc)}</p>'
-    doc+=f'<div class="meta">'+(f'<span class="pill">{esc(city)}</span>' if city else '')+(f'<span class="pill">{njobs or total} offene Stellen</span>')+f'<span>Aktualisiert {TODAY}</span></div>'
-    doc+=(company_overview(c, city, c['jobs']) if njobs else '')+apphtml+roleshtml
+    doc+=(f'<div class="meta">'+(f'<span class="pill">{esc(city)}</span>' if city else '')
+          +f'<span class="pill">{njobs or total} {T("offene Stellen", "open roles")}</span><span>{T("Aktualisiert", "Updated")} {TODAY}</span></div>')
+    doc+=(company_overview(c, city, c['jobs'], lang) if njobs else '')+apphtml+roleshtml
     doc+='<div style="margin-top:18px">'+cta+' '+citylink+'</div>'
-    doc+='</div>'+FOOT+'</body></html>'
-    d=os.path.join(comp_dir,slug); os.makedirs(d,exist_ok=True)
+    doc+='</div>'+(FOOT if de else FOOT_EN)+'</body></html>'
+    d=os.path.join(OUT, *co_url(slug, lang).strip('/').split('/')); os.makedirs(d,exist_ok=True)
     open(os.path.join(d,"index.html"),"w",encoding='utf-8').write(doc)
-    company_index.append((c['n'],slug,city,njobs,total))
 
-# companies hub
-def companies_hub():
-    url=f"{SITE}/companies/"
+for c in comps:
+    for jb in c.get('jobs',[]): jb['_co']=c['n']
+    company_page(c, 'de'); company_page(c, 'en')
+    njobs=len(c.get('jobs',[])); company_index.append((c['n'],c['_slug'],c.get('city','') or '',njobs,c.get('total',njobs) or njobs))
+
+# companies hub, German and English
+def companies_hub(lang):
+    de = lang == "de"; T = lambda a, b: a if de else b
+    url=SITE+T('/companies/', '/en/companies/')
     cards=""
     for n,slug,city,nj,total in company_index:
-        cards+=(f'<a class="card" href="/companies/{slug}/"><div class="ct">{esc(n)}</div>'
-                f'<div class="cd">'+(esc(city)+' &middot; ' if city else '')+ (f'{nj} offene Stellen' if nj else f'{total} Stellen')+'</div></a>')
-    doc=head("App-Unternehmen in Deutschland: alle Firmen & Jobs | Berlin App Jobs",
-             f"Alle {len(company_index)} Unternehmen hinter Deutschlands Top-Apps mit offenen Stellen. Apps, Rollen, Standort und Direktbewerbung.",
-             url, active="companies")
+        cards+=(f'<a class="card" href="{co_url(slug, lang)}"><div class="ct">{esc(n)}</div>'
+                f'<div class="cd">'+(esc(city)+' &middot; ' if city else '')+ (f'{nj} {T("offene Stellen", "open roles")}' if nj else f'{total} {T("Stellen", "roles")}')+'</div></a>')
+    doc=head(T("App-Unternehmen in Deutschland: alle Firmen & Jobs | Berlin App Jobs", "App Companies in Germany: All Employers & Jobs | Berlin App Jobs"),
+             T(f"Alle {len(company_index)} Unternehmen hinter Deutschlands Top-Apps mit offenen Stellen. Apps, Rollen, Standort und Direktbewerbung.",
+               f"All {len(company_index)} companies behind Germany's top apps that are hiring. Their apps, open roles and location, with direct apply."),
+             url, lang=lang, alt={'de': SITE+'/companies/', 'en': SITE+'/en/companies/'}, active="companies")
     doc+='<nav class="crumb"><a href="/">Home</a> / Companies</nav>'
-    doc+=f'<h1>App-Unternehmen mit offenen Stellen</h1>'
-    doc+=f'<p class="sub">Die {len(company_index)} Unternehmen hinter Deutschlands meistgenutzten Apps, die aktuell einstellen. Jede Firma mit ihren Apps, offenen Rollen und Direktbewerbung.</p>'
-    doc+=f'<div class="grid">{cards}</div>'+'</div>'+FOOT+'</body></html>'
-    open(os.path.join(comp_dir,"index.html"),"w",encoding='utf-8').write(doc)
-companies_hub()
+    doc+=f'<h1>{T("App-Unternehmen mit offenen Stellen", "App companies hiring now")}</h1>'
+    doc+=('<p class="sub">'+T(f'Die {len(company_index)} Unternehmen hinter Deutschlands meistgenutzten Apps, die aktuell einstellen. Jede Firma mit ihren Apps, offenen Rollen und Direktbewerbung.',
+                               f'The {len(company_index)} companies behind Germany\'s most-used apps that are hiring right now. Each with its apps, open roles and direct apply.')+'</p>')
+    doc+=f'<div class="grid">{cards}</div>'+'</div>'+(FOOT if de else FOOT_EN)+'</body></html>'
+    d=os.path.join(OUT, *T('companies', 'en/companies').split('/')); os.makedirs(d, exist_ok=True)
+    open(os.path.join(d,"index.html"),"w",encoding='utf-8').write(doc)
+companies_hub('de'); companies_hub('en')
 
 # ============ ROLE x CITY + CITY PAGES ============
 jobs_dir=os.path.join(OUT,"jobs"); os.makedirs(jobs_dir,exist_ok=True)
@@ -484,10 +522,10 @@ en_page("", "App Jobs in Germany by Role and City | Berlin App Jobs", "App jobs 
                     + '</div>'))
 
 # ============ SITEMAP (full) ============
-urls=[(SITE+"/","1.0"),(SITE+"/guides/","0.8"),(SITE+"/companies/","0.8"),(SITE+"/jobs/","0.8")]
+urls=[(SITE+"/","1.0"),(SITE+"/guides/","0.8"),(SITE+"/companies/","0.8"),(SITE+"/en/companies/","0.8"),(SITE+"/jobs/","0.8")]
 for g in GUIDES: urls.append((f'{SITE}/guides/{g["slug"]}/',"0.7"))
 for n,slug,city,nj,total in company_index:
-    if nj: urls.append((f'{SITE}/companies/{slug}/',"0.6"))   # pages without parsed jobs are noindex, so not in the sitemap
+    if nj: urls += [(f'{SITE}/companies/{slug}/',"0.6"), (f'{SITE}/en/companies/{slug}/',"0.6")]   # pages without parsed jobs are noindex, so not in the sitemap
 json.dump(sorted(NOINDEX), open(os.path.join(DATA,'noindex_pages.json'),'w'), indent=0)   # cleanup_stale.py keeps these
 for d,city,dname,slug,n in rc_index: urls.append((f'{SITE}/jobs/{slug}/',"0.6"))
 for city,cslug,n in city_index: urls.append((f'{SITE}/jobs/{cslug}/',"0.6"))
