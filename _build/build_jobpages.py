@@ -13,13 +13,16 @@ exec(SRC[SRC.index('def jsonld(objs):'):SRC.index('def jobposting_list')])  # js
 D = json.load(__import__('gzip').open(os.path.join(DATA,'descriptions.json.gz'), 'rt', encoding='utf-8'))
 FETCHED = D['fetched'][:10]
 VALID_THROUGH = (datetime.date.fromisoformat(FETCHED) + datetime.timedelta(days=30)).isoformat()
-idx = {}
+idx = {}; _base = {}
 for j in D['jobs']:
     for k in filter(None, [j.get('url'), str(j.get('id') or '')]):
-        idx.setdefault(k.split('?')[0].rstrip('/'), j)
+        idx.setdefault(k.rstrip('/'), j)
+        _base.setdefault(k.split('?')[0].rstrip('/'), []).append(j)
+for k, v in _base.items():   # a query-less URL is only a key when it points at exactly one job
+    if len({id(x) for x in v}) == 1: idx.setdefault(k, v[0])
 
 def match(u):
-    m = idx.get(u.split('?')[0].rstrip('/'))
+    m = idx.get(u.rstrip('/')) or idx.get(u.split('?')[0].rstrip('/'))
     if m: return m
     for i in reversed(re.findall(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|\d{6,}', u)):
         if i in idx: return idx[i]
