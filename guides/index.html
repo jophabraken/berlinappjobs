@@ -34,6 +34,11 @@
 #top .langtog a.on{opacity:1;border-color:#FFD400}
 #top .langtog a:hover{opacity:.85}
 #bottomNav,#moreSheet,#moreShade{display:none}
+/* page transitions between the board and these pages (same settings as board.html); off under reduced motion */
+@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
+#top{view-transition-name:site-top}
+::view-transition-group(*){animation-duration:300ms;animation-timing-function:cubic-bezier(.3,1,.4,1)}
+::view-transition-old(root),::view-transition-new(root){animation-duration:200ms}
 @media (max-width:1080px){#top .topstats{display:none}}
 @media (max-width:880px){
   #top .bar{padding:10px 16px}
