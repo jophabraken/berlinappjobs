@@ -67,6 +67,10 @@ h2{font-family:Archivo;font-weight:800;font-size:20px;margin:30px 0 10px}
 .cta:hover{background:#131310;color:#FFD400}
 .row{display:flex;align-items:center;gap:12px;background:var(--surface);border:1.5px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:8px;text-decoration:none}
 .row:hover{background:var(--chip)}
+.row,.card{transition:transform 140ms cubic-bezier(.2,.8,.2,1),box-shadow 140ms cubic-bezier(.2,.8,.2,1),background-color 140ms}
+@media (hover:hover){.row:hover,.card:hover{transform:translateY(-2px);box-shadow:0 6px 0 -1px var(--line)}}
+.row:active,.card:active{transform:translateY(0);box-shadow:0 2px 0 -1px var(--line);transition-duration:60ms}
+@media (prefers-reduced-motion:reduce){.row,.card{transition:none}.row:hover,.card:hover,.row:active,.card:active{transform:none}}
 .row .m{flex:1;min-width:0}
 .row .t{font-weight:700;font-size:15px}
 .row .d{color:var(--muted);font-size:12.5px;margin-top:2px}
