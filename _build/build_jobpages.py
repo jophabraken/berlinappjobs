@@ -60,8 +60,10 @@ def salary(sal):
     for m in re.finditer(r'(\d{1,3}(?:[.,]\d{3})+|\d+(?:[.,]\d+)?)\s*([kK])?', sal.split('•')[0]):
         t = m.group(1)
         v = float(re.sub(r'[.,]', '', t)) if re.fullmatch(r'\d{1,3}(?:[.,]\d{3})+', t) else float(t.replace(',', '.'))
-        if m.group(2): v *= 1000
-        nums.append(v)
+        nums.append((v, bool(m.group(2))))
+    has_k = any(k for _, k in nums)
+    # "70-90k": the k belongs to both numbers, so a bare number under 1,000 next to a k-number is thousands too
+    nums = [v * 1000 if (k or (has_k and v < 1000)) else v for v, k in nums]
     nums = [n for n in nums if n > 0]
     if not nums: return None
     val = {"@type": "QuantitativeValue", "unitText": unit}
@@ -164,6 +166,17 @@ CITY_ALIAS = {'munich': 'München', 'muenchen': 'München', 'cologne': 'Köln', 
               'frankfurt': 'Frankfurt am Main', 'hanover': 'Hannover', 'duesseldorf': 'Düsseldorf', 'esslingen': 'Esslingen am Neckar',
               'immenstadt': 'Immenstadt i. Allgäu', 'freiburg': 'Freiburg im Breisgau'}
 _KNOWN = sorted(REGION, key=len, reverse=True)
+# Jobs outside Germany (a few feeds list e.g. Amsterdam roles): keep their own city and country in the markup, never
+# the company's German address. Google: the job location must be accurate.
+FOREIGN = {'Amsterdam': 'NL', 'Rotterdam': 'NL', 'Barcelona': 'ES', 'Madrid': 'ES', 'London': 'GB', 'Paris': 'FR',
+           'Lisbon': 'PT', 'Lisboa': 'PT', 'Porto': 'PT', 'Vienna': 'AT', 'Wien': 'AT', 'Zurich': 'CH', 'Zürich': 'CH',
+           'Dublin': 'IE', 'Warsaw': 'PL', 'Prague': 'CZ', 'Milan': 'IT', 'Stockholm': 'SE', 'Copenhagen': 'DK',
+           'Vilnius': 'LT', 'Tallinn': 'EE', 'Helsinki': 'FI', 'Oslo': 'NO', 'Brussels': 'BE'}
+_FOREIGN_TITLE = re.compile(r'[-–|,(]\s*(' + '|'.join(FOREIGN) + r')\s*\)?\s*$', re.I)
+def foreign_in_title(t):
+    """'(Senior) Data Analyst (m/f/d) - Barcelona' -> 'Barcelona' (city named at the end of the title)."""
+    m = _FOREIGN_TITLE.search(t or '')
+    return next((k for k in FOREIGN if k.lower() == m.group(1).lower()), None) if m else None
 def job_cities(loc, fallback):
     """The job's own city/cities from the feed location ('Berlin / Hamburg', 'Office Frankfurt/Hybrid', 'Munich').
     Only known German cities (regions.py) are used, never a guess; otherwise the company city, as before."""
@@ -175,11 +188,16 @@ def job_cities(loc, fallback):
         if p in REGION and p not in out: out.append(p)
     if not out:   # city only in brackets, e.g. 'Green Campus (Kiel)'
         out = [k for k in _KNOWN if re.search(r'\(' + re.escape(k) + r'\)', loc or '')][:1]
+    if not out:   # a city outside Germany, e.g. 'Amsterdam'
+        out = [k for k in FOREIGN if re.search(r'\b' + re.escape(k) + r'\b', loc or '', re.I)][:1]
     return out or [fallback]
 def postal_address(c, city):
     """PostalAddress for the company's office in `city`. Street and postcode only when the company's
     registered address is in that same city (never guessed); state from the city."""
     a = {"@type": "PostalAddress", "addressLocality": city}
+    if city in FOREIGN:
+        a["addressCountry"] = FOREIGN[city]
+        return a
     addr = c.get('addr') or ''
     if addr and city in addr:
         street = re.split(r',|\s\d{5}\s', addr)[0].strip()
@@ -208,6 +226,8 @@ def contract_label(et, jt, k):
     if re.search(r'ausbildung|azubi|apprentice', jt, re.I): return ("Ausbildung", "Apprenticeship")[k]
     if 'PART_TIME' in et and 'INTERN' in et: return ("Werkstudent", "Working student")[k]
     return ET_LABEL[et[-1]][k]
+NOT_A_JOB = re.compile(r'initiativbewerbung|open application|unsolicited application|speculative application|'
+                       r'keine passende stelle|blindbewerbung', re.I)
 def job_desc(jt, co, where, de, et, remote, sal, desc_html):
     """~155 chars, unique per job: company, place, role, contract, remote, salary, then the ad's own opening words."""
     k = 0 if de else 1
@@ -226,6 +246,8 @@ for rec in pages:
     url = f"{SITE}/job/{slug}/"
     city = c.get('city') or 'Berlin'
     loc = jb.get('loc') or m.get('loc') or city
+    fc = foreign_in_title(jb['t'])
+    if fc and fc.lower() not in loc.lower(): loc = fc   # the feed says "Berlin", the title says "- Barcelona"
     cities = job_cities(loc, city)
     remote = truthy(jb.get('rem')) or truthy(m.get('rem')) or bool(re.search(r'remote|home.?office', f"{jb['t']} {loc}", re.I))
     # Google: TELECOMMUTE only for fully remote jobs ("Don't mark up jobs that allow occasional work-from-home").
@@ -274,7 +296,10 @@ for rec in pages:
     crumbs = breadcrumb([("Start" if de else "Home", SITE + "/"), (cname, f"{SITE}{'' if de else '/en'}/companies/{cslug}/" if cslug else SITE + "/"), (jb['t'], url)])
     pills = [esc(loc)] + (["Remote"] if fully_remote else [L("Remote möglich", "Remote possible")] if remote else []) + [{"FULL_TIME": L("Vollzeit", "Full-time"), "PART_TIME": L("Teilzeit", "Part-time"), "INTERN": L("Praktikum", "Internship"), "CONTRACTOR": "Freelance", "TEMPORARY": L("Befristet", "Temporary")}[et[-1]]]
     if jb.get('sal'): pills.append(esc(jb['sal'].split('•')[0].strip()))
-    body = (head(full_title, meta_desc, url, EXTRA_CSS + "\n" + jsonld([jp, crumbs]), lang="de" if de else "en").replace('<html lang="de">', f'<html lang="{"de" if de else "en"}">')
+    # Placeholder ads ("Lorem ipsum" test postings) and open applications are not job openings, so they get no
+    # JobPosting markup. The page itself stays as it is.
+    not_a_job = bool(re.search(r'lorem ipsum', ad_text, re.I) or NOT_A_JOB.search(jb['t']))
+    body = (head(full_title, meta_desc, url, EXTRA_CSS + "\n" + jsonld([crumbs] if not_a_job else [jp, crumbs]), lang="de" if de else "en").replace('<html lang="de">', f'<html lang="{"de" if de else "en"}">')
       + f'<a class="back" href="/" id="backlink">&larr; {L("Alle Stellen", "All jobs")}</a>'
       + f'<nav class="crumb"><a href="/">{L("Start", "Home")}</a> / '
       + (f'<a href="{L("", "/en")}/companies/{cslug}/">{esc(cname)}</a>' if cslug else esc(cname)) + f' / {esc(jb["t"])}</nav>'

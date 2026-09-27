@@ -15,6 +15,14 @@ s=open(os.path.join(DATA,'board_data.js'),encoding='utf-8').read()
 i=s.find('const BOARD = '); j=s.find('const CHARTS', i)
 B=json.loads(s[i+len('const BOARD = '):j].rstrip().rstrip(';').rstrip())
 COS=B['companies']
+# Play Store app names and legal names arrive HTML-escaped ("Chefkoch - Rezepte &amp; Kochen"). Unescape them once here,
+# so esc() doesn't turn them into "&amp;amp;" in titles, meta descriptions and app cards. Names and URLs are untouched
+# (slugs and the job-page map depend on them).
+for _c in COS:
+    for _k in ('legal', 'addr'):
+        if isinstance(_c.get(_k), str): _c[_k]=htmlmod.unescape(_c[_k])
+    for _a in _c.get('apps') or []:
+        if isinstance(_a.get('t'), str): _a['t']=htmlmod.unescape(_a['t'])
 
 # ---- guides (for sitemap + cross-link) ----
 gjs=open(os.path.join(DATA,'guides_data.js'),encoding='utf-8').read()
@@ -236,11 +244,11 @@ def company_page(c, lang):
     else: title=T(f"{c['n']} Jobs 2026 - offene Stellen | Berlin App Jobs", f"{c['n']} Jobs 2026: open roles | Berlin App Jobs")
     if de:
         desc=(f"Offene Stellen bei {c['n']}"+(f" in {city}" if city else "")+f". "
-              + (f"{njobs} Rollen live aus dem Bewerbungssystem, mit Direktbewerbung." if njobs else f"{total} offene Stellen.")
+              + (f"{njobs} {'Rolle' if njobs==1 else 'Rollen'} live aus dem Bewerbungssystem, mit Direktbewerbung." if njobs else f"{total} offene Stellen.")
               + (f" Team hinter {apps[0]['t']}." if apps else ""))
     else:
         desc=(f"Open roles at {c['n']}"+(f" in {city}" if city else "")+". "
-              + (f"{njobs} roles live from their hiring system, apply directly." if njobs else f"{total} open roles.")
+              + (f"{njobs} {'role' if njobs==1 else 'roles'} live from their hiring system, apply directly." if njobs else f"{total} open roles.")
               + (f" The team behind {apps[0]['t']}." if apps else ""))
     url=SITE+co_url(slug, lang)
     alt={'de': SITE+co_url(slug, 'de'), 'en': SITE+co_url(slug, 'en')}
