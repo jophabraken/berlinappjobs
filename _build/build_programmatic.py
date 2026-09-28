@@ -5,6 +5,7 @@ from urllib.parse import quote
 SITE="https://berlinappjobs.com"
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from paths import OUT, DATA, TODAY
+import fonts   # self-hosted Archivo: fonts.HEAD replaces the Google Fonts links
 FAV=("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E"
      "%3Crect width='100' height='100' rx='18' fill='%23FFD400'/%3E%3Ctext x='50' y='73' "
      "font-family='Arial,sans-serif' font-size='68' font-weight='900' text-anchor='middle' "
@@ -116,8 +117,7 @@ def head(title, desc, url, extra="", lang="de", alt=None, active="jobs"):
 <meta property="og:type" content="website"><meta property="og:site_name" content="Berlin App Jobs">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}">
 <link rel="icon" href="{FAV}">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&display=swap">
+{fonts.HEAD}
 <link rel="alternate" type="application/atom+xml" title="New app jobs" href="/feed.xml">{alt_links(alt)}
 <style>{CSS}</style>{extra}
 </head><body>

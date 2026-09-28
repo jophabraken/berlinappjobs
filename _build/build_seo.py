@@ -2,6 +2,7 @@
 import json, os, html as htmlmod, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from paths import OUT, DATA, TODAY
+import fonts   # self-hosted Archivo: fonts.HEAD replaces the Google Fonts links
 from articles_src import ARTICLES as ARTICLES1
 from articles_src2 import ARTICLES2
 import unicodedata
@@ -223,8 +224,7 @@ def render_article(a):
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="{FAV}">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&display=swap">
+{fonts.HEAD}
 <style>{CSS}</style>
 {article_jsonld(a,url)}
 </head>
@@ -276,8 +276,7 @@ def hub():
 <meta property="og:type" content="website"><meta property="og:site_name" content="Berlin App Jobs">
 <meta property="og:title" content="Guides: App Jobs in Germany"><meta property="og:url" content="{url}">
 <link rel="icon" href="{FAV}">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&display=swap">
+{fonts.HEAD}
 <style>{CSS}</style>
 </head>
 <body>

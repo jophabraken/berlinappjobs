@@ -4,9 +4,11 @@
 The board is a JavaScript app. To make the homepage readable for search engines without
 running JavaScript, this script:
   * keeps index.html small: the app code goes to /assets/app.js and the job data to
-    /assets/data.js (both loaded with `defer`, cache-busted by content hash);
+    /assets/data.js (both loaded right after the first paint, cache-busted by content hash);
   * pre-renders real numbers and the newest jobs as plain <a href="/job/..."> links inside
-    #list, which the app replaces as soon as it has loaded;
+    #list, visible from the first paint, which the app replaces as soon as it has loaded;
+  * writes company logos as separate image files (/assets/logos/) that load lazily;
+  * uses the self-hosted font from fonts.py (no render-blocking Google Fonts request);
   * writes one clean <head>: title, one meta description, canonical, Open Graph and
     WebSite/Organization structured data.
 """
@@ -14,6 +16,7 @@ import json, os, re, sys, hashlib, html as htmlmod
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from paths import OUT, DATA, TPL
 import header as site_hdr
+import fonts   # self-hosted Archivo (replaces the Google Fonts stylesheet)
 
 SITE = 'https://berlinappjobs.com'
 esc = lambda s: htmlmod.escape(str(s), quote=True)
@@ -27,6 +30,7 @@ i_font = tpl.index('<link rel="stylesheet" href="https://fonts.googleapis.com/cs
 i_top = tpl.index('<div id="top">')
 i_data = tpl.index('<script>\n/*__DATA__*/\n</script>')
 head_extra = tpl[i_font:i_top]                       # font link + board CSS
+head_extra = fonts.HEAD + head_extra[head_extra.index('>') + 1:]   # Google Fonts link -> self-hosted font
 body = tpl[i_top:i_data]                             # board markup
 app = tpl[i_data:].split('<script>', 2)[2]           # the app code
 app = app[:app.rindex('</script>')]
@@ -67,10 +71,9 @@ static_list = (f'<div class="seo-pre"><h2>Newest app jobs in Berlin and Germany<
 body = body.replace('<b id="st-jobs">0</b>', f'<b id="st-jobs">{n_jobs}</b>')   # no thousands separator: same as the app and header.py
 body = body.replace('<b id="st-cos">0</b>', f'<b id="st-cos">{n_cos}</b>')
 body = body.replace('<div id="count"></div>', f'<div id="count">{n_jobs} roles</div>')
-# placeholder cards: shown instead of the static list while the board loads (html.bajload, set in <head>); crawlers and no-JS visitors get the list
-skel = ''.join(f'<div class="skel" aria-hidden="true"><span class="sk-ic"></span><span class="sk-b"><i style="width:{a}%"></i><i style="width:{b}%"></i><i style="width:{c}%"></i></span></div>'
-               for a, b, c in ((26, 74, 48), (32, 58, 40), (22, 80, 52), (30, 64, 44), (24, 70, 36), (28, 54, 46)))
-body = body.replace('<div id="list"></div>', f'<div id="list">{skel}{static_list}</div>')
+# The pre-rendered list shows from the first paint; the app swaps in the full board once data.js has loaded.
+# (It used to be hidden behind grey placeholder cards until then, which held the first paint back by ~3 s on phones.)
+body = body.replace('<div id="list"></div>', f'<div id="list">{static_list}</div>')
 assert 'seo-pre' in body
 
 # ---- assets (content-hashed for caching) ----
@@ -83,19 +86,36 @@ def asset(name, text):
     h = hashlib.sha1(text.encode('utf-8')).hexdigest()[:10]
     open(os.path.join(OUT, 'assets', name), 'w', encoding='utf-8').write(text)
     return f'/assets/{name}?v={h}'
-# Logos are ~2/3 of the data. They go to their own file, which the app loads once the cards are showing:
-# BOARD without the company icons, ICONS (chart app icons) empty; icons.js hands both over (window.BAJ_ICONS).
+# Logos (company icons and the chart app icons) arrive in board_data.js as base64 data URIs, ~2 MB in total.
+# Each becomes a small image file in /assets/logos/, named by a hash of its bytes (an unchanged logo keeps its URL and
+# stays cached across the weekly refresh), and BOARD/ICONS carry that URL. Cards load logos with loading="lazy",
+# so a visitor downloads only the logos on screen. (They used to come as one 2 MB script, assets/icons.js.)
+# With no ICONS_URL defined, the app knows the logos are already in place (iconsIn = true).
+import base64
+LOGOS = os.path.join(OUT, 'assets', 'logos'); os.makedirs(LOGOS, exist_ok=True)
+EXT = {'image/webp': 'webp', 'image/png': 'png', 'image/jpeg': 'jpg', 'image/gif': 'gif', 'image/svg+xml': 'svg'}
+used = set()
+def logo_url(v):
+    m = re.match(r'data:([\w/+.-]+);base64,(.*)$', v or '', re.S)
+    if not m or m.group(1) not in EXT: return v          # already a URL (or unknown): leave as is
+    raw = base64.b64decode(m.group(2)); name = hashlib.sha1(raw).hexdigest()[:12] + '.' + EXT[m.group(1)]
+    p = os.path.join(LOGOS, name); used.add(name)
+    if not os.path.exists(p): open(p, 'wb').write(raw)
+    return '/assets/logos/' + name
 lines = board_js.rstrip().split('\n')
 assert any(l.startswith('const BOARD = ') for l in lines) and any(l.startswith('const ICONS = ') for l in lines), 'board_data.js layout changed?'
-co_icons = {}
-for ci, c in enumerate(B['companies']):
-    if c.get('icon'): co_icons[str(ci)] = c.pop('icon')
-ch_icons = next(json.loads(l[len('const ICONS = '):].rstrip().rstrip(';')) for l in lines if l.startswith('const ICONS = '))
+for c in B['companies']:
+    if c.get('icon'): c['icon'] = logo_url(c['icon'])
+ch_icons = {k: logo_url(v) for k, v in next(json.loads(l[len('const ICONS = '):].rstrip().rstrip(';')) for l in lines if l.startswith('const ICONS = ')).items()}
 lines = ['const BOARD = ' + json.dumps(B, ensure_ascii=False, separators=(',', ':')) + ';' if l.startswith('const BOARD = ')
-         else 'const ICONS = {};' if l.startswith('const ICONS = ') else l for l in lines]
-icons_url = asset('icons.js', 'window.BAJ_ICONS = ' + json.dumps({'co': co_icons, 'ch': ch_icons}, ensure_ascii=False, separators=(',', ':'))
-                  + ";\nwindow.dispatchEvent(new Event('baj-icons'));\n")
-data_out = '\n'.join(lines) + '\n' + guides_slim + jobpage_js + geo_js.rstrip() + '\n' + f"const ICONS_URL = '{icons_url}';\n"
+         else 'const ICONS = ' + json.dumps(ch_icons, ensure_ascii=False, separators=(',', ':')) + ';' if l.startswith('const ICONS = ') else l for l in lines]
+for f in os.listdir(LOGOS):                               # logos of companies no longer on the board
+    if f not in used:
+        try: os.remove(os.path.join(LOGOS, f))
+        except OSError: pass
+try: os.remove(os.path.join(OUT, 'assets', 'icons.js'))  # the old all-logos script
+except OSError: pass
+data_out = '\n'.join(lines) + '\n' + guides_slim + jobpage_js + geo_js.rstrip() + '\n'
 data_url = asset('data.js', data_out)
 app_url = asset('app.js', app.strip() + '\n')
 
@@ -131,9 +151,6 @@ head = f'''<!doctype html>
 <meta property="og:url" content="{SITE}/">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="{data_url}" as="script">
-<script>document.documentElement.classList.add('bajload');setTimeout(function(){{document.documentElement.classList.remove('bajload')}},12000)</script>
 {head_extra.rstrip()}
 <style>
   .seo-pre h2 {{ font: 800 15px "Archivo", sans-serif; text-transform: uppercase; letter-spacing: .04em; margin: 6px 0 10px; }}
@@ -146,6 +163,13 @@ head = f'''<!doctype html>
 </head>
 <body>
 '''
-doc = head + body.rstrip() + f'\n<script src="{data_url}" defer></script>\n<script src="{app_url}" defer></script>\n' + site_hdr.HIDE_JS + '\n' + foot + '\n</body>\n</html>\n'
+# data.js and app.js load right after the first paint (in order, async=false) instead of as <script defer>, and without
+# a <link rel=preload>: a preloaded or deferred 1.5 MB script ran before the page first painted, which held the first
+# paint (and the Lighthouse FCP/LCP) back by ~2 s on phones. The pre-rendered list above is what visitors see meanwhile.
+# (requestAnimationFrame doesn't run in a background tab, so a plain timer is the fallback.)
+loader = ("<script>(function(){var d=0;function go(){if(d)return;d=1;[" + json.dumps(data_url) + "," + json.dumps(app_url) + "].forEach(function(u){"
+          "var s=document.createElement('script');s.src=u;s.async=false;document.body.appendChild(s)})}"
+          "requestAnimationFrame(function(){setTimeout(go,0)});setTimeout(go,2000)})()</script>")
+doc = head + body.rstrip() + '\n' + loader + '\n' + site_hdr.HIDE_JS + '\n' + foot + '\n</body>\n</html>\n'
 open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8').write(doc)
-print(f'index.html {len(doc.encode()):,} bytes · data.js {len(data_out.encode()):,} · icons.js {sum(map(len, co_icons.values())) + sum(map(len, ch_icons.values())):,} · app.js {len(app.encode()):,} · pre-rendered jobs {len(top)} · {n_jobs} roles / {n_cos} companies')
+print(f'index.html {len(doc.encode()):,} bytes · data.js {len(data_out.encode()):,} · logos {len(used)} files · app.js {len(app.encode()):,} · pre-rendered jobs {len(top)} · {n_jobs} roles / {n_cos} companies')
