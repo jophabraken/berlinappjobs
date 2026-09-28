@@ -545,7 +545,7 @@
   </div>
 </div>
 
-<div class="wrap">
+<div class="wrap" role="main">
   <div id="intro">
     <h1 id="introH1">Work on an app <em>people actually use.</em></h1>
     <span class="sub" id="introSub">Live roles from the hiring systems of Germany's app companies. Direct apply, no middleman.</span>
@@ -556,16 +556,16 @@
       <aside id="side">
         <div id="sheetHead"><b id="sheetHeadT">Filters</b><button id="sheetClose" aria-label="Close">✕</button></div>
         <div class="fgroup"><div class="qwrap"><input id="q" type="search" enterkeyhint="search" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Search roles, apps, companies…" autocomplete="off"><button type="button" class="qx" aria-label="Clear search" tabindex="-1"><span aria-hidden="true">✕</span></button></div></div>
-        <div class="fgroup"><h4 id="hCity">City</h4><select id="city"></select></div>
+        <div class="fgroup"><h4 id="hCity">City</h4><select id="city" aria-labelledby="hCity"></select></div>
         <div class="fgroup"><h4 id="hDisc">Discipline</h4><div class="flist" id="discList"></div></div>
         <div class="fgroup"><h4 id="hDet">Details</h4>
           <div class="side2">
-            <select id="sen"></select>
-            <select id="typ"></select>
-            <select id="wp"></select>
-            <select id="lg"></select>
-            <select id="date"></select>
-            <select id="sort"></select>
+            <select id="sen" aria-label="Seniority"></select>
+            <select id="typ" aria-label="Job type"></select>
+            <select id="wp" aria-label="Workplace"></select>
+            <select id="lg" aria-label="Language"></select>
+            <select id="date" aria-label="Date posted"></select>
+            <select id="sort" aria-label="Sort by"></select>
           </div>
           <label class="chk"><input type="checkbox" id="salOnly"> <span id="salOnlyLbl">Salary shown only</span></label>
         </div>
