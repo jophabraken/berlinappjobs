@@ -1,4 +1,12 @@
 {
+ "1822direkt Ges. der Frankfurter Sparkasse mbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.1822direkt.de/ueber-uns/karriere/: SiteChanged no job page with JobPosting data among 40 pages (site changed?)"
+  ],
+  "was": "custom"
+ },
  "ABOUT YOU SE & Co. KG": {
   "checked": "2026-09-27",
   "feed": "https://corporate.aboutyou.de/en/career/jobs",
@@ -6,6 +14,19 @@
   "found": "crawl",
   "log": [
    "crawl https://corporate.aboutyou.de/en/career/jobs: 10 jobs, 10 in Germany, 0 match the board"
+  ],
+  "skip": [
+   "https://corporate.aboutyou.de/en/career/jobs",
+   "https://corporate.aboutyou.de/de/career/jobs",
+   "https://corporate.aboutyou.de/career/jobs",
+   "https://corporate.aboutyou.de/en/career",
+   "https://corporate.aboutyou.de/en/career/product-tech",
+   "https://corporate.aboutyou.de/en/career/business",
+   "https://corporate.aboutyou.de/en/career/marketing",
+   "https://corporate.aboutyou.de/en/career/fashion",
+   "https://corporate.aboutyou.de/en/career/benefits",
+   "https://corporate.aboutyou.de/de/career",
+   "https://corporate.aboutyou.de/career"
   ],
   "was": "custom"
  },
@@ -49,12 +70,128 @@
   "log": [
    "crawl https://www.bwi.de/karriere/stellenangebote: 6 jobs, 6 in Germany, 0 match the board"
   ],
+  "skip": [
+   "https://www.bwi.de/karriere/stellenangebote",
+   "https://www.bwi.de/karriere",
+   "https://www.bwi.de/karriere/stellenangebote/job_loader",
+   "https://www.bwi.de/karriere/schueler-ausbildung-praktika",
+   "https://www.bwi.de/karriere/schueler-ausbildung-praktika/deine-bewerbung",
+   "https://www.bwi.de/karriere/schueler-ausbildung-praktika/theorie-praxis-schulen",
+   "https://www.bwi.de/karriere/schueler-ausbildung-praktika/berufsorientierung",
+   "https://www.bwi.de/karriere/schueler-ausbildung-praktika/fachinformatiker-fuer-systemintegration",
+   "https://www.bwi.de/karriere/schueler-ausbildung-praktika/fachinformatiker-fuer-anwendungsentwicklung",
+   "https://www.bwi.de/karriere/schueler-ausbildung-praktika/it-systemelektroniker",
+   "https://www.bwi.de/karriere/schueler-ausbildung-praktika/b-sc-informatik",
+   "https://www.bwi.de/karriere/schueler-ausbildung-praktika/bsc-wirtschaftsinformatik",
+   "https://www.bwi.de/karriere/schueler-ausbildung-praktika/bsc-cyber-security",
+   "https://www.bwi.de/karriere/schueler-ausbildung-praktika/bsc-angewandte-kuenstliche-intelligenz",
+   "https://www.bwi.de/karriere/studierende",
+   "https://www.bwi.de/karriere/studierende/deine-bewerbung",
+   "https://www.bwi.de/karriere/studierende/direkteinstieg-junior-professionals",
+   "https://www.bwi.de/karriere/studierende/msc-it-management",
+   "https://www.bwi.de/karriere/studierende/msc-informatik",
+   "https://www.bwi.de/karriere/studierende/msc-business-consulting-digital-management",
+   "https://www.bwi.de/karriere/berufserfahrene",
+   "https://www.bwi.de/karriere/berufserfahrene/it-consultant",
+   "https://www.bwi.de/karriere/berufserfahrene/it-projektmanager",
+   "https://www.bwi.de/karriere/berufserfahrene/it-architekt",
+   "https://www.bwi.de/karriere/berufserfahrene/service-manager",
+   "https://www.bwi.de/karriere/berufserfahrene/system-engineer",
+   "https://www.bwi.de/karriere/berufserfahrene/sap",
+   "https://www.bwi.de/karriere/berufserfahrene/it-consulting",
+   "https://www.bwi.de/karriere/berufserfahrene/cyber-security",
+   "https://www.bwi.de/karriere/berufserfahrene/softwareentwickler",
+   "https://www.bwi.de/karriere/zeitsoldaten",
+   "https://www.bwi.de/karriere/ueber-bwi",
+   "https://www.bwi.de/karriere/ueber-bwi/bwi-als-arbeitgeber",
+   "https://www.bwi.de/karriere/ueber-bwi/leben-arbeiten-bei-der-bwi",
+   "https://www.bwi.de/karriere/faq",
+   "https://www.bwi.de/karriere/stellenangebote/job/hr-training-expert-m-w-d-70410%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/lead-it-service-techniker-litauen-m-w-d-70402%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/fachexperte-im-datenmanagement-m-w-d-70398%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-software-test-engineer-m-w-d-70390%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/methodencoach-lean-m-w-d-69468%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-methodencoach-lean-m-w-d-69472%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/military-it-expert-fahrzeuggebundene-kommunikationssysteme-m-w-d-70406%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-it-service-techniker-belgien-brussel-m-w-d-70386%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
+  ],
+  "was": "custom"
+ },
+ "Berlin-Brandenburg Academy": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "Bundesamt Verbraucherschutz Lebensmittelsicherheit": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "Bundesinstitut für Risikobewertung": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "CALL A PIZZA MARKETING GMBH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "load https://www.call-a-pizza.de/jobs: URLError",
+   "load https://www.call-a-pizza.de/jobs-in-berlin-zentrale: URLError"
+  ],
+  "was": "custom"
+ },
+ "CEWE": {
+  "checked": "2026-09-28",
+  "feed": "https://cewe.wd3.myworkdayjobs.com/Jobs_at_CEWEGroup",
+  "feed_was": "",
+  "found": "workday",
+  "log": [
+   "workday https://cewe.wd3.myworkdayjobs.com/Jobs_at_CEWEGroup: 49 jobs, 41 in Germany, 2 match the board"
+  ],
   "was": "custom"
  },
  "CHECK24 GmbH": {
   "checked": "2026-09-27",
   "feed_was": "",
   "log": [],
+  "was": "custom"
+ },
+ "Changers.com / Blacksquared GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "Clue Period Tracker by BioWink": {
+  "checked": "2026-09-28",
+  "feed_was": "https://helloclue.bamboohr.com/careers/list",
+  "log": [
+   "bamboohr https://helloclue.bamboohr.com/careers: 3 jobs, 0 in Germany, 0 match the board",
+   "bamboohr https://staticfe.bamboohr.com/careers: HTTPError HTTP Error 404: Not Found",
+   "bamboohr https://resources.bamboohr.com/careers: HTTPError HTTP Error 404: Not Found",
+   "bamboohr https://bhrpendo.bamboohr.com/careers: JSONDecodeError Expecting value: line 1 column 1 (char 0)",
+   "bamboohr https://images4.bamboohr.com/careers: HTTPError HTTP Error 403: Forbidden"
+  ],
+  "was": "custom"
+ },
+ "Conntac GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "Cornelsen Verlag GmbH": {
+  "checked": "2026-09-28",
+  "feed": "https://www.cornelsen.de/karriere",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://www.cornelsen.de/karriere: 8 jobs, 8 in Germany, 4 match the board"
+  ],
   "was": "custom"
  },
  "DERTOUR Deutschland GmbH": {
@@ -69,6 +206,34 @@
   "log": [],
   "was": "custom"
  },
+ "Dirk Rossmann GmbH": {
+  "checked": "2026-09-28",
+  "feed": "https://jobs.rossmann.de/",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://jobs.rossmann.de/: 41 jobs, 18 in Germany, 1 match the board"
+  ],
+  "was": "custom"
+ },
+ "EHC Eisbären Management GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.eisbaeren.de/club/jobs: SiteChanged no job page with JobPosting data among 6 pages (site changed?)"
+  ],
+  "was": "custom"
+ },
+ "ERGO Group AG": {
+  "checked": "2026-09-28",
+  "feed": "https://careers.munichre.com/de/ergo-suchergebnis",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://careers.munichre.com/de/ergo-suchergebnis: 20 jobs, 18 in Germany, 5 match the board"
+  ],
+  "was": "custom"
+ },
  "EWE AG": {
   "checked": "2026-09-27",
   "feed": "https://ewe.wd116.myworkdayjobs.com/EWE",
@@ -78,6 +243,14 @@
    "workday https://ewe.wd116.myworkdayjobs.com/EWE: 60 jobs, 55 in Germany, 8 match the board"
   ],
   "was": "custom"
+ },
+ "Edkon Games GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "crawl http://www.edkongames.com/: SiteChanged no job page with JobPosting data among 1 pages (site changed?)"
+  ],
+  "was": "none"
  },
  "EintrachtTech GmbH": {
   "checked": "2026-09-27",
@@ -100,6 +273,16 @@
   "found": "crawl",
   "log": [
    "crawl https://jobs.europapark.de/: 41 jobs, 32 in Germany, 4 match the board"
+  ],
+  "was": "custom"
+ },
+ "FLOYT Mobility GmbH": {
+  "checked": "2026-09-28",
+  "feed": "https://company.floyt.com/de",
+  "feed_was": "",
+  "found": "teamtailor",
+  "log": [
+   "teamtailor https://company.floyt.com/de: 8 jobs, 6 in Germany, 5 match the board"
   ],
   "was": "custom"
  },
@@ -126,6 +309,59 @@
   ],
   "was": "greenhouse"
  },
+ "Fryd GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "G Data CyberDefense AG": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "GamerProfiles": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "crawl https://gamerprofiles.com/jobs: SiteChanged no job page with JobPosting data among 46 pages (site changed?)"
+  ],
+  "was": "custom"
+ },
+ "Globus Fachmärkte": {
+  "checked": "2026-09-28",
+  "feed": "https://www.globus-baumarkt.de/info/karriere/",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "softgarden https://www.globus-baumarkt.de/jobs.feed.json: HTTPError HTTP Error 404: Not Found",
+   "softgarden https://globusfachmaerkte.softgarden.io/jobs.feed.json: HTTPError HTTP Error 404: Not Found",
+   "softgarden https://certificate.softgarden.io/jobs.feed.json: HTTPError HTTP Error 404: Not Found",
+   "crawl https://www.globus-baumarkt.de/info/karriere/: 49 jobs, 43 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "Gryphon Games": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "Gymondo GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "H2 Technologies GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "crawl https://amara.app/karriere: SiteChanged no job page with JobPosting data among 14 pages (site changed?)"
+  ],
+  "was": "custom"
+ },
  "HOWOGE GmbH": {
   "checked": "2026-09-27",
   "feed": "https://karriere.howoge.de/",
@@ -144,6 +380,10 @@
   "log": [
    "crawl https://karriere.handelsblattgroup.com/: 21 jobs, 21 in Germany, 18 match the board"
   ],
+  "skip": [
+   "https://karriere.handelsblattgroup.com/stellenangebote.html",
+   "https://karriere.handelsblattgroup.com/jobsearch-jajax0.php"
+  ],
   "was": "custom"
  },
  "HanseMerkur Krankenversicherung AG": {
@@ -156,6 +396,53 @@
   ],
   "was": "custom"
  },
+ "Hanseatic Bank GmbH & Co KG": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "load https://www.hanseaticbank.de/karriere/jobs/03573487: HTTPError",
+   "load https://www.hanseaticbank.de/karriere/jobs/03577790: HTTPError",
+   "load https://www.hanseaticbank.de/karriere/jobs/03578045: HTTPError",
+   "load https://www.hanseaticbank.de/karriere/jobs/03576758: HTTPError"
+  ],
+  "was": "custom"
+ },
+ "Heide-Park Soltau GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "Holidu GmbH": {
+  "checked": "2026-09-28",
+  "feed": "https://api.ashbyhq.com/posting-api/job-board/Holidu",
+  "feed_was": "",
+  "found": "ashby",
+  "log": [
+   "ashby https://api.ashbyhq.com/posting-api/job-board/Holidu: 12 jobs, 9 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "Hörmann KG Antriebstechnik": {
+  "checked": "2026-09-28",
+  "feed": "https://jobs.hoermann.de/",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://jobs.hoermann.de/: 48 jobs, 28 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "INFOSOFT GmbH": {
+  "checked": "2026-09-28",
+  "feed": "https://www.docutain.de/UeberUns#OffeneStellen",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://www.docutain.de/UeberUns#OffeneStellen: 3 jobs, 3 in Germany, 2 match the board"
+  ],
+  "was": "custom"
+ },
  "ING Deutschland": {
   "checked": "2026-09-27",
   "feed": "https://careers.ing.com/de/arbeiten-in-deutschland",
@@ -164,6 +451,24 @@
   "log": [
    "crawl https://careers.ing.com/de/arbeiten-in-deutschland: 5 jobs, 5 in Germany, 0 match the board"
   ],
+  "skip": [
+   "https://careers.ing.com/de/search-jobs/GetSearchRequestGeoLocation",
+   "https://careers.ing.com/de/search-jobs",
+   "https://careers.ing.com/de/early-careers",
+   "https://careers.ing.com/de/saved-jobs",
+   "https://careers.ing.com/de/jobsuche",
+   "https://careers.ing.com/de/search-jobs/locations",
+   "https://careers.ing.com/de/retail-banking-jobs",
+   "https://careers.ing.com/de/wholesale-banking-jobs",
+   "https://careers.ing.com/de/jobs-in-deutschland",
+   "https://careers.ing.com/de/de/search-jobs"
+  ],
+  "was": "custom"
+ },
+ "IhreApotheken GmbH & Co. KGaA": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
   "was": "custom"
  },
  "Immobilien Scout GmbH": {
@@ -174,8 +479,66 @@
   ],
   "was": "custom"
  },
+ "InstiKom GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "https://littlebirdgroup.factorialhr.de/embed/jobs",
+  "log": [],
+  "was": "custom"
+ },
+ "Iteration One GmbH": {
+  "checked": "2026-09-28",
+  "feed": "https://join.com/companies/iterationonecom",
+  "feed_was": "",
+  "found": "join",
+  "log": [
+   "join https://join.com/companies/iterationonecom: 6 jobs, 6 in Germany, 6 match the board"
+  ],
+  "was": "join"
+ },
  "JEANS FRITZ": {
   "checked": "2026-09-27",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "JustWatch GmbH": {
+  "checked": "2026-09-28",
+  "feed": "https://api.lever.co/v0/postings/justwatch?mode=json",
+  "feed_was": "https://www.justwatch.com/talent/jobs/all",
+  "found": "lever",
+  "log": [
+   "lever https://api.lever.co/v0/postings/justwatch?mode=json: 7 jobs, 4 in Germany, 3 match the board"
+  ],
+  "was": "custom"
+ },
+ "KRUU GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "Kassenärztliche Bundesvereinigung KdöR": {
+  "checked": "2026-09-28",
+  "feed": "https://www.karriere.kbv.de/",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://www.karriere.kbv.de/: 1 jobs, 1 in Germany, 1 match the board"
+  ],
+  "was": "custom"
+ },
+ "Kaufmännische Krankenkasse - KKH": {
+  "checked": "2026-09-28",
+  "feed": "https://www.kkh.de/karriere/stellenangebote",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://www.kkh.de/karriere/stellenangebote: 19 jobs, 18 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "Kindaling": {
+  "checked": "2026-09-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -187,6 +550,12 @@
   "found": "crawl",
   "log": [
    "crawl https://jobs.klassikradio.de/: 20 jobs, 19 in Germany, 19 match the board"
+  ],
+  "skip": [
+   "https://jobs.klassikradio.de/de",
+   "https://jobs.klassikradio.de/*",
+   "https://jobs.klassikradio.de/*border-radius:",
+   "https://jobs.klassikradio.de/en"
   ],
   "was": "custom"
  },
@@ -210,6 +579,24 @@
   ],
   "was": "custom"
  },
+ "Lieferando (Just Eat Takeaway)": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "job links too generic to crawl"
+  ],
+  "was": "Phenom People (careers.justeattakeaway.com), JS-rendered"
+ },
+ "Limango GmbH": {
+  "checked": "2026-09-28",
+  "feed": "https://joinus.limango.com/",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://joinus.limango.com/: 9 jobs, 2 in Germany, 1 match the board"
+  ],
+  "was": "recruitee"
+ },
  "Lotum one GmbH": {
   "checked": "2026-09-27",
   "feed_was": "",
@@ -227,6 +614,15 @@
   ],
   "was": "custom"
  },
+ "Lufthansa Innovation Hub": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "join https://join.com/companies/usecosmos: 0 jobs, 0 in Germany, 0 match the board",
+   "join https://join.com/companies/squake: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "Luitpold-Apotheke": {
   "checked": "2026-09-27",
   "feed_was": "",
@@ -241,6 +637,54 @@
   "log": [
    "softgarden https://loewensteinmedical.com/jobs.feed.json: HTTPError HTTP Error 404: Not Found",
    "crawl https://loewensteinmedical.com/de-de/karriere/stellenangebote/: 9 jobs, 8 in Germany, 5 match the board"
+  ],
+  "skip": [
+   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/abschlussarbeit-master-bachelor-machbarkeitsstudie-zum-einsatz-nachhaltiger-polymermaterialien-in-der-beatmung-67523207/",
+   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/anwendungsberater-m-w-d-im-bereich-medical-homecare-63015904/",
+   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/anwendungsberater-m-w-d-im-bereich-medical-homecare-64974466/",
+   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/ausbildung-als-kaufmann-m-w-d-im-gesundheitswesen-zum-01082027-67258400/",
+   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/ausbildung-als-kaufmann-m-w-d-im-gross-und-aussenhandelsmanagement-zum-01082027-67258245/",
+   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/ausbildung-fachkraft-lagerlogistik-m-w-d-zum-01082027-67476197/"
+  ],
+  "was": "custom"
+ },
+ "MMS Technology GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "crawl https://careers.mediamarktsaturn.com/search/: SiteChanged no job page with JobPosting data among 46 pages (site changed?)"
+  ],
+  "was": "custom"
+ },
+ "Mellowdrop Studio": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "Mobile-Team der DAK-Gesundheit": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "crawl https://karriere.dak.de/go/Stellenangebote/9002455/: 41 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "MyPostcard Photo Postcards and Greeting Cards App": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.mypostcard.com/jobs: SiteChanged no job page with JobPosting data among 46 pages (site changed?)"
+  ],
+  "was": "custom"
+ },
+ "Müller Handels GmbH & Co. KG": {
+  "checked": "2026-09-28",
+  "feed": "https://www.mueller.de/karriere/",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://www.mueller.de/karriere/: 43 jobs, 22 in Germany, 2 match the board"
   ],
   "was": "custom"
  },
@@ -280,6 +724,22 @@
   ],
   "was": "custom"
  },
+ "ONLOGIST GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "OUTLETCITY AG": {
+  "checked": "2026-09-28",
+  "feed": "https://karriere.outletcity.com/",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://karriere.outletcity.com/: 4 jobs, 4 in Germany, 3 match the board"
+  ],
+  "was": "custom"
+ },
  "Ostdeutsche Medienholding GmbH": {
   "checked": "2026-09-27",
   "feed": "https://join.com/companies/berlinerverlag",
@@ -290,11 +750,35 @@
   ],
   "was": "join"
  },
+ "PAJ GPS": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.paj-gps.com/careers/: SiteChanged no job page with JobPosting data among 18 pages (site changed?)"
+  ],
+  "was": "custom"
+ },
  "PAYBACK": {
   "checked": "2026-09-27",
   "feed_was": "",
   "log": [
    "crawl https://jobs.payback.group/de_DE/careers: 35 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "PENNY Markt GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "POCO Einrichtungsmärkte GmbH": {
+  "checked": "2026-09-28",
+  "feed": "https://karriere.poco.de/",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://karriere.poco.de/: 15 jobs, 2 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -305,6 +789,11 @@
   "found": "crawl",
   "log": [
    "crawl https://www.parfumdreams.de/Karriere/Jobs: 21 jobs, 18 in Germany, 4 match the board"
+  ],
+  "skip": [
+   "https://careers.douglas.group/de/jobs/Heilbronn-UXUI-Product-Designer-Web-&-App-%28wmx%29/1364564255/",
+   "https://careers.douglas.group/de/jobs/Heilbronn-Marketplace-Integration-Manager-%28wmx%29/1364560655/",
+   "https://careers.douglas.group/de/jobs/Miltenberg-Beauty-Expert-bei-der-Parf%C3%BCmerie-Akzente-(wmx)/1363426655/"
   ],
   "was": "custom"
  },
@@ -326,6 +815,21 @@
   ],
   "was": "softgarden"
  },
+ "Preventicus GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "REWE Markt GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "load https://karriere.rewe.de/jobs/rewe/981410-de_DE/Abteilungsleiter-Getraenke-m-w-d-Hannover.html: HTTPError",
+   "load https://karriere.rewe.de/jobs/rewe/981412-de_DE/Verkaeufer-Schliessfunktion-m-w-d-Hannover.html: HTTPError"
+  ],
+  "was": "custom"
+ },
  "RSG Group GmbH": {
   "checked": "2026-09-27",
   "feed": "https://jobs.rsggroup.com/stellenangebote.html",
@@ -333,6 +837,10 @@
   "found": "crawl",
   "log": [
    "crawl https://jobs.rsggroup.com/stellenangebote.html: 44 jobs, 21 in Germany, 19 match the board"
+  ],
+  "skip": [
+   "https://jobs.rsggroup.com/stellenangebote.html",
+   "https://jobs.rsggroup.com/stellenangebot.html"
   ],
   "was": "custom"
  },
@@ -343,6 +851,9 @@
   "found": "crawl",
   "log": [
    "crawl https://www.rexx-systems.com/jobs/: 8 jobs, 8 in Germany, 7 match the board"
+  ],
+  "skip": [
+   "https://www.rexx-systems.com/jobs/Bewerbung-Initiativ--de-f25.html"
   ],
   "was": "custom"
  },
@@ -359,6 +870,17 @@
   "found": "crawl",
   "log": [
    "crawl https://sbahn.berlin/das-unternehmen/als-arbeitgeberin/: 55 jobs, 45 in Germany, 6 match the board"
+  ],
+  "skip": [
+   "https://db.jobs/de-de/Suche/Streckenlokfuehrer-im-bundeweiten-Gueterverkehr-m-w-d-MEG-11911528"
+  ],
+  "was": "custom"
+ },
+ "SAGAFLOR AG": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.zooundco.de/karriere: SiteChanged no job page with JobPosting data among 1 pages (site changed?)"
   ],
   "was": "custom"
  },
@@ -390,6 +912,13 @@
   "log": [
    "crawl https://karriere.sanacorp.de/stellenangebote.html: 36 jobs, 24 in Germany, 0 match the board"
   ],
+  "skip": [
+   "https://karriere.sanacorp.de/stellenangebote.html",
+   "https://karriere.sanacorp.de/stellenangebot-formular.html",
+   "https://karriere.sanacorp.de/jobalert.html",
+   "https://karriere.sanacorp.de/stellenangebot.html",
+   "https://karriere.sanacorp.de/jobsearch-jajax0.php"
+  ],
   "was": "custom"
  },
  "Sandbox Interactive GmbH": {
@@ -409,6 +938,63 @@
   "found": "crawl",
   "log": [
    "crawl https://www.segmueller.de/karriere: 6 jobs, 6 in Germany, 4 match the board"
+  ],
+  "skip": [
+   "https://hanssegmueller-portal.rexx-systems.com/login",
+   "https://hanssegmueller-portal.rexx-systems.com/cart",
+   "https://hanssegmueller-portal.rexx-systems.com/moebel",
+   "https://hanssegmueller-portal.rexx-systems.com/segmueller-werkstaetten",
+   "https://hanssegmueller-portal.rexx-systems.com/kueche",
+   "https://hanssegmueller-portal.rexx-systems.com/search",
+   "https://hanssegmueller-portal.rexx-systems.com/garten",
+   "https://hanssegmueller-portal.rexx-systems.com/leuchten",
+   "https://hanssegmueller-portal.rexx-systems.com/heimtextilien",
+   "https://hanssegmueller-portal.rexx-systems.com/teppiche",
+   "https://hanssegmueller-portal.rexx-systems.com/haushalt",
+   "https://hanssegmueller-portal.rexx-systems.com/dekorieren",
+   "https://hanssegmueller-portal.rexx-systems.com/marken",
+   "https://hanssegmueller-portal.rexx-systems.com/kataloge-uebersicht",
+   "https://hanssegmueller-portal.rexx-systems.com/angebote",
+   "https://hanssegmueller-portal.rexx-systems.com/inspiration",
+   "https://hanssegmueller-portal.rexx-systems.com/stellenangebote.html",
+   "https://hanssegmueller-portal.rexx-systems.com/stellenangebot.html",
+   "https://hanssegmueller-portal.rexx-systems.com/de",
+   "https://hanssegmueller-portal.rexx-systems.com/versandkosten",
+   "https://hanssegmueller-portal.rexx-systems.com/bezahlen",
+   "https://hanssegmueller-portal.rexx-systems.com/auftragsauskunft",
+   "https://hanssegmueller-portal.rexx-systems.com/ruecksendung",
+   "https://hanssegmueller-portal.rexx-systems.com/abverkauf",
+   "https://hanssegmueller-portal.rexx-systems.com/tiefpreis",
+   "https://hanssegmueller-portal.rexx-systems.com/newsletter-anmeldung",
+   "https://hanssegmueller-portal.rexx-systems.com/plus",
+   "https://hanssegmueller-portal.rexx-systems.com/veranstaltungen",
+   "https://hanssegmueller-portal.rexx-systems.com/terminvereinbarung-moebelberatung",
+   "https://hanssegmueller-portal.rexx-systems.com/service",
+   "https://hanssegmueller-portal.rexx-systems.com/finanzierung",
+   "https://hanssegmueller-portal.rexx-systems.com/faq",
+   "https://hanssegmueller-portal.rexx-systems.com/presse",
+   "https://hanssegmueller-portal.rexx-systems.com/umweltschutz-nachhaltigkeit",
+   "https://hanssegmueller-portal.rexx-systems.com/standorte",
+   "https://hanssegmueller-portal.rexx-systems.com/karriere",
+   "https://hanssegmueller-portal.rexx-systems.com/ueber-uns",
+   "https://hanssegmueller-portal.rexx-systems.com/vorteile",
+   "https://hanssegmueller-portal.rexx-systems.com/nachhaltig",
+   "https://hanssegmueller-portal.rexx-systems.com/auszeichnungen",
+   "https://hanssegmueller-portal.rexx-systems.com/segmueller-compliance",
+   "https://hanssegmueller-portal.rexx-systems.com/impressum",
+   "https://hanssegmueller-portal.rexx-systems.com/agb",
+   "https://hanssegmueller-portal.rexx-systems.com/datenschutzhinweise",
+   "https://hanssegmueller-portal.rexx-systems.com/kontaktformular"
+  ],
+  "was": "custom"
+ },
+ "Sellwerk GmbH & Co. KG": {
+  "checked": "2026-09-28",
+  "feed": "https://jobs.sellwerk.de/karriere",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://jobs.sellwerk.de/karriere: 35 jobs, 34 in Germany, 5 match the board"
   ],
   "was": "custom"
  },
@@ -430,9 +1016,34 @@
   ],
   "was": "custom"
  },
+ "Sonic Healthcare Germany GmbH & Co. KG": {
+  "checked": "2026-09-28",
+  "feed": "https://karriere.bioscientia.de/jobs.feed.json",
+  "feed_was": "https://karriere.bioscientia.de/jobs.feed.json",
+  "found": "softgarden",
+  "log": [
+   "softgarden https://karriere.bioscientia.de/jobs.feed.json: 33 jobs, 32 in Germany, 4 match the board"
+  ],
+  "was": "custom"
+ },
+ "Spiele-Palast GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "load https://www.creative-city-berlin.de/de/jobs/job/7853227/: HTTPError",
+   "load https://www.creative-city-berlin.de/de/jobs/job/7864752/: HTTPError"
+  ],
+  "was": "none"
+ },
  "Star Finanz GmbH": {
   "checked": "2026-09-27",
   "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "Stay Informed": {
+  "checked": "2026-09-28",
+  "feed_was": "https://littlebirdgroup.factorialhr.de/embed/jobs",
   "log": [],
   "was": "custom"
  },
@@ -456,6 +1067,16 @@
    "crawl https://karriere.stroeer.com/de/jobs: 57 jobs, 56 in Germany, 12 match the board"
   ],
   "was": "smartrecruiters"
+ },
+ "Studyflix GmbH": {
+  "checked": "2026-09-28",
+  "feed": "https://studyflix-gmbh.jobs.personio.de",
+  "feed_was": "",
+  "found": "personio",
+  "log": [
+   "personio https://studyflix-gmbh.jobs.personio.de: 21 jobs, 21 in Germany, 5 match the board"
+  ],
+  "was": "custom"
  },
  "Süwag Vertrieb AG & Co. KG": {
   "checked": "2026-09-27",
@@ -493,12 +1114,48 @@
   ],
   "was": "custom"
  },
+ "Tripod Technology GmbH": {
+  "checked": "2026-09-28",
+  "feed": "https://tandem.jobs.personio.de",
+  "feed_was": "",
+  "found": "personio",
+  "log": [
+   "personio https://tandem.jobs.personio.de: 4 jobs, 4 in Germany, 4 match the board"
+  ],
+  "was": "custom"
+ },
+ "Tutao GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "VBB Verkehrsverbund Berlin-Brandenburg GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
  "VHV Versicherungen": {
   "checked": "2026-09-27",
   "feed_was": "",
   "log": [
    "softgarden https://www.vhv-gruppe.de/jobs.feed.json: HTTPError HTTP Error 404: Not Found"
   ],
+  "was": "custom"
+ },
+ "VIUS SE & Co. KGaA": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "job links too generic to crawl"
+  ],
+  "was": "custom"
+ },
+ "VRT GmbH": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
   "was": "custom"
  },
  "Vinted": {
@@ -509,10 +1166,26 @@
   ],
   "was": "Custom (careers.vinted.com)"
  },
+ "Volkswagen AG": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
  "WGV-Informatik und Media GmbH": {
   "checked": "2026-09-27",
   "feed_was": "",
   "log": [],
+  "was": "custom"
+ },
+ "Wertgarantie Beteiligungen GmbH": {
+  "checked": "2026-09-28",
+  "feed": "https://www.wertgarantie-group.com/karriere",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://www.wertgarantie-group.com/karriere: 42 jobs, 38 in Germany, 8 match the board"
+  ],
   "was": "custom"
  },
  "Westdeutsche Lotterie GmbH & Co. OHG": {
@@ -524,6 +1197,16 @@
    "crawl https://www.westlotto.de/karriere/jobboerse/: 10 jobs, 2 in Germany, 0 match the board"
   ],
   "was": "custom"
+ },
+ "Whow Games GmbH": {
+  "checked": "2026-09-28",
+  "feed": "https://join.com/companies/whow",
+  "feed_was": "",
+  "found": "join",
+  "log": [
+   "join https://join.com/companies/whow: 4 jobs, 4 in Germany, 4 match the board"
+  ],
+  "was": "join"
  },
  "Wolt": {
   "checked": "2026-09-27",
@@ -576,7 +1259,29 @@
   "https://omos-media.jobs.personio.de/job/2744999": "2026-09-27",
   "https://omos-media.jobs.personio.de/job/2807839": "2026-09-27",
   "https://omos-media.jobs.personio.de/job/2810970": "2026-09-27",
+  "https://tandem.net/pages/careers/jobs/2509364": "2026-09-28",
+  "https://tandem.net/pages/careers/jobs/2768964": "2026-09-28",
+  "https://tandem.net/pages/careers/jobs/2792207": "2026-09-28",
+  "https://tandem.net/pages/careers/jobs/2801273": "2026-09-28",
   "https://tecvia.jobs.personio.de/job/1168041": "2026-09-27"
+ },
+ "fillibri GmbH & Co. KG": {
+  "checked": "2026-09-28",
+  "feed": "https://www.fillibri-solutions.com/karriere",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://www.fillibri-solutions.com/karriere: 3 jobs, 3 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "freenet": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [
+   "crawl https://karriere.freenet-group.de/: SiteChanged no job page with JobPosting data among 1 pages (site changed?)"
+  ],
+  "was": "custom"
  },
  "freenet.de GmbH": {
   "checked": "2026-09-27",
@@ -606,6 +1311,16 @@
   ],
   "was": "custom"
  },
+ "justDice GmbH": {
+  "checked": "2026-09-28",
+  "feed": "https://api.ashbyhq.com/posting-api/job-board/justDice",
+  "feed_was": "",
+  "found": "ashby",
+  "log": [
+   "ashby https://api.ashbyhq.com/posting-api/job-board/justDice: 2 jobs, 2 in Germany, 2 match the board"
+  ],
+  "was": "custom"
+ },
  "klarmobil": {
   "checked": "2026-09-27",
   "feed_was": "",
@@ -631,10 +1346,28 @@
   "log": [
    "crawl https://jobs.mbits.info/: 10 jobs, 10 in Germany, 7 match the board"
   ],
+  "skip": [
+   "https://jobs.mbits.info/de",
+   "https://jobs.mbits.info/*",
+   "https://jobs.mbits.info/*border-radius:",
+   "https://jobs.mbits.info/en",
+   "https://jobs.mbits.info/apply?id=7804fa",
+   "https://jobs.mbits.info/apply?id=99d7da",
+   "https://jobs.mbits.info/apply?id=3d6cd1",
+   "https://jobs.mbits.info/apply?id=dacdb4",
+   "https://jobs.mbits.info/apply?id=d00de3",
+   "https://jobs.mbits.info/apply?id=daf820"
+  ],
   "was": "custom"
  },
  "petaFuel GmbH": {
   "checked": "2026-09-27",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "s.Oliver": {
+  "checked": "2026-09-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -647,6 +1380,10 @@
   "log": [
    "crawl https://hello.sipgate.de/jobs: 1 jobs, 1 in Germany, 1 match the board"
   ],
+  "skip": [
+   "https://hello.sipgate.de/jobs/job?r=account-executive---b2b-saas-cloud-ai-communication",
+   "https://hello.sipgate.de/jobs/job?r=produktmanagement"
+  ],
   "was": "custom"
  },
  "smartlab Innovationsgesellschaft mbH": {
@@ -657,6 +1394,21 @@
   "log": [
    "crawl https://smartlab.de/jobs/: 14 jobs, 12 in Germany, 3 match the board"
   ],
+  "skip": [
+   "https://smartlab.de/job/smartlab-professional-head-of-ai-e-mobility/"
+  ],
+  "was": "custom"
+ },
+ "sunshine live GmbH & Co.KG": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
+  "was": "custom"
+ },
+ "taz, die tageszeitung": {
+  "checked": "2026-09-28",
+  "feed_was": "",
+  "log": [],
   "was": "custom"
  }
 }
