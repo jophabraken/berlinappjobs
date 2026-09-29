@@ -2,7 +2,7 @@
 # Ambiguous town names were resolved via the company's postcode (e.g. Neunkirchen 57290 = NRW, Friedberg 86316 = Bayern).
 _BY = 'Bayern'; _BW = 'Baden-Württemberg'; _NW = 'Nordrhein-Westfalen'; _NI = 'Niedersachsen'; _HE = 'Hessen'
 _RP = 'Rheinland-Pfalz'; _SH = 'Schleswig-Holstein'; _SL = 'Saarland'; _TH = 'Thüringen'; _SN = 'Sachsen'
-_ST = 'Sachsen-Anhalt'; _BB = 'Brandenburg'
+_ST = 'Sachsen-Anhalt'; _BB = 'Brandenburg'; _MV = 'Mecklenburg-Vorpommern'
 REGION = {
  'Berlin': 'Berlin', 'Hamburg': 'Hamburg', 'Bremen': 'Bremen', 'Bremerhaven': 'Bremen',
  'Aachen': _NW, 'Arnsberg': _NW, 'Bergkamen': _NW, 'Bochum': _NW, 'Bonn': _NW, 'Düsseldorf': _NW, 'Essen': _NW,
@@ -23,4 +23,12 @@ REGION = {
  # job locations from the feeds (not company cities), for /job/ pages
  'Dortmund': _NW, 'Mönchengladbach': _NW, 'Neuss': _NW, 'Regensburg': _BY, 'Esslingen am Neckar': _BW, 'Gaildorf': _BW,
  'Konstanz': _BW, 'Mainz': _RP, 'Dresden': _SN, 'Chemnitz': _SN, 'Teltow': _BB,
+ # more job locations from the feeds (unambiguous town names only; ambiguous ones such as Halle, Bornheim or
+ # Neuenstein stay out and get no addressRegion)
+ 'Bielefeld': _NW, 'Bottrop': _NW, 'Duisburg': _NW, 'Hamm': _NW, 'Kreuztal': _NW, 'Langenfeld': _NW, 'Leverkusen': _NW,
+ 'Meerbusch': _NW, 'Oberhausen': _NW, 'Paderborn': _NW, 'Recklinghausen': _NW, 'Wuppertal': _NW,
+ 'Erlangen': _BY, 'Fürth': _BY, 'Passau': _BY, 'Neufahrn bei Freising': _BY, 'Asperg': _BW, 'Ludwigsburg': _BW,
+ 'Darmstadt': _HE, 'Gießen': _HE, 'Hanau': _HE, 'Offenbach am Main': _HE, 'Wetzlar': _HE, 'Wiesbaden': _HE,
+ 'Emden': _NI, 'Göttingen': _NI, 'Langenhagen': _NI, 'Wilhelmshaven': _NI, 'Bad Segeberg': _SH, 'Neumünster': _SH,
+ 'Rendsburg': _SH, 'Saarbrücken': _SL, 'Cottbus': _BB, 'Potsdam': _BB, 'Rostock': _MV,
 }

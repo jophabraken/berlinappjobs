@@ -31,7 +31,14 @@ def match(u):
     return None
 
 TAGS = ['p', 'br', 'ul', 'ol', 'li', 'strong', 'b', 'em', 'i', 'h2', 'h3', 'h4', 'a', 'blockquote']
+# Some careers sites put HTML-escaped tags into their JSON-LD next to real ones ("&lt;p&gt;<div>..."), which would show
+# up as literal "<p>" on the page and in the meta description. Unescape just those tag-shaped sequences.
+_ESC_TAG = re.compile(r'&lt;(/?(?:p|div|br|ul|ol|li|strong|b|em|i|h[1-6]|a|span|font|section)\b.*?)&gt;', re.I | re.S)
+# rexx careers pages (BUDNI, Segmüller, Cornelsen) embed a video-consent widget whose text ends up in the ad.
+_CONSENT = re.compile(r'(?:<h\d>\s*)?Redaktionell empfohlener externer Inhalt.*?\(Datenschutzerkl(?:ä|&auml;)rung\)\.?', re.S)
 def sanitize(h):
+    h = _ESC_TAG.sub(lambda m: '<' + html.unescape(m.group(1)) + '>', h)
+    h = _CONSENT.sub('', h)
     h = re.sub(r'<h1[^>]*>', '<h3>', h, flags=re.I).replace('</h1>', '</h3>')
     h = re.sub(r'<(div|section|span|font)[^>]*>|</(div|section|span|font)>', lambda m: '' if m.group(0).lower().startswith(('<span', '</span', '<font', '</font')) else ('<p>' if not m.group(0).startswith('</') else '</p>'), h, flags=re.I)
     h = bleach.clean(h, tags=TAGS, attributes={'a': ['href']}, strip=True)
@@ -164,7 +171,7 @@ from regions import REGION
 def truthy(v): return v is True or str(v).strip().lower() in ('true', '1', 'yes')
 CITY_ALIAS = {'munich': 'München', 'muenchen': 'München', 'cologne': 'Köln', 'koeln': 'Köln', 'nuremberg': 'Nürnberg',
               'frankfurt': 'Frankfurt am Main', 'hanover': 'Hannover', 'duesseldorf': 'Düsseldorf', 'esslingen': 'Esslingen am Neckar',
-              'immenstadt': 'Immenstadt i. Allgäu', 'freiburg': 'Freiburg im Breisgau'}
+              'immenstadt': 'Immenstadt i. Allgäu', 'freiburg': 'Freiburg im Breisgau', 'offenbach': 'Offenbach am Main'}
 _KNOWN = sorted(REGION, key=len, reverse=True)
 # Jobs outside Germany (a few feeds list e.g. Amsterdam roles): keep their own city and country in the markup, never
 # the company's German address. Google: the job location must be accurate.
@@ -177,17 +184,27 @@ def foreign_in_title(t):
     """'(Senior) Data Analyst (m/f/d) - Barcelona' -> 'Barcelona' (city named at the end of the title)."""
     m = _FOREIGN_TITLE.search(t or '')
     return next((k for k in FOREIGN if k.lower() == m.group(1).lower()), None) if m else None
+_PLACE = re.compile(r"[A-ZÄÖÜ][a-zäöüß]{2,}(?:[ -](?:am|an|im|in|der|bei|ob|a\.|i\.|[A-ZÄÖÜ][a-zäöüß]+\.?))*")
+_NOT_PLACE = re.compile(r'^(Deutschland|Germany|Bundesweit|Deutschlandweit|Remote|Hybrid|Home|Office|Büro|Vertrieb|Unspecified|'
+                        r'Bayern|Hessen|Sachsen|Thüringen|Brandenburg|Berlin Brandenburg|Europe|Europa|EMEA|DACH|Region|Umgebung|Zentrale|Hauptsitz|Headquarters|HQ|Standort|Filiale|Außendienst)\b|region$|umgebung$', re.I)
 def job_cities(loc, fallback):
     """The job's own city/cities from the feed location ('Berlin / Hamburg', 'Office Frankfurt/Hybrid', 'Munich').
-    Only known German cities (regions.py) are used, never a guess; otherwise the company city, as before."""
-    out = []
-    for p in re.split(r'[/,|]', loc or ''):
-        p = re.sub(r'\(.*?\)|\b(office|hybrid|remote|home.?office)\b', ' ', p, flags=re.I)
+    Known German cities (regions.py) first; else a clean German place name from the feed ('Gießen'), never the
+    company's HQ; else a known foreign city; the company city only if the feed names no place at all."""
+    out = []; places = []
+    for p in re.split(r'[/,|]|\s+(?:or|oder|und|u\.|and)\s+', loc or ''):
+        p = re.sub(r'\(.*?\)|\([^)]*$|\b(office|hybrid|remote|home.?office)\b', ' ', p, flags=re.I)
         p = re.sub(r'\s+', ' ', p).strip(' -')
+        p = re.sub(r'\s+(?:region|und umgebung|umgebung)$', '', p, flags=re.I)   # 'Stuttgart region'
         p = CITY_ALIAS.get(p.lower(), p)
+        if p not in REGION and '-' in p and p.split('-')[0] in REGION: p = p.split('-')[0]      # 'Hamburg-Eppendorf'
+        if p not in REGION and ' bei ' in p and p.split(' bei ')[0] in REGION: p = p.split(' bei ')[0]   # 'Schönefeld bei Berlin'
         if p in REGION and p not in out: out.append(p)
+        elif _PLACE.fullmatch(p) and not _NOT_PLACE.search(p) and p not in FOREIGN and p not in places: places.append(p)
     if not out:   # city only in brackets, e.g. 'Green Campus (Kiel)'
         out = [k for k in _KNOWN if re.search(r'\(' + re.escape(k) + r'\)', loc or '')][:1]
+    if not out and places:   # a German town the region table doesn't know yet ('Gießen'): its own name, never the HQ
+        out = places[:3]
     if not out:   # a city outside Germany, e.g. 'Amsterdam'
         out = [k for k in FOREIGN if re.search(r'\b' + re.escape(k) + r'\b', loc or '', re.I)][:1]
     return out or [fallback]
@@ -227,7 +244,7 @@ def contract_label(et, jt, k):
     if 'PART_TIME' in et and 'INTERN' in et: return ("Werkstudent", "Working student")[k]
     return ET_LABEL[et[-1]][k]
 NOT_A_JOB = re.compile(r'initiativbewerbung|open application|unsolicited application|speculative application|'
-                       r'keine passende stelle|blindbewerbung', re.I)
+                       r'keine passende stelle|blindbewerbung|^\s*initiativ\b|recruiting[ -]event|schick uns deine bewerbung|talent ?pool', re.I)
 def job_desc(jt, co, where, de, et, remote, sal, desc_html):
     """~155 chars, unique per job: company, place, role, contract, remote, salary, then the ad's own opening words."""
     k = 0 if de else 1
