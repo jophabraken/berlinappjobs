@@ -35,14 +35,6 @@ body = tpl[i_top:i_data]                             # board markup
 app = tpl[i_data:].split('<script>', 2)[2]           # the app code
 app = app[:app.rindex('</script>')]
 
-# ---- keyword in the H1 (EN + DE), same styling ----
-H1_EN = 'Berlin App Jobs: work on an app <em>people actually use.</em>'
-H1_DE = 'Berlin App Jobs: Arbeite an einer App, <em>die Menschen wirklich nutzen.</em>'
-body = body.replace('<h1 id="introH1">Work on an app <em>people actually use.</em></h1>', f'<h1 id="introH1">{H1_EN}</h1>')
-app = app.replace("introH1: 'Work on an app <em>people actually use.</em>'", f"introH1: '{H1_EN}'")
-app = app.replace("introH1: 'Arbeite an einer App, <em>die Menschen wirklich nutzen.</em>'", f"introH1: '{H1_DE}'")
-assert H1_EN in body and H1_EN in app and H1_DE in app, 'H1 replacement failed: template changed?'
-
 # ---- data for the pre-rendered part ----
 i = board_js.find('const BOARD = '); j = board_js.find('const CHARTS', i)
 B = json.loads(board_js[i + len('const BOARD = '):j].rstrip().rstrip(';').rstrip())
@@ -50,6 +42,16 @@ JOBPAGE = json.load(open(os.path.join(DATA, 'jobpages_map.json'), encoding='utf-
 cos = B['companies']
 n_jobs = sum(len(c.get('jobs') or []) for c in cos)
 n_cos = sum(1 for c in cos if (c.get('tier') or 9) <= 2)   # same rule as the app's 'companies hiring'
+n_en = sum(1 for c in cos for jb in c.get('jobs') or [] if jb.get('lang') == 'en')   # same rule as the about page
+
+# ---- keyword + live job count in the H1 (EN + DE), same styling ----
+# The count in the H1 matches the title: Google keeps numbers in the search title far more often when the H1 has them too.
+H1_EN = f'Berlin App Jobs: {n_jobs:,} jobs at apps <em>people actually use.</em>'
+H1_DE = f'Berlin App Jobs: {n_jobs:,}'.replace(',', '.') + ' Jobs bei Apps, <em>die Menschen wirklich nutzen.</em>'
+body = body.replace('<h1 id="introH1">Work on an app <em>people actually use.</em></h1>', f'<h1 id="introH1">{H1_EN}</h1>')
+app = app.replace("introH1: 'Work on an app <em>people actually use.</em>'", f"introH1: '{H1_EN}'")
+app = app.replace("introH1: 'Arbeite an einer App, <em>die Menschen wirklich nutzen.</em>'", f"introH1: '{H1_DE}'")
+assert H1_EN in body and H1_EN in app and H1_DE in app, 'H1 replacement failed: template changed?'
 rows = []
 for c in cos:
     for jb in c.get('jobs') or []:
@@ -126,9 +128,23 @@ _src = open(_PS, encoding='utf-8').read(); exec(_src[:_src.index('def jsonld(obj
 foot = _ns['FOOT_EN']
 
 # ---- head ----
-TITLE = "Berlin App Jobs: jobs at the companies behind Germany's top apps"
-DESC = (f"{n_jobs:,} live roles at {n_cos} companies behind Germany's top mobile apps: engineering, product, design, data and "
-        "marketing jobs in Berlin, Munich, Hamburg and remote. Direct apply, salaries where published.")
+# Title, from SEO split-test evidence (see the project doc claude/title-ctr-research.md): exact live count (beat "2,800+"),
+# the English count (what expats search for, our differentiator), "Updated Daily" (+11% vs month/year on listing sites),
+# 40-60 chars so Google doesn't cut or rewrite it, colon/commas instead of pipes or brackets. The English part only shows
+# while it's true for at least ~45% of roles; otherwise the fallback keeps the "top apps" angle.
+if n_jobs and n_en / n_jobs >= 0.45:
+    TITLE = f"Berlin App Jobs: {n_jobs:,} Jobs, {n_en:,} in English, Updated Daily"
+else:
+    TITLE = f"Berlin App Jobs: {n_jobs:,} Jobs at Top Apps, Updated Daily"
+# Description: the "top apps" angle with three well-known employers that are hiring right now (most installs, 3+ roles),
+# kept under ~160 chars. No salary ranges (they lowered clicks in a job-site test).
+def _short(n): return re.sub(r'\s+(SE|N\.V\.|GmbH|AG|Inc\.?|Ltd\.?|B\.V\.)$', '', n.strip())
+_known = [_short(c['n']) for c in sorted((c for c in cos if (c.get('tier') or 9) <= 2 and len(c.get('jobs') or []) >= 3),
+                                           key=lambda c: -(c.get('v') or 0))[:3]]
+DESC = (f"Open roles at the companies behind Germany's top apps, like {_known[0]}, {_known[1]} and {_known[2]}. "
+        "Engineering, product, design, data, marketing. Apply directly.") if len(_known) == 3 else \
+       (f"{n_jobs:,} live roles at {n_cos} companies behind Germany's top apps: engineering, product, design, data and "
+        "marketing in Berlin, Munich, Hamburg and remote. Apply directly.")
 ld = {"@context": "https://schema.org", "@graph": [
     {"@type": "WebSite", "@id": SITE + "/#website", "name": "Berlin App Jobs", "alternateName": "berlinappjobs.com", "url": SITE + "/", "inLanguage": ["en", "de"]},
     {"@type": "Organization", "@id": SITE + "/#org", "name": "Berlin App Jobs", "url": SITE + "/",
