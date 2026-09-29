@@ -1,114 +1,116 @@
-# Job refresh 2026-09-28
+# Job refresh 2026-09-29
 
-- API feeds: 165, failed: 3; custom career pages link-checked: 453 links, 6 removed
-- Jobs: 2628 → 2832 (new 883, closed 124, still open 2030)
-- Full descriptions read from job pages: 0 (custom career pages) + 1 (feeds without descriptions, 5 pages checked)
-- Hiring-system detection: 70 companies checked, 25 now read directly
-- Published salaries added: 2; companies kept as-is because of a suspicious result: 0
+- API feeds: 178, failed: 3; custom career pages link-checked: 431 links, 7 removed
+- Jobs: 2832 → 3041 (new 892, closed 117, still open 2256)
+- Full descriptions read from job pages: 0 (custom career pages) + 3 (feeds without descriptions, 4 pages checked)
+- Hiring-system detection: 55 companies checked, 13 now read directly
+- Published salaries added: 16; companies kept as-is because of a suspicious result: 0
 - Result: written
 
 ## Changes by company
 
-- ABOUT YOU SE & Co. KG (crawl): 10 → 11 jobs (0 closed)
-- AMBOSS (ashby): 16 → 17 jobs (0 closed)
-- BUDNI Handels- und Service GmbH & Co. KG (crawl): 15 → 18 jobs (0 closed)
-- BWI GmbH (crawl): 6 → 8 jobs (0 closed)
-- Bloomwell GmbH (personio): 17 → 14 jobs (3 closed)
-- CEWE (workday): 3 → 41 jobs (3 closed) ⚠ big jump, worth a look
-- Cornelsen Verlag GmbH (crawl): 4 → 8 jobs (0 closed)
-- DER SPIEGEL GmbH & Co. KG (softgarden): 10 → 9 jobs (1 closed)
-- DeepL (ashby): 4 → 3 jobs (1 closed)
-- Dirk Rossmann GmbH (crawl): 3 → 16 jobs (2 closed)
-- ERGO Group AG (crawl): 5 → 17 jobs (0 closed)
-- EWE AG (workday): 54 → 55 jobs (2 closed)
-- EintrachtTech GmbH (custom): removed 2 dead links
-- Enpal B.V. (ashby): 60 → 60 jobs (2 closed)
-- Europa-Park GmbH & Co Mack KG (crawl): 32 → 34 jobs (0 closed)
-- FLOYT Mobility GmbH (teamtailor): 5 → 6 jobs (0 closed)
-- FitX | FOR ALL OF US (crawl): 21 → 31 jobs (0 closed)
-- Flix SE (greenhouse): 44 → 46 jobs (0 closed)
-- Freecash (ashby): 32 → 31 jobs (1 closed)
-- Globus Fachmärkte (crawl): 4 → 2 jobs (2 closed)
-- Handelsblatt GmbH (crawl): 20 → 19 jobs (1 closed)
-- HanseMerkur Krankenversicherung AG (crawl): 20 → 21 jobs (0 closed)
+- ABOUT YOU SE & Co. KG (crawl): 11 → 18 jobs (0 closed)
+- ANTENNE BAYERN (crawl): 2 → 1 jobs (1 closed)
+- BUDNI Handels- und Service GmbH & Co. KG (crawl): 18 → 24 jobs (1 closed)
+- BWI GmbH (crawl): 8 → 45 jobs (0 closed) ⚠ big jump, worth a look
+- Bling Services GmbH (personio): 4 → 5 jobs (0 closed)
+- Bundesinstitut für Risikobewertung (custom): removed 1 dead links
+- CEWE (workday): 41 → 40 jobs (3 closed)
+- CHECK24 GmbH (custom): removed 1 dead links
+- Cornelsen Verlag GmbH (crawl): 8 → 9 jobs (0 closed)
+- DER SPIEGEL GmbH & Co. KG (softgarden): 9 → 9 jobs (1 closed)
+- Dirk Rossmann GmbH (crawl): 16 → 23 jobs (0 closed)
+- EGYM (ashby): 36 → 37 jobs (0 closed)
+- ERGO Group AG (crawl): 17 → 22 jobs (0 closed)
+- EWE AG (workday): 55 → 56 jobs (0 closed)
+- Enpal B.V. (ashby): 60 → 60 jobs (3 closed)
+- Finflow GmbH (personio): 9 → 8 jobs (1 closed)
+- FitX | FOR ALL OF US (crawl): 31 → 38 jobs (0 closed)
+- Flaconi (greenhouse): 13 → 12 jobs (1 closed)
+- Flix SE (greenhouse): 46 → 46 jobs (2 closed)
+- Freecash (ashby): 31 → 29 jobs (5 closed)
+- GetYourGuide (greenhouse): 37 → 37 jobs (1 closed)
+- Globus Fachmärkte (crawl): 2 → 1 jobs (1 closed)
+- Governikus Service GmbH (personio): 12 → 10 jobs (2 closed)
+- HOWOGE GmbH (crawl): 9 → 7 jobs (2 closed)
+- Haema Blut- und Plasmaspende (crawl): 1 → 4 jobs (0 closed)
+- Handelsblatt GmbH (crawl): 19 → 19 jobs (2 closed)
+- HanseMerkur Krankenversicherung AG (crawl): 21 → 20 jobs (1 closed)
 - Hanseatic Bank GmbH & Co KG (custom): 4/4 links 404, looks like a site change, kept all
-- HelloFresh SE (greenhouse): 60 → 60 jobs (3 closed)
-- Holidu GmbH (ashby): 3 → 9 jobs (3 closed)
-- Hörmann KG Antriebstechnik (crawl): 3 → 1 jobs (2 closed)
-- INFOSOFT GmbH (crawl): 4 → 3 jobs (1 closed)
-- Immobilien Scout GmbH (custom): removed 2 dead links
-- Intelligent Apps GmbH (greenhouse): 23 → 23 jobs (1 closed)
-- Iteration One GmbH (join): 4 → 3 jobs (1 closed)
-- JustPlay GmbH (ashby): 5 → 4 jobs (1 closed)
-- JustWatch GmbH (lever): 3 → 4 jobs (3 closed)
-- Kassenärztliche Bundesvereinigung KdöR (crawl): 3 → 1 jobs (2 closed)
-- Kaufmännische Krankenkasse - KKH (crawl): 4 → 18 jobs (4 closed)
-- Klassik Radio AG (crawl): 10 → 2 jobs (8 closed)
+- HelloFresh SE (greenhouse): 60 → 60 jobs (4 closed)
+- Holidu GmbH (ashby): 9 → 10 jobs (0 closed)
+- HomeToGo (personio): 5 → 6 jobs (0 closed)
+- IDnow (greenhouse): 8 → 9 jobs (0 closed)
+- IG Metall Vorstand (crawl): 2 → 5 jobs (1 closed)
+- IONITY GmbH (personio): 8 → 9 jobs (0 closed)
+- Intelligent Apps GmbH (greenhouse): 23 → 22 jobs (2 closed)
+- JustPlay GmbH (ashby): 4 → 7 jobs (0 closed)
+- Kaufmännische Krankenkasse - KKH (crawl): 18 → 19 jobs (0 closed)
+- Knowunity (ashby): 5 → 6 jobs (0 closed)
 - L'Osteria Pizza e Pasta (softgarden): 60 → 60 jobs (3 closed)
-- LIQUI MOLY GmbH (personio): 18 → 15 jobs (3 closed)
-- Leipziger Verkehrsbetriebe (crawl): 20 → 20 jobs (2 closed)
+- LIQUI MOLY GmbH (personio): 15 → 13 jobs (2 closed)
+- LOTTO24 (ashby): 14 → 13 jobs (1 closed)
+- Lautsprecher Teufel GmbH (personio): 8 → 7 jobs (1 closed)
+- Leipziger Verkehrsbetriebe (crawl): 20 → 22 jobs (0 closed)
 - Lotum two GmbH (custom): 6/6 links 404, looks like a site change, kept all
-- Müller Handels GmbH & Co. KG (crawl): 4 → 14 jobs (2 closed)
-- N26 AG (greenhouse): 39 → 36 jobs (7 closed)
-- Nufin GmbH (ashby): 24 → 23 jobs (1 closed)
-- POCO Einrichtungsmärkte GmbH (crawl): 5 → 1 jobs (4 closed)
-- Parfümerie Akzente GmbH (crawl): 18 → 41 jobs (1 closed)
+- Meet5 GmbH (join): 2 → 6 jobs (0 closed)
+- Müller Handels GmbH & Co. KG (crawl): 14 → 17 jobs (0 closed)
+- N26 AG (greenhouse): 36 → 34 jobs (7 closed)
+- NeuroNation (personio): 7 → 8 jobs (1 closed)
+- Olympia-Verlag (crawl): 1 → 2 jobs (0 closed)
+- Outdooractive AG (personio): 15 → 16 jobs (0 closed)
+- Palette CAD AG (personio): 6 → 5 jobs (1 closed)
+- Parfümerie Akzente GmbH (crawl): 41 → 60 jobs (3 closed)
 - RADIO BOB GmbH & Co. KG (softgarden): fetch failed, kept 4 jobs. HTTPError: HTTP Error 404: Not Found
 - REGIOCAST GmbH & Co.KG (softgarden): fetch failed, kept 12 jobs. HTTPError: HTTP Error 404: Not Found
-- REWE Markt GmbH (custom): removed 2 dead links
-- RSG Group GmbH (crawl): 18 → 25 jobs (2 closed)
-- Rausgegangen GmbH (personio): 2 → 3 jobs (0 closed)
-- S-Bahn Berlin (crawl): 44 → 60 jobs (7 closed)
-- Scalable AG (smartrecruiters): 60 → 60 jobs (2 closed)
+- RSG Group GmbH (crawl): 25 → 30 jobs (0 closed)
+- Raisin SE (greenhouse): 28 → 26 jobs (3 closed)
+- S-Bahn Berlin (crawl): 60 → 60 jobs (7 closed)
+- Sanacorp Pharmahandel GmbH (crawl): 24 → 25 jobs (0 closed)
 - Sdui (personio): fetch failed, kept 6 jobs. HTTPError: HTTP Error 429: Too Many Requests
-- Sellwerk GmbH & Co. KG (crawl): 3 → 23 jobs (0 closed)
-- Sonic Healthcare Germany GmbH & Co. KG (softgarden): 3 → 32 jobs (0 closed) ⚠ big jump, worth a look
+- Segmüller (crawl): 6 → 5 jobs (1 closed)
+- Sellwerk GmbH & Co. KG (crawl): 23 → 22 jobs (2 closed)
+- Sonic Healthcare Germany GmbH & Co. KG (softgarden): 32 → 31 jobs (1 closed)
+- Star Finanz GmbH (custom): removed 2 dead links
 - Stillfront Supremacy GmbH (custom): 11/11 links 404, looks like a site change, kept all
-- Ströer Digital Publishing GmbH (crawl): 56 → 60 jobs (13 closed)
-- Ströer Media Brands GmbH (smartrecruiters): 60 → 60 jobs (4 closed)
-- Studyflix GmbH (personio): 5 → 21 jobs (5 closed)
-- SumUp (greenhouse): 56 → 55 jobs (7 closed)
-- Taxfix SE (ashby): 19 → 18 jobs (1 closed)
+- Ströer Digital Publishing GmbH (crawl): 60 → 60 jobs (3 closed)
+- Ströer Media Brands GmbH (smartrecruiters): 60 → 60 jobs (18 closed)
+- SumUp (greenhouse): 55 → 52 jobs (10 closed)
+- TeamBank AG (crawl): 11 → 10 jobs (1 closed)
 - Too Good To Go (greenhouse): fetch failed, kept 7 jobs. HTTPError: HTTP Error 404: Not Found
-- Trade Republic Bank GmbH (greenhouse): 5 → 1 jobs (4 closed)
-- Urban Sports GmbH (greenhouse): 3 → 2 jobs (1 closed)
-- VYTAL | Smart & Sustainable Packaging (personio): 2 → 1 jobs (1 closed)
-- Wertgarantie Beteiligungen GmbH (crawl): 4 → 19 jobs (0 closed)
-- Whow Games GmbH (join): 2 → 4 jobs (0 closed)
-- Wolt (greenhouse): 43 → 44 jobs (0 closed)
-- bonify (personio): 1 → 2 jobs (0 closed)
-- foodora (Delivery Hero) (smartrecruiters): 23 → 22 jobs (1 closed)
-- idealo internet GmbH (recruitee): 20 → 20 jobs (1 closed)
+- TÜV NORD Service GmbH & Co. KG (crawl): 1 → 39 jobs (0 closed) ⚠ big jump, worth a look
+- Urban Sports GmbH (greenhouse): 2 → 3 jobs (0 closed)
+- VHV Versicherungen (custom): removed 1 dead links
+- Vivid Money GmbH (personio): 8 → 7 jobs (1 closed)
+- Wertgarantie Beteiligungen GmbH (crawl): 19 → 17 jobs (10 closed)
+- Westermann GmbH & Co. KG (softgarden): 20 → 21 jobs (2 closed)
+- Wolt (greenhouse): 44 → 45 jobs (0 closed)
+- Yazio (ashby): 6 → 7 jobs (0 closed)
+- Zalando SE (custom): removed 2 dead links
+- bitiba GmbH (crawl): 1 → 4 jobs (0 closed)
+- foodora (Delivery Hero) (smartrecruiters): 22 → 23 jobs (1 closed)
+- gematik (personio): 19 → 18 jobs (1 closed)
+- home24 SE (softgarden): 15 → 15 jobs (1 closed)
+- idealo internet GmbH (recruitee): 20 → 21 jobs (1 closed)
 - komoot GmbH (custom): 7/7 links 404, looks like a site change, kept all
-- mbits imaging GmbH (crawl): 6 → 2 jobs (4 closed)
-- moebel.de Einrichten & Wohnen GmbH (personio): 1 → 0 jobs (1 closed)
-- trivago N.V. (greenhouse): 8 → 9 jobs (0 closed)
-- vetevo GmbH (personio): 3 → 4 jobs (0 closed)
+- kv.digital GmbH (crawl): 1 → 3 jobs (0 closed)
+- momox SE (crawl): 1 → 39 jobs (0 closed) ⚠ big jump, worth a look
+- smava (greenhouse): 26 → 25 jobs (1 closed)
+- stashcat GmbH (crawl): 1 → 36 jobs (0 closed) ⚠ big jump, worth a look
+- trivago N.V. (greenhouse): 9 → 12 jobs (0 closed)
 
 ## Hiring systems found
 
-- FLOYT Mobility GmbH: teamtailor (https://company.floyt.com/de), had 5 jobs
-- Studyflix GmbH: personio (https://studyflix-gmbh.jobs.personio.de), had 5 jobs
-- POCO Einrichtungsmärkte GmbH: crawl (https://karriere.poco.de/), had 5 jobs
-- ERGO Group AG: crawl (https://careers.munichre.com/de/ergo-suchergebnis), had 5 jobs
-- Cornelsen Verlag GmbH: crawl (https://www.cornelsen.de/karriere), had 4 jobs
-- INFOSOFT GmbH: crawl (https://www.docutain.de/UeberUns#OffeneStellen), had 4 jobs
-- Iteration One GmbH: join (https://join.com/companies/iterationonecom), had 4 jobs
-- Tripod Technology GmbH: personio (https://tandem.jobs.personio.de), had 4 jobs
-- Müller Handels GmbH & Co. KG: crawl (https://www.mueller.de/karriere/), had 4 jobs
-- Globus Fachmärkte: crawl (https://www.globus-baumarkt.de/info/karriere/), had 4 jobs
-- OUTLETCITY AG: crawl (https://karriere.outletcity.com/), had 4 jobs
-- Wertgarantie Beteiligungen GmbH: crawl (https://www.wertgarantie-group.com/karriere), had 4 jobs
-- Kaufmännische Krankenkasse - KKH: crawl (https://www.kkh.de/karriere/stellenangebote), had 4 jobs
-- Sonic Healthcare Germany GmbH & Co. KG: softgarden (https://karriere.bioscientia.de/jobs.feed.json), had 3 jobs
-- Kassenärztliche Bundesvereinigung KdöR: crawl (https://www.karriere.kbv.de/), had 3 jobs
-- JustWatch GmbH: lever (https://api.lever.co/v0/postings/justwatch?mode=json), had 3 jobs
-- fillibri GmbH & Co. KG: crawl (https://www.fillibri-solutions.com/karriere), had 3 jobs
-- CEWE: workday (https://cewe.wd3.myworkdayjobs.com/Jobs_at_CEWEGroup), had 3 jobs
-- Sellwerk GmbH & Co. KG: crawl (https://jobs.sellwerk.de/karriere), had 3 jobs
-- Dirk Rossmann GmbH: crawl (https://jobs.rossmann.de/), had 3 jobs
-- Holidu GmbH: ashby (https://api.ashbyhq.com/posting-api/job-board/Holidu), had 3 jobs
-- Hörmann KG Antriebstechnik: crawl (https://jobs.hoermann.de/), had 3 jobs
-- Limango GmbH: crawl (https://joinus.limango.com/), had 2 jobs
-- Whow Games GmbH: join (https://join.com/companies/whow), had 2 jobs
-- justDice GmbH: ashby (https://api.ashbyhq.com/posting-api/job-board/justDice), had 2 jobs
+- MEDION GmbH: crawl (https://www.medion.com/de/karriere/stellenangebote.php), had 2 jobs
+- ANTENNE BAYERN: crawl (https://www.rockantenne.de/rockcommunity/jobs), had 2 jobs
+- Meet5 GmbH: join (https://join.com/companies/meet5), had 2 jobs
+- IG Metall Vorstand: crawl (https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall), had 2 jobs
+- momox SE: crawl (https://momox.biz/en/career), had 1 jobs
+- kv.digital GmbH: crawl (https://www.kv.digital/karriere), had 1 jobs
+- stashcat GmbH: crawl (https://stashcat.com/karriere), had 1 jobs
+- Wort und Bild Verlag: crawl (https://karriere.wortundbildverlag.de/jobs/), had 1 jobs
+- TÜV NORD Service GmbH & Co. KG: crawl (https://www.tuev-nord-group.com/de/karriere/jobs/), had 1 jobs
+- TUI Hotel Betriebsgesellschaft mbH: crawl (https://careers.tuigroup.com/en/search-jobs), had 1 jobs
+- bitiba GmbH: crawl (https://careers.zooplus.com), had 1 jobs
+- Olympia-Verlag: crawl (https://jobs.olympia-verlag.de/), had 1 jobs
+- Haema Blut- und Plasmaspende: crawl (https://karriere.haema.de/), had 1 jobs
