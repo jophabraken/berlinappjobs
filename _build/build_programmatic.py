@@ -240,7 +240,7 @@ def company_page(c, lang):
     city=c.get('city','') or ''
     njobs=len(c.get('jobs',[])); total=c.get('total',njobs) or njobs
     apps=c.get('apps',[]) or []
-    if njobs: title=fit_title(T(f"{short_name(c['n'])} Jobs: {njobs} offene Stellen ({MONTH_DE})", f"{short_name(c['n'])} Jobs: {njobs} open roles ({MONTH_EN})"))
+    if njobs: title=fit_title(T(f"{short_name(c['n'])} Jobs: {njobs} {'offene Stelle' if njobs==1 else 'offene Stellen'} ({MONTH_DE})", f"{short_name(c['n'])} Jobs: {njobs} {'open role' if njobs==1 else 'open roles'} ({MONTH_EN})"))
     else: title=T(f"{c['n']} Jobs 2026 - offene Stellen | Berlin App Jobs", f"{c['n']} Jobs 2026: open roles | Berlin App Jobs")
     if de:
         desc=(f"Offene Stellen bei {c['n']}"+(f" in {city}" if city else "")+f". "
@@ -290,7 +290,7 @@ def company_page(c, lang):
     doc+=f'<h1>{T("Jobs bei", "Jobs at")} {esc(c["n"])}</h1>'
     doc+=f'<p class="sub">{esc(desc)}</p>'
     doc+=(f'<div class="meta">'+(f'<span class="pill">{esc(city)}</span>' if city else '')
-          +f'<span class="pill">{njobs or total} {T("offene Stellen", "open roles")}</span><span>{T("Aktualisiert", "Updated")} {TODAY}</span></div>')
+          +f'<span class="pill">{njobs or total} {T("offene Stelle", "open role") if (njobs or total)==1 else T("offene Stellen", "open roles")}</span><span>{T("Aktualisiert", "Updated")} {TODAY}</span></div>')
     doc+=(company_overview(c, city, c['jobs'], lang) if njobs else '')+apphtml+roleshtml
     doc+='<div style="margin-top:18px">'+cta+' '+citylink+'</div>'
     doc+='</div>'+(FOOT if de else FOOT_EN)+'</body></html>'
@@ -309,7 +309,7 @@ def companies_hub(lang):
     cards=""
     for n,slug,city,nj,total in company_index:
         cards+=(f'<a class="card" href="{co_url(slug, lang)}"><div class="ct">{esc(n)}</div>'
-                f'<div class="cd">'+(esc(city)+' &middot; ' if city else '')+ (f'{nj} {T("offene Stellen", "open roles")}' if nj else f'{total} {T("Stellen", "roles")}')+'</div></a>')
+                f'<div class="cd">'+(esc(city)+' &middot; ' if city else '')+ (f'{nj} {T("offene Stelle", "open role") if nj==1 else T("offene Stellen", "open roles")}' if nj else f'{total} {T("Stellen", "roles")}')+'</div></a>')
     doc=head(T("App-Unternehmen in Deutschland: alle Firmen & Jobs | Berlin App Jobs", "App Companies in Germany: All Employers & Jobs | Berlin App Jobs"),
              T(f"Alle {len(company_index)} Unternehmen hinter Deutschlands Top-Apps mit offenen Stellen. Apps, Rollen, Standort und Direktbewerbung.",
                f"All {len(company_index)} companies behind Germany's top apps that are hiring. Their apps, open roles and location, with direct apply."),
