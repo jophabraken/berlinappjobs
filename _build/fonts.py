@@ -29,7 +29,7 @@ def _publish():
     return urls
 
 URLS = _publish()
-FACES = ''.join(f"@font-face{{font-family:'Archivo';font-style:normal;font-weight:100 900;font-display:swap;"
+FACES = ''.join(f"@font-face{{font-family:'Archivo';font-style:normal;font-weight:100 900;font-display:fallback;"
                 f"src:url({URLS[k]}) format('woff2');unicode-range:{RANGES[k]}}}" for k in ('latin-ext', 'latin'))
 HEAD = (f'<link rel="preload" href="{URLS["latin"]}" as="font" type="font/woff2" crossorigin>'
         f'<style>{FACES}</style>')
