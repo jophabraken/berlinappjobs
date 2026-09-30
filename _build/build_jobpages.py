@@ -150,6 +150,9 @@ h1{view-transition-name:job-title;width:fit-content;max-width:100%}.costrip img{
 
 pages = []; mapping = {}; per_co = {}
 seen_slugs = set()
+# Keep a job's URL when the employer retitles the ad (or the company is renamed): reuse the slug from the last build.
+try: PINNED = {u: p.strip('/').split('/')[-1] for u, p in json.load(open(os.path.join(DATA, 'jobpages_map.json'), encoding='utf-8')).items()}
+except Exception: PINNED = {}
 for c in COS:
     for jb in c.get('jobs') or []:
         m = match(jb['u'])
@@ -158,7 +161,7 @@ for c in COS:
         if text_len(desc) < 300: continue
         cs = slugify(c['n'])
         h = hashlib.md5(jb['u'].encode()).hexdigest()[:6]
-        slug = f"{cs}-{slugify(jb['t'])[:60].strip('-')}-{h}"
+        slug = PINNED.get(jb['u']) or f"{cs}-{slugify(jb['t'])[:60].strip('-')}-{h}"
         if slug in seen_slugs: continue
         seen_slugs.add(slug)
         rec = dict(c=c, jb=jb, m=m, desc=desc, slug=slug)
