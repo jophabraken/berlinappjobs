@@ -31,4 +31,9 @@ REGION = {
  'Darmstadt': _HE, 'Gießen': _HE, 'Hanau': _HE, 'Offenbach am Main': _HE, 'Wetzlar': _HE, 'Wiesbaden': _HE,
  'Emden': _NI, 'Göttingen': _NI, 'Langenhagen': _NI, 'Wilhelmshaven': _NI, 'Bad Segeberg': _SH, 'Neumünster': _SH,
  'Rendsburg': _SH, 'Saarbrücken': _SL, 'Cottbus': _BB, 'Potsdam': _BB, 'Rostock': _MV,
+ # towns named in job titles or feeds (29 Sep); a place name shared only with a small village elsewhere counts as unambiguous
+ 'Castrop-Rauxel': _NW, 'Greven': _NW, 'Hürth': _NW, 'Lüdenscheid': _NW, 'Garmisch-Partenkirchen': _BY,
+ 'Böblingen': _BW, 'Bad Säckingen': _BW, 'Lörrach': _BW, 'Pforzheim': _BW, 'Reutlingen': _BW, 'Tübingen': _BW,
+ 'Limburg an der Lahn': _HE, 'Frankenthal (Pfalz)': _RP, 'Osnabrück': _NI, 'Ahrensburg': _SH, 'Börnsen': _SH,
+ 'Lübeck': _SH, 'Mölln': _SH, 'Norderstedt': _SH, 'Reinbek': _SH, 'Sylt': _SH, 'Dallgow-Döberitz': _BB, 'Schwerin': _MV,
 }

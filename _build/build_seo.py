@@ -235,7 +235,7 @@ def render_article(a):
 <article>
 <h1>{esc(a['title'])}</h1>
 <div class="meta"><span class="langbadge">{a['lang'].upper()}</span><span>{updated}</span></div>
-{a['html'].strip()}
+{re.sub(r'^<h1>.*?</h1>', '', a['html'].strip(), count=1, flags=re.S)}
 {cta}
 {faq_html}
 </article>

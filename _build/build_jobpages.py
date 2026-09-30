@@ -187,10 +187,31 @@ def foreign_in_title(t):
 _PLACE = re.compile(r"[A-ZÄÖÜ][a-zäöüß]{2,}(?:[ -](?:am|an|im|in|der|bei|ob|a\.|i\.|[A-ZÄÖÜ][a-zäöüß]+\.?))*")
 _NOT_PLACE = re.compile(r'^(Deutschland|Germany|Bundesweit|Deutschlandweit|Remote|Hybrid|Home|Office|Büro|Vertrieb|Unspecified|'
                         r'Bayern|Hessen|Sachsen|Thüringen|Brandenburg|Berlin Brandenburg|Europe|Europa|EMEA|DACH|Region|Umgebung|Zentrale|Hauptsitz|Headquarters|HQ|Standort|Filiale|Außendienst)\b|region$|umgebung$', re.I)
-def job_cities(loc, fallback):
+# City named in the job title, for feeds whose location is only "Deutschland" or "Remote" ('o2 Shop Schwerin 2027',
+# 'Greven - Ausbildung …', '… in Mönchengladbach (all genders)', 'Sales Manager - Göttingen / Kassel'). Known places
+# (regions.py) only, and only in these fixed spots of the title; Rust, Essen, Hamm and Halle count only after "in".
+_TITLE_TAG = r'\s*(?:[(\[][^)\]]*[)\]]\s*|\d{4}\s*|[*,]\s*)*$'   # trailing gender tags, "2027", "*"
+_TITLE_ALIAS = {'Heidenheim': 'Heidenheim an der Brenz', 'Limburg': 'Limburg an der Lahn', 'Frankenthal': 'Frankenthal (Pfalz)',
+                'Dallgow': 'Dallgow-Döberitz', 'Freiburg': 'Freiburg im Breisgau', 'Frankfurt': 'Frankfurt am Main'}
+_KNOWN_RE = '|'.join(re.escape(k) for k in sorted(set(REGION) | set(_TITLE_ALIAS), key=len, reverse=True))
+_TITLE_CITY = [re.compile(x) for x in (
+    r'^\s*(?P<a>' + _KNOWN_RE + r')\s+[-–]\s',                                              # 'Greven - Ausbildung …'
+    r'[-–|]\s*(?P<a>' + _KNOWN_RE + r')(?:\s*/\s*(?P<b>' + _KNOWN_RE + r'))?' + _TITLE_TAG,   # '… - Göttingen / Kassel (m/w/d)'
+    r"(?:o2 Shop|L'Osteria|Filiale|Store Manager|Beauty Expert|Vollzeit|Teilzeit|Std\./Woche)\s+(?P<a>" + _KNOWN_RE + r')(?![\wäöüß-])',
+    r'\bin\s+(?P<a>' + _KNOWN_RE + r')' + _TITLE_TAG)]                                        # '… in Mönchengladbach (all genders)'
+_TITLE_AMBIG = {'Rust', 'Essen', 'Hamm', 'Halle'}
+def title_cities(t):
+    for i, rx in enumerate(_TITLE_CITY):
+        m = rx.search(t or '')
+        if m:
+            out = [_TITLE_ALIAS.get(x, x) for x in (m.group('a'), m.groupdict().get('b')) if x and (i == 3 or x not in _TITLE_AMBIG)]
+            if out: return out
+    return []
+def job_cities(loc, fallback, title=None):
     """The job's own city/cities from the feed location ('Berlin / Hamburg', 'Office Frankfurt/Hybrid', 'Munich').
     Known German cities (regions.py) first; else a clean German place name from the feed ('Gießen'), never the
-    company's HQ; else a known foreign city; the company city only if the feed names no place at all."""
+    company's HQ; else a known foreign city; else a known city named in the job title (feeds that only say
+    "Deutschland" or "Remote"); the company city only if neither names a place at all."""
     out = []; places = []
     for p in re.split(r'[/,|]|\s+(?:or|oder|und|u\.|and)\s+', loc or ''):
         p = re.sub(r'\(.*?\)|\([^)]*$|\b(office|hybrid|remote|home.?office)\b', ' ', p, flags=re.I)
@@ -207,6 +228,8 @@ def job_cities(loc, fallback):
         out = places[:3]
     if not out:   # a city outside Germany, e.g. 'Amsterdam'
         out = [k for k in FOREIGN if re.search(r'\b' + re.escape(k) + r'\b', loc or '', re.I)][:1]
+    if not out and title:   # feed location names no place ('Deutschland', 'Remote'): the city in the title, if any
+        out = title_cities(title)
     return out or [fallback]
 def postal_address(c, city):
     """PostalAddress for the company's office in `city`. Street and postcode only when the company's
@@ -265,12 +288,12 @@ for rec in pages:
     loc = jb.get('loc') or m.get('loc') or city
     fc = foreign_in_title(jb['t'])
     if fc and fc.lower() not in loc.lower(): loc = fc   # the feed says "Berlin", the title says "- Barcelona"
-    cities = job_cities(loc, city)
+    cities = job_cities(loc, city, jb['t'])
     remote = truthy(jb.get('rem')) or truthy(m.get('rem')) or bool(re.search(r'remote|home.?office', f"{jb['t']} {loc}", re.I))
     # Google: TELECOMMUTE only for fully remote jobs ("Don't mark up jobs that allow occasional work-from-home").
     # Hiring systems' remote flag often means remote-friendly or hybrid, so a job counts as fully remote only if its
     # location names no city (e.g. "Remote", "Deutschland") or the ad itself says fully remote / remote-first.
-    known_city = any(x for x in job_cities(loc, None))
+    known_city = any(x for x in job_cities(loc, None, jb['t']))
     ad_text = re.sub(r'<[^>]+>', ' ', desc)
     hybrid = bool(re.search(r'\bhybrid', f"{jb['t']} {loc}", re.I))
     says_fully = bool(FULLY_REMOTE.search(f"{jb['t']} {ad_text}"))
