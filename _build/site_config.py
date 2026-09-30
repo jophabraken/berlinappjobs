@@ -14,3 +14,9 @@ IMPRESSUM = None
 # Visit statistics: GoatCounter (cookieless, no personal data, so no consent banner). Empty string switches it off.
 # Every page gets a small loader that runs after the page has loaded (add_analytics.py, last build step).
 GOATCOUNTER = 'https://jophabraken.goatcounter.com/count'
+
+# Umami Cloud, loaded next to GoatCounter by the same loader (add_analytics.py). Empty UMAMI_ID switches it off.
+# Only pageviews and the apply / sponsored / careers click events go to Umami (its plans count every event).
+UMAMI_SCRIPT = 'https://cloud.umami.is/script.js'
+UMAMI_ID = 'c1c581a7-a262-4d9e-9bbf-d673ab6e5edb'
+UMAMI_DOMAINS = 'berlinappjobs.com,www.berlinappjobs.com'   # Umami ignores other hosts (localhost, previews)
