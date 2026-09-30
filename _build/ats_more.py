@@ -34,7 +34,7 @@ def jget(url, **kw): return json.loads(_fetch(url, **kw).decode('utf-8'))
 CAP = 60            # jobs per company (same as refresh_jobs.py)
 NEW_PAGES = 45      # job pages not seen before that one crawl may open per run
 AGGREGATORS = re.compile(r'stepstone|indeed\.|linkedin\.|xing\.com|games-career|glassdoor|monster\.|jobware|kununu|arbeitsagentur|'
-                         r'google\.|facebook\.|instagram\.|twitter\.|youtube\.|goo\.gl|bit\.ly', re.I)
+                         r'arbeitnow\.|google\.|facebook\.|instagram\.|twitter\.|youtube\.|goo\.gl|bit\.ly', re.I)
 ASSET = re.compile(r'\.(?:js|css|png|jpe?g|gif|svg|webp|ico|woff2?|ttf|eot|pdf|mp4|zip|xml|json|rss)(?:\?|$)', re.I)
 
 # ---------------------------------------------------------------- schema.org JobPosting
@@ -124,7 +124,8 @@ def posting_to_raw(o, url):
     et = o.get('employmentType')
     et = ', '.join(map(str, et)) if isinstance(et, list) else _s(et)
     return dict(id=url, url=url, t=html.unescape(_s(o.get('title'))), locs=locs, country=country, remote=remote, desc=desc,
-                pub=_s(o.get('datePosted')), et=et, sal=sal, dept=_s(o.get('occupationalCategory') or ''), valid=_s(o.get('validThrough')))
+                pub=_s(o.get('datePosted')), et=et, sal=sal, dept=_s(o.get('occupationalCategory') or ''), valid=_s(o.get('validThrough')),
+                org=html.unescape(_s(o.get('hiringOrganization'))))
 
 # ---------------------------------------------------------------- link discovery
 def _norm(u, keep_query):
@@ -392,6 +393,36 @@ def evaluate(raw, company, placeholder, is_manual):
     old = {_key(j['t']) for j in company.get('jobs') or []}
     return len(de), sum(1 for x in de if _key(x['t']) in old)
 
+# ---------------------------------------------------------------- does the ad belong to this company?
+# A careers page can list other employers' ads: a job-board widget (momox.biz showed arbeitnow.com ads from dozens of
+# companies) or the parent group's jobs (stashcat.com links to secunet's). The ad's own hiringOrganization, or else its
+# title and text, must name the company.
+_NOT_NAME = re.compile(r'\b(?:gmbh|mbh|ag|se|kg|kgaa|co|ohg|ug|ev|inc|ltd|llc|bv|sa|sas|group|gruppe|holding|deutschland|germany|'
+                       r'und|and|the|der|die|das|berlin|hamburg|münchen|munich|köln|digital|media|service|services|software|'
+                       r'systems|solutions|technologies|tech|online|verlag|consulting|international|europe|mobile|apps?|games)\b', re.I)
+def name_tokens(name):
+    return set(re.findall(r'[a-zäöüß0-9]{3,}', _NOT_NAME.sub(' ', (name or '').lower())))
+def _ad_text(x): return (x.get('t', '') + ' ' + re.sub(r'<[^>]+>', ' ', html.unescape(x.get('desc') or ''))).lower()
+def names_employer(x, tokens, pattern=None):
+    """True if the ad names the company. With a pattern (EMPLOYER in refresh_jobs.py): anywhere in
+    the ad's hiringOrganization, title or text. Otherwise one of the name tokens, in the hiringOrganization if the ad
+    has one, else in its title and text."""
+    org = (x.get('org') or '').lower()
+    if pattern: return bool(re.search(pattern, org + ' ' + _ad_text(x), re.I))
+    hay = org or _ad_text(x)
+    return not tokens or any(re.search(r'(?<![a-zäöüß0-9])' + re.escape(t) + r'(?![a-zäöüß0-9])', hay) for t in tokens)
+def _site(u):
+    h = urllib.parse.urlsplit(u or '').netloc.lower().split(':')[0]
+    return '.'.join(h.split('.')[-2:])
+def foreign_ads(raw, company, placeholder, is_manual, feed=''):
+    """(German jobs, of them on another website than the company's careers page, of those not naming the company)."""
+    de = [x for x in raw if x.get('t') and x.get('url') and not x.get('keep') and not placeholder.search(x['t']) and not is_manual(x['t'])
+          and _german(x.get('locs') or [], x.get('country', ''), x.get('remote', False))]
+    own = {_site(u) for u in (company.get('careers'), company.get('feed'), feed) if (u or '').startswith('http')}
+    tok = name_tokens(company.get('n')) | name_tokens(company.get('legal'))
+    off = [x for x in de if _site(x['url']) not in own]
+    return len(de), len(off), sum(1 for x in off if not names_employer(x, tok))
+
 def accept(n_de, overlap, n_old, generic=False):
     if n_de == 0: return False
     if generic: return True                                  # JobPostings on the company's own job pages
@@ -419,6 +450,10 @@ def detect(c, fetchers, placeholder, is_manual, log):
             log.append(f'{ats} {feed}: {type(e).__name__} {str(e)[:80]}'); return None
         n_de, ov = evaluate(raw, c, placeholder, is_manual)
         log.append(f'{ats} {feed}: {len(raw)} jobs, {n_de} in Germany, {ov} match the board')
+        if generic and n_de:   # mostly ads on another website that don't name the company: a job-board widget or the parent group
+            _, n_off, n_other = foreign_ads(raw, c, placeholder, is_manual, feed)
+            if n_off > 0.5 * n_de and n_other > 0.5 * n_off:
+                log.append(f'{ats} {feed}: {n_other} of {n_de} ads are on another website and name another employer, not used'); return None
         if accept(n_de, ov, len(jobs), generic): return ats, feed, cfg, raw
         return None
 

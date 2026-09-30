@@ -19,6 +19,7 @@ What it does
     JobPosting; a page that could not be loaded keeps the job.
   * Published salaries from the APIs (Ashby, Lever, Recruitee, Personio) are added.
   * Manual/driving/warehouse/cleaning roles (MANUAL) and repeat postings (same title + city) are skipped.
+  * Careers pages that also list other employers' ads (EMPLOYER): ads that don't name the company are dropped.
 
 Safety rails (nothing is written if a hard check fails, exit code 1)
   * More than 30% of API companies fail to fetch -> abort.
@@ -335,6 +336,14 @@ with cf.ThreadPoolExecutor(10) as ex:
         except Exception as e:
             errors[futs[f]] = f'{type(e).__name__}: {str(e)[:120]}'
 
+# Careers pages that also list other employers' ads (a job-board widget, the parent group's jobs): an ad is kept only
+# if its hiringOrganization, title or text matches the company's regex; the rest is dropped. Can also be set per
+# company as "employer" in ats_detect.json.
+EMPLOYER = {
+    'momox SE': r'\bmomox\b',          # momox.biz/en/career embeds an arbeitnow.com widget with ads from other companies
+    'stashcat GmbH': r'\bstashcat\b',  # stashcat.com/karriere links to all of secunet's jobs
+}
+
 report = []
 before_total = sum(len(c.get('jobs') or []) for c in B['companies'])
 new_desc, stats = [], dict(kept_failed=0, new=0, closed=0, updated=0, suspicious=0, salaries_added=0)
@@ -350,13 +359,18 @@ for (ats, feed), cos in feeds.items():
         for jb in old:
             for k in key_ids(jb['u']): old_by[k] = jb
         fresh, seen = [], set()
+        emp, emp_dropped = EMPLOYER.get(c['n']) or (DET.get(c['n']) or {}).get('employer'), 0
         for x in raw:
             if x.get('keep'):   # crawled page that could not be loaded this time: keep the job as it was
                 prev = next((old_by[k] for k in key_ids(x['url']) if k in old_by), None)
+                if prev and emp and not ats_more.names_employer(
+                        {'t': prev['t'], 'desc': (DESC_BY_URL.get(prev['u'].split('?')[0].rstrip('/')) or {}).get('desc', '')}, (), emp):
+                    emp_dropped += 1; continue
                 if prev and prev['u'] not in seen:
                     seen.add(prev['u']); seen.add((re.sub(r'\W+', ' ', prev['t'].lower()).strip(), prev['loc'])); fresh.append(dict(prev)); stats['updated'] += 1
                 continue
             if not x.get('url') or not x.get('t') or PLACEHOLDER.search(x['t']) or is_manual(x['t']): continue
+            if emp and not ats_more.names_employer(x, (), emp): emp_dropped += 1; continue
             gl = german_loc(x.get('locs') or [], x.get('country', ''), x.get('remote', False))
             if not gl: continue
             loc, rem = gl
@@ -381,7 +395,9 @@ for (ats, feed), cos in feeds.items():
                                  'pub': str(x.get('pub') or ''), 'rem': str(rem)})
         fresh.sort(key=lambda j: j.get('p') or '', reverse=True)
         fresh = fresh[:CAP]
-        if not fresh and len(old) >= 5:
+        if emp_dropped:
+            report.append(f'- {c["n"]} ({ats}): {emp_dropped} ads from other employers dropped (EMPLOYER rule)')
+        if not fresh and len(old) >= 5 and not emp_dropped:
             stats['suspicious'] += 1; report.append(f'- {c["n"]} ({ats}): feed returned 0 German jobs (had {len(old)}), kept old jobs'); continue
         if ats == 'ashby' and len(fresh) < len(old) / 2 and len(old) >= 4:
             stats['suspicious'] += 1; report.append(f'- {c["n"]} (ashby): would shrink {len(old)} → {len(fresh)}, kept old jobs'); continue
