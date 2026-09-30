@@ -56,6 +56,11 @@
   "log": [
    "crawl https://www.rockantenne.de/rockcommunity/jobs: 1 jobs, 1 in Germany, 0 match the board"
   ],
+  "skip": [
+   "https://aby.fm/ra23jobsabygroup",
+   "https://aby.fm/ra26jobsabygrouppromoter",
+   "https://aby.fm/ra23jobsabygroupinitiativ"
+  ],
   "was": "custom"
  },
  "Algoriddim": {
@@ -154,7 +159,9 @@
    "https://www.bwi.de/karriere/stellenangebote/job/lead-cyber-security-manager-siem-anbindung-m-w-d-70434%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/domain-architect-information-system-architecture-m-w-d-70446%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/it-architekt-losungsdesign-it-infrastruktur-m-w-d-70438%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
-   "https://www.bwi.de/karriere/stellenangebote/job/it-expert-business-integration-ietd-sinn-m-w-d-70359%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
+   "https://www.bwi.de/karriere/stellenangebote/job/it-expert-business-integration-ietd-sinn-m-w-d-70359%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/associate-consultant-m-w-d-concept-ld-69840%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-ci-cd-platform-engineer-architect-m-w-d-70418%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
   ],
   "was": "custom"
  },
@@ -569,6 +576,30 @@
   "log": [
    "crawl https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall: 7 jobs, 5 in Germany, 1 match the board"
   ],
+  "skip": [
+   "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/inc/open_graph_images/",
+   "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/stellenangebote.html",
+   "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/",
+   "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/bilder/igmetall/symbole/index",
+   "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/rss_generator-rss0.php",
+   "https://www.igmetall.de/ueber-uns/karriere",
+   "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall-1",
+   "https://www.igmetall.de/en/ueber-uns/karriere/offene-stellen-bei-der-ig-metall-1",
+   "https://www.igmetall.de/gewerkschaftstag-2023",
+   "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/stellenangebot.html",
+   "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/jobalert.html",
+   "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/jobsearch-jajax0.php",
+   "https://www.igmetall.de/ueber-uns/karriere/",
+   "https://www.igmetall.de/en/ueber-uns/karriere",
+   "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall",
+   "https://www.igmetall.de/ueber-uns/karriere/ausbildung-bei-der-ig-metall-dein-einstieg-ins-berufsleben",
+   "https://www.igmetall.de/ueber-uns/karriere/traineeprogramm",
+   "https://www.igmetall.de/ueber-uns/karriere/die-ig-metall-kennenlernen",
+   "https://www.igmetall.de/ueber-uns/karriere/arbeiten-bei-der-ig-metall",
+   "https://www.igmetall.de/ueber-uns/karriere/erfolgreich-sein-und-sich-weiterentwickeln",
+   "https://www.igmetall.de/ueber-uns/karriere/work-life-balance",
+   "https://www.igmetall.de/ueber-uns/karriere/fragen-und-antworten-zum-bewerbungsverfahren"
+  ],
   "was": "custom"
  },
  "INFOSOFT GmbH": {
@@ -744,7 +775,8 @@
    "https://jobs.klassikradio.de/*border-radius:",
    "https://jobs.klassikradio.de/en",
    "https://jobs.klassikradio.de/de?id=a022c0",
-   "https://jobs.klassikradio.de/de?id=7ab77a"
+   "https://jobs.klassikradio.de/de?id=7ab77a",
+   "https://jobs.klassikradio.de/de?id=f7f914"
   ],
   "was": "custom"
  },
@@ -845,7 +877,8 @@
    "https://loewensteinmedical.com/de-de/karriere/stellenangebot/anwendungsberater-m-w-d-im-bereich-medical-homecare-64974466/",
    "https://loewensteinmedical.com/de-de/karriere/stellenangebot/ausbildung-als-kaufmann-m-w-d-im-gesundheitswesen-zum-01082027-67258400/",
    "https://loewensteinmedical.com/de-de/karriere/stellenangebot/ausbildung-als-kaufmann-m-w-d-im-gross-und-aussenhandelsmanagement-zum-01082027-67258245/",
-   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/ausbildung-fachkraft-lagerlogistik-m-w-d-zum-01082027-67476197/"
+   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/ausbildung-fachkraft-lagerlogistik-m-w-d-zum-01082027-67476197/",
+   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/ausbildung-industriekaufmann-industriekauffrau-m-w-d-zum-01082027-67094175/"
   ],
   "was": "custom"
  },
@@ -1007,6 +1040,9 @@
   "found": "crawl",
   "log": [
    "crawl https://jobs.olympia-verlag.de/: 2 jobs, 2 in Germany, 1 match the board"
+  ],
+  "skip": [
+   "https://jobs.olympia-verlag.de/initiativbewerbung-de-f42.html"
   ],
   "was": "custom"
  },
@@ -1331,7 +1367,8 @@
    "https://hanssegmueller-portal.rexx-systems.com/stellenangebote.html\\",
    "https://hanssegmueller-portal.rexx-systems.com/Business-Development-Manager-mwd-E-Commerce-Digitaler-Vert-de-j3063.html\\",
    "https://hanssegmueller-portal.rexx-systems.com/de\\",
-   "https://hanssegmueller-portal.rexx-systems.com/*"
+   "https://hanssegmueller-portal.rexx-systems.com/*",
+   "https://hanssegmueller-portal.rexx-systems.com/Business-Development-Manager-mwd-E-Commerce-Digitaler-Vert-de-j3063.html"
   ],
   "was": "custom"
  },
@@ -1533,6 +1570,9 @@
   "log": [
    "crawl https://www.tuev-nord-group.com/de/karriere/jobs/: 45 jobs, 39 in Germany, 1 match the board"
   ],
+  "skip": [
+   "https://www.tuev-nord-group.com/de/karriere/jobs/api/configuration/pagetype-jobs/"
+  ],
   "was": "custom"
  },
  "VBB Verkehrsverbund Berlin-Brandenburg GmbH": {
@@ -1648,6 +1688,9 @@
   "log": [
    "crawl https://karriere.wortundbildverlag.de/jobs/: 1 jobs, 1 in Germany, 1 match the board"
   ],
+  "skip": [
+   "https://karriere.wortundbildverlag.de/jobs/Initiativstelle-de-f11.html"
+  ],
   "was": "custom"
  },
  "XYRALITY GmbH": {
@@ -1668,7 +1711,6 @@
   "https://finanzfluss.jobs.personio.de/job/2748191": "2026-09-27",
   "https://finanzfluss.jobs.personio.de/job/2759610": "2026-09-27",
   "https://finanzfluss.jobs.personio.de/job/2782859": "2026-09-27",
-  "https://finanzfluss.jobs.personio.de/job/2794065": "2026-09-27",
   "https://finanzfluss.jobs.personio.de/job/2806201": "2026-09-27",
   "https://finanzfluss.jobs.personio.de/job/2808090": "2026-09-27",
   "https://finanztip.jobs.personio.de/job/1740845": "2026-09-27",
@@ -1690,7 +1732,6 @@
   "https://ionity-gmbh.jobs.personio.de/job/2792054": "2026-09-27",
   "https://ionity-gmbh.jobs.personio.de/job/2796735": "2026-09-27",
   "https://ionity-gmbh.jobs.personio.de/job/2803465": "2026-09-27",
-  "https://ionity-gmbh.jobs.personio.de/job/2811181": "2026-09-27",
   "https://ionity-gmbh.jobs.personio.de/job/2817697": "2026-09-29",
   "https://ionity-gmbh.jobs.personio.de/job/994367": "2026-09-27",
   "https://omos-media.jobs.personio.de/job/2697992": "2026-09-27",
@@ -1710,6 +1751,26 @@
   "found": "crawl",
   "log": [
    "crawl https://careers.zooplus.com: 10 jobs, 4 in Germany, 1 match the board"
+  ],
+  "skip": [
+   "https://careers.zooplus.com/jobs/search",
+   "https://careers.zooplus.com/jobs/search_preview",
+   "https://careers.zooplus.com/jobs/senior-creative-automation-manager-all-genders-madrid-spain",
+   "https://careers.zooplus.com/jobs/senior-ai-engineer-all-genders-madrid-spain",
+   "https://careers.zooplus.com/jobs/e-commerce-shop-operations-specialist-with-finnish-all-genders-munich-bavaria-germany",
+   "https://careers.zooplus.com/jobs/e-commerce-shop-operations-specialist-with-finnish-all-genders-madrid-spain",
+   "https://careers.zooplus.com/jobs/e-commerce-shop-operations-specialist-with-finnish-all-genders-london-england-united-kingdom",
+   "https://careers.zooplus.com/jobs/e-commerce-shop-operations-specialist-with-finnish-all-genders-krakow-lesser-poland-poland",
+   "https://careers.zooplus.com/jobs/senior-analyst-loyalty-analytics-all-genders-krakow-lesser-poland-poland",
+   "https://careers.zooplus.com/jobs/senior-analyst-loyalty-analytics-all-genders-madrid-spain",
+   "https://careers.zooplus.com/jobs/vendor-manager-non-food-all-genders-munich-bavaria-germany-e5420360-bd52-45d6-9bb0-fc66868c338d",
+   "https://careers.zooplus.com/jobs/invoice-inspector-1-5-years-maternity-cover-all-genders-vienna-austria-bf24c5dc-7d39-4d65-aa14-2665dc8d30db",
+   "https://careers.zooplus.com/jobs/working-student-vendor-management-all-genders-munich-bavaria-germany-f1bdecab-bb0a-4d22-b2c6-56448eb6f55f",
+   "https://careers.zooplus.com/jobs/senior-local-people-partner-all-genders-munich-bavaria-germany-74480c37-e018-4abf-a43d-7c4be81c0b14",
+   "https://careers.zooplus.com/jobs/senior-data-analyst-sales-all-genders-madrid-spain-320a3d13-5823-4a5b-bbaa-3ce6f3267276",
+   "https://careers.zooplus.com/jobs/senior-retail-media-intelligence-manager-all-genders-munich-bavaria-germany-459ff808-302a-4941-87c3-30cf423a5eec",
+   "https://careers.zooplus.com/jobs/working-student-editorial-all-genders-munich-bavaria-germany-6062a9a6-ddfd-41d0-abf3-2981ecf3b3cc",
+   "https://careers.zooplus.com/jobs/senior-retail-media-marketing-manager-all-genders-madrid-spain"
   ],
   "was": "custom"
  },
@@ -1849,7 +1910,8 @@
    "https://jobs.mbits.info/apply?id=3d6cd1",
    "https://jobs.mbits.info/apply?id=dacdb4",
    "https://jobs.mbits.info/apply?id=d00de3",
-   "https://jobs.mbits.info/apply?id=daf820"
+   "https://jobs.mbits.info/apply?id=daf820",
+   "https://jobs.mbits.info/de?id=daf820"
   ],
   "was": "custom"
  },
@@ -1860,6 +1922,14 @@
   "found": "crawl",
   "log": [
    "crawl https://momox.biz/en/career: 40 jobs, 39 in Germany, 0 match the board"
+  ],
+  "skip": [
+   "https://www.arbeitnow.com/jobs/companies/momox/senior-controller-in-berlin-finance-controlling-bei-momox-se-488745\\u0022\\n",
+   "https://www.arbeitnow.com/jobs/companies/momox/senior-controller-in-berlin-finance-controlling-bei-momox-se-488745\\u0022",
+   "https://www.arbeitnow.com/jobs/companies/momox/crm-marketing-manager-momox-fashion-berlin-145421\\u0022\\n",
+   "https://www.arbeitnow.com/jobs/companies/momox/crm-marketing-manager-momox-fashion-berlin-145421\\u0022",
+   "https://www.arbeitnow.com/jobs/companies/momox/senior-social-media-manager-fashion-berlin-momox-se-60747\\u0022\\n",
+   "https://www.arbeitnow.com/jobs/companies/momox/senior-social-media-manager-fashion-berlin-momox-se-60747\\u0022"
   ],
   "was": "unknown"
  },
@@ -1917,6 +1987,16 @@
   "found": "crawl",
   "log": [
    "crawl https://stashcat.com/karriere: 38 jobs, 36 in Germany, 1 match the board"
+  ],
+  "skip": [
+   "https://jobs.secunet.com/karriere",
+   "https://jobs.secunet.com/\\u003Everarbeitet",
+   "https://jobs.secunet.com/\\u003E`et_cssSelectors`",
+   "https://jobs.secunet.com/\\u003E`et_cssSelectorsLoaded`",
+   "https://jobs.secunet.com/\\u003E`et_scroll_depth`",
+   "https://jobs.secunet.com/\\u003E`isSdEnabled`",
+   "https://jobs.secunet.com/\\u003E`_et_coid`",
+   "https://jobs.secunet.com/\\u003E`et_allow_cookies`"
   ],
   "was": "custom"
  },
