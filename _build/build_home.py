@@ -6,7 +6,7 @@ running JavaScript, this script:
   * keeps index.html small: the app code goes to /assets/app.js and the job data to
     /assets/data.js (both loaded right after the first paint, cache-busted by content hash);
   * pre-renders real numbers and the newest jobs as plain <a href="/job/..."> links inside
-    #list, visible from the first paint, which the app replaces as soon as it has loaded;
+    #list (visually hidden behind placeholder cards until the app has loaded and replaces them);
   * writes company logos as separate image files (/assets/logos/) that load lazily;
   * uses the self-hosted font from fonts.py (no render-blocking Google Fonts request);
   * writes one clean <head>: title, one meta description, canonical, Open Graph and
@@ -73,9 +73,13 @@ static_list = (f'<div class="seo-pre"><h2>Newest app jobs in Berlin and Germany<
 body = body.replace('<b id="st-jobs">0</b>', f'<b id="st-jobs">{n_jobs}</b>')   # no thousands separator: same as the app and header.py
 body = body.replace('<b id="st-cos">0</b>', f'<b id="st-cos">{n_cos}</b>')
 body = body.replace('<div id="count"></div>', f'<div id="count">{n_jobs} roles</div>')
-# The pre-rendered list shows from the first paint; the app swaps in the full board once data.js has loaded.
-# (It used to be hidden behind grey placeholder cards until then, which held the first paint back by ~3 s on phones.)
-body = body.replace('<div id="list"></div>', f'<div id="list">{static_list}</div>')
+# First paint shows grey placeholder cards in the final layout (board.html: html.bajload .skel; extra CSS in the <style> below)
+# and the app replaces them in place once data.js has loaded, so nothing jumps. (Showing the plain pre-rendered list first
+# made the page flash: different cards, then the real board, with the font swapping in on top.) The pre-rendered list stays
+# in the HTML for crawlers and no-JS visitors but is visually hidden while the placeholders show; the <noscript> style undoes that.
+# The placeholders paint immediately, so they don't hold back first paint the way the old deferred script did.
+skel = '<div class="skel" aria-hidden="true"><div class="sk-ic"></div><div class="sk-b"><i></i><i></i><i></i></div></div>' * 8
+body = body.replace('<div id="list"></div>', f'<div id="list">{skel}{static_list}</div>')
 assert 'seo-pre' in body
 
 # ---- assets (content-hashed for caching) ----
@@ -151,7 +155,7 @@ ld = {"@context": "https://schema.org", "@graph": [
      "logo": {"@type": "ImageObject", "url": SITE + "/logo.png", "width": 512, "height": 512}}]}
 FAV = tpl[tpl.index('<link rel="icon"'):tpl.index('>', tpl.index('<link rel="icon"')) + 1]
 head = f'''<!doctype html>
-<html lang="en">
+<html lang="en" class="bajload">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="only light">
@@ -168,7 +172,13 @@ head = f'''<!doctype html>
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 {head_extra.rstrip()}
+<noscript><style>html.bajload .skel {{ display: none !important; }} html.bajload #list > .seo-pre {{ position: static !important; width: auto !important; height: auto !important; margin: 0 !important; overflow: visible !important; clip: auto !important; }}</style></noscript>
 <style>
+  /* first paint: placeholder cards in the final layout; the pre-rendered list stays in the HTML but is visually hidden meanwhile */
+  html.bajload #list > div.seo-pre {{ display: block; position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }}
+  .skel {{ min-height: 95px; box-sizing: border-box; }}
+  html.bajload #discList {{ min-height: 339px; background: repeating-linear-gradient(to bottom, transparent 0 10px, var(--chip) 10px 22px, transparent 22px 31px) 9px 0 / 62% 100% no-repeat; }}
+  @media (max-width: 880px) {{ .skel {{ min-height: 117px; }} html.bajload #discList {{ min-height: 0; background: none; }} }}
   .seo-pre h2 {{ font: 800 15px "Archivo", sans-serif; text-transform: uppercase; letter-spacing: .04em; margin: 6px 0 10px; }}
   .seo-pre ul {{ list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }}
   .seo-pre li {{ background: var(--surface); border: 1.5px solid var(--line); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; }}
@@ -181,11 +191,13 @@ head = f'''<!doctype html>
 '''
 # data.js and app.js load right after the first paint (in order, async=false) instead of as <script defer>, and without
 # a <link rel=preload>: a preloaded or deferred 1.5 MB script ran before the page first painted, which held the first
-# paint (and the Lighthouse FCP/LCP) back by ~2 s on phones. The pre-rendered list above is what visitors see meanwhile.
+# paint (and the Lighthouse FCP/LCP) back by ~2 s on phones. The placeholder cards above are what visitors see meanwhile.
 # (requestAnimationFrame doesn't run in a background tab, so a plain timer is the fallback.)
 loader = ("<script>(function(){var d=0;function go(){if(d)return;d=1;[" + json.dumps(data_url) + "," + json.dumps(app_url) + "].forEach(function(u){"
           "var s=document.createElement('script');s.src=u;s.async=false;document.body.appendChild(s)})}"
-          "requestAnimationFrame(function(){setTimeout(go,0)});setTimeout(go,2000)})()</script>")
+          "requestAnimationFrame(function(){setTimeout(go,0)});setTimeout(go,2000);"
+          # if the board still hasn't rendered after 15 s (script blocked or offline), show the plain list instead of placeholders
+          "setTimeout(function(){document.documentElement.classList.remove('bajload')},15000)})()</script>")
 doc = head + body.rstrip() + '\n' + loader + '\n' + site_hdr.HIDE_JS + '\n' + foot + '\n</body>\n</html>\n'
 open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8').write(doc)
 print(f'index.html {len(doc.encode()):,} bytes · data.js {len(data_out.encode()):,} · logos {len(used)} files · app.js {len(app.encode()):,} · pre-rendered jobs {len(top)} · {n_jobs} roles / {n_cos} companies')
