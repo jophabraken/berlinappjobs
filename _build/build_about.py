@@ -37,12 +37,14 @@ The last update was on {esc(B.get("checked", TODAY))}.</p>
 about working on apps. Pages for a city or role only exist when there are enough live jobs to make them useful.</p>
 <h2>For employers: corrections and removal</h2>
 <p>If a listing is wrong, outdated, or you'd like your company removed, email <a href="mailto:{mail}">{mail}</a>. Changes go live with the next daily update.</p>
+<h2>Privacy and visit statistics</h2>
+<p>To see which pages are useful we count visits with GoatCounter, a privacy-friendly statistics service. It sets no cookies and stores no personal data. We see page views, where visitors come from, country, browser and device type, and which apply buttons get clicked.</p>
 <h2>Contact</h2>
 <p><a href="mailto:{mail}">{mail}</a>''' + (' &middot; <a href="/impressum/">Impressum</a>' if site_config.IMPRESSUM else '') + '''</p>
 <h2 lang="de">Kurz auf Deutsch</h2>
 <p lang="de">Berlin App Jobs zeigt offene Stellen bei den Unternehmen hinter Deutschlands meistgenutzten Apps, täglich direkt aus ihren
 Bewerbungssystemen. Wir schreiben keine Anzeigen um, schätzen keine Gehälter und du bewirbst dich immer direkt beim Unternehmen.
-Korrekturen oder Entfernung einer Anzeige: <a href="mailto:''' + mail + '">' + mail + '</a>.</p>'
+Besuche zählen wir mit GoatCounter, ganz ohne Cookies und ohne personenbezogene Daten. Korrekturen oder Entfernung einer Anzeige: <a href="mailto:''' + mail + '">' + mail + '</a>.</p>'
 doc += '</div>' + FOOT_EN + '</body></html>'
 os.makedirs(os.path.join(OUT, 'about'), exist_ok=True)
 open(os.path.join(OUT, 'about', 'index.html'), 'w', encoding='utf-8').write(doc)

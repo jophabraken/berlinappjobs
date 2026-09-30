@@ -10,3 +10,7 @@ NEWSLETTER_URL = ''
 # Impressum (§ 5 DDG). When set, /impressum/ is built and linked in the footer. Example:
 # IMPRESSUM = dict(name='Vorname Nachname', street='Straße 1', city='10115 Berlin', email='…', phone='')
 IMPRESSUM = None
+
+# Visit statistics: GoatCounter (cookieless, no personal data, so no consent banner). Empty string switches it off.
+# Every page gets a small loader that runs after the page has loaded (add_analytics.py, last build step).
+GOATCOUNTER = 'https://jophabraken.goatcounter.com/count'
