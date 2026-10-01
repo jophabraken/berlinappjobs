@@ -274,9 +274,17 @@ def ats_of(c):
 # ---------------------------------------------------------------- run
 D = json.load(gzip.open(os.path.join(DATA, 'descriptions.json.gz'), 'rt', encoding='utf-8'))
 DESC_BY_URL = {x['url'].split('?')[0].rstrip('/'): x for x in D['jobs'] if x.get('url')}
+# Some careers sites tell jobs apart only after the '?' (traderepublic.com/en-de/about?jobId=…, hello.sipgate.de/jobs/job?r=…).
+# So the match key is the whole URL; only parameters that track the visit or pick a language are dropped.
+_TRACKING = re.compile(r'^(utm_\w+|gh_src|jobDbPVId|l|lang|page_lang|ref|src|source|trk)$', re.I)
+def url_key(u):
+    p = urllib.parse.urlsplit((u or '').strip())
+    q = sorted((k, v) for k, v in urllib.parse.parse_qsl(p.query, keep_blank_values=True) if not _TRACKING.match(k))
+    return urllib.parse.urlunsplit((p.scheme, p.netloc, p.path.rstrip('/'), urllib.parse.urlencode(q), p.fragment)).rstrip('/')
 def key_ids(u):
+    """Keys that find a job again in the next refresh: its URL (url_key), then any UUID or long number in it. Ordered, best first."""
     u = u or ''
-    return {u.split('?')[0].rstrip('/')} | set(re.findall(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|\d{6,}', u))
+    return [url_key(u)] + sorted(set(re.findall(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|\d{6,}', u)))
 
 # ---- hiring-system detection for companies without a readable feed
 DETECT_FILE = os.path.join(DATA, 'ats_detect.json')
@@ -357,36 +365,35 @@ for (ats, feed), cos in feeds.items():
             continue
         old_by = {}
         for jb in old:
-            for k in key_ids(jb['u']): old_by[k] = jb
-        fresh, seen = [], set()
+            for k in key_ids(jb['u']): old_by.setdefault(k, jb)
+        fresh, seen, claimed = [], set(), set()   # claimed: old jobs already matched, so two ads never share one old job
         emp, emp_dropped = EMPLOYER.get(c['n']) or (DET.get(c['n']) or {}).get('employer'), 0
         for x in raw:
             if x.get('keep'):   # crawled page that could not be loaded this time: keep the job as it was
-                prev = next((old_by[k] for k in key_ids(x['url']) if k in old_by), None)
+                prev = next((old_by[k] for k in key_ids(x['url']) if k in old_by and old_by[k]['u'] not in claimed), None)
                 if prev and emp and not ats_more.names_employer(
                         {'t': prev['t'], 'desc': (DESC_BY_URL.get(prev['u'].split('?')[0].rstrip('/')) or {}).get('desc', '')}, (), emp):
                     emp_dropped += 1; continue
                 if prev and prev['u'] not in seen:
-                    seen.add(prev['u']); seen.add((re.sub(r'\W+', ' ', prev['t'].lower()).strip(), prev['loc'])); fresh.append(dict(prev)); stats['updated'] += 1
+                    claimed.add(prev['u']); seen.add(prev['u']); seen.add((re.sub(r'\W+', ' ', prev['t'].lower()).strip(), prev['loc'])); fresh.append(dict(prev))
                 continue
             if not x.get('url') or not x.get('t') or PLACEHOLDER.search(x['t']) or is_manual(x['t']): continue
             if emp and not ats_more.names_employer(x, (), emp): emp_dropped += 1; continue
             gl = german_loc(x.get('locs') or [], x.get('country', ''), x.get('remote', False))
             if not gl: continue
             loc, rem = gl
-            prev = next((old_by[k] for k in key_ids(x['url']) | {x['id']} if k in old_by), None)
+            prev = next((old_by[k] for k in key_ids(x['url']) + [x['id']] if k in old_by and old_by[k]['u'] not in claimed), None)
             text = txt(x.get('desc'))
             if prev:
+                claimed.add(prev['u'])
                 jb = dict(prev)
                 jb['t'] = x['t'] or prev['t']
                 if x.get('sal') and not prev.get('sal'): jb['sal'] = x['sal']; stats['salaries_added'] += 1
                 if not jb.get('p'): jb['p'] = iso_date(x.get('pub'))
-                stats['updated'] += 1
             else:
                 jb = {'t': x['t'], 'loc': loc, 'rem': rem, 'd': discipline(x['t'], x.get('dept', ''), text), 's': seniority(x['t'], x.get('sen_hint', '')),
                       'lang': language(x['t'], text), 'u': x['url'], 'p': iso_date(x.get('pub')), 'sal': x.get('sal', '')}
                 if jb['sal']: stats['salaries_added'] += 1
-                stats['new'] += 1
             dup = (re.sub(r'\W+', ' ', jb['t'].lower()).strip(), jb['loc'])
             if jb['u'] in seen or dup in seen: continue
             seen.add(jb['u']); seen.add(dup); fresh.append(jb)
@@ -406,6 +413,8 @@ for (ats, feed), cos in feeds.items():
         if len(fresh) != len(old) or closed:
             flag = ' ⚠ big jump, worth a look' if len(fresh) >= max(3 * len(old), len(old) + 25) else ''
             report.append(f'- {c["n"]} ({ats}): {len(old)} → {len(fresh)} jobs ({closed} closed){flag}')
+        new_n = len({j['u'] for j in fresh} - {j['u'] for j in old})   # counted after the cap and duplicate check: what reaches the board
+        stats['new'] += new_n; stats['updated'] += len(fresh) - new_n
         c['jobs'] = fresh; c['total'] = len(fresh)
 
 # ---- job pages: link check for custom career pages, and full descriptions from the job's own page
