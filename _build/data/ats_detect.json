@@ -161,7 +161,17 @@
    "https://www.bwi.de/karriere/stellenangebote/job/it-architekt-losungsdesign-it-infrastruktur-m-w-d-70438%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/it-expert-business-integration-ietd-sinn-m-w-d-70359%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/associate-consultant-m-w-d-concept-ld-69840%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
-   "https://www.bwi.de/karriere/stellenangebote/job/senior-ci-cd-platform-engineer-architect-m-w-d-70418%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-ci-cd-platform-engineer-architect-m-w-d-70418%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-security-developer-m-w-d-70531%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-it-architect-chipkarte-smartcard-secure-element-m-w-d-69736%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/project-management-officer-pmo-projektkoordination-reporting-m-w-d-70506%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/system-administrator-2nd-level-client-m-w-d-69260%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/it-expert-testautomatisierung-m-w-d-70282%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/it-expert-testmanagement-m-w-d-70278%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/it-expert-testfallersteller-tester-m-w-d-70286%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-ai-engineer-agentic-software-development-w-m-d-70514%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/werkstudent-it-service-m-w-d-70510%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-test-automation-engineer-bundesmessenger-m-w-d-70250"
   ],
   "was": "custom"
  },
@@ -776,7 +786,9 @@
    "https://jobs.klassikradio.de/en",
    "https://jobs.klassikradio.de/de?id=a022c0",
    "https://jobs.klassikradio.de/de?id=7ab77a",
-   "https://jobs.klassikradio.de/de?id=f7f914"
+   "https://jobs.klassikradio.de/de?id=f7f914",
+   "https://jobs.klassikradio.de/de?id=148c07",
+   "https://jobs.klassikradio.de/de?id=47735f"
   ],
   "was": "custom"
  },
@@ -1187,7 +1199,9 @@
   ],
   "skip": [
    "https://db.jobs/de-de/Suche/Streckenlokfuehrer-im-bundeweiten-Gueterverkehr-m-w-d-MEG-11911528",
-   "https://db.jobs/de-de/Suche/Schlosser-in-Mechaniker-in-Facharbeiter-in-fuer-die-Qualifizi-13869808"
+   "https://db.jobs/de-de/Suche/Schlosser-in-Mechaniker-in-Facharbeiter-in-fuer-die-Qualifizi-13869808",
+   "https://db.jobs/de-de/Suche/Tiefbauer-in-Schlosser-in-Metallbauer-in-zur-Qualifikation-M-13119178",
+   "https://db.jobs/de-de/Suche/Elektriker-in-Mechatroniker-in-Industriemechaniker-in-zur-Qual-13132570"
   ],
   "was": "custom"
  },
@@ -1724,6 +1738,7 @@
   "https://finanztip.jobs.personio.de/job/2786154": "2026-09-27",
   "https://finanztip.jobs.personio.de/job/2791500": "2026-09-27",
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/1886091": "2026-09-27",
+  "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2322728": "2026-10-01",
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2752992": "2026-09-27",
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2768300": "2026-09-27",
   "https://ionity-gmbh.jobs.personio.de/job/2624591": "2026-09-27",
@@ -1732,7 +1747,6 @@
   "https://ionity-gmbh.jobs.personio.de/job/2792054": "2026-09-27",
   "https://ionity-gmbh.jobs.personio.de/job/2796735": "2026-09-27",
   "https://ionity-gmbh.jobs.personio.de/job/2803465": "2026-09-27",
-  "https://ionity-gmbh.jobs.personio.de/job/2817697": "2026-09-29",
   "https://ionity-gmbh.jobs.personio.de/job/994367": "2026-09-27",
   "https://omos-media.jobs.personio.de/job/2697992": "2026-09-27",
   "https://omos-media.jobs.personio.de/job/2744999": "2026-09-27",
@@ -1770,7 +1784,9 @@
    "https://careers.zooplus.com/jobs/senior-data-analyst-sales-all-genders-madrid-spain-320a3d13-5823-4a5b-bbaa-3ce6f3267276",
    "https://careers.zooplus.com/jobs/senior-retail-media-intelligence-manager-all-genders-munich-bavaria-germany-459ff808-302a-4941-87c3-30cf423a5eec",
    "https://careers.zooplus.com/jobs/working-student-editorial-all-genders-munich-bavaria-germany-6062a9a6-ddfd-41d0-abf3-2981ecf3b3cc",
-   "https://careers.zooplus.com/jobs/senior-retail-media-marketing-manager-all-genders-madrid-spain"
+   "https://careers.zooplus.com/jobs/senior-retail-media-marketing-manager-all-genders-madrid-spain",
+   "https://careers.zooplus.com/jobs/senior-retail-media-intelligence-manager-all-genders-london-england-united-kingdom-40250681-36d4-47ee-85b7-163200e3b835",
+   "https://careers.zooplus.com/jobs/senior-software-engineer-java-kotlin-all-genders-krakow-lesser-poland-poland-f7c02f28-b37a-432a-8186-87c8bbfc5a6d"
   ],
   "was": "custom"
  },
@@ -1929,7 +1945,9 @@
    "https://www.arbeitnow.com/jobs/companies/momox/crm-marketing-manager-momox-fashion-berlin-145421\\u0022\\n",
    "https://www.arbeitnow.com/jobs/companies/momox/crm-marketing-manager-momox-fashion-berlin-145421\\u0022",
    "https://www.arbeitnow.com/jobs/companies/momox/senior-social-media-manager-fashion-berlin-momox-se-60747\\u0022\\n",
-   "https://www.arbeitnow.com/jobs/companies/momox/senior-social-media-manager-fashion-berlin-momox-se-60747\\u0022"
+   "https://www.arbeitnow.com/jobs/companies/momox/senior-social-media-manager-fashion-berlin-momox-se-60747\\u0022",
+   "https://www.arbeitnow.com/jobs/companies/momox/technical-crm-manager-own-our-braze-marketing-technology-stack-berlin-489561\\u0022\\n",
+   "https://www.arbeitnow.com/jobs/companies/momox/technical-crm-manager-own-our-braze-marketing-technology-stack-berlin-489561\\u0022"
   ],
   "was": "unknown"
  },
