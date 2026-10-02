@@ -275,16 +275,23 @@ def ats_of(c):
 D = json.load(gzip.open(os.path.join(DATA, 'descriptions.json.gz'), 'rt', encoding='utf-8'))
 DESC_BY_URL = {x['url'].split('?')[0].rstrip('/'): x for x in D['jobs'] if x.get('url')}
 # Some careers sites tell jobs apart only after the '?' (traderepublic.com/en-de/about?jobId=…, hello.sipgate.de/jobs/job?r=…).
-# So the match key is the whole URL; only parameters that track the visit or pick a language are dropped.
-_TRACKING = re.compile(r'^(utm_\w+|gh_src|jobDbPVId|l|lang|page_lang|ref|src|source|trk)$', re.I)
+# So the match key is the whole URL; only parameters that track the visit, pick a language or carry a session are dropped
+# (jobs.hoermann.de adds the same ?sid=<32 hex> to every link of a crawl; a new session must not give every job a new page).
+_TRACKING = re.compile(r'^(utm_\w+|gh_src|jobDbPVId|l|lang|page_lang|ref|src|source|trk|sid|sessionid|jsessionid|phpsessid)$', re.I)
 def url_key(u):
+    """Match key: tracking/language/session parameters dropped, host lowercased, path decoded
+    (jobs.telefonica.com links the same ad as '(mwd)' and as '%28mwd%29')."""
     p = urllib.parse.urlsplit((u or '').strip())
     q = sorted((k, v) for k, v in urllib.parse.parse_qsl(p.query, keep_blank_values=True) if not _TRACKING.match(k))
-    return urllib.parse.urlunsplit((p.scheme, p.netloc, p.path.rstrip('/'), urllib.parse.urlencode(q), p.fragment)).rstrip('/')
+    return urllib.parse.urlunsplit((p.scheme.lower(), p.netloc.lower(), urllib.parse.unquote(p.path).rstrip('/'), urllib.parse.urlencode(q), p.fragment)).rstrip('/')
+_HEX = re.compile(r'[0-9a-fA-F]{16,}')
 def key_ids(u):
-    """Keys that find a job again in the next refresh: its URL (url_key), then any UUID or long number in it. Ordered, best first."""
+    """Keys that find a job again in the next refresh: its URL (url_key), then any UUID or long number in it. Ordered, best first.
+    Digit runs inside a long hex string (a session or tracking hash shared by every link) are not job ids."""
     u = u or ''
-    return [url_key(u)] + sorted(set(re.findall(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|\d{6,}', u)))
+    uuids = re.findall(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', u)
+    rest = _HEX.sub(lambda m: m.group(0) if m.group(0).isdigit() else ' ', u)
+    return [url_key(u)] + sorted(set(uuids + re.findall(r'\d{6,}', rest)))
 
 # ---- hiring-system detection for companies without a readable feed
 DETECT_FILE = os.path.join(DATA, 'ats_detect.json')
@@ -367,22 +374,32 @@ for (ats, feed), cos in feeds.items():
         for jb in old:
             for k in key_ids(jb['u']): old_by.setdefault(k, jb)
         fresh, seen, claimed = [], set(), set()   # claimed: old jobs already matched, so two ads never share one old job
+        # An old job whose own link is still in the feed is kept for that ad: the looser keys (ids in the link) never hand
+        # it to another ad that happens to come first in the feed.
+        in_feed = {url_key(x['url']) for x in raw if x.get('url')}
+        def match(keys):
+            for i, k in enumerate(keys):
+                o = old_by.get(k)
+                if o is None or o['u'] in claimed: continue
+                ok = url_key(o['u'])
+                if i == 0 or ok == keys[0] or ok not in in_feed: return o
+            return None
         emp, emp_dropped = EMPLOYER.get(c['n']) or (DET.get(c['n']) or {}).get('employer'), 0
         for x in raw:
             if x.get('keep'):   # crawled page that could not be loaded this time: keep the job as it was
-                prev = next((old_by[k] for k in key_ids(x['url']) if k in old_by and old_by[k]['u'] not in claimed), None)
+                prev = match(key_ids(x['url']))
                 if prev and emp and not ats_more.names_employer(
                         {'t': prev['t'], 'desc': (DESC_BY_URL.get(prev['u'].split('?')[0].rstrip('/')) or {}).get('desc', '')}, (), emp):
                     emp_dropped += 1; continue
-                if prev and prev['u'] not in seen:
-                    claimed.add(prev['u']); seen.add(prev['u']); seen.add((re.sub(r'\W+', ' ', prev['t'].lower()).strip(), prev['loc'])); fresh.append(dict(prev))
+                if prev and prev['u'] not in seen and url_key(prev['u']) not in seen:
+                    claimed.add(prev['u']); seen.add(prev['u']); seen.add(url_key(prev['u'])); seen.add((re.sub(r'\W+', ' ', prev['t'].lower()).strip(), prev['loc'])); fresh.append(dict(prev))
                 continue
             if not x.get('url') or not x.get('t') or PLACEHOLDER.search(x['t']) or is_manual(x['t']): continue
             if emp and not ats_more.names_employer(x, (), emp): emp_dropped += 1; continue
             gl = german_loc(x.get('locs') or [], x.get('country', ''), x.get('remote', False))
             if not gl: continue
             loc, rem = gl
-            prev = next((old_by[k] for k in key_ids(x['url']) + [x['id']] if k in old_by and old_by[k]['u'] not in claimed), None)
+            prev = match(key_ids(x['url']) + [x['id']])
             text = txt(x.get('desc'))
             if prev:
                 claimed.add(prev['u'])
@@ -395,13 +412,19 @@ for (ats, feed), cos in feeds.items():
                       'lang': language(x['t'], text), 'u': x['url'], 'p': iso_date(x.get('pub')), 'sal': x.get('sal', '')}
                 if jb['sal']: stats['salaries_added'] += 1
             dup = (re.sub(r'\W+', ' ', jb['t'].lower()).strip(), jb['loc'])
-            if jb['u'] in seen or dup in seen: continue
-            seen.add(jb['u']); seen.add(dup); fresh.append(jb)
+            if jb['u'] in seen or url_key(jb['u']) in seen or dup in seen: continue
+            seen.add(jb['u']); seen.add(url_key(jb['u'])); seen.add(dup); fresh.append(jb)
             if len(text) >= 300:
                 new_desc.append({'src': f'{ats}:{feed}', 'id': x['id'], 'url': jb['u'], 't': x['t'], 'loc': loc, 'desc': x.get('desc', ''), 'et': x.get('et', ''),
                                  'pub': str(x.get('pub') or ''), 'rem': str(rem)})
+        # Cap: jobs that already have a page come first, so a still-open job never loses its page just because newer ads
+        # arrived; new ads take the places that closed jobs free up. The board itself stays sorted newest first.
+        old_u = {j['u'] for j in old}
         fresh.sort(key=lambda j: j.get('p') or '', reverse=True)
+        fresh.sort(key=lambda j: j['u'] not in old_u)   # stable sort: old jobs first, newest first within each group
+        over_cap = max(0, len(fresh) - CAP)
         fresh = fresh[:CAP]
+        fresh.sort(key=lambda j: j.get('p') or '', reverse=True)
         if emp_dropped:
             report.append(f'- {c["n"]} ({ats}): {emp_dropped} ads from other employers dropped (EMPLOYER rule)')
         if not fresh and len(old) >= 5 and not emp_dropped:
@@ -412,7 +435,8 @@ for (ats, feed), cos in feeds.items():
         stats['closed'] += closed
         if len(fresh) != len(old) or closed:
             flag = ' ⚠ big jump, worth a look' if len(fresh) >= max(3 * len(old), len(old) + 25) else ''
-            report.append(f'- {c["n"]} ({ats}): {len(old)} → {len(fresh)} jobs ({closed} closed){flag}')
+            cap_note = f', {over_cap} newer ads waiting (cap {CAP})' if over_cap else ''
+            report.append(f'- {c["n"]} ({ats}): {len(old)} → {len(fresh)} jobs ({closed} closed{cap_note}){flag}')
         new_n = len({j['u'] for j in fresh} - {j['u'] for j in old})   # counted after the cap and duplicate check: what reaches the board
         stats['new'] += new_n; stats['updated'] += len(fresh) - new_n
         c['jobs'] = fresh; c['total'] = len(fresh)
