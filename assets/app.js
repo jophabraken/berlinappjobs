@@ -46,7 +46,7 @@
     en: {
       roles: 'roles', cosHiring: 'companies hiring', tJobs: 'Jobs', tCharts: 'Charts', tCos: 'Companies', tMap: 'Map', promo: 'Promote your company',
       wp: { office: 'Office', remote: 'Remote', hybrid: 'Hybrid' }, hType: 'Job type', hDate: 'Date posted', salOnly: 'Salary shown only', filtersBtn: 'Filters', showN: n => 'Show ' + n + ' job' + (n === 1 ? '' : 's'), clearAll: 'Clear all', filterHead: 'Filters', tGuides: 'Guides', moreNav: 'More', guidesH2: 'Guides', guidesSub: 'Practical guides to finding a job at a German app company. New ones added weekly.', readGuide: 'Read guide', backGuides: 'All guides', introGuide: 'Read the guides →', moreGuides: n => n + ' more guide' + (n === 1 ? '' : 's') + ' in German', fewerGuides: 'Hide German guides', otherLangH: 'In German', introCompanies: 'Browse companies →', footGuidesT: 'Guides', ctaJobs: 'Browse open roles ↗',
-      introH1: 'Berlin App Jobs: 3,178 jobs at apps <em>people actually use.</em>',
+      introH1: 'Berlin App Jobs: 3,215 jobs at apps <em>people actually use.</em>',
       introSub: "Live roles from the hiring systems of Germany's app companies. Direct apply, no middleman.",
       stamp: d => 'Feeds checked ' + d, search: 'Search roles, apps, companies…',
       hCity: 'City', hDisc: 'Discipline', hDet: 'Details', saved: 'Saved', reset: 'Reset filters', allCities: 'All of Germany',
@@ -79,7 +79,7 @@
     de: {
       roles: 'Stellen', cosHiring: 'Firmen stellen ein', tJobs: 'Jobs', tCharts: 'Charts', tCos: 'Unternehmen', tMap: 'Karte', promo: 'Werbung schalten',
       wp: { office: 'Vor Ort', remote: 'Remote', hybrid: 'Hybrid' }, hType: 'Anstellungsart', hDate: 'Veröffentlicht', salOnly: 'Nur mit Gehalt', filtersBtn: 'Filter', showN: n => n + ' Stelle' + (n === 1 ? '' : 'n') + ' anzeigen', clearAll: 'Zurücksetzen', filterHead: 'Filter', tGuides: 'Ratgeber', moreNav: 'Mehr', guidesH2: 'Ratgeber', guidesSub: 'Praktische Ratgeber für die Jobsuche bei deutschen App-Unternehmen. Wöchentlich neue Beiträge.', readGuide: 'Lesen', backGuides: 'Alle Ratgeber', introGuide: 'Zu den Ratgebern →', moreGuides: n => n + ' weitere Ratgeber auf Englisch', fewerGuides: 'Englische Ratgeber ausblenden', otherLangH: 'Auf Englisch', introCompanies: 'Alle Unternehmen →', footGuidesT: 'Ratgeber', ctaJobs: 'Offene Stellen ansehen ↗',
-      introH1: 'Berlin App Jobs: 3.178 Jobs bei Apps, <em>die Menschen wirklich nutzen.</em>',
+      introH1: 'Berlin App Jobs: 3.215 Jobs bei Apps, <em>die Menschen wirklich nutzen.</em>',
       introSub: 'Live-Stellen direkt aus den Bewerbungssystemen deutscher App-Unternehmen. Direkt bewerben, ohne Umwege.',
       stamp: d => 'Feeds geprüft am ' + d, search: 'Jobs, Apps, Unternehmen suchen…',
       hCity: 'Stadt', hDisc: 'Bereich', hDet: 'Details', saved: 'Gemerkt', reset: 'Filter zurücksetzen', allCities: 'Ganz Deutschland',
