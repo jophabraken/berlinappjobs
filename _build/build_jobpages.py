@@ -270,7 +270,7 @@ def contract_label(et, jt, k):
     if 'PART_TIME' in et and 'INTERN' in et: return ("Werkstudent", "Working student")[k]
     return ET_LABEL[et[-1]][k]
 NOT_A_JOB = re.compile(r'initiativbewerbung|open application|unsolicited application|speculative application|'
-                       r'keine passende stelle|blindbewerbung|^\s*initiativ\b|recruiting[ -]event|schick uns deine bewerbung|talent ?pool', re.I)
+                       r'keine passende stelle|blindbewerbung|\binitiativ\b|bewerbertag|recruiting[ -]event|schick uns deine bewerbung|talent ?pool', re.I)
 def job_desc(jt, co, where, de, et, remote, sal, desc_html):
     """~155 chars, unique per job: company, place, role, contract, remote, salary, then the ad's own opening words."""
     k = 0 if de else 1
