@@ -385,7 +385,11 @@ for (ats, feed), cos in feeds.items():
                 if i == 0 or ok == keys[0] or ok not in in_feed: return o
             return None
         emp, emp_dropped = EMPLOYER.get(c['n']) or (DET.get(c['n']) or {}).get('employer'), 0
-        for x in raw:
+        # Some feeds list one job twice under two ids (Greenhouse at N26 and SumUp: same title, city and text), and the
+        # duplicate check below keeps whichever comes first, so the job's page flipped between the two links every few days.
+        # Ads whose own link already has a page go first, so the twin with the page wins (the board is re-sorted below).
+        old_keys = {url_key(jb['u']) for jb in old}
+        for x in sorted(raw, key=lambda x: url_key(x.get('url')) not in old_keys):
             if x.get('keep'):   # crawled page that could not be loaded this time: keep the job as it was
                 prev = match(key_ids(x['url']))
                 if prev and emp and not ats_more.names_employer(
