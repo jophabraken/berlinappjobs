@@ -170,6 +170,8 @@
   .bmk .cnt { fill: #FFD400; font: 700 11px "Archivo", sans-serif; text-anchor: middle; }
   .bmk .cntbg { fill: #131310; stroke: #FFD400; stroke-width: 1; }
   .quietdot { fill: #55534A; opacity: .55; pointer-events: none; }
+  .lead { stroke: #FFD400; stroke-opacity: .45; stroke-width: 1; vector-effect: non-scaling-stroke; pointer-events: none; }
+  .leaddot { fill: #FFD400; opacity: .75; pointer-events: none; }
   .mapctl { position: absolute; top: 12px; right: 12px; display: flex; flex-direction: column; gap: 7px; z-index: 2; }
   .mapctl button { width: 42px; height: 42px; border: 1px solid #3a3a30; background: rgba(19,19,16,.92); color: #FFD400; font: 800 22px "Archivo", sans-serif; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; }
   .mapctl button:active, .mapctl button:hover { background: #FFD400; color: #131310; }
@@ -1421,10 +1423,10 @@
       const tl = el('text', { class: 'dlabel', x: d.cx, y: d.cy, 'font-size': 15 }, gL);
       tl.textContent = d.name;
     }
-    const gQ = el('g', {}, world), gM = el('g', {}, world), gC = el('g', {}, world);
+    const gQ = el('g', {}, world), gLn = el('g', {}, world), gM = el('g', {}, world), gC = el('g', {}, world);
     const sd = sponDevs();
     const nJobs = c => (c.jobs || []).length || (c.tier === 2 ? Math.min(c.total || 1, 40) : 0);
-    const R = c => { const n = nJobs(c); return n > 0 ? Math.min(30, 9 + 4.2 * Math.sqrt(n)) : 0; };
+    const R = c => { const n = nJobs(c); return n > 0 ? Math.min(24, 7 + 2.4 * Math.sqrt(n)) : 0; };   // was min(30, 9 + 4.2 sqrt n): too big for central Berlin
 
     let vw = svg.clientWidth || 900, vh = svg.clientHeight || 600;
     svg.setAttribute('viewBox', `0 0 ${vw} ${vh}`);
@@ -1472,7 +1474,75 @@
       el('circle', { class: 'cntbg', cx: r * 0.78, cy: -r * 0.78, r: 8.5 }, g);
       const tt = el('text', { class: 'cnt', x: r * 0.78, y: -r * 0.78, dy: 3.5 }, g);
       tt.textContent = n > 99 ? '99' : n;
-      c._g = g; nodes.push(c);
+      c._g = g; c._mr = r; nodes.push(c);
+      c._ln = el('line', { class: 'lead', x1: c.X, y1: c.Y, x2: c.X, y2: c.Y }, gLn);
+      c._ad = el('circle', { class: 'leaddot', cx: c.X, cy: c.Y, r: 0.05 }, gLn);
+      c.PX = c.X; c.PY = c.Y;
+    }
+
+    // Spread: central Berlin has ~100 hiring companies within a few streets, so markers at their exact addresses covered each
+    // other (big ones on top, smaller ones like Freecash hidden). For each zoom step (15%) the markers push each other aside
+    // until no two overlap, with a light pull back to their address; a thin line then ties a moved marker to its real address.
+    // Layouts are computed on demand, cached per zoom step, and the markers glide to the new one when the step changes.
+    // Computed at the step's lower bound (more crowded than any zoom inside the step), so nothing overlaps within a step.
+    const STEP = Math.log(1.15), lays = new Map();
+    const SZ = vw < 700 ? 0.72 : 1;   // phones: smaller markers, so central Berlin doesn't spread over the whole screen
+    const scaleAt = kk => 0.92 * SZ * Math.pow(kk / kDef, 0.38);
+    function spread(b) {
+      if (lays.has(b)) return lays.get(b);
+      const kb = Math.exp(b * STEP), sc = scaleAt(kb), N = nodes.length;
+      const x = new Float64Array(N), y = new Float64Array(N), ax = new Float64Array(N), ay = new Float64Array(N), rr = new Float64Array(N);
+      let maxR = 1;
+      nodes.forEach((c, i) => { ax[i] = x[i] = c.X * kb; ay[i] = y[i] = c.Y * kb; rr[i] = (c._mr + 2.5) * sc + 1.5; if (rr[i] > maxR) maxR = rr[i]; });
+      const cell = 2 * maxR;
+      for (let it = 0; it < 160; it++) {
+        const grid = new Map();
+        for (let i = 0; i < N; i++) { const key = Math.floor(x[i] / cell) + ',' + Math.floor(y[i] / cell); const a = grid.get(key); if (a) a.push(i); else grid.set(key, [i]); }
+        let hits = 0;
+        for (let i = 0; i < N; i++) {
+          const gx = Math.floor(x[i] / cell), gy = Math.floor(y[i] / cell);
+          for (let ox = -1; ox <= 1; ox++) for (let oy = -1; oy <= 1; oy++) {
+            const a = grid.get((gx + ox) + ',' + (gy + oy)); if (!a) continue;
+            for (const j of a) {
+              if (j <= i) continue;
+              let dx = x[j] - x[i], dy = y[j] - y[i], d = Math.hypot(dx, dy);
+              const min = rr[i] + rr[j]; if (d >= min) continue;
+              if (d < 1e-6) { dx = Math.cos(i + j); dy = Math.sin(i + j); d = 1; }
+              const push = (min - d) * 0.5, ai = rr[i] * rr[i], aj = rr[j] * rr[j], wi = aj / (ai + aj);   // the bigger marker moves less
+              x[i] -= dx / d * push * 2 * wi; y[i] -= dy / d * push * 2 * wi;
+              x[j] += dx / d * push * 2 * (1 - wi); y[j] += dy / d * push * 2 * (1 - wi);
+              hits++;
+            }
+          }
+        }
+        if (it < 110) for (let i = 0; i < N; i++) { x[i] += (ax[i] - x[i]) * 0.04; y[i] += (ay[i] - y[i]) * 0.04; }
+        else if (!hits) break;
+      }
+      const out = { x: new Float64Array(N), y: new Float64Array(N) };
+      for (let i = 0; i < N; i++) { out.x[i] = x[i] / kb; out.y[i] = y[i] / kb; }
+      lays.set(b, out); return out;
+    }
+    let layB = null, tw = null, twRaf = 0;
+    function placeMarkers(s) {
+      const b = Math.floor(Math.log(k) / STEP + 1e-9);
+      if (b !== layB) {
+        const L2 = spread(b), N = nodes.length;
+        if (layB === null || REDUCE) { nodes.forEach((c, i) => { c.PX = L2.x[i]; c.PY = L2.y[i]; }); tw = null; }
+        else tw = { t0: performance.now(), fx: nodes.map(c => c.PX), fy: nodes.map(c => c.PY), L: L2 };
+        layB = b;
+      }
+      if (tw) {
+        const p = Math.min(1, (performance.now() - tw.t0) / 260), e = 1 - Math.pow(1 - p, 3);
+        nodes.forEach((c, i) => { c.PX = tw.fx[i] + (tw.L.x[i] - tw.fx[i]) * e; c.PY = tw.fy[i] + (tw.L.y[i] - tw.fy[i]) * e; });
+        if (p >= 1) tw = null; else if (!twRaf) twRaf = requestAnimationFrame(() => { twRaf = 0; apply(); });
+      }
+      const dr = 1.8 / k, sc = scaleAt(k);
+      for (const c of nodes) {
+        c._g.setAttribute('transform', `translate(${c.PX},${c.PY}) scale(${s})`);
+        const far = Math.hypot(c.PX - c.X, c.PY - c.Y) * k > c._mr * sc * 0.45;
+        c._ln.style.display = c._ad.style.display = far ? '' : 'none';
+        if (far) { c._ln.setAttribute('x2', c.PX); c._ln.setAttribute('y2', c.PY); c._ad.setAttribute('r', dr); }
+      }
     }
 
     // city bubbles (shown when zoomed out)
@@ -1499,10 +1569,10 @@
     function apply() {
       world.setAttribute('transform', `translate(${tx},${ty}) scale(${k})`);
       const low = k < kSwitch;
-      if (low !== lastLow) { gM.style.display = gQ.style.display = gL.style.display = gCN.style.display = low ? 'none' : ''; gC.style.display = low ? '' : 'none'; lastLow = low; hideTip(); }
+      if (low !== lastLow) { gM.style.display = gQ.style.display = gLn.style.display = gL.style.display = gCN.style.display = low ? 'none' : ''; gC.style.display = low ? '' : 'none'; lastLow = low; hideTip(); }
       if (!low) {
-        const s = (0.92 / k) * Math.pow(k / kDef, 0.38);
-        for (const c of nodes) c._g.setAttribute('transform', `translate(${c.X},${c.Y}) scale(${s})`);
+        const s = scaleAt(k) / k;
+        placeMarkers(s);
         const qs = (2.6 / k) * Math.pow(k / kDef, 0.38);
         for (const d of gQ.children) d.setAttribute('r', qs);
         const lf = (12.5 / (k * BFX)) * Math.pow(k / kDef, 0.22);
