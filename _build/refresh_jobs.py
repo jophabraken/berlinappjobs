@@ -498,13 +498,21 @@ for (c, jb), page in zip(need, pages_bf):
 live_now = {jb['u'] for c in B['companies'] for jb in c.get('jobs') or []}
 for u in [u for u in NODESC if u not in live_now]: NODESC.pop(u, None)   # forget closed jobs
 dead_total = 0
+# Links that answered 404/410 but were kept by the site-change rail below: first day seen dead. build_jobpages.py drops
+# the JobPosting markup of such a job and points its page at the careers site, so we never advertise a dead ad as open.
+DEAD = DET.setdefault('_dead', {})
 for c in custom:
     dead = [jb for jb in c['jobs'] if status.get(jb['u']) is False]
+    for jb in c['jobs']:
+        if (checked.get(jb['u']) or (None, None))[1] is not None: DEAD.pop(jb['u'], None)   # the page loaded again
     if not dead: continue
     if len(dead) > len(c['jobs']) / 2 and len(c['jobs']) >= 4:
-        report.append(f'- {c["n"]} (custom): {len(dead)}/{len(c["jobs"])} links 404, looks like a site change, kept all'); continue
+        for jb in dead: DEAD.setdefault(jb['u'], TODAY.isoformat())
+        report.append(f'- {c["n"]} (custom): {len(dead)}/{len(c["jobs"])} links 404 (since {min(DEAD[jb["u"]] for jb in dead)}), looks like a site change, kept all'); continue
     c['jobs'] = [jb for jb in c['jobs'] if status.get(jb['u']) is not False]; c['total'] = len(c['jobs']); dead_total += len(dead)
     report.append(f'- {c["n"]} (custom): removed {len(dead)} dead links')
+on_board = {jb['u'] for c in B['companies'] for jb in c.get('jobs') or []}
+for u in [u for u in DEAD if u not in on_board]: DEAD.pop(u, None)   # forget jobs that left the board
 
 after_total = sum(len(c.get('jobs') or []) for c in B['companies'])
 fail_share = len(errors) / max(1, len(feeds))
