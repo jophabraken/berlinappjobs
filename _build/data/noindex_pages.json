@@ -28,6 +28,7 @@
 "companies/hagebau-connect",
 "companies/inkitt",
 "companies/lexware",
+"companies/lieferando-just-eat-takeaway",
 "companies/lvm-versicherung-muenster-a-g",
 "companies/mcdonald-s",
 "companies/median-kliniken",
@@ -42,6 +43,7 @@
 "companies/teamviewer",
 "companies/telekom",
 "companies/thalia-buecher",
+"companies/vius-and-kgaa",
 "companies/warentest",
 "companies/wiebel-und-partner",
 "en/companies/11freunde",
@@ -73,6 +75,7 @@
 "en/companies/hagebau-connect",
 "en/companies/inkitt",
 "en/companies/lexware",
+"en/companies/lieferando-just-eat-takeaway",
 "en/companies/lvm-versicherung-muenster-a-g",
 "en/companies/mcdonald-s",
 "en/companies/median-kliniken",
@@ -87,6 +90,7 @@
 "en/companies/teamviewer",
 "en/companies/telekom",
 "en/companies/thalia-buecher",
+"en/companies/vius-and-kgaa",
 "en/companies/warentest",
 "en/companies/wiebel-und-partner"
 ]
