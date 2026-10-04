@@ -15,6 +15,11 @@ exec(SRC[SRC.index('def jsonld(objs):'):SRC.index('def jobposting_list')])  # js
 D = json.load(__import__('gzip').open(os.path.join(DATA,'descriptions.json.gz'), 'rt', encoding='utf-8'))
 FETCHED = D['fetched'][:10]
 VALID_THROUGH = (datetime.date.fromisoformat(FETCHED) + datetime.timedelta(days=30)).isoformat()
+# Apply links that answered 404/410 in two or more refreshes but were kept by refresh_jobs.py's site-change rail ("_dead" in
+# ats_detect.json): the page stays, without JobPosting markup, with the "may no longer be open" note shown and the
+# buttons pointing at the company's careers site. Google: remove the markup once a job is no longer open.
+try: DEAD = {u for u, d in (json.load(open(os.path.join(DATA, 'ats_detect.json'), encoding='utf-8')).get('_dead') or {}).items() if d < FETCHED}
+except Exception: DEAD = set()
 idx = {}; _base = {}
 for j in D['jobs']:
     for k in filter(None, [j.get('url'), str(j.get('id') or '')]):
@@ -341,7 +346,10 @@ for rec in pages:
     if jb.get('sal'): pills.append(esc(jb['sal'].split('•')[0].strip()))
     # Placeholder ads ("Lorem ipsum" test postings) and open applications are not job openings, so they get no
     # JobPosting markup. The page itself stays as it is.
-    not_a_job = bool(re.search(r'lorem ipsum', ad_text, re.I) or NOT_A_JOB.search(jb['t']))
+    # A link kept although it answered 404 in two or more refreshes (DEAD, see above): no markup, note shown, careers site.
+    gone = jb['u'] in DEAD
+    apply_u, apply_l = (c.get('careers') or jb['u'], L('Zur Karriereseite', 'Go to the careers site')) if gone else (jb['u'], L('Jetzt beim Unternehmen bewerben', 'Apply on the company site'))
+    not_a_job = bool(re.search(r'lorem ipsum', ad_text, re.I) or NOT_A_JOB.search(jb['t'])) or gone
     body = (head(full_title, meta_desc, url, EXTRA_CSS + "\n" + jsonld([crumbs] if not_a_job else [jp, crumbs]), lang="de" if de else "en").replace('<html lang="de">', f'<html lang="{"de" if de else "en"}">')
       + f'<a class="back" href="/" id="backlink">&larr; {L("Alle Stellen", "All jobs")}</a>'
       + f'<nav class="crumb"><a href="/">{L("Start", "Home")}</a> / '
@@ -349,17 +357,17 @@ for rec in pages:
       + f'<h1>{esc(jb["t"])}</h1>'
       + f'<div class="meta"><b>{esc(cname)}</b>' + ''.join(f'<span class="pill">{p}</span>' for p in pills) + f'<span>{L("Veröffentlicht", "Posted")} {posted}</span></div>'
       + costrip(c, cname, cslug, L)
-      + f'<div id="expired" class="expired" hidden>{L("Diese Anzeige ist möglicherweise nicht mehr aktuell. Prüfe die Stelle auf der Karriereseite des Unternehmens.", "This posting may no longer be open. Check the role on the company careers page.")}</div>'
-      + f'<a class="cta applybtn" href="{esc(jb["u"])}" target="_blank" rel="noopener nofollow">{L("Jetzt beim Unternehmen bewerben", "Apply on the company site")} &#8599;</a>'
+      + f'<div id="expired" class="expired"{"" if gone else " hidden"}>{L("Diese Anzeige ist möglicherweise nicht mehr aktuell. Prüfe die Stelle auf der Karriereseite des Unternehmens.", "This posting may no longer be open. Check the role on the company careers page.")}</div>'
+      + f'<a class="cta applybtn" href="{esc(apply_u)}" target="_blank" rel="noopener nofollow">{apply_l} &#8599;</a>'
       + f'<div class="jd">{desc}</div>'
-      + f'<a class="cta applybtn" href="{esc(jb["u"])}" target="_blank" rel="noopener nofollow" style="margin-top:16px">{L("Jetzt beim Unternehmen bewerben", "Apply on the company site")} &#8599;</a>'
+      + f'<a class="cta applybtn" href="{esc(apply_u)}" target="_blank" rel="noopener nofollow" style="margin-top:16px">{apply_l} &#8599;</a>'
       + f'<p class="note">{L("Quelle: Bewerbungssystem von", "Source: hiring system of")} {esc(cname)}, {L("zuletzt geprüft am", "last checked")} {FETCHED}. {L("Du bewirbst dich direkt beim Unternehmen.", "You apply directly with the company.")}</p>'
       + other_html
       + (f'<p style="margin-top:22px"><a href="{L("", "/en")}/companies/{cslug}/">{L("Alle Infos und Apps von", "All info and apps from")} {esc(cname)} &rarr;</a> &middot; ' if cslug else '<p style="margin-top:22px">')
       + f'<a href="/">{L("Alle Stellen auf dem Board", "All jobs on the board")} &rarr;</a></p>'
       + '</div>'
       + f'<div class="stick" id="stick" aria-hidden="true"><div class="in"><div class="tx"><b>{esc(jb["t"])}</b><span>{esc(cname)} &middot; {esc(loc)}</span></div>'
-      + f'<a class="cta applybtn" href="{esc(jb["u"])}" target="_blank" rel="noopener nofollow" tabindex="-1">{L("Bewerben", "Apply")} &#8599;</a></div></div>'
+      + f'<a class="cta applybtn" href="{esc(apply_u)}" target="_blank" rel="noopener nofollow" tabindex="-1">{L("Bewerben", "Apply")} &#8599;</a></div></div>'
       + (FOOT if de else FOOT_EN) + EXPIRE_JS + BACK_JS + '</body></html>')
     d = os.path.join(JOB_DIR, slug); os.makedirs(d, exist_ok=True)
     open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(body)
