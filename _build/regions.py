@@ -36,4 +36,6 @@ REGION = {
  'Böblingen': _BW, 'Bad Säckingen': _BW, 'Lörrach': _BW, 'Pforzheim': _BW, 'Reutlingen': _BW, 'Tübingen': _BW,
  'Limburg an der Lahn': _HE, 'Frankenthal (Pfalz)': _RP, 'Osnabrück': _NI, 'Ahrensburg': _SH, 'Börnsen': _SH,
  'Lübeck': _SH, 'Mölln': _SH, 'Norderstedt': _SH, 'Reinbek': _SH, 'Sylt': _SH, 'Dallgow-Döberitz': _BB, 'Schwerin': _MV,
+ # Zalando offices (5 Oct)
+ 'Ansbach': _BY, 'Lahr': _BW, 'Ludwigsfelde': _BB,
 }

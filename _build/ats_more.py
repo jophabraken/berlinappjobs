@@ -12,6 +12,7 @@ Readers (same raw-job dicts as the ones in refresh_jobs.py):
                 Jobs we already have are re-opened too: a job counts as closed when its page is gone (404/410)
                 or no longer carries a JobPosting (usually a redirect to the job list).
   * join, teamtailor: presets of crawl with the link pattern those systems use.
+  * zalando     jobs.zalando.com, Zalando's own careers site, from the job list its pages embed (HOST_READERS picks it).
 
 Detection (detect()): for a company without a readable feed, look for a hiring system's fingerprint in its
 careers URL, feed, ATS note and job links, then in the careers page and one job page. Every candidate is
@@ -347,7 +348,91 @@ def f_bamboohr(feed):
     with cf.ThreadPoolExecutor(6) as ex:
         return list(ex.map(detail, lst[:CAP * 2]))
 
-FETCHERS = {'workday': f_workday, 'workable': f_workable, 'bamboohr': f_bamboohr, 'crawl': f_crawl, 'join': f_join, 'teamtailor': f_teamtailor}
+# ---------------------------------------------------------------- Zalando (jobs.zalando.com)
+# Zalando's own careers site: no API, no JobPosting data. Each list page (/en/jobs?page=N, 15 jobs) carries its jobs as
+# JSON in the Next.js payload (self.__next_f): {"data":[{"title","id","entity","job_categories","offices","experience_level",
+# "updated_at"}]}, plus the office filter that maps each city to its country. The ad itself is on /en/jobs/{id}: a <dl> with
+# Location and Contract, then the description. Applications go through a form on that page, so it is also the apply link.
+ZAL = 'https://jobs.zalando.com'
+ZAL_CITY = {'Cologne': 'Köln', 'Hanover': 'Hannover', 'Dusseldorf': 'Düsseldorf', 'Munster': 'Münster', 'Munich': 'München',
+            'Moenchengladbach': 'Mönchengladbach', 'Constance': 'Konstanz', 'Giessen': 'Gießen', 'Nuremberg': 'Nürnberg', 'Frankfurt': 'Frankfurt am Main'}
+# Office roles only (Jop, 5 Oct 2026): warehouse, logistics and store jobs are left out, like MANUAL in refresh_jobs.py.
+ZAL_SKIP = re.compile(r'logistic|supply chain|warehouse|retail|outlet|store|maintenance|facility', re.I)
+
+def _rsc(page):
+    """The Next.js server-components payload of a page, decoded into one string."""
+    txt = ''
+    for p in re.findall(r'self\.__next_f\.push\(\[1,"((?:[^"\\]|\\.)*)"\]\)', page):
+        try: txt += json.loads('"' + p + '"')
+        except Exception: pass
+    return txt
+
+def _rsc_values(txt, key):
+    """Every JSON value that follows "key": in the payload."""
+    out, dec = [], json.JSONDecoder()
+    for m in re.finditer(r'"%s":(?=[\[{"])' % re.escape(key), txt):
+        try: out.append(dec.raw_decode(txt, m.end())[0])
+        except Exception: pass
+    return out
+
+def _zal_ad(page):
+    """(location, contract, description html) from a Zalando job page."""
+    info = {}
+    for dt, dd in re.findall(r'<dt[^>]*>(.*?)</dt>\s*<dd[^>]*>(.*?)</dd>', page, re.S):
+        info.setdefault(html.unescape(re.sub(r'<[^>]+>', '', dt)).strip().lower(), html.unescape(re.sub(r'<[^>]+>', ' ', dd)).strip())
+    # the ad is the rich-text <article class="prose …">; without one, the page's <main> minus header and application form
+    arts = [_inner(page, a) for a in re.finditer(r'<(article)\b[^>]*>', page, re.I)]
+    body = '\n'.join(arts)
+    if len(re.sub(r'<[^>]+>', '', body).strip()) < 500:
+        m = re.search(r'<(main)\b[^>]*>', page, re.I)
+        body = _inner(page, m) if m else ''
+    for rx in (r'<(div)\b[^>]*\bid="apply"[^>]*>', r'<(header)\b[^>]*>', r'<(form)\b[^>]*>'):   # the header and the application form
+        while True:
+            mm = re.search(rx, body, re.I)
+            if not mm: break
+            end = mm.end() + len(_inner(body, mm))
+            close = re.match(r'</%s\s*>' % mm.group(1), body[end:], re.I)
+            body = body[:mm.start()] + body[end + (close.end() if close else 0):]
+    body = re.sub(r'<(script|style|template|button|svg|select)\b.*?</\1\s*>', '', body, flags=re.S | re.I)
+    body = re.sub(r'<(?:img|input)\b[^>]*>', ' ', body, flags=re.I)
+    body = re.sub(r'<!--.*?-->', '', body, flags=re.S)
+    return info.get('location', ''), info.get('contract', ''), body.strip()
+
+def f_zalando(feed):
+    jobs, country, n = [], {}, 1
+    while n <= 30:
+        page = get(f'{ZAL}/en/jobs?page={n}')
+        txt = _rsc(page)
+        if n == 1:
+            for offices in _rsc_values(txt, 'offices'):
+                if isinstance(offices, list):
+                    for o in offices:
+                        if isinstance(o, dict) and o.get('main'): country[o['main']] = o.get('parent') or ''
+        batch = next((d for d in _rsc_values(txt, 'data') if isinstance(d, list) and d and isinstance(d[0], dict) and 'id' in d[0] and 'title' in d[0]), [])
+        if not batch: break
+        jobs += batch; n += 1
+    if not jobs: raise ValueError('no jobs found on jobs.zalando.com (site changed?)')
+    if not country: raise ValueError('no office list on jobs.zalando.com (site changed?)')
+    seen, keep = set(), []
+    for x in jobs:
+        de = [ZAL_CITY.get(o, o) for o in x.get('offices') or [] if country.get(o) == 'Germany']
+        de.sort(key=lambda c: c != 'Berlin')   # a Berlin job that is also in Dortmund shows as Berlin
+        if not de or str(x['id']) in seen or ZAL_SKIP.search(' '.join(x.get('job_categories') or [])): continue
+        seen.add(str(x['id'])); keep.append((x, de))
+    def detail(item):
+        x, de = item
+        url = f'{ZAL}/en/jobs/{x["id"]}'
+        try: loc, et, desc = _zal_ad(get(url))
+        except Exception: loc, et, desc = '', '', ''
+        return dict(id=str(x['id']), url=url, t=html.unescape(x.get('title') or ''), locs=de, country='Germany', remote=False, desc=desc,
+                    pub=x.get('updated_at') or '', et=et, sal='', dept=', '.join(x.get('job_categories') or []), sen_hint=x.get('experience_level') or '')
+    with cf.ThreadPoolExecutor(6) as ex:
+        return list(ex.map(detail, keep[:CAP * 2]))
+
+FETCHERS = {'workday': f_workday, 'workable': f_workable, 'bamboohr': f_bamboohr, 'crawl': f_crawl, 'join': f_join, 'teamtailor': f_teamtailor,
+            'zalando': f_zalando}
+# Careers sites with a reader of their own that companies on the board link as "custom": the host picks the reader.
+HOST_READERS = {'jobs.zalando.com': 'zalando'}
 CRAWL_ATS = {'crawl', 'join', 'teamtailor'}
 
 # ---------------------------------------------------------------- detection
