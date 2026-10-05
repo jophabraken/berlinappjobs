@@ -1,132 +1,131 @@
-"""One-off network probe, run from a GitHub runner (the same network the daily refresh uses).
+"""One-off network probe #2 (Zalando only), run from a GitHub runner by .github/workflows/probe-sites.yml.
 
-1. Zalando: how does jobs.zalando.com serve its job list? Looks for JSON-LD on job pages, embedded
-   Next.js data, the pager's query parameter, and API paths named in the site's JS bundles, then
-   tries the most likely API URLs.
-2. "Dead link" false positives: Lotum and Stillfront (bytro.teamtailor.com) answer 404 to the refresh's
-   page_check every day, but load fine elsewhere. Request them with the refresh's exact headers, without
-   Accept-Language, without our User-Agent, and with no headers, to see which one causes the 404.
+Probe #1 showed: jobs.zalando.com has no JSON API and no JSON-LD; the list is server-rendered (Next.js App
+Router), 15 jobs per page, ?page=N works, sitemap.xml loads. This run saves what a Zalando reader needs:
+  1. the sitemap's job URLs (count, URL shape, lastmod);
+  2. how many pages the list has, and the HTML of one job card;
+  3. job data inside the React server-components payload (self.__next_f), if any;
+  4. on one job page: title, location, date and description markup.
 
-Writes probe_report.md. Read-only: it only sends GET/HEAD requests, about 60 in total.
+Writes probe_report.md. Read-only: about 20 GET requests.
 """
-import json, re, urllib.request, urllib.error, urllib.parse
+import html as H, json, re, urllib.request, urllib.error, urllib.parse
 
 UA = 'Mozilla/5.0 (compatible; BerlinAppJobsBot/1.0; +https://berlinappjobs.com)'   # refresh_jobs.py
-HTML_H = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-          'Accept-Language': 'de-DE,de;q=0.9,en;q=0.8'}                                 # ats_more.py
+HDR = {'User-Agent': UA, 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+       'Accept-Language': 'en;q=0.9,de;q=0.8'}
+BASE = 'https://jobs.zalando.com'
 out = []
 def say(s=''): out.append(s); print(s)
 
-def fetch(url, headers=None, method='GET', limit=2_000_000):
-    req = urllib.request.Request(url, headers=headers or {}, method=method)
+def get(url):
     try:
-        with urllib.request.urlopen(req, timeout=25) as r:
-            return r.status, dict(r.headers), r.read(limit).decode('utf-8', 'replace'), r.geturl()
+        with urllib.request.urlopen(urllib.request.Request(url, headers=HDR), timeout=25) as r:
+            return r.status, r.read(3_000_000).decode('utf-8', 'replace')
     except urllib.error.HTTPError as e:
-        body = ''
-        try: body = e.read(4000).decode('utf-8', 'replace')
+        return e.code, ''
+    except Exception as e:
+        return None, f'{type(e).__name__}: {e}'
+
+def tidy(s):
+    """Shorten HTML for reading: drop svg/style/script bodies and long class lists, collapse spaces."""
+    s = re.sub(r'<svg\b.*?</svg>', '<svg/>', s, flags=re.S)
+    s = re.sub(r'<(style|script)\b.*?</\1>', '', s, flags=re.S)
+    s = re.sub(r'class="([^"]{60})[^"]*"', r'class="\1…"', s)
+    return re.sub(r'\s+', ' ', s).strip()
+
+def block(title, text, n):
+    say(f'**{title}**\n```\n{text[:n]}\n```')
+
+def rsc(page):
+    """Join the self.__next_f.push([1,"..."]) chunks into one decoded string."""
+    parts = re.findall(r'self\.__next_f\.push\(\[1,"((?:[^"\\]|\\.)*)"\]\)', page)
+    txt = ''
+    for p in parts:
+        try: txt += json.loads('"' + p + '"')
         except Exception: pass
-        return e.code, dict(e.headers or {}), body, url
-    except Exception as e:
-        return None, {}, f'{type(e).__name__}: {e}', url
+    return txt
 
-def snip(s, n=400): return re.sub(r'\s+', ' ', s or '')[:n]
+# ------------------------------------------------------------------ 1. sitemap
+say('## Zalando probe #2\n')
+st, sm = get(BASE + '/sitemap.xml')
+locs = re.findall(r'<loc>([^<]+)</loc>', sm)
+jobs = [u for u in locs if re.search(r'/jobs/\d{6,}', u)]
+say(f'### 1. sitemap.xml: HTTP {st}, {len(locs)} URLs, {len(jobs)} job URLs')
+say(f'- languages: {sorted({(re.search(r"\.com/(\w\w)/", u) or [None, "-"])[1] for u in jobs})}')
+for u in jobs[:5]: say(f'  - `{u}`')
+m = re.search(r'<url>\s*<loc>[^<]*/jobs/\d{6,}[^<]*</loc>.*?</url>', sm, re.S)
+if m: block('one job entry in the sitemap', tidy(m.group(0)), 600)
+en_ids = {re.search(r'/jobs/(\d+)', u).group(1) for u in jobs if '/en/' in u}
+say(f'- distinct job ids (en): {len(en_ids)}')
 
-# ------------------------------------------------------------------ 1. Zalando
-say('## 1. Zalando (jobs.zalando.com)\n')
-REF = {'User-Agent': UA, **HTML_H}
-LIST = 'https://jobs.zalando.com/en/jobs/'
-st, hd, html, final = fetch(LIST, REF)
-say(f'- Listing `{LIST}`: HTTP {st}, {len(html):,} chars, final URL `{final}`, server `{hd.get("Server", "")}`')
-job_links = sorted(set(re.findall(r'href="(/(?:en|de)/jobs/\d{6,}[^"]*)"', html)))
-say(f'- Job links in the HTML: {len(job_links)} (e.g. `{job_links[0] if job_links else "-"}`)')
-pager = sorted(set(re.findall(r'href="([^"]*[?&][^"]*page[^"]*)"', html, re.I)))[:8]
-say(f'- Pager links: {pager or "none found"}')
-nd = re.search(r'<script[^>]*id="__NEXT_DATA__"[^>]*>(.*?)</script>', html, re.S)
-if nd:
-    try:
-        d = json.loads(nd.group(1))
-        say(f'- `__NEXT_DATA__`: yes, page `{d.get("page")}`, buildId `{d.get("buildId")}`, pageProps keys {list((d.get("props", {}).get("pageProps") or {}).keys())[:15]}')
-        say(f'  - first 600 chars of pageProps: `{snip(json.dumps(d.get("props", {}).get("pageProps"))[:600], 600)}`')
-    except Exception as e:
-        say(f'- `__NEXT_DATA__`: present but not JSON ({e})')
-else:
-    say('- `__NEXT_DATA__`: none (App Router / RSC, or not Next.js)')
-say(f'- `self.__next_f` (React server components payload): {"yes" if "self.__next_f" in html else "no"}')
-ld = re.findall(r'<script[^>]*application/ld\+json[^>]*>(.*?)</script>', html, re.S)
-say(f'- JSON-LD blocks on the listing: {len(ld)}')
-api_inline = sorted(set(re.findall(r'["\'](/api/[\w/.-]{2,80}|https?://[\w.-]*zalando[\w.-]*/api/[\w/.-]{2,80})', html)))
-say(f'- `/api/` strings in the HTML: {api_inline[:20] or "none"}')
+# ------------------------------------------------------------------ 2. list pages
+say('\n### 2. List pages')
+st1, p1 = get(BASE + '/en/jobs')
+counts, seen, last = [], set(), 0
+for n in range(1, 21):
+    stn, pn = (st1, p1) if n == 1 else get(f'{BASE}/en/jobs?page={n}')
+    ids = list(dict.fromkeys(re.findall(r'href="/en/jobs/(\d{6,})', pn)))
+    new = [i for i in ids if i not in seen]; seen.update(ids)
+    counts.append(f'p{n}: {stn}/{len(ids)} ids/{len(new)} new')
+    if not new: last = n; break
+say(f'- {"; ".join(counts)}')
+say(f'- distinct job ids across pages: {len(seen)} (sitemap en: {len(en_ids)}, overlap {len(seen & en_ids)})')
+say(f'- page 1 title tag: `{H.unescape((re.search(r"<title>(.*?)</title>", p1, re.S) or [None, ""])[1])}`')
+filters = sorted(set(re.findall(r'href="(/en/jobs\?[^"]+)"', p1)))[:15]
+say(f'- filter/pager hrefs on page 1: {filters or "none"}')
+# one job card: the smallest element around the first job link
+first = re.search(r'href="/en/jobs/\d{6,}[^"]*"', p1)
+if first:
+    i = first.start()
+    start = max(p1.rfind('<li', 0, i), p1.rfind('<article', 0, i), p1.rfind('<div', max(0, i - 1500), i))
+    a_end = p1.find('</a>', i)
+    block('HTML of the first job card (tidied)', tidy(p1[max(0, i - 1200):a_end + 1500]), 3500)
 
-# job page: JSON-LD?
-if job_links:
-    ju = urllib.parse.urljoin(LIST, job_links[0])
-    st2, _, jhtml, _ = fetch(ju, REF)
-    lds = re.findall(r'<script[^>]*application/ld\+json[^>]*>(.*?)</script>', jhtml, re.S)
-    types = []
-    for b in lds:
-        try:
-            o = json.loads(b); types += [x.get('@type') for x in (o if isinstance(o, list) else [o]) if isinstance(x, dict)]
-        except Exception: types.append('unparseable')
-    say(f'- Job page `{ju}`: HTTP {st2}, JSON-LD types {types or "none"}, microdata JobPosting: {"yes" if "schema.org/JobPosting" in jhtml else "no"}')
-    if 'JobPosting' in types:
-        for b in lds:
-            if 'JobPosting' in b: say(f'  - JobPosting (first 700 chars): `{snip(b, 700)}`')
+# ------------------------------------------------------------------ 3. RSC payload
+say('\n### 3. React server-components payload on page 1')
+r1 = rsc(p1)
+say(f'- decoded payload: {len(r1):,} chars')
+fid = re.search(r'/en/jobs/(\d{6,})', p1)
+if r1 and fid:
+    k = r1.find(fid.group(1))
+    say(f'- first job id `{fid.group(1)}` found in payload at {k}')
+    if k >= 0: block('payload around the first job id', r1[max(0, k - 1500):k + 2500], 4000)
+keys = sorted(set(re.findall(r'"(title|jobTitle|name|location|locations|city|country|department|team|category|'
+                             r'employmentType|contractType|seniority|experienceLevel|workplaceType|remote|'
+                             r'publishedAt|createdAt|updatedAt|datePosted|postedAt|startDate|language|slug|id|'
+                             r'description|content|body|requisitionId|externalId|applyUrl|applicationUrl)"\s*:', r1)))
+say(f'- interesting keys in payload: {keys or "none"}')
 
-# JS bundles: which API paths does the front end call?
-scripts = sorted(set(re.findall(r'<script[^>]+src="([^"]+\.js[^"]*)"', html)))
-say(f'- Script bundles: {len(scripts)}')
-found = {}
-for s in scripts[:40]:
-    su = urllib.parse.urljoin(LIST, s)
-    stj, _, js, _ = fetch(su, {'User-Agent': UA}, limit=4_000_000)
-    if stj != 200: continue
-    for m in re.findall(r'["\'`]((?:https?://[\w.-]+)?/api/[\w/${}.:-]{2,100})', js):
-        found.setdefault(m, s.rsplit('/', 1)[-1])
-    for m in re.findall(r'["\'`](https?://[\w.-]*(?:algolia|workday|greenhouse|smartrecruiters|successfactors|personio|lever|ashby|graphql)[\w./-]*)', js, re.I):
-        found.setdefault(m, s.rsplit('/', 1)[-1])
-say(f'- API paths / ATS hosts named in the JS ({len(found)}):')
-for k, v in sorted(found.items())[:40]: say(f'  - `{k}` (in `{v}`)')
-
-# try the likely endpoints
-say('- Endpoint attempts (JSON Accept header):')
-JH = {'User-Agent': UA, 'Accept': 'application/json', 'Accept-Language': 'en'}
-tries = ['https://jobs.zalando.com/api/jobs/', 'https://jobs.zalando.com/api/jobs',
-         'https://jobs.zalando.com/api/jobs/?limit=10&offset=0', 'https://jobs.zalando.com/api/jobs/?page=1&limit=10',
-         'https://jobs.zalando.com/api/jobs/?locale=en', 'https://jobs.zalando.com/api/jobs/?lang=en&page=1',
-         'https://jobs.zalando.com/en/jobs/?page=2', 'https://jobs.zalando.com/en/jobs?page=2', 'https://jobs.zalando.com/en/jobs/?p=2',
-         'https://jobs.zalando.com/sitemap.xml', 'https://jobs.zalando.com/robots.txt']
-tries += [urllib.parse.urljoin(LIST, k) for k in sorted(found) if k.startswith('/api/') and '$' not in k and '{' not in k][:10]
-for u in dict.fromkeys(tries):
-    st3, h3, b3, _ = fetch(u, JH)
-    extra = ''
-    if 'page' in u and '/en/jobs' in u:
-        ids = re.findall(r'/(?:en|de)/jobs/(\d{6,})', b3)
-        extra = f' | first job ids {ids[:3]}'
-    say(f'  - `{u}` → {st3}, {h3.get("Content-Type", "")}, {len(b3):,} chars{extra} | `{snip(b3, 250)}`')
-
-# ------------------------------------------------------------------ 2. dead-link false positives
-say('\n## 2. "Dead link" false positives (page_check in refresh_jobs.py)\n')
-variants = [
-    ('refresh headers (UA + Accept + Accept-Language de)', {'User-Agent': UA, **HTML_H}),
-    ('our UA, no Accept-Language', {'User-Agent': UA, 'Accept': HTML_H['Accept']}),
-    ('browser-like UA, same Accept headers (diagnostic only)', {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36', **HTML_H}),
-    ('no headers at all (Python default UA)', {}),
-]
-urls = ['https://www.lotum.com', 'https://www.lotum.com/', 'https://bytro.teamtailor.com/jobs',
-        'https://bytro.teamtailor.com/jobs/6274405-senior-crm-manager',
-        'https://www.hanseaticbank.de/karriere/jobs/03573487',   # control: really 404 elsewhere
-        'https://berlinappjobs.com/']                          # control: should be 200
-say('| URL | ' + ' | '.join(v[0] for v in variants) + ' |')
-say('|---|' + '---|' * len(variants))
-for u in urls:
-    cells = []
-    for _, h in variants:
-        st4, h4, b4, fin = fetch(u, h)
-        note = (f'{st4}' if st4 else f'error: {snip(b4, 60)}') + (f' → {fin}' if fin != u else '') + (f' ({h4.get("Server", "")})' if st4 and st4 >= 400 else '')
-        cells.append(note)
-    say(f'| `{u}` | ' + ' | '.join(cells) + ' |')
-st5, _, b5, _ = fetch('https://api.ipify.org?format=json', {})
-say(f'\nRunner IP: {snip(b5, 60)} (GitHub-hosted Azure range)')
+# ------------------------------------------------------------------ 4. one job page
+say('\n### 4. One job page')
+ju = BASE + '/en/jobs/' + (fid.group(1) if fid else '2724676')
+stj, pj = get(ju)
+say(f'- `{ju}`: HTTP {stj}, {len(pj):,} chars')
+for name, rx in [('title tag', r'<title>(.*?)</title>'), ('h1', r'<h1[^>]*>(.*?)</h1>'),
+                 ('og:title', r'<meta[^>]+property="og:title"[^>]+content="([^"]*)"'),
+                 ('og:description', r'<meta[^>]+property="og:description"[^>]+content="([^"]*)"'),
+                 ('meta description', r'<meta[^>]+name="description"[^>]+content="([^"]*)"'),
+                 ('canonical', r'<link[^>]+rel="canonical"[^>]+href="([^"]*)"')]:
+    mm = re.search(rx, pj, re.S)
+    say(f'- {name}: `{tidy(H.unescape(re.sub(r"<[^>]+>", "", mm.group(1))))[:200] if mm else "-"}`')
+h1 = re.search(r'<h1\b', pj)
+if h1: block('HTML after the h1 (tidied): location / date / tags', tidy(pj[h1.start():h1.start() + 6000]), 3000)
+main = re.search(r'<main\b.*?</main>', pj, re.S)
+body = main.group(0) if main else pj
+text = re.sub(r'\s+', ' ', H.unescape(re.sub(r'<[^>]+>', ' ', re.sub(r'<(style|script)\b.*?</\1>', '', body, flags=re.S))))
+say(f'- visible text in <main>: {len(text):,} chars (main element: {"yes" if main else "no"})')
+heads = re.findall(r'<h[2-4][^>]*>(.*?)</h[2-4]>', body, re.S)
+say(f'- h2-h4 headings: {[tidy(re.sub(r"<[^>]+>", "", x))[:60] for x in heads][:15]}')
+dates = sorted(set(re.findall(r'\b20\d\d-\d\d-\d\d(?:T[\d:.]+Z?)?', pj)))[:10]
+say(f'- ISO dates on the page: {dates or "none"}')
+rj = rsc(pj)
+say(f'- job page RSC payload: {len(rj):,} chars; keys: '
+    f'{sorted(set(re.findall(r"\"(title|location|locations|city|publishedAt|createdAt|updatedAt|datePosted|description|content|employmentType|applyUrl|language|team|department)\"\s*:", rj))) or "none"}')
+if rj:
+    k = max(rj.find('"description"'), rj.find('"content"'))
+    if k >= 0: block('job page payload around "description"/"content"', rj[max(0, k - 800):k + 1500], 2300)
+apply = sorted(set(re.findall(r'href="([^"]*(?:apply|bewerb)[^"]*)"', pj, re.I)))[:5]
+say(f'- apply links: {apply or "none"}')
 
 open('probe_report.md', 'w', encoding='utf-8').write('\n'.join(out) + '\n')
