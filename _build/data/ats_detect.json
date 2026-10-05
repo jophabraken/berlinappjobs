@@ -180,7 +180,8 @@
    "https://www.bwi.de/karriere/stellenangebote/job/senior-produktmanager-applikation-zur-prufung-von-fuhrungs-und-kommunikationssystemen-m-w-d-70551%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/berater-logistische-prozesse-sap-ds-sap-mm-m-w-d-70587%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/werkstudent-it-projektunterstutzung-m-w-d-70555%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
-   "https://www.bwi.de/karriere/stellenangebote/job/project-management-officer-pmo-projektkoordination-reporting-m-w-d-70506"
+   "https://www.bwi.de/karriere/stellenangebote/job/project-management-officer-pmo-projektkoordination-reporting-m-w-d-70506",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-service-technician-m-w-d-70602%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
   ],
   "was": "custom"
  },
@@ -831,6 +832,12 @@
   "log": [
    "crawl https://www.l.de/karriere/stellenangebote/: 26 jobs, 21 in Germany, 9 match the board"
   ],
+  "skip": [
+   "https://www.l.de/karriere/stellenangebote/angebot/1669198-werkstudent-m-w-d-it-services---workplace-it/",
+   "https://www.l.de/karriere/stellenangebote/angebot/39-ausbildung-zum-elektroniker-m-w-d-fuer-betriebstechnik/",
+   "https://www.l.de/karriere/stellenangebote/angebot/41-ausbildung-zum-fahrer-m-w-d-mit-berufsabschluss-metalltechnik/",
+   "https://www.l.de/karriere/stellenangebote/angebot/136765-ausbildung-zum-kfz-mechatroniker-m-w-d-fuer-system--und-hochvolttechnik/"
+  ],
   "was": "custom"
  },
  "Lieferando (Just Eat Takeaway)": {
@@ -899,7 +906,9 @@
    "https://loewensteinmedical.com/de-de/karriere/stellenangebot/ausbildung-als-kaufmann-m-w-d-im-gesundheitswesen-zum-01082027-67258400/",
    "https://loewensteinmedical.com/de-de/karriere/stellenangebot/ausbildung-als-kaufmann-m-w-d-im-gross-und-aussenhandelsmanagement-zum-01082027-67258245/",
    "https://loewensteinmedical.com/de-de/karriere/stellenangebot/ausbildung-fachkraft-lagerlogistik-m-w-d-zum-01082027-67476197/",
-   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/ausbildung-industriekaufmann-industriekauffrau-m-w-d-zum-01082027-67094175/"
+   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/ausbildung-industriekaufmann-industriekauffrau-m-w-d-zum-01082027-67094175/",
+   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/anwendungsberaterin-medical-homecare-m-w-d-67868472/",
+   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/anwendungsberaterin-medical-homecare-m-w-d-67868427/"
   ],
   "was": "custom"
  },
@@ -1210,7 +1219,8 @@
    "https://db.jobs/de-de/Suche/Streckenlokfuehrer-im-bundeweiten-Gueterverkehr-m-w-d-MEG-11911528",
    "https://db.jobs/de-de/Suche/Schlosser-in-Mechaniker-in-Facharbeiter-in-fuer-die-Qualifizi-13869808",
    "https://db.jobs/de-de/Suche/Tiefbauer-in-Schlosser-in-Metallbauer-in-zur-Qualifikation-M-13119178",
-   "https://db.jobs/de-de/Suche/Elektriker-in-Mechatroniker-in-Industriemechaniker-in-zur-Qual-13132570"
+   "https://db.jobs/de-de/Suche/Elektriker-in-Mechatroniker-in-Industriemechaniker-in-zur-Qual-13132570",
+   "https://db.jobs/de-de/Suche/Mechaniker-in-Metallbauer-in-Maurer-in-als-Weichenmechaniker-i-13129068"
   ],
   "was": "custom"
  },
@@ -1594,7 +1604,39 @@
    "crawl https://www.tuev-nord-group.com/de/karriere/jobs/: 45 jobs, 39 in Germany, 1 match the board"
   ],
   "skip": [
-   "https://www.tuev-nord-group.com/de/karriere/jobs/api/configuration/pagetype-jobs/"
+   "https://www.tuev-nord-group.com/de/karriere/jobs/api/configuration/pagetype-jobs/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2023/magazin/inspired-by-knowledge/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2023/magazin/die-basis-der-vernetzten-welt/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2023/magazin/the-right-move/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2023/magazin/know-how-fuer-moderne-bahnhoefe/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2022/magazin/inspired-by-knowledge/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2022/magazin/schritt-fuer-schritt/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2022/magazin/making-visions-move/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2022/magazin/moeglichmacherinnen/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2021/management/brief-des-vorstandsvorsitzenden/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2021/management/konzerngeschaeftsleitung/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2021/management/bericht-des-aufsichtsrats/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2021/magazin/from-vision-to-value/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2021/magazin/wenn-ein-aufkleber-die-sicherheit-bedroht/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2021/magazin/vision-value/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2021/magazin/sicher-in-die-nachhaltige-zukunft/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2021/das-unternehmen/verantwortung-und-nachhaltigkeit/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2021/das-unternehmen/tuev-nord-group-in-zahlen/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2021/das-unternehmen/personalbericht/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2024/magazin/unsere-werte-mission-vision/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2024/magazin/wie-sicher-ist-gpt/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2024/magazin/speeding-up/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2024/magazin/der-draht-zur-gruenen-zukunft/",
+   "https://www.tuev-nord-group.com/de/unternehmen/unsere-business-units/energy-and-resources/tuev-nord-group-auf-der-e-world-2026/termin-mit-unseren-experten-pruefgeschaeft/",
+   "https://www.tuev-nord-group.com/de/unternehmen/unsere-business-units/energy-and-resources/tuev-nord-group-auf-der-e-world-2026/termin-mit-unseren-experten-beratung/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/das-unternehmen/finanzbericht/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/das-unternehmen/personalbericht/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/das-unternehmen/verantwortung-und-nachhaltigkeit/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/magazin/inspired-by-knowledge/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/magazin/security/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/management-und-aufsichtsrat/brief-des-vorstandsvorsitzenden/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/management-und-aufsichtsrat/die-konzerngeschaeftsleitung/",
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/magazin/digitale-transformation-startet-in-indonesien/"
   ],
   "was": "custom"
  },
@@ -1819,7 +1861,10 @@
    "https://careers.zooplus.com/jobs/senior-retail-media-marketing-manager-all-genders-madrid-spain",
    "https://careers.zooplus.com/jobs/senior-retail-media-intelligence-manager-all-genders-london-england-united-kingdom-40250681-36d4-47ee-85b7-163200e3b835",
    "https://careers.zooplus.com/jobs/senior-software-engineer-java-kotlin-all-genders-krakow-lesser-poland-poland-f7c02f28-b37a-432a-8186-87c8bbfc5a6d",
-   "https://careers.zooplus.com/jobs/senior-data-scientist-linear-optimization-all-genders-krakow-lesser-poland-poland"
+   "https://careers.zooplus.com/jobs/senior-data-scientist-linear-optimization-all-genders-krakow-lesser-poland-poland",
+   "https://careers.zooplus.com/jobs/working-student-app-growth-marketing-all-genders-london-england-united-kingdom",
+   "https://careers.zooplus.com/jobs/senior-loyalty-program-manager-all-genders-munich-bavaria-germany",
+   "https://careers.zooplus.com/jobs/quality-assurance-manager-12-months-ftc-all-genders-wroclaw-lower-silesia-poland"
   ],
   "was": "custom"
  },

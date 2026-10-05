@@ -1,30 +1,66 @@
-# Job refresh 2026-10-04
+# Job refresh 2026-10-05
 
-- API feeds: 178, failed: 4; custom career pages link-checked: 414 links, 5 removed
-- Jobs: 3257 → 3251 (new 3, closed 4, still open 2620)
+- API feeds: 178, failed: 4; custom career pages link-checked: 409 links, 4 removed
+- Jobs: 3251 → 3240 (new 43, closed 50, still open 2573)
 - Full descriptions read from job pages: 0 (custom career pages) + 0 (feeds without descriptions, 0 pages checked)
 - Hiring-system detection: 0 companies checked, 0 now read directly
-- Published salaries added: 1; companies kept as-is because of a suspicious result: 0
+- Published salaries added: 2; companies kept as-is because of a suspicious result: 0
 - Result: written
 
 ## Changes by company
 
-- FitX | FOR ALL OF US (crawl): 54 → 55 jobs (0 closed)
-- Flaconi (greenhouse): 11 → 10 jobs (1 closed)
-- Globus Fachmärkte (crawl): 52 → 53 jobs (0 closed)
-- HanseMerkur Krankenversicherung AG (crawl): 19 → 18 jobs (1 closed)
+- ABOUT YOU SE & Co. KG (crawl): 27 → 28 jobs (1 closed)
+- AMBOSS (ashby): 17 → 16 jobs (1 closed)
+- BUDNI Handels- und Service GmbH & Co. KG (crawl): 43 → 41 jobs (2 closed)
+- BWI GmbH (crawl): 60 → 60 jobs (1 closed, 40 newer ads waiting (cap 60))
+- Bloomwell GmbH (personio): 12 → 11 jobs (1 closed)
+- CEWE (workday): 40 → 39 jobs (1 closed)
+- DER SPIEGEL GmbH & Co. KG (softgarden): 9 → 8 jobs (1 closed)
+- Dyn Media GmbH (personio): 4 → 4 jobs (1 closed)
+- EGYM (ashby): 35 → 33 jobs (2 closed)
+- ERGO Group AG (crawl): 28 → 31 jobs (0 closed)
+- EintrachtTech GmbH (custom): removed 2 dead links
+- FitX | FOR ALL OF US (crawl): 55 → 56 jobs (0 closed)
+- Flix SE (greenhouse): 49 → 50 jobs (0 closed)
+- Freecash (ashby): 26 → 25 jobs (1 closed)
+- GetYourGuide (greenhouse): 42 → 39 jobs (3 closed)
+- Globus Fachmärkte (crawl): 53 → 60 jobs (0 closed, 1 newer ads waiting (cap 60))
+- Handelsblatt GmbH (crawl): 19 → 19 jobs (2 closed)
+- HanseMerkur Krankenversicherung AG (crawl): 18 → 19 jobs (0 closed)
 - Hanseatic Bank GmbH & Co KG (custom): 4/4 links 404 (since 2026-10-04), looks like a site change, kept all
-- Klassik Radio AG (crawl): 6 → 6 jobs (1 closed)
-- Lieferando (Just Eat Takeaway) (custom): removed 3 dead links
+- HelloFresh SE (greenhouse): 60 → 60 jobs (3 closed, 32 newer ads waiting (cap 60))
+- IDnow (greenhouse): 8 → 8 jobs (1 closed)
+- Immobilien Scout GmbH (custom): removed 1 dead links
+- Klassik Radio AG (crawl): 6 → 7 jobs (0 closed)
+- Lautsprecher Teufel GmbH (personio): 8 → 7 jobs (1 closed)
+- Leipziger Verkehrsbetriebe (crawl): 22 → 16 jobs (6 closed)
 - Lotum two GmbH (custom): 6/6 links 404 (since 2026-10-04), looks like a site change, kept all
+- N26 AG (greenhouse): 33 → 31 jobs (3 closed)
 - NORDSEE GmbH (custom): 14/15 links 404 (since 2026-10-04), looks like a site change, kept all
+- Nufin GmbH (ashby): 25 → 26 jobs (1 closed)
+- Parfümerie Akzente GmbH (crawl): 60 → 60 jobs (3 closed, 28 newer ads waiting (cap 60))
 - RADIO BOB GmbH & Co. KG (softgarden): fetch failed, kept 4 jobs. HTTPError: HTTP Error 404: Not Found
 - REGIOCAST GmbH & Co.KG (softgarden): fetch failed, kept 12 jobs. HTTPError: HTTP Error 404: Not Found
+- RSG Group GmbH (crawl): 34 → 37 jobs (0 closed)
+- Rausgegangen GmbH (personio): 3 → 4 jobs (0 closed)
+- Sanacorp Pharmahandel GmbH (crawl): 26 → 26 jobs (1 closed)
+- Sandbox Interactive GmbH (teamtailor): 10 → 11 jobs (0 closed)
 - Sdui (personio): fetch failed, kept 6 jobs. HTTPError: HTTP Error 429: Too Many Requests
+- Sixt (crawl): 20 → 22 jobs (0 closed)
+- Sonic Healthcare Germany GmbH & Co. KG (softgarden): 32 → 30 jobs (3 closed)
 - Stillfront Supremacy GmbH (custom): 11/11 links 404 (since 2026-10-04), looks like a site change, kept all
-- SumUp (greenhouse): 55 → 54 jobs (1 closed)
+- Telefónica Germany GmbH & Co. OHG (crawl): 28 → 27 jobs (1 closed)
 - Too Good To Go (greenhouse): fetch failed, kept 7 jobs. HTTPError: HTTP Error 404: Not Found
-- VIUS SE & Co. KGaA (custom): removed 2 dead links
+- Trade Republic Bank GmbH (greenhouse): 33 → 32 jobs (1 closed)
+- TÜV NORD Service GmbH & Co. KG (crawl): 60 → 60 jobs (1 closed)
+- VHV Versicherungen (custom): removed 1 dead links
+- Wertgarantie Beteiligungen GmbH (crawl): 17 → 16 jobs (1 closed)
+- Wolt (greenhouse): 39 → 38 jobs (1 closed)
 - aestimium GmbH (personio): fetch failed, kept 19 jobs. HTTPError: HTTP Error 429: Too Many Requests
+- bitiba GmbH (crawl): 8 → 7 jobs (1 closed)
+- celebrate apps (recruitee): 4 → 5 jobs (0 closed)
+- foodora (Delivery Hero) (smartrecruiters): 25 → 26 jobs (1 closed)
 - komoot GmbH (custom): 7/7 links 404 (since 2026-10-04), looks like a site change, kept all
+- mbits imaging GmbH (crawl): 6 → 3 jobs (3 closed)
 - stashcat GmbH (crawl): 42 ads from other employers dropped (EMPLOYER rule)
+- tonies GmbH (personio): 13 → 12 jobs (1 closed)
