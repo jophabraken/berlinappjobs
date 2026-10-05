@@ -305,8 +305,15 @@ def due(name):
     d = (DET.get(name) or {}).get('checked')
     try: return not d or (TODAY - datetime.date.fromisoformat(d)).days >= 30
     except Exception: return True
-todo = [c for c in B['companies'] if c.get('tier') == 1 and c.get('jobs') and not ats_of(c) and due(c['n'])]
-todo.sort(key=lambda c: (c['n'] in DET, -len(c['jobs'])))   # never checked first, then most jobs
+# Companies shown as "not hiring" (tier 2: careers link only, tier 3: no open roles) are checked too: a company with no
+# jobs on the day it was added would otherwise never be looked at again. Tier-1 companies come first, then the rest
+# by app installs; each company is checked at most every 30 days, so the whole board is covered in about two weeks.
+# NO_PROMOTE: companies on the board for their app whose open roles don't fit an app-jobs board (Jop, 5 Oct 2026).
+NO_PROMOTE = {'Wilhelm Hoyer B.V. + Co KG'}   # fuel and logistics: drivers and depot staff
+def has_url(c): return any((c.get(k) or '').startswith('http') for k in ('careers', 'feed'))
+todo = [c for c in B['companies'] if not ats_of(c) and due(c['n']) and c['n'] not in NO_PROMOTE
+        and ((c.get('tier') == 1 and c.get('jobs')) or (c.get('tier') in (2, 3) and has_url(c)))]
+todo.sort(key=lambda c: (c.get('tier') != 1, c['n'] in DET, -len(c.get('jobs') or []), -(c.get('v') or 0)))   # tier 1 first; never checked first; most jobs, then biggest app
 todo = [] if '--no-detect' in sys.argv else todo[:DETECT_MAX]
 pre_results, detected, det_checked = {}, [], 0
 T0 = time.time()
@@ -320,7 +327,7 @@ with cf.ThreadPoolExecutor(8) as ex:
     for c, r, log in ex.map(det, todo):
         if log is None: continue   # out of time, next run
         det_checked += 1
-        entry = {'checked': TODAY.isoformat(), 'was': c.get('ats') or '', 'feed_was': c.get('feed') or '', 'log': log[-8:]}
+        entry = {'checked': TODAY.isoformat(), 'was': c.get('ats') or '', 'feed_was': c.get('feed') or '', 'log': log[-8:] if c.get('tier') == 1 else log[-3:]}
         if r:
             ats, feed, cfg, raw = r
             entry.update(found=ats, feed=feed)
@@ -332,8 +339,15 @@ with cf.ThreadPoolExecutor(8) as ex:
 
 feeds = {}
 for c in B['companies']:
-    if c.get('tier') == 1 and ats_of(c):
+    if ats_of(c) and (c.get('tier') == 1 or (c.get('tier') in (2, 3) and c['n'] not in NO_PROMOTE)):
         feeds.setdefault((ats_of(c), c['feed'] if c['feed'] != 'yazio' else 'yazio'), []).append(c)
+for key, cos in feeds.items():
+    # A feed shared by several companies (Robert Bosch GmbH and Bosch Home Comfort both point at BoschGroup) would list
+    # every job twice. Companies already listing jobs keep their share as before; a "not hiring" company only gets
+    # the jobs if nobody else has them, and of several such companies only the one with the biggest app.
+    t1 = [c for c in cos if c.get('tier') == 1]
+    if len(cos) > 1 and len(t1) < len(cos):
+        feeds[key] = t1 or [max(cos, key=lambda c: c.get('v') or 0)]
 for (ats, feed), cos in feeds.items():   # crawl settings: link pattern, the jobs we have (re-checked), pages known not to be jobs
     if ats in ats_more.CRAWL_ATS:
         cfg = dict(next((c['crawl'] for c in cos if c.get('crawl')), None) or ats_more.preset(ats, feed) or {})
@@ -363,12 +377,14 @@ EMPLOYER = {
 
 report = []
 before_total = sum(len(c.get('jobs') or []) for c in B['companies'])
-new_desc, stats = [], dict(kept_failed=0, new=0, closed=0, updated=0, suspicious=0, salaries_added=0)
+new_desc, stats = [], dict(kept_failed=0, new=0, closed=0, updated=0, suspicious=0, salaries_added=0, promoted=0)
 for (ats, feed), cos in feeds.items():
     raw = results.get((ats, feed))
     for c in cos:
         old = c.get('jobs') or []
+        promote = c.get('tier') in (2, 3)   # a "not hiring" company: listed only once its feed has German jobs
         if raw is None:
+            if promote: continue   # stays as it is; its failures don't count against the safety rail (see fail_share)
             stats['kept_failed'] += 1
             report.append(f'- {c["n"]} ({ats}): fetch failed, kept {len(old)} jobs. {errors.get((ats, feed), "")}')
             continue
@@ -439,10 +455,14 @@ for (ats, feed), cos in feeds.items():
             stats['suspicious'] += 1; report.append(f'- {c["n"]} (ashby): would shrink {len(old)} → {len(fresh)}, kept old jobs'); continue
         closed = len({j['u'] for j in old} - {j['u'] for j in fresh})
         stats['closed'] += closed
-        if len(fresh) != len(old) or closed:
+        if (len(fresh) != len(old) or closed) and not promote:
             flag = ' ⚠ big jump, worth a look' if len(fresh) >= max(3 * len(old), len(old) + 25) else ''
             cap_note = f', {over_cap} newer ads waiting (cap {CAP})' if over_cap else ''
             report.append(f'- {c["n"]} ({ats}): {len(old)} → {len(fresh)} jobs ({closed} closed{cap_note}){flag}')
+        if promote and not fresh: continue   # still nothing in Germany: stays "not hiring", no report line
+        if promote:
+            report.append(f'- {c["n"]} ({ats}): now hiring, {len(fresh)} jobs listed (was tier {c["tier"]}){f", {over_cap} more waiting (cap {CAP})" if over_cap else ""}')
+            c['tier'] = 1; stats['promoted'] += 1
         new_n = len({j['u'] for j in fresh} - {j['u'] for j in old})   # counted after the cap and duplicate check: what reaches the board
         stats['new'] += new_n; stats['updated'] += len(fresh) - new_n
         c['jobs'] = fresh; c['total'] = len(fresh)
@@ -517,9 +537,11 @@ on_board = {jb['u'] for c in B['companies'] for jb in c.get('jobs') or []}
 for u in [u for u in DEAD if u not in on_board]: DEAD.pop(u, None)   # forget jobs that left the board
 
 after_total = sum(len(c.get('jobs') or []) for c in B['companies'])
-fail_share = len(errors) / max(1, len(feeds))
+listed = {k for k, cos in feeds.items() if any(c.get('tier') == 1 and c.get('jobs') for c in cos)}   # feeds behind jobs we already list
+listed_err = [k for k in errors if k in listed]
+fail_share = len(listed_err) / max(1, len(listed))
 hard = []
-if fail_share > 0.30: hard.append(f'{len(errors)}/{len(feeds)} feeds failed ({fail_share:.0%} > 30%)')
+if fail_share > 0.30: hard.append(f'{len(listed_err)}/{len(listed)} feeds failed ({fail_share:.0%} > 30%)')
 if after_total < before_total * 0.70: hard.append(f'total jobs would drop {before_total} → {after_total} (> 30%)')
 
 B['checked'] = f'{TODAY.day} {["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"][TODAY.month - 1]} {TODAY.year}'
@@ -527,6 +549,7 @@ head = [f'# Job refresh {TODAY.isoformat()}' + (' (dry run)' if DRY else ''), ''
         f'- API feeds: {len(feeds)}, failed: {len(errors)}; custom career pages link-checked: {len(urls)} links, {dead_total} removed',
         f'- Jobs: {before_total} → {after_total} (new {stats["new"]}, closed {stats["closed"]}, still open {stats["updated"]})',
         f'- Full descriptions read from job pages: {desc_added["custom"]} (custom career pages) + {desc_added["backfill"]} (feeds without descriptions, {len(need)} pages checked)',
+        f'- Companies that were shown as not hiring and now list jobs: {stats["promoted"]}',
         f'- Hiring-system detection: {det_checked} companies checked, {len(detected)} now read directly' + (f' ({len(todo) - det_checked} left for the next run)' if len(todo) > det_checked else ''),
         f'- Published salaries added: {stats["salaries_added"]}; companies kept as-is because of a suspicious result: {stats["suspicious"]}',
         f'- Result: ' + ('ABORTED, nothing written: ' + '; '.join(hard) if hard else ('not written (dry run)' if DRY else 'written')), '', '## Changes by company', '']
