@@ -269,7 +269,9 @@ FETCHERS.update(ats_more.FETCHERS)
 
 def ats_of(c):
     a = (c.get('ats') or '').lower().split()[0] if c.get('ats') else ''
-    return a if a in FETCHERS and c.get('feed') and c['feed'].startswith(('http', 'yazio')) else ''
+    if a in FETCHERS and c.get('feed') and c['feed'].startswith(('http', 'yazio')): return a
+    # a careers site with a reader of its own (ats_more.HOST_READERS, e.g. jobs.zalando.com), listed as "custom" on the board
+    return ats_more.HOST_READERS.get(urllib.parse.urlsplit(c.get('feed') or '').netloc.lower(), '')
 
 # ---------------------------------------------------------------- run
 D = json.load(gzip.open(os.path.join(DATA, 'descriptions.json.gz'), 'rt', encoding='utf-8'))
