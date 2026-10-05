@@ -12,8 +12,14 @@ Writes probe_report.md, posted as a PR comment by the workflow.
 import collections, concurrent.futures as cf, json, os, re, sys, time
 
 os.environ.setdefault('BAJ_TRIES', '1')   # one try per request: a dead guess should cost one request, not three
+import threading
 out = []
-def say(s=''): out.append(s); print(s)
+def say(s=''):
+    out.append(s); print(s, flush=True)
+    open('probe_report.md', 'w', encoding='utf-8').write('\n'.join(out) + '\n')   # written as we go, so a timeout still leaves a report
+def _stop():
+    say('\n**Stopped by the watchdog (time limit); results above are partial.**'); os._exit(0)
+threading.Timer(510, _stop).start()
 sys.path.insert(0, '_build')
 src = open('_build/refresh_jobs.py', encoding='utf-8').read().split('# ---------------------------------------------------------------- run')[0]
 g = {'__name__': 'refresh_top', '__file__': os.path.abspath('_build/refresh_jobs.py')}
@@ -21,7 +27,7 @@ exec(compile(src, '_build/refresh_jobs.py', 'exec'), g)
 A, B, F = g['ats_more'], g['B'], g['FETCHERS']
 german_loc, PLACEHOLDER, is_manual = g['german_loc'], g['PLACEHOLDER'], g['is_manual']
 T0 = time.time()
-BUDGET = 420   # seconds for the whole run (the workflow stops at 10 minutes)
+BUDGET = 330   # seconds for the whole run (the workflow stops at 10 minutes)
 
 def ats(c): return (c.get('ats') or '').lower().split()[0] if c.get('ats') else ''
 def german(raw):
@@ -36,16 +42,26 @@ def run(fn, *a):
     try: return fn(*a), None, time.time() - t
     except Exception as e: return None, f'{type(e).__name__}: {str(e)[:90]}', time.time() - t
 
+def sr_list(u):   # SmartRecruiters: the list only (the reader also opens every ad, too slow for 20 guesses)
+    items, off = [], 0
+    while off <= 1500:
+        d = g['jfetch'](f'{u}?limit=100&offset={off}')
+        items += [dict(id=x['id'], url='https://jobs.smartrecruiters.com/x/' + str(x['id']), t=x.get('name', ''),
+                       locs=[(x.get('location') or {}).get('city', '')], country=(x.get('location') or {}).get('country', '')) for x in d.get('content', [])]
+        off += 100
+        if off >= d.get('totalFound', 0): break
+    return items
+
 # ------------------------------------------------------------------ A
 say('## Probe #5: coverage audit\n')
-say(f'Board: {len(B["companies"])} companies, {sum(len(c.get("jobs") or []) for c in B["companies"])} jobs; tiers {dict(collections.Counter(c.get("tier") for c in B["companies"]))}\n')
+say(f'Started. Board: {len(B["companies"])} companies, {sum(len(c.get("jobs") or []) for c in B["companies"])} jobs; tiers {dict(collections.Counter(c.get("tier") for c in B["companies"]))}\n')
 say('### A. "Not hiring" companies (tier 2/3) that have a readable feed\n')
 cand = [c for c in B['companies'] if c.get('tier') in (2, 3) and ats(c) in F and ats(c) not in A.CRAWL_ATS and (c.get('feed') or '').startswith('http')]
 say(f'{len(cand)} companies. German jobs today after the refresh filters (placeholder, manual roles, German location):\n')
 say('| company | tier | system | feed jobs | German jobs | top cities | note |\n|---|---|---|---|---|---|---|')
 rows = []
 with cf.ThreadPoolExecutor(10) as ex:
-    futs = {ex.submit(run, F[ats(c)], c['feed']): c for c in cand}
+    futs = {ex.submit(run, sr_list if ats(c) == 'smartrecruiters' else F[ats(c)], c['feed']): c for c in cand}
     for f in cf.as_completed(futs):
         c = futs[f]; raw, err, _ = f.result()
         de, locs = german(raw)
@@ -63,14 +79,18 @@ GUESS = {
                    'scout24', 'ecosia', 'wooga', 'king', 'innogames', 'goodgamestudios', 'bigpoint', 'travian', 'yager', 'ada', 'adahealth',
                    'mytheresa', 'idnow', 'freenow', 'lyft', 'bolt', 'uber', 'spotify', 'klarna', 'revolut', 'wise', 'vinted', 'tiktok', 'bending-spoons',
                    'onefootball', 'clue', 'helloclue', 'komoot', 'kaiaHealth', 'kaiahealth', 'selfapy', 'heyjobs', 'joblift', 'smava', 'check24',
-                   'trivago', 'immoscout24', 'immobilienscout24', 'zalando', 'aboutyou', 'mediamarktsaturn', 'payback', 'celonis', 'deepl'],
+                   'trivago', 'immoscout24', 'immobilienscout24', 'zalando', 'aboutyou', 'mediamarktsaturn', 'payback', 'celonis', 'deepl',
+                   'doctolib', 'figma', 'realtimeboardglobal', 'hubspotjobs', 'soundcloud71', 'duolingo', 'stripe'],
     'lever': ['babbel', 'soundcloud', 'wooga', 'deliveryhero', 'blinkist', 'gorillas', 'miro', 'pitch', 'kry', 'taxfix', 'tier', 'bolt', 'onefootball',
               'clue', 'komoot', 'vinted', 'freenow', 'grover', 'raisin', 'getir', 'scalable', 'trade-republic', 'traderepublic', 'kolibri', 'kolibrigames'],
     'ashby': ['babbel', 'soundcloud', 'deliveryhero', 'blinkist', 'pitch', 'taxfix', 'raisin', 'grover', 'onefootball', 'clue', 'komoot', 'vinted',
-              'tier', 'dott', 'flink', 'kry', 'doctolib', 'ecosia', 'deepl', 'n8n', 'langdock', 'parloa', 'tacto', 'mistral', 'black-forest-labs'],
+              'tier', 'dott', 'flink', 'kry', 'doctolib', 'ecosia', 'deepl', 'n8n', 'langdock', 'parloa', 'tacto', 'mistral', 'black-forest-labs',
+              'pliant', 'holidu', 'moss'],
     'smartrecruiters': ['DeliveryHero', 'Babbel', 'SoundCloud', 'Vinted', 'BoschGroup', 'Visa', 'Lidl', 'LidlDeutschland', 'Kaufland', 'adidas',
-                        'Telekom', 'DeutscheTelekom', 'METRO', 'MetroAG', 'Flink3', 'IKEA', 'Allianz', 'Siemens', 'ProSiebenSat1', 'RTL', 'Sixt'],
-    'personio': ['babbel', 'wooga', 'komoot', 'clue', 'onefootball', 'kleinanzeigen', 'sdui', 'anton', 'simpleclub', 'knowunity', 'fastic', 'yazio'],
+                        'Telekom', 'DeutscheTelekom', 'METRO', 'MetroAG', 'Flink3', 'IKEA', 'Allianz', 'Siemens', 'ProSiebenSat1', 'RTL', 'Sixt',
+                        'Auto1', 'Ubisoft2'],
+    'personio': ['babbel', 'wooga', 'komoot', 'clue', 'onefootball', 'kleinanzeigen', 'sdui', 'anton', 'simpleclub', 'knowunity', 'fastic', 'yazio',
+                 'chrono24', '1komma5grad', 'westwing', 'holidaycheck', 'ottonova', 'finanzguru', 'clark', 'joyn', 'gameforge', 'tomorrow'],
     'recruitee': ['babbel', 'soundcloud', 'wooga', 'komoot', 'clue', 'kleinanzeigen', 'mobilede', 'autodoc', 'lotum', 'idealo', 'kaufda'],
 }
 URL = {'greenhouse': 'https://boards-api.greenhouse.io/v1/boards/{}/jobs', 'lever': 'https://api.lever.co/v0/postings/{}?mode=json',
@@ -79,15 +99,6 @@ URL = {'greenhouse': 'https://boards-api.greenhouse.io/v1/boards/{}/jobs', 'leve
 known_feeds = {(c.get('feed') or '').lower() for c in B['companies']}
 tests = [(a, s, URL[a].format(s)) for a, ss in GUESS.items() for s in dict.fromkeys(ss)]
 found = []
-def sr_list(u):   # SmartRecruiters: the list only (the reader also opens every ad, too slow for 20 guesses)
-    items, off = [], 0
-    while off <= 1500:
-        d = g['jfetch'](f'{u}?limit=100&offset={off}')
-        items += [dict(id=x['id'], url='https://jobs.smartrecruiters.com/x/' + str(x['id']), t=x.get('name', ''),
-                       locs=[(x.get('location') or {}).get('city', '')], country=(x.get('location') or {}).get('country', '')) for x in d.get('content', [])]
-        off += 100
-        if off >= d.get('totalFound', 0): break
-    return items
 def guess(t):
     a, s, u = t
     if u.lower() in known_feeds: return None
@@ -124,20 +135,22 @@ def det(c):
     try: r = A.detect(c, F, PLACEHOLDER, is_manual, log)
     except Exception as e: r = None; log.append(f'error {type(e).__name__}')
     return c, r, log
+say('Readable systems found (in the order they finished):\n')
+say('| company | tier | jobs now | system → feed | German jobs | top cities |\n|---|---|---|---|---|---|')
+def row(n, c, a, feed, locs):
+    loc_s = ', '.join(f'{k} {v}' for k, v in locs.most_common(3)) if isinstance(locs, collections.Counter) else f'sample locs: {str(locs)[:120]}'
+    say(f'| {c["n"][:36]} | {c.get("tier")} | {len(c.get("jobs") or [])} | {a} `{str(feed)[:70]}` | **{n}** | {loc_s} |')
 with cf.ThreadPoolExecutor(16) as ex:
-    for c, r, log in ex.map(det, pool):
+    for f in cf.as_completed([ex.submit(det, c) for c in pool]):
+        c, r, log = f.result()
         if r == 'skipped': continue
         done += 1
         if r:
             a, feed, cfg, raw = r
             de, locs = german(raw)
-            res.append((len(de), c, a, feed, locs))
+            row(len(de), c, a, feed, locs)
         elif c['n'] in samples:
-            res.append((0, c, 'found jobs, none placed in Germany', '; '.join(log[-2:])[:150], samples[c['n']]))
-say(f'Checked {done} of {len(pool)}. Readable systems found:\n')
-say('| company | tier | jobs now | system → feed | German jobs | top cities |\n|---|---|---|---|---|---|')
-for n, c, a, feed, locs in sorted(res, key=lambda r: -r[0]):
-    loc_s = ', '.join(f'{k} {v}' for k, v in locs.most_common(3)) if isinstance(locs, collections.Counter) else f'sample locs: {str(locs)[:120]}'
-    say(f'| {c["n"][:36]} | {c.get("tier")} | {len(c.get("jobs") or [])} | {a} `{str(feed)[:70]}` | **{n}** | {loc_s} |')
+            row(0, c, 'found jobs, none placed in Germany', '; '.join(log[-2:])[:150], samples[c['n']])
+say(f'\nChecked {done} of {len(pool)}.')
 say(f'\nRun time {time.time() - T0:.0f}s.')
-open('probe_report.md', 'w', encoding='utf-8').write('\n'.join(out) + '\n')
+os._exit(0)
