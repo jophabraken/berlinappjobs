@@ -118,7 +118,7 @@ def costrip(c, cname, cslug, L):
     if cslug:
         bits.append(f'<a href="{L("", "/en")}/companies/{cslug}/">' + (L(f'{n_roles} offene Stellen', f'{n_roles} open roles') if n_roles > 1 else L('Zum Unternehmen', 'Company page')) + ' &rarr;</a>')
     return (f'<div class="costrip">{icon}<div class="ct"><span class="lbl">{L("Die App", "The app")}</span>'
-            f'<b>{esc(app.get("t") or cname)}</b><span class="by">{" &middot; ".join(bits)}</span></div>'
+            + (f'<b><a href="{L("", "/en")}/apps/{APP_SLUG[app["id"]]}/">{esc(app.get("t") or cname)}</a></b>' if app.get('id') in APP_SLUG else f'<b>{esc(app.get("t") or cname)}</b>') + f'<span class="by">{" &middot; ".join(bits)}</span></div>'
             + (f'<div class="stores">{stores}</div>' if stores else '') + '</div>')
 
 # "All jobs" goes back in history when the visitor came from the board (keeps their filters and scroll position);

@@ -25,6 +25,10 @@ for _c in COS:
     for _a in _c.get('apps') or []:
         if isinstance(_a.get('t'), str): _a['t']=htmlmod.unescape(_a['t'])
 
+# ---- "Who makes this app?" pages (apps_data.py): Play app id -> /apps/<slug>/, for links from company and job pages ----
+import apps_data
+APP_SLUG=apps_data.slug_map(COS, DATA)
+
 # ---- guides (for sitemap + cross-link) ----
 gjs=open(os.path.join(DATA,'guides_data.js'),encoding='utf-8').read()
 GUIDES=json.loads(gjs[gjs.find('=')+1:].strip().rstrip(';'))
@@ -258,7 +262,8 @@ def company_page(c, lang):
         for a in apps[:8]:
             play=f"https://play.google.com/store/apps/details?id={a['id']}" if a.get('id') else None
             inst=f" &middot; {esc(a['i'])}" if a.get('i') else ""
-            if play: apphtml+=f'<a href="{esc(play)}" target="_blank" rel="noopener nofollow">{esc(a["t"])}{inst}</a>'
+            if a.get('id') in APP_SLUG: apphtml+=f'<a href="{"/en" if lang=="en" else ""}/apps/{APP_SLUG[a["id"]]}/">{esc(a["t"])}{inst}</a>'   # our "Who makes this app?" page
+            elif play: apphtml+=f'<a href="{esc(play)}" target="_blank" rel="noopener nofollow">{esc(a["t"])}{inst}</a>'
             else: apphtml+=f'<span class="applist"><a>{esc(a["t"])}{inst}</a></span>'
         apphtml+='</div>'
     if njobs:
@@ -529,6 +534,10 @@ en_page("", "App Jobs in Germany by Role and City | Berlin App Jobs", "App jobs 
                     + ''.join(en_card(f"/en/jobs/{ROLE_EN_SLUG[d]}/{city_slug(c)}/", f"{ROLE_EN.get(d, dn)} jobs in {c}", m) for d, c, dn, slug, m in rc_index)
                     + '</div>'))
 
+# ============ "WHO MAKES THIS APP?" PAGES (build_apps.py) ============
+import build_apps
+APP_URLS=build_apps.build(globals())
+
 # ============ SITEMAP (full) ============
 urls=[(SITE+"/","1.0"),(SITE+"/guides/","0.8"),(SITE+"/companies/","0.8"),(SITE+"/en/companies/","0.8"),(SITE+"/jobs/","0.8")]
 for g in GUIDES: urls.append((f'{SITE}/guides/{g["slug"]}/',"0.7"))
@@ -539,6 +548,7 @@ for d,city,dname,slug,n in rc_index: urls.append((f'{SITE}/jobs/{slug}/',"0.6"))
 for city,cslug,n in city_index: urls.append((f'{SITE}/jobs/{cslug}/',"0.6"))
 for k,city,dname,slug,n in extra_index: urls.append((f'{SITE}/jobs/{slug}/',"0.6"))
 for u in en_urls: urls.append((u,"0.6"))
+for u in APP_URLS: urls.append((u,"0.6"))
 urls.append((f'{SITE}/about/',"0.3"))
 sm='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 for u,p in urls: sm+=f'  <url><loc>{u}</loc><lastmod>{TODAY}</lastmod><changefreq>weekly</changefreq><priority>{p}</priority></url>\n'
@@ -549,4 +559,5 @@ print("company pages:",len(company_index))
 print("role x city pages:",len(rc_index))
 print("city pages:",len(city_index))
 print("extra (iOS/Android/English-speaking) pages:",len(extra_index),"| English hub pages:",len(en_urls))
+print("app pages + hubs:",len(APP_URLS))
 print("sitemap urls:",len(urls))

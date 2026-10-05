@@ -20,6 +20,9 @@ Needs Python 3.10+ and `pip install bleach`. It takes about 5 seconds.
 | `articles_src.py`, `articles_src2.py` | Guide articles (content + metadata) |
 | `build_seo.py` | Guide pages, guides hub, `robots.txt`, the in-app guides data |
 | `build_programmatic.py` | Company pages, city and role × city pages, `sitemap.xml` |
+| `build_apps.py` | "Who makes this app?" pages (`/apps/<slug>/`, `/en/apps/<slug>/`), the `/apps/` lookup hub and the game studios hub (`/apps/spiele/`, `/en/apps/games/`). Called from `build_programmatic.py` |
+| `apps_data.py` | Which apps get a page (1M+ installs, app name differs from the company name) and their slugs |
+| `data/apps_curated.json` | Hand-checked: parent companies (with sources), game studios, include/exclude lists |
 | `build_jobpages.py` | One page per job with JobPosting markup, `sitemap-jobs.xml` |
 | `build_home.py` | The homepage, with pre-rendered numbers and job links for crawlers |
 | `paths.py` | Paths and the build date (the date of the last data refresh, not today) |

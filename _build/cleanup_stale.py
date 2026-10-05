@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Remove company/city/role pages from earlier builds that the current build no longer generates
+"""Remove company/city/role/app pages from earlier builds that the current build no longer generates
 (e.g. a city that dropped below 10 jobs). Otherwise they linger with dead links and old counts.
 The current set of pages is whatever build_programmatic.py just listed in sitemap.xml, plus its noindex list."""
 import os, re, shutil, sys
@@ -13,7 +13,7 @@ from paths import DATA
 try: listed |= set(json.load(open(os.path.join(DATA, 'noindex_pages.json'))))
 except FileNotFoundError: pass
 removed = []
-for top in ('jobs', 'companies', 'en'):
+for top in ('jobs', 'companies', 'apps', 'en'):
     for root, dirs, files in os.walk(os.path.join(OUT, top), topdown=False):
         rel = os.path.relpath(root, OUT).replace(os.sep, '/')
         if rel in listed or 'index.html' not in files: continue

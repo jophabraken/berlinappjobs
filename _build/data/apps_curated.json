@@ -1,0 +1,309 @@
+{
+ "_about": "Hand-checked data for the 'Who makes this app?' pages (build_apps.py). owners: parent companies, only facts verified with a source (Oct 2026). game_companies: publishers that make games (Google Play developer name as in board_data.js). include/exclude: Play app ids that override the automatic app-name-differs-from-company-name rule. Individual developers are excluded on purpose (no pages about private people).",
+ "owners": {
+  "King": {
+   "parent": "Microsoft",
+   "since": "2023",
+   "en": "King was founded in Sweden, has been part of Microsoft since 2023 (Activision Blizzard King) and has a studio in Berlin.",
+   "de": "King wurde in Schweden gegründet, gehört seit 2023 zu Microsoft (Activision Blizzard King) und hat ein Studio in Berlin.",
+   "source": "https://blogs.microsoft.com/blog/2023/10/13/welcoming-the-legendary-teams-at-activision-blizzard-king-to-team-xbox/"
+  },
+  "Kolibri Games": {
+   "parent": "Ubisoft",
+   "since": "2020",
+   "en": "Ubisoft bought a majority stake in 2020. Kolibri was founded in Berlin in 2016.",
+   "de": "Ubisoft hat 2020 die Mehrheit übernommen. Kolibri wurde 2016 in Berlin gegründet.",
+   "source": "https://en.wikipedia.org/wiki/Kolibri_Games"
+  },
+  "Wooga": {
+   "parent": "Playtika",
+   "since": "2018",
+   "en": "Acquired by the Israeli games company Playtika in December 2018.",
+   "de": "Im Dezember 2018 vom israelischen Spielekonzern Playtika übernommen.",
+   "source": "https://tech.eu/2018/12/03/israeli-gaming-company-playtika-has-acquired-berlins-wooga-to-expand-its-casual-games-portfolio/"
+  },
+  "InnoGames GmbH": {
+   "parent": "Modern Times Group (MTG)",
+   "since": "2017",
+   "en": "MTG has been the majority owner since 2017.",
+   "de": "MTG ist seit 2017 Mehrheitseigner.",
+   "source": "https://www.mtg.com/press-releases/mtg-increases-ownership-in-innogames-and-partners-with-company-founders-to-form-new-holding-company-for-gaming-investments/"
+  },
+  "Goodgame Studios": {
+   "parent": "Stillfront Group",
+   "since": "2018",
+   "en": "Stillfront acquired the Hamburg studio in 2018.",
+   "de": "Stillfront hat das Hamburger Studio 2018 übernommen.",
+   "source": "https://en.wikipedia.org/wiki/Stillfront_Group"
+  },
+  "Deca Games": {
+   "parent": "Embracer Group",
+   "since": "2020",
+   "en": "Part of Embracer Group's mobile games business.",
+   "de": "Teil der Mobile-Games-Sparte der Embracer Group.",
+   "source": "https://www.pocketgamer.biz/embracer-keeps-mobile-in-house-as-it-spins-off-fellowship-entertainment/"
+  },
+  "Sandbox Interactive GmbH": {
+   "parent": "Stillfront Group",
+   "since": "2020",
+   "en": "Stillfront bought the Albion Online studio in December 2020.",
+   "de": "Stillfront hat das Albion-Online-Studio im Dezember 2020 gekauft.",
+   "source": "https://www.stillfront.com/en/stillfront-group-completes-the-acquisition-of-sandbox-interactive/"
+  },
+  "Playa Games": {
+   "parent": "Stillfront Group",
+   "since": "2018",
+   "en": "Stillfront completed its acquisition in December 2018.",
+   "de": "Stillfront hat die Übernahme im Dezember 2018 abgeschlossen.",
+   "source": "https://www.stillfront.com/en/stillfront-group-ab-stillfront-group-completes-the-acquisition-of-playa-games-gmbh-and-issues-new-shares-2/"
+  },
+  "Stillfront Supremacy GmbH": {
+   "parent": "Stillfront Group",
+   "since": "2016",
+   "en": "Formerly Bytro Labs, acquired by Stillfront in 2016.",
+   "de": "Früher Bytro Labs, 2016 von Stillfront übernommen.",
+   "source": "https://en.wikipedia.org/wiki/Stillfront_Group"
+  },
+  "Whow Games GmbH": {
+   "parent": "DoubleDown Interactive",
+   "since": "2025",
+   "en": "Azerion sold Whow Games to DoubleDown Interactive in July 2025.",
+   "de": "Azerion hat Whow Games im Juli 2025 an DoubleDown Interactive verkauft.",
+   "source": "https://www.gamblinginsider.com/news/30275/doubledown-completes-55m-acquisition-of-germanys-whow-games"
+  },
+  "Lessmore GmbH": {
+   "parent": "Miniclip (Tencent)",
+   "since": "2025",
+   "en": "Bought by Tencent-owned Miniclip; the deal was announced in March 2025.",
+   "de": "Von der Tencent-Tochter Miniclip gekauft, bekanntgegeben im März 2025.",
+   "source": "https://mobilegamer.biz/miniclip-has-acquired-lessmore-maker-of-eatventure-and-we-are-warriors/"
+  },
+  "Lotum GmbH": {
+   "parent": null,
+   "since": null,
+   "en": "Founded in 2006. Its games passed one billion installs in 2025.",
+   "de": "2006 gegründet. Die Spiele haben 2025 die Marke von einer Milliarde Installationen geknackt.",
+   "source": "https://www.gameswirtschaft.de/wirtschaft/lotum-gmbh-1-milliarde-installs-220425/"
+  },
+  "Lotum one GmbH": {
+   "parent": null,
+   "since": null,
+   "en": "Part of the Lotum games group in Bad Nauheim, founded in 2006.",
+   "de": "Teil der Lotum-Gruppe aus Bad Nauheim, gegründet 2006.",
+   "source": "https://www.gameswirtschaft.de/wirtschaft/lotum-gmbh-1-milliarde-installs-220425/"
+  },
+  "Intelligent Apps GmbH": {
+   "parent": "Lyft",
+   "since": "2025",
+   "en": "Intelligent Apps runs Freenow. Lyft completed its acquisition of Freenow in July 2025.",
+   "de": "Intelligent Apps betreibt Freenow. Lyft hat die Übernahme von Freenow im Juli 2025 abgeschlossen.",
+   "source": "https://investor.lyft.com/news-events-presentations/press-releases/detail/96/lyft-goes-global-freenow-acquisition-complete"
+  },
+  "Atolls": {
+   "parent": null,
+   "since": null,
+   "en": "Formerly Global Savings Group, renamed Atolls in September 2024.",
+   "de": "Früher Global Savings Group, seit September 2024 Atolls.",
+   "source": "https://en.wikipedia.org/wiki/Atolls_(company)"
+  },
+  "Ströer Digital Publishing GmbH": {
+   "parent": "Ströer SE",
+   "since": "2015",
+   "en": "Ströer bought t-online from Deutsche Telekom in 2015.",
+   "de": "Ströer hat t-online 2015 von der Deutschen Telekom gekauft.",
+   "source": "https://www.telekom.com/en/media/media-information/archive/deutsche-telekom-sells-t-online-de-and-interactivemedia-to-stroeer-362032"
+  },
+  "Immobilien Scout GmbH": {
+   "parent": "Scout24 SE",
+   "since": null,
+   "en": "Part of Scout24 SE, listed on the Frankfurt Stock Exchange.",
+   "de": "Teil der Scout24 SE, an der Frankfurter Börse notiert.",
+   "source": "https://en.wikipedia.org/wiki/Scout24"
+  },
+  "AVIV Germany GmbH": {
+   "parent": "AVIV Group",
+   "since": null,
+   "en": "Part of AVIV Group, controlled by KKR and CPP Investments since 2025.",
+   "de": "Teil der AVIV Group, die seit 2025 von KKR und CPP Investments kontrolliert wird.",
+   "source": "https://www.businesswire.com/news/home/20250429202732/en/Axel-Springer-Implements-New-Corporate-Structure"
+  },
+  "LOTTO24": {
+   "parent": "ZEAL Network SE",
+   "since": "2019",
+   "en": "ZEAL Network took over Lotto24 in 2019.",
+   "de": "ZEAL Network hat Lotto24 2019 übernommen.",
+   "source": "https://en.wikipedia.org/wiki/Lotto24"
+  },
+  "Blinks Labs GmbH": {
+   "parent": "Go1",
+   "since": "2023",
+   "en": "The Australian learning platform Go1 acquired Blinkist in 2023.",
+   "de": "Die australische Lernplattform Go1 hat Blinkist 2023 übernommen.",
+   "source": "https://sifted.eu/articles/german-edtech-startup-blinkist-acquired-news"
+  },
+  "DTN Germany GmbH": {
+   "parent": "DTN",
+   "since": "2019",
+   "en": "WeatherPro's maker MeteoGroup was merged into DTN in 2019.",
+   "de": "Der WeatherPro-Hersteller MeteoGroup wurde 2019 in DTN integriert.",
+   "source": "https://en.wikipedia.org/wiki/MeteoGroup"
+  },
+  "Good Hood GmbH": {
+   "parent": "Hubert Burda Media",
+   "since": "2020",
+   "en": "Burda became the majority owner of nebenan.de in 2020.",
+   "de": "Burda wurde 2020 Mehrheitseigner von nebenan.de.",
+   "source": "https://tech.eu/2020/09/01/burda-acquires-good-hood/"
+  },
+  "SevenOne Entertainment Group GmbH": {
+   "parent": "ProSiebenSat.1 Media SE",
+   "since": null,
+   "en": "Part of ProSiebenSat.1, majority-owned by MFE-MediaForEurope since 2025.",
+   "de": "Teil von ProSiebenSat.1, seit 2025 mehrheitlich im Besitz von MFE-MediaForEurope.",
+   "source": "https://www.prosiebensat1.com/en/newsroom/mfe-secures7561-stake-in-prosiebensat1-585439"
+  },
+  "Sky Deutschland Fernsehen GmbH": {
+   "parent": "RTL Group (Bertelsmann)",
+   "since": "2026",
+   "en": "RTL Group completed its purchase of Sky Deutschland from Comcast in 2026.",
+   "de": "Die RTL Group hat den Kauf von Sky Deutschland von Comcast 2026 abgeschlossen.",
+   "source": "https://www.broadbandtvnews.com/2026/06/01/rtl-group-closes-acquisition-of-sky-deutschland/"
+  },
+  "New Work SE": {
+   "parent": "Hubert Burda Media",
+   "since": null,
+   "en": "XING's parent New Work SE belongs to Burda; a squeeze-out of minority shareholders was approved in 2025.",
+   "de": "Die XING-Mutter New Work SE gehört zu Burda; 2025 wurde der Squeeze-out der Minderheitsaktionäre beschlossen.",
+   "source": "https://www.freshfields.com/de/unser-denken/media-center/nachrichtensuche/2025/06/freshfields-berat-new-work-zum-squeeze-out-durch-burda-digital"
+  },
+  "MEDION GmbH": {
+   "parent": "Lenovo",
+   "since": "2011",
+   "en": "Lenovo took majority control of the Essen electronics maker in 2011.",
+   "de": "Lenovo hat 2011 die Mehrheit am Essener Elektronikhersteller übernommen.",
+   "source": "https://en.wikipedia.org/wiki/Medion"
+  },
+  "Atruvia AG": {
+   "parent": "Volksbanken Raiffeisenbanken",
+   "since": null,
+   "en": "IT provider owned mostly by Germany's cooperative Volksbanken and Raiffeisenbanken.",
+   "de": "IT-Dienstleister, überwiegend im Besitz der Volksbanken und Raiffeisenbanken.",
+   "source": "https://atruvia.de/unternehmen/wir-sind-atruvia/zahlen-und-fakten"
+  },
+  "Star Finanz GmbH": {
+   "parent": "Finanz Informatik (Sparkassen-Finanzgruppe)",
+   "since": "2010",
+   "en": "Wholly owned by the Sparkassen IT provider Finanz Informatik since 2010.",
+   "de": "Seit 2010 eine hundertprozentige Tochter des Sparkassen-IT-Dienstleisters Finanz Informatik.",
+   "source": "https://www.starfinanz.de/unternehmen/"
+  },
+  "HomeToGo": {
+   "parent": null,
+   "since": null,
+   "en": "Listed on the Frankfurt Stock Exchange since 2021.",
+   "de": "Seit 2021 an der Frankfurter Börse notiert.",
+   "source": "https://www.deutsche-boerse-cash-market.com/dbcm-en/newsroom/press-releases/HomeToGo-SE-New-entry-in-the-General-Standard-of-the-Frankfurt-Stock-Exchange-2786192"
+  }
+ },
+ "game_companies": [
+  "King",
+  "Kolibri Games",
+  "Wooga",
+  "InnoGames GmbH",
+  "Goodgame Studios",
+  "Deca Games",
+  "Flaregames",
+  "Edkon Games GmbH",
+  "Playflux",
+  "Sandbox Interactive GmbH",
+  "Playa Games",
+  "Playata GmbH",
+  "Lotum GmbH",
+  "Lotum one GmbH",
+  "Lotum two GmbH",
+  "Stillfront Supremacy GmbH",
+  "Whow Games GmbH",
+  "justDice GmbH",
+  "Spiele-Palast GmbH",
+  "GameDuell",
+  "upjers GmbH",
+  "FDG Entertainment GmbH & Co.KG",
+  "Lessmore GmbH",
+  "Sunday.gg",
+  "Iteration One GmbH",
+  "USM",
+  "SHPlay GmbH",
+  "Blue Ocean Entertainment AG",
+  "SWIFT GAMES",
+  "StarBerry Games",
+  "Awesome Prototype - Football Manager Game Creators",
+  "smuttlewerk interactive",
+  "Everbyte",
+  "16tons entertainment",
+  "Isar Interactive GmbH & Co. KG",
+  "LITE Games",
+  "b-interaktive",
+  "Gimica GmbH",
+  "Clever Crabs",
+  "Alien King",
+  "Fassor",
+  "Ludetis UG (haftungsbeschränkt)",
+  "Digital-Camel",
+  "DobroGames Global",
+  "SOFTGAMES Mobile Entertainment Services",
+  "Gryphon Games",
+  "Travian Games GmbH",
+  "XYRALITY GmbH",
+  "Kickbase GmbH",
+  "Cranberry Apps",
+  "Wolvesville GmbH & Co. KG",
+  "Ravensburger Verlag GmbH",
+  "adp MERKUR GmbH"
+ ],
+ "include": [
+  "com.bytro.callofwar1942"
+ ],
+ "exclude": [
+  "org.localsend.localsend_app",
+  "com.ilyabogdanovich.geotracker",
+  "com.tinytouchtales.cardthief",
+  "splid.teamturtle.com.splid",
+  "com.jaysquared.games.whereishd.releasefree",
+  "de.paulstelzer.iqtest",
+  "duchow.julien.prodarts",
+  "com.reneph.passwordsafe",
+  "com.roth.scharade_andiestirnundlos_raten",
+  "online.stoehr.blackboard",
+  "eu.darken.sdmse",
+  "wtf.riedel.onesec",
+  "com.goodtoolapps.zeus",
+  "host.hatspotlight.android",
+  "com.fivedaysweekend.math",
+  "com.zenthek.autozen",
+  "de.materna.bbk.mobile.app",
+  "de.dwd.warnapp",
+  "de.elster.elstersecure.app",
+  "de.arbeitsagentur.bka",
+  "com.floraincognita.app.floraincognita",
+  "de.wdr.maus",
+  "de.ard.audiothek",
+  "de.deutschlandfunk.dlfaudiothek",
+  "de.digionline.webweavera1",
+  "de.deltacity.android.blutspende",
+  "org.documentfoundation.libreoffice",
+  "org.klimabuendnis.Stadtradeln",
+  "de.aoksystems.amg",
+  "com.hometogo",
+  "de.is24.android",
+  "de.telekom.mds.mbp",
+  "com.bellapps.drinkcocktail",
+  "de.mwwebwork.benzinpreisblitz",
+  "com.openreply.pam",
+  "de.herber_edevelopment.m3uiptv",
+  "me.fup.joyapp",
+  "com.jaumo.casual",
+  "com.canda.mobileapp",
+  "de.eue.mobile.android.mail",
+  "mentz.com.vrr_cibo_app"
+ ]
+}

@@ -54,7 +54,7 @@ T = {
                all_city="All cities &amp; roles &rarr;", all_berlin="All jobs in Berlin &rarr;", cos="Companies", all_cos="All companies &rarr;", all_guides="All guides &rarr;",
                src="Jobs come from each company's own hiring system. Install figures: Google Play.",
                board="Job board", contact="Contact", about="About", impressum="Imprint", news="New jobs by email",
-               eng_berlin="English-speaking jobs in Berlin"),
+               eng_berlin="English-speaking jobs in Berlin", apps="Who makes this app?"),
     'de': dict(tag="Aktuelle Jobs bei den Unternehmen hinter Deutschlands Top-Apps, jeden Tag direkt aus ihren Bewerbungssystemen. Direkt bewerben, ohne Vermittler.",
                upd="{n:,} offene Stellen · aktualisiert {d}", cta="Alle Jobs ansehen &rarr;",
                h_city="Jobs nach Stadt", h_role="Jobs in Berlin", h_cos="Top-Arbeitgeber", h_guides="Ratgeber",
@@ -62,7 +62,7 @@ T = {
                all_city="Alle Städte &amp; Bereiche &rarr;", all_berlin="Alle Jobs in Berlin &rarr;", cos="Unternehmen", all_cos="Alle Unternehmen &rarr;", all_guides="Alle Ratgeber &rarr;",
                src="Die Stellen kommen aus den Bewerbungssystemen der Unternehmen. Downloadzahlen: Google Play.",
                board="Jobboard", contact="Kontakt", about="Über uns", impressum="Impressum", news="Neue Jobs per E-Mail",
-               eng_berlin="Englischsprachige Jobs in Berlin"),
+               eng_berlin="Englischsprachige Jobs in Berlin", apps="Wer steckt hinter der App?"),
 }
 
 def site_footer(lang, COS, guides, slugify, city_slug, disc, checked=''):
@@ -112,6 +112,7 @@ def site_footer(lang, COS, guides, slugify, city_slug, disc, checked=''):
             f'<nav class="sf-cols" aria-label="{_esc(t["h_city"])}, {_esc(t["h_cos"])}, {_esc(t["h_guides"])}">{cols}</nav></div>'
             f'<div class="sf-bot"><span>&copy; {year} Berlin App Jobs. {t["src"]}</span>'
             f'<nav aria-label="Berlin App Jobs"><a href="/">{t["board"]}</a><a href="{pre}/companies/">{t["cos"]}</a>'
+            f'<a href="{pre}/apps/">{t["apps"]}</a>'
             f'<a href="/guides/">{t["h_guides"]}</a><a href="/about/">{t["about"]}</a>'
             + (f'<a href="{_esc(site_config.NEWSLETTER_URL)}">{t["news"]}</a>' if site_config.NEWSLETTER_URL else '')
             + f'<a href="mailto:{_esc(site_config.CONTACT_EMAIL)}">{t["contact"]}</a>'
