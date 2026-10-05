@@ -1,4 +1,4 @@
-"""One-off probe #3: test the new Zalando reader (PR to come, branch seo-lead/2026-10-05) on the real site.
+"""One-off probe #4 (#3 + article-only description, maintenance roles skipped): test the new Zalando reader (PR to come, branch seo-lead/2026-10-05) on the real site.
 
 Applies the reader's diff (below) to this checkout, loads refresh_jobs.py up to the point where the refresh starts
 (no feeds are fetched, nothing is written), then runs the Zalando reader and the refresh's own filters on its output:
@@ -7,10 +7,10 @@ placeholder, manual-role and German-location checks. Read-only: about 25 GET req
 import collections, json, os, re, subprocess, sys, time
 
 PATCH = r'''diff --git a/_build/ats_more.py b/_build/ats_more.py
-index 5fa488f0a..46f45b43d 100644
+index 5fa488f0a..f9db0c1bd 100644
 --- a/_build/ats_more.py
 +++ b/_build/ats_more.py
-@@ -347,7 +347,87 @@ def f_bamboohr(feed):
+@@ -347,7 +347,91 @@ def f_bamboohr(feed):
      with cf.ThreadPoolExecutor(6) as ex:
          return list(ex.map(detail, lst[:CAP * 2]))
  
@@ -24,7 +24,7 @@ index 5fa488f0a..46f45b43d 100644
 +ZAL_CITY = {'Cologne': 'Köln', 'Hanover': 'Hannover', 'Dusseldorf': 'Düsseldorf', 'Munster': 'Münster', 'Munich': 'München',
 +            'Moenchengladbach': 'Mönchengladbach', 'Constance': 'Konstanz', 'Giessen': 'Gießen', 'Nuremberg': 'Nürnberg', 'Frankfurt': 'Frankfurt am Main'}
 +# Office roles only (Jop, 5 Oct 2026): warehouse, logistics and store jobs are left out, like MANUAL in refresh_jobs.py.
-+ZAL_SKIP = re.compile(r'logistic|supply chain|warehouse|retail|outlet|store', re.I)
++ZAL_SKIP = re.compile(r'logistic|supply chain|warehouse|retail|outlet|store|maintenance|facility', re.I)
 +
 +def _rsc(page):
 +    """The Next.js server-components payload of a page, decoded into one string."""
@@ -47,8 +47,12 @@ index 5fa488f0a..46f45b43d 100644
 +    info = {}
 +    for dt, dd in re.findall(r'<dt[^>]*>(.*?)</dt>\s*<dd[^>]*>(.*?)</dd>', page, re.S):
 +        info.setdefault(html.unescape(re.sub(r'<[^>]+>', '', dt)).strip().lower(), html.unescape(re.sub(r'<[^>]+>', ' ', dd)).strip())
-+    m = re.search(r'<(main)\b[^>]*>', page, re.I)
-+    body = _inner(page, m) if m else ''
++    # the ad is the rich-text <article class="prose …">; without one, the page's <main> minus header and application form
++    arts = [_inner(page, a) for a in re.finditer(r'<(article)\b[^>]*>', page, re.I)]
++    body = '\n'.join(arts)
++    if len(re.sub(r'<[^>]+>', '', body).strip()) < 500:
++        m = re.search(r'<(main)\b[^>]*>', page, re.I)
++        body = _inner(page, m) if m else ''
 +    for rx in (r'<(div)\b[^>]*\bid="apply"[^>]*>', r'<(header)\b[^>]*>', r'<(form)\b[^>]*>'):   # the header and the application form
 +        while True:
 +            mm = re.search(rx, body, re.I)
@@ -171,6 +175,7 @@ for x in raw:
     x['_loc'] = gl[0]; kept.append(x)
 say(f'- after the refresh filters: {len(kept)} jobs (dropped: {dict(why)}); cap {g["CAP"]} → {min(len(kept), g["CAP"])} on the board')
 say(f'- board locations: {dict(collections.Counter(x["_loc"] for x in kept).most_common())}')
+say(f'- jobs that would show as "Deutschland": {[(x["t"][:40], x["locs"], x["dept"]) for x in kept if x["_loc"] == "Deutschland"]}')
 dl = [len(g['txt'](x['desc'])) for x in kept]
 say(f'- description text length: min {min(dl) if dl else 0}, median {sorted(dl)[len(dl)//2] if dl else 0}, max {max(dl) if dl else 0}; under 300 chars: {sum(1 for d in dl if d < 300)}')
 say(f'- contract values: {dict(collections.Counter(x["et"] for x in kept))}')
