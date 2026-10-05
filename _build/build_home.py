@@ -150,7 +150,7 @@ DESC = (f"Open roles at the companies behind Germany's top apps, like {_known[0]
        (f"{n_jobs:,} live roles at {n_cos} companies behind Germany's top apps: engineering, product, design, data and "
         "marketing in Berlin, Munich, Hamburg and remote. Apply directly.")
 ld = {"@context": "https://schema.org", "@graph": [
-    {"@type": "WebSite", "@id": SITE + "/#website", "name": "Berlin App Jobs", "alternateName": "berlinappjobs.com", "url": SITE + "/", "inLanguage": ["en", "de"]},
+    {"@type": "WebSite", "@id": SITE + "/#website", "name": "Berlin App Jobs", "alternateName": ["BerlinAppJobs", "Berlin App Jobs Board"], "url": SITE + "/", "inLanguage": ["en", "de"]},
     {"@type": "Organization", "@id": SITE + "/#org", "name": "Berlin App Jobs", "url": SITE + "/",
      "logo": {"@type": "ImageObject", "url": SITE + "/logo.png", "width": 512, "height": 512}}]}
 FAV = tpl[tpl.index('<link rel="icon"'):tpl.index('>', tpl.index('<link rel="icon"')) + 1]
