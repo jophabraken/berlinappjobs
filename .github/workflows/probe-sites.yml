@@ -1,0 +1,39 @@
+# One-off diagnostic (Jop OK'd, 2026-10-05). Runs probe_sites.py from a GitHub runner, the same network the
+# daily refresh uses, and posts the report as a comment on the pull request. It runs on its own PR, so no
+# merge is needed: close the PR without merging once the comment is there. Read-only: GET/HEAD requests only.
+name: Probe sites (diagnostic)
+on:
+  pull_request:
+    paths: ['.github/probe_sites.py', '.github/workflows/probe-sites.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe
+        run: python3 .github/probe_sites.py
+      - name: Job summary
+        if: always()
+        run: test -f probe_report.md && cat probe_report.md >> "$GITHUB_STEP_SUMMARY" || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: probe-report
+          path: probe_report.md
+          if-no-files-found: ignore
+      - name: Comment on the PR
+        if: always() && github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          test -f probe_report.md || exit 0
+          head -c 60000 probe_report.md > comment.md
+          gh pr comment ${{ github.event.pull_request.number }} --repo ${{ github.repository }} --body-file comment.md
