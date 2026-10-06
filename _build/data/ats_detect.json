@@ -63,6 +63,32 @@
   ],
   "was": "custom"
  },
+ "AOK – Die Gesundheitskasse": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.aok.de/karriere/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "AUTODOC SE - Auto Parts Online Store": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://career.autodoc.group/en/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "AVIRA": {
+  "checked": "2026-10-06",
+  "feed": "https://api.ashbyhq.com/posting-api/job-board/gen-digital",
+  "feed_was": "",
+  "found": "ashby",
+  "log": [
+   "ashby https://api.ashbyhq.com/posting-api/job-board/gen-digital: 115 jobs, 1 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "Algoriddim": {
   "checked": "2026-09-29",
   "feed_was": "",
@@ -71,11 +97,46 @@
   ],
   "was": "none"
  },
+ "Atruvia AG": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://karriere.atruvia.de/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "Audials Radio Software": {
   "checked": "2026-09-29",
   "feed_was": "",
   "log": [
    "crawl https://audials.com/en/company-audials-ag/career: SiteChanged no job page with JobPosting data among 1 pages (site changed?)"
+  ],
+  "was": "custom"
+ },
+ "Axel Springer Deutschland GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "load https://careers.axelspringer.com: URLError",
+   "crawl https://careers.axelspringer.com: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "unknown"
+ },
+ "Axel Springer Deutschland GmbH | WELT Digital": {
+  "checked": "2026-10-06",
+  "feed": "https://career.axelspringer.com",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://career.axelspringer.com: 39 jobs, 38 in Germany, 0 match the board"
+  ],
+  "was": "unknown"
+ },
+ "BARMER": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://jobs.barmer.de/: 0 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -181,9 +242,25 @@
    "https://www.bwi.de/karriere/stellenangebote/job/berater-logistische-prozesse-sap-ds-sap-mm-m-w-d-70587%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/werkstudent-it-projektunterstutzung-m-w-d-70555%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/project-management-officer-pmo-projektkoordination-reporting-m-w-d-70506",
-   "https://www.bwi.de/karriere/stellenangebote/job/senior-service-technician-m-w-d-70602%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-service-technician-m-w-d-70602%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/studierende/msc-ki-business-analytics",
+   "https://www.bwi.de/karriere/studierende/msc-artificial-intelligence",
+   "https://www.bwi.de/karriere/studierende/msc-devops-cloud-computing",
+   "https://www.bwi.de/karriere/studierende/msc-cyber-security-management",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-it-service-manager-product-owner-mobility-emm-mam-m-w-d-70630%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-it-service-manager-workplace-m-w-d-70626%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/military-it-expert-verlegefahige-rechenzentren-m-w-d-70614%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/principal-consultant-architecture-modelling-m-w-d-70606%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
   ],
   "was": "custom"
+ },
+ "Babbel": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://jobs.babbel.com/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "greenhouse"
  },
  "Berlin-Brandenburg Academy": {
   "checked": "2026-09-28",
@@ -191,16 +268,58 @@
   "log": [],
   "was": "custom"
  },
+ "BestSecret GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://careersportal.bestsecret.com/search/?q=&searchResultView=LIST: 45 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "Blinks Labs GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "load https://www.blinkist.com/en/jobs: HTTPError",
+   "crawl https://www.blinkist.com/en/jobs: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "unknown"
+ },
+ "BodyFast GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.bodyfast.app/jobs: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "none"
+ },
  "Bundesamt Verbraucherschutz Lebensmittelsicherheit": {
   "checked": "2026-09-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
  },
+ "Bundesamt für Bevölkerungsschutz (Deutschland)": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "load https://www.bbk.bund.de/DE/Service/Stellenangebote/stellenangebote_node.html: HTTPError",
+   "crawl https://www.bbk.bund.de/DE/Service/Stellenangebote/stellenangebote_node.html: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "Bundesinstitut für Risikobewertung": {
   "checked": "2026-09-28",
   "feed_was": "",
   "log": [],
+  "was": "custom"
+ },
+ "C&A Mode GmbH & Co. KG": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.c-and-a.com/eu/en/corporate/company/careers/start: 0 jobs, 0 in Germany, 0 match the board"
+  ],
   "was": "custom"
  },
  "CALL A PIZZA MARKETING GMBH": {
@@ -234,11 +353,28 @@
   "log": [],
   "was": "custom"
  },
+ "Callosum Software": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://info.tellonym.me/jobs: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "join"
+ },
  "Changers.com / Blacksquared GmbH": {
   "checked": "2026-09-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
+ },
+ "Chefkoch GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "load https://team.chefkoch.de/: HTTPError",
+   "crawl https://team.chefkoch.de/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "unknown"
  },
  "Clue Period Tracker by BioWink": {
   "checked": "2026-09-28",
@@ -249,6 +385,23 @@
    "bamboohr https://resources.bamboohr.com/careers: HTTPError HTTP Error 404: Not Found",
    "bamboohr https://bhrpendo.bamboohr.com/careers: JSONDecodeError Expecting value: line 1 column 1 (char 0)",
    "bamboohr https://images4.bamboohr.com/careers: HTTPError HTTP Error 403: Forbidden"
+  ],
+  "was": "custom"
+ },
+ "CodeCheck": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "load https://codecheck-app.com/?page_id=4528: HTTPError",
+   "crawl https://codecheck-app.com/?page_id=4528: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "none"
+ },
+ "Commerzbank AG": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://jobs.commerzbank.com/: 0 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -297,10 +450,62 @@
   "log": [],
   "was": "custom"
  },
+ "DTN Germany GmbH": {
+  "checked": "2026-10-06",
+  "feed": "https://dtn.wd1.myworkdayjobs.com/DTN_Careers",
+  "feed_was": "",
+  "found": "workday",
+  "log": [
+   "workday https://dtn.wd1.myworkdayjobs.com/DTN_Careers: 8 jobs, 4 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "Deca Games": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://deca-games.breezy.hr/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "Deichmann SE": {
+  "checked": "2026-10-06",
+  "feed": "https://www.deichmann-karriere.de/jobsuche/",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://www.deichmann-karriere.de/jobsuche/: 38 jobs, 16 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "Dermanostic GmbH": {
   "checked": "2026-09-29",
   "feed_was": "",
   "log": [],
+  "was": "custom"
+ },
+ "Deutsche Bahn": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://db.jobs: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "Deutsche Post AG": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://careers.dhl.com/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "Deutsche Telekom AG": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://careers.telekom.com/de: 0 jobs, 0 in Germany, 0 match the board"
+  ],
   "was": "custom"
  },
  "Deutscher Bundestag": {
@@ -315,6 +520,15 @@
   "log": [],
   "was": "custom"
  },
+ "Deutscher Wetterdienst": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "load https://www.dwd.de/DE/karriere/karriere_node.html: HTTPError",
+   "crawl https://www.dwd.de/DE/karriere/karriere_node.html: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "unknown"
+ },
  "Dirk Rossmann GmbH": {
   "checked": "2026-09-28",
   "feed": "https://jobs.rossmann.de/",
@@ -324,6 +538,15 @@
    "crawl https://jobs.rossmann.de/: 41 jobs, 18 in Germany, 1 match the board"
   ],
   "was": "custom"
+ },
+ "DoctorBox": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "join https://join.com/companies/doctorbox: 0 jobs, 0 in Germany, 0 match the board",
+   "crawl https://join.com/companies/doctorbox: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "join"
  },
  "Dogorama GmbH": {
   "checked": "2026-09-29",
@@ -407,6 +630,14 @@
   ],
   "was": "custom"
  },
+ "FDG Entertainment GmbH & Co.KG": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.fdg-entertainment.com/jobs: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "none"
+ },
  "FLOYT Mobility GmbH": {
   "checked": "2026-09-28",
   "feed": "https://company.floyt.com/de",
@@ -414,6 +645,16 @@
   "found": "teamtailor",
   "log": [
    "teamtailor https://company.floyt.com/de: 8 jobs, 6 in Germany, 5 match the board"
+  ],
+  "was": "custom"
+ },
+ "FRITZ! GmbH": {
+  "checked": "2026-10-06",
+  "feed": "https://about.fritz.com/karriere/jobs",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://about.fritz.com/karriere/jobs: 19 jobs, 18 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -440,6 +681,37 @@
   ],
   "was": "greenhouse"
  },
+ "Flaregames": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "load https://www.flaregames.com/careers: HTTPError",
+   "crawl https://www.flaregames.com/careers: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "none"
+ },
+ "Fox & Sheep": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [],
+  "was": "none"
+ },
+ "Freeletics": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.freeletics.com/en/corporate/jobs/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "Fressnapf": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://jobs.fressnapf-maxizoo.com/de/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "Fryd GmbH": {
   "checked": "2026-09-28",
   "feed_was": "",
@@ -450,6 +722,14 @@
   "checked": "2026-09-28",
   "feed_was": "",
   "log": [],
+  "was": "custom"
+ },
+ "GameDuell": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://inside.gameduell.com/jobs/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
   "was": "custom"
  },
  "GamerProfiles": {
@@ -721,6 +1001,16 @@
   "log": [],
   "was": "custom"
  },
+ "Joyride GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "join https://join.com/companies/jaumo: 0 jobs, 0 in Germany, 0 match the board",
+   "load https://join.com/companies/jaumo: HTTPError",
+   "crawl https://join.com/companies/jaumo: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "join"
+ },
  "JustWatch GmbH": {
   "checked": "2026-09-28",
   "feed": "https://api.lever.co/v0/postings/justwatch?mode=json",
@@ -775,6 +1065,14 @@
   "log": [],
   "was": "custom"
  },
+ "King": {
+  "checked": "2026-10-06",
+  "feed_was": "https://careers.king.com/sitemap.xml",
+  "log": [
+   "crawl https://careers.king.com/: 25 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "Klarna": {
   "checked": "2026-09-29",
   "feed_was": "https://jobs.deel.com/klarna",
@@ -808,6 +1106,14 @@
   "log": [],
   "was": "custom"
  },
+ "KptnCook GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.kptncook.com/jobs: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "L'Osteria Pizza e Pasta": {
   "checked": "2026-09-27",
   "feed": "https://losteria.career.softgarden.de/jobs.feed.json",
@@ -817,6 +1123,23 @@
    "softgarden https://losteria.career.softgarden.de/jobs.feed.json: 436 jobs, 300 in Germany, 48 match the board"
   ],
   "was": "softgarden"
+ },
+ "LEO GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "load https://dict.leo.org/pages/about/ende/jobs_de.html: HTTPError",
+   "crawl https://dict.leo.org/pages/about/ende/jobs_de.html: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "none"
+ },
+ "LITE Games": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.lite.games/jobs/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "none"
  },
  "LW Medien GmbH": {
   "checked": "2026-09-29",
@@ -837,6 +1160,14 @@
    "https://www.l.de/karriere/stellenangebote/angebot/39-ausbildung-zum-elektroniker-m-w-d-fuer-betriebstechnik/",
    "https://www.l.de/karriere/stellenangebote/angebot/41-ausbildung-zum-fahrer-m-w-d-mit-berufsabschluss-metalltechnik/",
    "https://www.l.de/karriere/stellenangebote/angebot/136765-ausbildung-zum-kfz-mechatroniker-m-w-d-fuer-system--und-hochvolttechnik/"
+  ],
+  "was": "custom"
+ },
+ "Lidl": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://jobs.lidl.de: 0 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -872,6 +1203,14 @@
   "log": [
    "load https://www.lotum.com: HTTPError",
    "crawl https://www.lotum.com: SiteChanged no job page with JobPosting data among 1 pages (site changed?)"
+  ],
+  "was": "custom"
+ },
+ "Lufthansa Group": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.lufthansagroup.careers/: 0 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -938,6 +1277,15 @@
   "log": [],
   "was": "custom"
  },
+ "McDonald's Deutschland LLC": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "load https://karriere.mcdonalds.de/jobangebote/: HTTPError",
+   "crawl https://karriere.mcdonalds.de/jobangebote/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "Medienkontor Fulda": {
   "checked": "2026-09-29",
   "feed_was": "",
@@ -1002,6 +1350,14 @@
   ],
   "was": "custom"
  },
+ "NEW YORKER Marketing & Media International GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://jobs.newyorker.de/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "NORDSEE GmbH": {
   "checked": "2026-09-27",
   "feed_was": "",
@@ -1018,6 +1374,16 @@
    "load https://www.nasa.de/ueber-nasa-gmbh/stellenangebote/leitung-verkehr-und-infrastruktur/: URLError"
   ],
   "was": "custom"
+ },
+ "Nero AG": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "bamboohr https://nerointernal.bamboohr.com/careers: 0 jobs, 0 in Germany, 0 match the board",
+   "bamboohr https://resources.bamboohr.com/careers: HTTPError HTTP Error 404: Not Found",
+   "crawl https://www.nero.com/nero-com-en_GB/company/careers/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "unknown"
  },
  "Netto Marken-Discount Stiftung & Co. KG": {
   "checked": "2026-09-27",
@@ -1094,6 +1460,14 @@
   ],
   "was": "join"
  },
+ "Otto GmbH & Co. KGaA": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.otto.de/jobs: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "PAJ GPS": {
   "checked": "2026-09-28",
   "feed_was": "",
@@ -1141,6 +1515,16 @@
   ],
   "was": "custom"
  },
+ "Parfümerie Douglas GmbH": {
+  "checked": "2026-10-06",
+  "feed": "https://careers.douglas.group/de/",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://careers.douglas.group/de/: 37 jobs, 35 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "Pflegecampus": {
   "checked": "2026-09-27",
   "feed_was": "",
@@ -1158,6 +1542,14 @@
    "crawl https://pharmatechnik-karriere.softgarden.io/de/vacancies: 18 jobs, 17 in Germany, 17 match the board"
   ],
   "was": "softgarden"
+ },
+ "Playa Games": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.playa-games.com/career/index.html: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "none"
  },
  "Preventicus GmbH": {
   "checked": "2026-09-28",
@@ -1187,6 +1579,15 @@
    "https://jobs.rsggroup.com/stellenangebot.html"
   ],
   "was": "custom"
+ },
+ "RTL interactive GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "load https://karriere.rtl.de/: URLError",
+   "crawl https://karriere.rtl.de/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "unknown"
  },
  "Rexx Systems": {
   "checked": "2026-09-27",
@@ -1223,6 +1624,16 @@
    "https://db.jobs/de-de/Suche/Mechaniker-in-Metallbauer-in-Maurer-in-als-Weichenmechaniker-i-13129068"
   ],
   "was": "custom"
+ },
+ "S-Payment GmbH": {
+  "checked": "2026-10-06",
+  "feed": "https://dsvgruppe.wd103.myworkdayjobs.com/DSV",
+  "feed_was": "",
+  "found": "workday",
+  "log": [
+   "workday https://dsvgruppe.wd103.myworkdayjobs.com/DSV: 45 jobs, 45 in Germany, 0 match the board"
+  ],
+  "was": "unknown"
  },
  "SAGAFLOR AG": {
   "checked": "2026-09-28",
@@ -1303,6 +1714,16 @@
   "checked": "2026-09-29",
   "feed_was": "",
   "log": [],
+  "was": "custom"
+ },
+ "Schwarz Digits IT KG": {
+  "checked": "2026-10-06",
+  "feed": "https://jobs.schwarz/jobsearch",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://jobs.schwarz/jobsearch: 35 jobs, 30 in Germany, 0 match the board"
+  ],
   "was": "custom"
  },
  "Segmüller": {
@@ -1419,6 +1840,14 @@
   ],
   "was": "custom"
  },
+ "SevenOne Entertainment Group GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://jobs.prosiebensat1.com: 44 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "Siemens-Betriebskrankenkasse | SBK": {
   "checked": "2026-09-27",
   "feed_was": "",
@@ -1434,6 +1863,14 @@
   "found": "crawl",
   "log": [
    "crawl https://www.sixt.jobs/: 20 jobs, 20 in Germany, 18 match the board"
+  ],
+  "was": "custom"
+ },
+ "Sky Deutschland Fernsehen GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://careers.sky.com/: 0 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -1455,6 +1892,14 @@
   ],
   "was": "custom"
  },
+ "SoundCloud": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://soundcloud.com/company/careers: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "none"
+ },
  "Spiele-Palast GmbH": {
   "checked": "2026-09-28",
   "feed_was": "",
@@ -1469,6 +1914,14 @@
   "feed_was": "",
   "log": [],
   "was": "custom"
+ },
+ "StarBerry Games": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.starberry.games/careers: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "unknown"
  },
  "Stay Informed": {
   "checked": "2026-09-28",
@@ -1507,6 +1960,15 @@
   ],
   "was": "custom"
  },
+ "Sunday.gg": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "join https://join.com/companies/sunday: 0 jobs, 0 in Germany, 0 match the board",
+   "crawl https://join.com/companies/sunday: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "join"
+ },
  "Supershift GmbH": {
   "checked": "2026-09-29",
   "feed_was": "",
@@ -1531,6 +1993,16 @@
   ],
   "was": "custom"
  },
+ "Takko Holding GmbH": {
+  "checked": "2026-10-06",
+  "feed": "https://jobs.takko.com/de-de",
+  "feed_was": "",
+  "found": "crawl",
+  "log": [
+   "crawl https://jobs.takko.com/de-de: 19 jobs, 19 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "Tap Nine": {
   "checked": "2026-09-29",
   "feed_was": "",
@@ -1549,6 +2021,24 @@
   ],
   "was": "custom"
  },
+ "TeamViewer": {
+  "checked": "2026-10-06",
+  "feed": "https://careers.teamviewer.com/jobs",
+  "feed_was": "",
+  "found": "teamtailor",
+  "log": [
+   "teamtailor https://careers.teamviewer.com/jobs: 20 jobs, 2 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "Techniker Krankenkasse (TK)": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.tk.de/karriere: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "TeleClinic GmbH": {
   "checked": "2026-09-27",
   "feed_was": "",
@@ -1564,6 +2054,14 @@
   "found": "crawl",
   "log": [
    "crawl https://jobs.telefonica.com/TelefonicaGermany/?locale=de_DE: 47 jobs, 41 in Germany, 6 match the board"
+  ],
+  "was": "custom"
+ },
+ "Telekom Deutschland GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://careers.telekom.com/de: 0 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -1688,10 +2186,26 @@
   ],
   "was": "Custom (careers.vinted.com)"
  },
+ "Vodafone GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://careers.vodafone.com/de/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "Volkswagen AG": {
   "checked": "2026-09-28",
   "feed_was": "",
   "log": [],
+  "was": "custom"
+ },
+ "WEB.DE": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.united-internet.de/jobs-karriere/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
   "was": "custom"
  },
  "WGV-Informatik und Media GmbH": {
@@ -1764,6 +2278,14 @@
   "log": [],
   "was": "custom"
  },
+ "ZDFonline": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://jobs.zdf.de/: 25 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "Zalando SE": {
   "checked": "2026-09-27",
   "feed_was": "https://jobs.zalando.com/en/jobs/",
@@ -1803,7 +2325,6 @@
   "https://finanzfluss.jobs.personio.de/job/2806201": "2026-09-27",
   "https://finanzfluss.jobs.personio.de/job/2808090": "2026-09-27",
   "https://finanztip.jobs.personio.de/job/1740845": "2026-09-27",
-  "https://finanztip.jobs.personio.de/job/2611689": "2026-09-27",
   "https://finanztip.jobs.personio.de/job/2711796": "2026-09-27",
   "https://finanztip.jobs.personio.de/job/2712120": "2026-09-27",
   "https://finanztip.jobs.personio.de/job/2726949": "2026-09-27",
@@ -1826,11 +2347,21 @@
   "https://ionity-gmbh.jobs.personio.de/job/994367": "2026-09-27",
   "https://omos-media.jobs.personio.de/job/2697992": "2026-09-27",
   "https://omos-media.jobs.personio.de/job/2744999": "2026-09-27",
+  "https://omos-media.jobs.personio.de/job/2748275": "2026-10-06",
   "https://tandem.net/pages/careers/jobs/2509364": "2026-09-28",
   "https://tandem.net/pages/careers/jobs/2768964": "2026-09-28",
   "https://tandem.net/pages/careers/jobs/2792207": "2026-09-28",
   "https://tandem.net/pages/careers/jobs/2801273": "2026-09-28",
   "https://tecvia.jobs.personio.de/job/1168041": "2026-09-27"
+ },
+ "adidas": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "load https://careers.adidas-group.com: TimeoutError",
+   "crawl https://careers.adidas-group.com: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
  },
  "bitiba GmbH": {
   "checked": "2026-09-29",
@@ -1868,11 +2399,51 @@
   ],
   "was": "custom"
  },
+ "bonprix": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://bonprix.jobs/de/job-portal: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
+ "clickworker GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.clickworker.com/careers/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "unknown"
+ },
+ "congstar GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.congstar.de/das-ist-congstar/jobs-karriere/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "unknown"
+ },
+ "corporate benefits IT solutions GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.corporate-benefits.de/karriere: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "datronicsoft IT Systems GmbH & Co KG": {
   "checked": "2026-09-29",
   "feed_was": "",
   "log": [
    "crawl https://www.datronicsoft.de/karriere/: SiteChanged no job page with JobPosting data among 3 pages (site changed?)"
+  ],
+  "was": "custom"
+ },
+ "dm-drogerie markt GmbH + Co. KG": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://www.dm-jobs.de/: 0 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -1902,6 +2473,14 @@
    "https://www.fillibri-solutions.com/datenschutz",
    "https://www.fillibri-solutions.com/api/",
    "https://www.fillibri-solutions.com/envelope/"
+  ],
+  "was": "custom"
+ },
+ "flowkey": {
+  "checked": "2026-10-06",
+  "feed_was": "https://flowkey.breezy.hr/json",
+  "log": [
+   "crawl https://flowkey.breezy.hr/: 0 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -1967,6 +2546,14 @@
   ],
   "was": "custom"
  },
+ "kleinanzeigen.de GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://kleinanzeigendegmbh.careers.hibob.com/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "custom"
+ },
  "komoot GmbH": {
   "checked": "2026-09-27",
   "feed_was": "",
@@ -2005,7 +2592,17 @@
    "https://jobs.mbits.info/apply?id=dacdb4",
    "https://jobs.mbits.info/apply?id=d00de3",
    "https://jobs.mbits.info/apply?id=daf820",
-   "https://jobs.mbits.info/de?id=daf820"
+   "https://jobs.mbits.info/de?id=daf820",
+   "https://jobs.mbits.info/de?id=dacdb4",
+   "https://jobs.mbits.info/de?id=99d7da"
+  ],
+  "was": "custom"
+ },
+ "mobile.de GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://mobilede.careers.hibob.com/jobs: 0 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -2027,7 +2624,9 @@
    "https://www.arbeitnow.com/jobs/companies/momox/technical-crm-manager-own-our-braze-marketing-technology-stack-berlin-489561\\u0022\\n",
    "https://www.arbeitnow.com/jobs/companies/momox/technical-crm-manager-own-our-braze-marketing-technology-stack-berlin-489561\\u0022",
    "https://www.arbeitnow.com/jobs/companies/momox/werkstudentin-controlling-bis-zu-20-stunden-pro-woche-berlin-181205\\u0022\\n",
-   "https://www.arbeitnow.com/jobs/companies/momox/werkstudentin-controlling-bis-zu-20-stunden-pro-woche-berlin-181205\\u0022"
+   "https://www.arbeitnow.com/jobs/companies/momox/werkstudentin-controlling-bis-zu-20-stunden-pro-woche-berlin-181205\\u0022",
+   "https://www.arbeitnow.com/jobs/companies/momox/mid-or-senior-software-engineer-python-berlin-276408\\u0022\\n",
+   "https://www.arbeitnow.com/jobs/companies/momox/mid-or-senior-software-engineer-python-berlin-276408\\u0022"
   ],
   "was": "unknown"
  },
@@ -2109,5 +2708,13 @@
   "feed_was": "",
   "log": [],
   "was": "custom"
+ },
+ "wetter.com Group GmbH": {
+  "checked": "2026-10-06",
+  "feed_was": "",
+  "log": [
+   "crawl https://karriere.wetter.com/en/jobs: 0 jobs, 0 in Germany, 0 match the board"
+  ],
+  "was": "unknown"
  }
 }
