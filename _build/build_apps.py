@@ -104,9 +104,10 @@ def build(G):
         own = OWN.get(c['n']) or {}
         parent, note = own.get('parent'), own.get('de' if de else 'en')
         game = is_game(c)
+        careers = c.get('careers') if not n and (c.get('careers') or '').startswith('https://') else None   # 0 jobs with us != not hiring
         url = f"{SITE}{pre}/apps/{slug}/"
         alt = {'de': f"{SITE}/apps/{slug}/", 'en': f"{SITE}/en/apps/{slug}/"}
-        jt = f" ({n} Jobs)" if n else ''
+        jt = (f" ({n} Job)" if n == 1 else f" ({n} Jobs)") if n else ''
         title = fit(T(f"Wer steckt hinter {name}? {con}{jt}", f"Who Makes {name}? {con}{jt}"),
                     T(f"Wer steckt hinter {name}? {con}", f"Who Makes {name}? {con}"),
                     T(f"Wer steckt hinter {name}?", f"Who Makes {name}?"))
@@ -123,6 +124,9 @@ def build(G):
             jobs_sent = T(f"{esc(con)} hat gerade <b>{n_txt(n, 'offene Stelle', 'offene Stellen')}</b>", f"{esc(con)} has <b>{n_txt(n, 'open role', 'open roles')}</b> right now")
             jobs_sent += (T(", alle auf Englisch.", ", all in English.") if n_en == n else
                           T(f", {n_en} davon auf Englisch.", f", {n_en} of them in English.") if n_en else '.')
+        elif careers:
+            jobs_sent = T(f"Bei uns ist gerade keine Stelle von {esc(con)} gelistet; aktuelle Stellen stehen auf der Karriereseite (siehe Steckbrief). Ähnliche Firmen, die einstellen, stehen unten.",
+                          f"No role at {esc(con)} is listed with us right now; current openings are on the careers page (see fact sheet). Similar companies that are hiring are below.")
         else:
             jobs_sent = T(f"{esc(con)} hat gerade keine offenen Stellen bei uns, ähnliche Firmen aber schon (siehe unten).",
                           f"{esc(con)} has no open roles with us right now, but similar companies do (see below).")
@@ -142,7 +146,10 @@ def build(G):
                           + f' &middot; <a href="{esc(own["source"])}" target="_blank" rel="noopener nofollow">{T("Quelle", "Source")}</a>'))
         facts.append((T('Kategorie', 'Category'), T('Spiel', 'Game') if game else 'App'))
         facts.append(('Stores', stores))
-        facts.append((T('Offene Stellen', 'Open roles'), (f'<a href="{ch}" data-umami-event="app-company">{n}</a>' if ch and n else str(n)) + T(f' (Stand {TODAY})', f' (as of {TODAY})')))
+        facts.append((T('Offene Stellen', 'Open roles'),
+                      (f'<a href="{esc(careers)}" target="_blank" rel="noopener nofollow" data-umami-event="app-careers">{T("Karriereseite", "Careers page")} &#8599;</a> '
+                       + T('(bei uns gerade keine gelistet)', '(none listed with us right now)')) if careers else
+                      (f'<a href="{ch}" data-umami-event="app-company">{n}</a>' if ch and n else str(n)) + T(f' (Stand {TODAY})', f' (as of {TODAY})')))
         body = f'<nav class="crumb"><a href="{home(pre)}">Home</a> / <a href="{pre}/apps/">Apps</a> / {esc(name)}</nav>'
         body += '<div class="apphead">' + (f'<img src="{esc(icon)}" alt="" width="64" height="64">' if icon else '') + f'<h1>{T("Wer steckt hinter", "Who makes")} {esc(name)}?</h1></div>'
         body += f'<p class="lead">{lead}</p>'
@@ -174,24 +181,26 @@ def build(G):
                 h = app_href(o, lang); lab = esc(name_of(o)) + (f' &middot; {esc(inst(o))}' if inst(o) else '')
                 body += f'<a href="{h}">{lab}</a>' if h else f'<a href="https://play.google.com/store/apps/details?id={quote(o["id"])}" target="_blank" rel="noopener nofollow">{lab}</a>'
             body += '</div>'
+        k0 = next(i for i, r in enumerate(pages) if r[2] == slug)
+        ring = pages[k0 + 1:] + pages[:k0]   # start after this page, so every app page gets links from its neighbours, not only the top 8
         if game:
-            rel, rh = [r for r in pages if is_game(r[0]) and r[0] is not c][:8], T('Mehr Spiele aus Deutschland', 'More games made in Germany')
+            rel, rh = [r for r in ring if is_game(r[0]) and r[0] is not c][:8], T('Mehr Spiele aus Deutschland', 'More games made in Germany')
         else:
-            rel = [r for r in pages if not is_game(r[0]) and r[0] is not c and city and r[0].get('city') == city][:8]
+            rel = [r for r in ring if not is_game(r[0]) and r[0] is not c and city and r[0].get('city') == city][:8]
             rh = T(f'Mehr Apps aus {esc(city)}', f'More apps from {esc(city)}')
-            if len(rel) < 4: rel, rh = [r for r in pages if not is_game(r[0]) and r[0] is not c][:8], T('Mehr Apps aus Deutschland', 'More apps made in Germany')
+            if len(rel) < 4: rel, rh = [r for r in ring if not is_game(r[0]) and r[0] is not c][:8], T('Mehr Apps aus Deutschland', 'More apps made in Germany')
         if rel:
             body += f'<h2>{rh}</h2><div class="applist">' + ''.join(f'<a href="{pre}/apps/{s2}/">{T("Wer steckt hinter", "Who makes")} {esc(name_of(a2))}?</a>' for c2, a2, s2 in rel) + '</div>'
         faq = [(T(f"Wer hat {name} entwickelt?", f"Who made {name}?"),
-                T(f"{name} wird von {legal} entwickelt und bei Google Play veröffentlicht" + (f". Standort laut Google Play: {city}" if city else '') + ".",
-                  f"{name} is developed by {legal} and published on Google Play" + (f". Location on Google Play: {city}" if city else '') + "."))]
+                T(f"{name} kommt von {con}. Bei Google Play ist {legal} als Anbieter eingetragen" + (f". Standort laut Google Play: {city}" if city else '') + ".",
+                  f"{name} is made by {con}. On Google Play, {legal} is listed as the developer" + (f". Location on Google Play: {city}" if city else '') + "."))]
         if parent:
             faq.append((T(f"Zu welchem Konzern gehört {con}?", f"Who owns {con}?"), T(f"{con} gehört zu {parent}.", f"{con} is part of {parent}.") + (' ' + note if note else '')))
         faq.append((T(f"Stellt {con} gerade ein?", f"Is {con} hiring?"),
                     (T(f"Ja, {con} hat aktuell {n_txt(n, 'offene Stelle', 'offene Stellen')} (Stand {TODAY}). Die Stellen kommen direkt aus dem Bewerbungssystem der Firma.",
                        f"Yes, {con} has {n_txt(n, 'open role', 'open roles')} right now (as of {TODAY}), straight from the company's hiring system.")
-                     if n else T(f"Gerade nicht: Wir finden aktuell keine offenen Stellen bei {con}. Auf dieser Seite stehen ähnliche Firmen, die einstellen.",
-                                 f"Not right now: we don't find open roles at {con} at the moment. This page lists similar companies that are hiring."))))
+                     if n else T(f"Bei uns ist gerade keine Stelle von {con} gelistet" + ("; aktuelle Stellen stehen auf der Karriereseite der Firma" if careers else '') + ". Auf dieser Seite stehen ähnliche Firmen, die einstellen.",
+                                 f"No role at {con} is listed with us right now" + ("; current openings are on the company's careers page" if careers else '') + ". This page lists similar companies that are hiring."))))
         body += '<section class="faq"><h2>FAQ</h2>' + ''.join(f'<h3>{esc(q)}</h3><p>{esc(x)}</p>' for q, x in faq) + '</section>'
         org = {"@context": "https://schema.org", "@type": "Organization", "name": legal, "alternateName": con,
                **({"url": SITE + ch} if ch else {}),
@@ -216,11 +225,11 @@ def build(G):
         rows = ''
         for k, (c, a) in enumerate(items):
             h = app_href(a, lang) or co_href(c, lang)
-            nm = esc(name_of(a)); n = len(c.get('jobs') or [])
+            nm = esc(name_of(a)); n = len(c.get('jobs') or []); jw = 'Job' if n == 1 else 'Jobs'
             cell = f'<a href="{h}">{nm}</a>' if h else nm
             s = f"{name_of(a)} {htmlmod.unescape(a['t'])} {c['n']}"
             rows += (f'<tr data-s="{esc(s)}"><td class="n">{k + 1}</td><td>{cell}<div class="co">{esc(short_name(c["n"]))}</div></td>'
-                     f'<td class="ci">{esc(c.get("city") or "")}</td><td>{esc(inst(a))}</td><td>{(f"<span class=jb>{n} Jobs</span>" if n else "")}</td></tr>')
+                     f'<td class="ci">{esc(c.get("city") or "")}</td><td>{esc(inst(a))}</td><td>{(f"<span class=jb>{n} {jw}</span>" if n else "")}</td></tr>')
         return (f'<table class="atab" id="apptab"><thead><tr><th>#</th><th>{"App &amp; Firma" if de else "App &amp; company"}</th>'
                 f'<th class="ci">{"Standort" if de else "Location"}</th><th>{"Downloads" if de else "Installs"}</th><th>Jobs</th></tr></thead>'
                 f'<tbody>{rows}</tbody></table>')
