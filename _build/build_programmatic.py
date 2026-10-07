@@ -169,6 +169,10 @@ except Exception:
     pass
 os.makedirs(OUT, exist_ok=True)
 
+# ---- does each ad state the pay? (salary_detect.py): job url -> info; used by company pages and build_salary.py ----
+import salary_detect
+SAL=salary_detect.salary_map(COS, DATA)
+
 # ============ COMPANY PAGES ============
 comp_dir=os.path.join(OUT,"companies"); os.makedirs(comp_dir, exist_ok=True)
 used=set(); company_index=[]
@@ -196,7 +200,8 @@ def company_overview(c, city, jobs, lang="de"):
     dname = (lambda d: DISC[d][1]) if de else (lambda d: ROLE_EN.get(d, DISC[d][1]))
     top=[f"{dname(d)} ({k})" for d,k in disc.most_common() if d in DISC][:3]
     en=sum(1 for j in jobs if j.get('lang')=='en'); rem=sum(1 for j in jobs if _truthy(j.get('rem')))
-    sal=sum(1 for j in jobs if j.get('sal')); entry=sum(1 for j in jobs if j.get('s') in ('intern','junior'))
+    chk=[SAL[j['u']] for j in jobs if j.get('u') in SAL and SAL[j['u']]['checked']]   # ads we could judge (full text or a salary field)
+    sal=sum(1 for x in chk if x['sal']); entry=sum(1 for j in jobs if j.get('s') in ('intern','junior'))
     senior=sum(1 for j in jobs if j.get('s') in ('senior','lead'))
     locs=collections.Counter(re.split(r'[,/|(]',j.get('loc') or city or '')[0].strip() or city for j in jobs)
     J = lambda xs: _join(xs, lang)
@@ -211,7 +216,8 @@ def company_overview(c, city, jobs, lang="de"):
         if senior: lv.append(f"{senior} für Senior- und Lead-Rollen")
         if lv: p.append("Davon "+J(lv)+".")
         if rem: p.append(f"{rem} {'Stelle ist' if rem==1 else 'Stellen sind'} remote oder hybrid möglich.")
-        p.append(f"{sal} {'Anzeige nennt' if sal==1 else 'Anzeigen nennen'} ein Gehalt." if sal else "Keine der Anzeigen nennt ein Gehalt.")
+        if chk: p.append((f"In {sal} von {len(chk)} Anzeigen steht ein Gehalt." if sal else ("Die Anzeige nennt kein Gehalt." if len(chk)==1 else f"Keine der {len(chk)} Anzeigen nennt ein Gehalt."))
+                         +' <a href="/gehaltstransparenz/">So halten es andere App-Firmen</a>.')
         if len(locs)>1: p.append("Standorte: "+J(esc(l) for l,_ in locs.most_common(4) if l)+".")
         if apps: p.append("Bekannt für "+J(f"{esc(htmlmod.unescape(a['t']))}"+(f" ({esc(a['i'])} Downloads bei Google Play)" if a.get('i') else '') for a in apps)+".")
     else:
@@ -224,7 +230,8 @@ def company_overview(c, city, jobs, lang="de"):
         if senior: lv.append(f"{senior} for senior and lead roles")
         if lv: p.append("That includes "+J(lv)+".")
         if rem: p.append(f"{rem} {'role allows' if rem==1 else 'roles allow'} remote or hybrid work.")
-        p.append(f"{sal} {'ad shows' if sal==1 else 'ads show'} a salary." if sal else "None of the ads shows a salary.")
+        if chk: p.append((f"{sal} of {len(chk)} {'ad states' if len(chk)==1 else 'ads state'} the pay." if sal else ("The ad doesn't state the pay." if len(chk)==1 else f"None of the {len(chk)} ads states the pay."))
+                         +' <a href="/en/salary-transparency/">How other app companies compare</a>.')
         if len(locs)>1: p.append("Locations: "+J(esc(l) for l,_ in locs.most_common(4) if l)+".")
         if apps: p.append("Known for "+J(f"{esc(htmlmod.unescape(a['t']))}"+(f" ({esc(a['i'])} installs on Google Play)" if a.get('i') else '') for a in apps)+".")
     html=('<h2>Überblick</h2>' if de else '<h2>Overview</h2>')+'<p>'+' '.join(p)+'</p>'
@@ -538,6 +545,10 @@ en_page("", "App Jobs in Germany by Role and City | Berlin App Jobs", "App jobs 
 import build_apps
 APP_URLS=build_apps.build(globals())
 
+# ============ SALARY TRANSPARENCY INDEX + JOBS WITH SALARY (build_salary.py) ============
+import build_salary
+SAL_URLS=build_salary.build(globals())
+
 # ============ SITEMAP (full) ============
 urls=[(SITE+"/","1.0"),(SITE+"/guides/","0.8"),(SITE+"/companies/","0.8"),(SITE+"/en/companies/","0.8"),(SITE+"/jobs/","0.8")]
 for g in GUIDES: urls.append((f'{SITE}/guides/{g["slug"]}/',"0.7"))
@@ -549,6 +560,7 @@ for city,cslug,n in city_index: urls.append((f'{SITE}/jobs/{cslug}/',"0.6"))
 for k,city,dname,slug,n in extra_index: urls.append((f'{SITE}/jobs/{slug}/',"0.6"))
 for u in en_urls: urls.append((u,"0.6"))
 for u in APP_URLS: urls.append((u,"0.6"))
+for u in SAL_URLS: urls.append((u,"0.6"))
 urls.append((f'{SITE}/about/',"0.3"))
 sm='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 for u,p in urls: sm+=f'  <url><loc>{u}</loc><lastmod>{TODAY}</lastmod><changefreq>weekly</changefreq><priority>{p}</priority></url>\n'
