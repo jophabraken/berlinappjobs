@@ -92,10 +92,20 @@ def sal_str(lo, hi, period='year', cur='EUR'):
 MANUAL = re.compile(r'\b(fahrer|fahrerin|fahrer:in|driver|kurier|courier|rider|auslieferung|lokführer|triebfahrzeug|zugchef|zugbegleit|reiniger|reinigung|cleaner|cleaning|fahrzeugpfleg|kassierer|verkäufer|lager|warehouse|kommission|picker|packer|logistikmitarbeiter|mechatroniker|mechaniker|monteur|elektriker|elektroniker|techniker im außendienst|servicetechniker|schichtleit|produktionsmitarbeiter|maschinenführer|anlagenführer|koch|köchin|küche|service ?kraft|gastronomie|aushilfe|minijob|hausmeister|sicherheitsmitarbeiter)', re.I)
 OFFICE_ROLE = re.compile(r'manager|engineer|entwickler|developer|analyst|product|designer|scientist|consultant|architect|recruiter|marketing', re.I)
 def is_manual(t): return bool(MANUAL.search(t)) and not OFFICE_ROLE.search(t)
-PLACEHOLDER = re.compile(r'initiativbewerbung|initiative application|open application|unsolicited|talent ?pool|talentpool|general application|spontan|blindbewerbung|kein job, der zu dir passt|dein job ist nicht dabei|nicht das passende dabei|future opportunities|speculative', re.I)
+PLACEHOLDER = re.compile(r'initiativbewerb|ongoing opportunities|initiative application|open application|unsolicited|talent ?pool|talentpool|general application|spontan|blindbewerbung|kein job, der zu dir passt|dein job ist nicht dabei|nicht das passende dabei|future opportunities|speculative', re.I)
 EN_CITY = {'munich': 'München', 'cologne': 'Köln', 'nuremberg': 'Nürnberg', 'frankfurt': 'Frankfurt am Main', 'hanover': 'Hannover',
            'dusseldorf': 'Düsseldorf', 'duesseldorf': 'Düsseldorf', 'muenster': 'Münster', 'wurzburg': 'Würzburg', 'brunswick': 'Braunschweig'}
 FOREIGN = re.compile(r'\b(united states|usa|us|americas|apac|latam|u\.s\.|uk\b|united kingdom|london|dublin|ireland|paris|france|madrid|barcelona|spain|lisbon|portugal|milan|milano|rome|italy|amsterdam|netherlands|rotterdam|brussels|belgium|vienna|wien|austria|zurich|zürich|switzerland|warsaw|poland|krakow|prague|czech|budapest|stockholm|sweden|copenhagen|denmark|oslo|norway|helsinki|finland|tallinn|estonia|riga|vilnius|lithuania|bratislava|slovakia|sofia|bucharest|romania|athens|greece|istanbul|turkey|tel aviv|israel|dubai|singapore|tokyo|japan|seoul|korea|beijing|shanghai|china|india|bangalore|toronto|canada|new york|san francisco|austin|texas|california|sydney|australia|mexico|brazil|são paulo|sao paulo|cairo|lagos|nairobi|luxembourg|vietnam|manila)\b', re.I)
+
+# "Remote" without a German city or country (german_loc's last resort) is not a German job when the ad points abroad: the
+# title ends with a foreign place ("Public Sector Sales Lead, UK", "… (Remote, West Time Zone - USA)"), the feed names a
+# non-German country, or a Workday link files it under a US state ("/job/Remote-TX/…"). 6 Oct: DTN ×4, TeamViewer ×2.
+FOREIGN_END = re.compile(FOREIGN.pattern + r'\W*$', re.I)
+def abroad(x, loc):
+    if loc != 'Remote': return False
+    c = (x.get('country') or '').strip().lower()
+    return bool(FOREIGN_END.search(x.get('t') or '') or (c and c not in ('de', 'deu', 'germany', 'deutschland'))
+                or re.search(r'/job/remote-[a-z]{2}/', x.get('url') or '', re.I))
 
 def load_board():
     s = open(os.path.join(DATA, 'board_data.js'), encoding='utf-8').read()
@@ -373,6 +383,10 @@ with cf.ThreadPoolExecutor(10) as ex:
 EMPLOYER = {
     'momox SE': r'\bmomox\b',          # momox.biz/en/career embeds an arbeitnow.com widget with ads from other companies
     'stashcat GmbH': r'\bstashcat\b',  # stashcat.com/karriere links to all of secunet's jobs
+    # Group-wide career sites found by the 6 Oct detection (tier 2/3 promotion): keep only this company's own ads.
+    'S-Payment GmbH': r'\bS-Payment\b',                     # dsvgruppe Workday: whole DSV group (S-Com, Deutscher Sparkassen Verlag, …)
+    'Schwarz Digits IT KG': r'Schwarz Digits|\bSTACKIT\b',   # jobs.schwarz: Schwarz Gruppe head-office jobs (Bildungscampus, IPAI, …)
+    'AVIRA': r'\bavira\b',                                  # Ashby board gen-digital: Gen Digital (Norton, Avast) ads, none for Avira
 }
 
 report = []
@@ -421,6 +435,7 @@ for (ats, feed), cos in feeds.items():
             gl = german_loc(x.get('locs') or [], x.get('country', ''), x.get('remote', False))
             if not gl: continue
             loc, rem = gl
+            if abroad(x, loc): continue
             prev = match(key_ids(x['url']) + [x['id']])
             text = txt(x.get('desc'))
             if prev:
