@@ -29,7 +29,7 @@ ASK = re.compile(r'(gehaltsvorstellung|gehaltswunsch|gewünschte[ns]? gehalt|sal
 def text_of(h):
     h = re.sub(r'<(br|/p|/li|/h\d|/div)[^>]*>', '\n', h or '', flags=re.I)
     h = html.unescape(re.sub(r'<[^>]+>', ' ', h))
-    h = re.sub(r'[ \t\u00a0]+', ' ', h)
+    h = re.sub(r'[ \t\xa0]+', ' ', h)
     return re.sub(r'(\d),\s(\d{2})\s?(€|eur)', r'\1,\2 \3', h, flags=re.I)   # "16, 89 €" -> "16,89 €"
 
 def _eur(n):
@@ -72,7 +72,7 @@ def role_type(title, seniority=''):
     return 'pro'
 
 def _field_vals(s):
-    s = re.sub(r'(?<=\d)\.(?=\d{3}\b)', '', s or '')                   # "€5.000" -> "€5000"
+    s = re.sub(r'(?<=\d)[.,](?=\d{3}\b)', '', s or '')                # "€5.000" / "EUR 55,200" -> 5000 / 55200
     nums = re.findall(r'(\d+(?:[.,]\d+)?)\s?([kK])?', s or '')
     v = [float(a.replace(',', '.')) * (1000 if k else 1) for a, k in nums]
     per = 'h' if '/h' in s else ('m' if ('Monat' in s or '/mo' in s) else 'y')
@@ -95,6 +95,7 @@ def salary_map(COS, DATA):
             if jb.get('sal'): kind, vals = _field_vals(jb['sal'])
             elif h: kind, vals = h[0], h[1]
             else: kind, vals = None, []
+            if kind == 'y' and max(vals or [0]) < 1000: kind, vals = None, []   # e.g. "€40 pauschal pro Einsatz" is no annual pay
             out[jb.get('u')] = dict(sal=bool(jb.get('sal')) or bool(h), checked=full or bool(jb.get('sal')), full=full,
                                      tarif=bool(full and TARIF.search(t)), ask=bool(full and ASK.search(t)), kind=kind, vals=vals,
                                      rt=role_type(jb.get('t'), jb.get('s') or ''))

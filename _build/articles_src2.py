@@ -231,7 +231,7 @@ ARTICLES2 = [
 <li><b>2.240</b> offene Stellen</li>
 <li><b>344</b> App-Unternehmen mit offenen Stellen (von 1.045 erfassten)</li>
 <li><b>rund 10 Prozent</b> der Rollen sind remote oder mit Homeoffice ausgeschrieben</li>
-<li><b>knapp 3 Prozent</b> der Anzeigen nennen ein Gehalt</li>
+<li><b>rund jede zehnte</b> Anzeige nennt ein Gehalt (aktuelle Zahl: <a href="/gehaltstransparenz/">Gehaltstransparenz-Index</a>)</li>
 </ul>
 <p>Nur ein Drittel der App-Firmen stellt also gerade aktiv ein. Viele kleinere Entwickler haben keine offenen Stellen, andere suchen fast permanent.</p>
 
@@ -304,9 +304,9 @@ ARTICLES2 = [
 {
  "slug": "gehaltstransparenz-app-jobs-2026",
  "lang": "de",
- "title": "Gehaltsangaben in Stellenanzeigen: Nur 3 Prozent der App-Jobs nennen ein Gehalt",
- "metaTitle": "Gehalt in der Stellenanzeige? Nur 3 % der App-Jobs zeigen es (2026) | Berlin App Jobs",
- "desc": "Wir haben 2.240 Stellenanzeigen deutscher App-Firmen ausgewertet: Nur 64 nennen ein Gehalt. Was die EU-Entgelttransparenzrichtlinie ändert und welche Firmen schon transparent sind.",
+ "title": "Gehalt in der Stellenanzeige: Rechtslage, Praxis und Tipps für Bewerber",
+ "metaTitle": "Gehalt in der Stellenanzeige: Rechtslage und Tipps (2026) | Berlin App Jobs",
+ "desc": "Muss das Gehalt in die Stellenanzeige? Was die EU-Richtlinie ändert, wie du nach dem Gehaltsband fragst und welche App-Firmen Gehälter nennen.",
  "hreflang": None,
  "ctaHref": "/?sal=1",
  "ctaLabel": "Nur Stellen mit Gehaltsangabe anzeigen",
@@ -314,13 +314,12 @@ ARTICLES2 = [
  "html": """
 <p>Die Hälfte aller Jobsuchenden hat sich laut der StepStone Job- und Gehaltsstudie 2024/2025 schon einmal gegen eine Bewerbung entschieden, weil kein Gehalt in der Anzeige stand. 86 Prozent bewerben sich eher, wenn eines genannt wird. Wie sieht das bei den Firmen hinter Deutschlands Apps aus? Wir haben nachgezählt.</p>
 
-<h2>Das Ergebnis: 64 von 2.240</h2>
-<p>Von 2.240 offenen Stellen bei deutschen App-Unternehmen nennen nur <b>64 ein konkretes Gehalt oder eine Gehaltsspanne</b>. Das sind knapp 3 Prozent. Diese 64 Stellen verteilen sich auf gerade einmal <b>13 Unternehmen</b>. Rechnet man den transparentesten Arbeitgeber heraus ([[Freecash]], Sponsor dieses Boards, mit Spannen in fast allen Anzeigen), bleiben 31 Stellen oder 1,4 Prozent.</p>
-<p>Für die Auswertung haben wir nicht nur die Anzeigentexte gelesen, sondern auch die strukturierten Gehaltsfelder der Bewerbungssysteme abgefragt, die viele Firmen gar nicht ausfüllen. Das Ergebnis bleibt eindeutig: Gehaltstransparenz ist bei deutschen App-Firmen die Ausnahme.</p>
+<h2>Wie oft App-Firmen ein Gehalt nennen</h2>
+<p>Das zählt unser <a href="/gehaltstransparenz/">Gehaltstransparenz-Index</a> bei jedem Update neu, direkt aus den Bewerbungssystemen der Unternehmen: Anfang Oktober 2026 nannte rund jede zehnte Stellenanzeige bei deutschen App-Firmen ein Gehalt, bei Fach- und Führungsrollen noch weniger. Am häufigsten steht die Zahl in Ausbildungsanzeigen. Alle Anzeigen mit Gehaltsangabe findest du unter <a href="/jobs/mit-gehalt/">Jobs mit Gehaltsangabe</a>.</p>
 
 <h2>Wer schon transparent ist</h2>
 <ul>
-<li>[[Freecash]]: Spannen in fast allen Anzeigen, etwa 70.000 bis 90.000 Euro oder 80.000 bis 130.000 Euro plus Equity</li>
+<li>[[Freecash]] (Sponsor dieses Boards): Spannen in fast allen Anzeigen, etwa 70.000 bis 90.000 Euro oder 80.000 bis 130.000 Euro plus Equity</li>
 <li>[[InnoGames GmbH|InnoGames]] (Hamburg): zum Beispiel 55.200 bis 72.000 Euro für eine Analyst-Rolle</li>
 <li>[[rebuy recommerce GmbH|rebuy]] (Berlin): 75.000 bis 85.000 Euro für Senior Data Science, 100.000 bis 130.000 Euro für Head of Pricing</li>
 <li>celebrate apps (München): bis zu 115.000 Euro für Senior Growth Marketing</li>
@@ -346,7 +345,7 @@ ARTICLES2 = [
 """,
  "faq": [
    ["Wie viele Stellenanzeigen nennen ein Gehalt?",
-    "Bei deutschen App-Unternehmen nur knapp 3 Prozent: 64 von 2.240 ausgewerteten Anzeigen (Stand September 2026), verteilt auf 13 Firmen."],
+    "Bei deutschen App-Unternehmen rund jede zehnte (Stand Oktober 2026), bei Fach- und Führungsrollen weniger. Die aktuelle Zahl steht im Gehaltstransparenz-Index unter berlinappjobs.com/gehaltstransparenz/."],
    ["Müssen Arbeitgeber das Gehalt in die Stellenanzeige schreiben?",
     "Nach der EU-Entgelttransparenzrichtlinie müssen sie das Einstiegsgehalt oder eine Spanne in der Anzeige oder spätestens vor dem ersten Gespräch nennen. Deutschland hat die Umsetzungsfrist (7. Juni 2026) verpasst, das deutsche Gesetz ist Stand September 2026 noch nicht in Kraft."],
    ["Darf der Arbeitgeber nach meinem aktuellen Gehalt fragen?",
