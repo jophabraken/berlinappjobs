@@ -162,7 +162,7 @@ def build(G):
         b += bars([(SEN[k], sen[k], '') for k in ('junior', 'mid', 'senior', 'lead') if k in sen], 15, de)
         if len(lng) == 2:
             pe, pd = share(lng['en']), share(lng['de'])
-            b += '<p>' + T(f"Englischsprachige Anzeigen nennen {'genauso oft' if abs(pe - pd) < 1 else ('öfter' if pe > pd else 'seltener')} ein Gehalt wie deutsche ({pf(pe, de)} gegenüber {pf(pd, de)}, Fach- und Führungsrollen).",
+            b += '<p>' + T(f"Englischsprachige Anzeigen nennen {'genauso oft' if abs(pe - pd) < 1 else ('öfter' if pe > pd else 'seltener')} ein Gehalt {'wie' if abs(pe - pd) < 1 else 'als'} deutsche ({pf(pe, de)} gegenüber {pf(pd, de)}, Fach- und Führungsrollen).",
                            f"English-language ads state the pay {'as often as' if abs(pe - pd) < 1 else ('more often than' if pe > pd else 'less often than')} German ones ({pf(pe, de)} vs {pf(pd, de)}, professional roles).") + '</p>'
         CITY_EN = {'München': 'Munich', 'Köln': 'Cologne', 'Frankfurt am Main': 'Frankfurt'}
         if cities:
@@ -189,6 +189,7 @@ def build(G):
               + f'<li><span class="w">{T("7. Juni 2026", "7 Jun 2026")}</span><b>{T("Umsetzungsfrist. Deutschland verpasst sie.", "Deadline for national law. Germany misses it.")}</b></li>'
               + f'<li class="now"><span class="w">{T("Herbst 2026", "Autumn 2026")}</span><b>{T("Noch kein deutscher Gesetzentwurf veröffentlicht", "No German draft law published yet")}</b></li>'
               + f'<li><span class="w">{T("Erwartet 2027", "Expected 2027")}</span><b>{T("Deutsches Gesetz in Kraft, Datum offen", "German law in force, date not confirmed")}</b></li></ol>')
+        if de: b += '<p>Was das für Ihre Bewerbung heißt und wie Sie nach dem Gehaltsband fragen: <a href="/guides/gehaltstransparenz-app-jobs-2026/">Gehalt in der Stellenanzeige: Rechtslage und Tipps</a>.</p>'
         b += f'<p class="secnote">{T("Keine Rechtsberatung. Quellen: EUR-Lex; hib Bundestag, 16.7.2026; Personalwirtschaft, 19.6.2026.", "Not legal advice. Sources: EUR-Lex; Bundestag hib, 16 Jul 2026; Personalwirtschaft, 19 Jun 2026.")}</p>'
         # method
         b += f'<h2>{T("Methodik", "Method")}</h2>'
@@ -210,7 +211,7 @@ def build(G):
         b += f'<div style="margin-top:18px"><a class="cta" href="{jobs_url}">{T(f"Alle {nf(len(paid), de)} Jobs mit Gehaltsangabe", f"All {nf(len(paid), de)} jobs that show pay")} &rarr;</a></div>'
         ld = [breadcrumb([("Home", SITE + "/"), (T("Gehaltstransparenz", "Salary transparency"), url)]),
               {"@context": "https://schema.org", "@type": "Article", "headline": title[:110], "description": desc, "inLanguage": lang,
-               "datePublished": "2026-10-07", "dateModified": TODAY, "mainEntityOfPage": url,
+               "datePublished": "2026-10-07", "dateModified": max(TODAY, "2026-10-07"), "mainEntityOfPage": url,
                "author": {"@type": "Organization", "name": "Berlin App Jobs", "url": SITE + "/"}, "publisher": {"@type": "Organization", "name": "Berlin App Jobs", "url": SITE + "/"}},
               {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}]
         doc = head(title, desc, url, extra='\n' + CSS + '\n' + jsonld(ld), lang=lang, alt=alt, active='')
