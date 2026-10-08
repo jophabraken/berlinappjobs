@@ -29,7 +29,7 @@ ASK = re.compile(r'(gehaltsvorstellung|gehaltswunsch|gewünschte[ns]? gehalt|sal
 def text_of(h):
     h = re.sub(r'<(br|/p|/li|/h\d|/div)[^>]*>', '\n', h or '', flags=re.I)
     h = html.unescape(re.sub(r'<[^>]+>', ' ', h))
-    h = re.sub(r'[ \t ]+', ' ', h)
+    h = re.sub(r'[ \t\\u00a0]+', ' ', h)
     return re.sub(r'(\d),\s(\d{2})\s?(€|eur)', r'\1,\2 \3', h, flags=re.I)   # "16, 89 €" -> "16,89 €"
 
 def _eur(n):
