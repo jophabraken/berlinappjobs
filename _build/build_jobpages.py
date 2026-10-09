@@ -41,12 +41,26 @@ TAGS = ['p', 'br', 'ul', 'ol', 'li', 'strong', 'b', 'em', 'i', 'h2', 'h3', 'h4',
 _ESC_TAG = re.compile(r'&lt;(/?(?:p|div|br|ul|ol|li|strong|b|em|i|h[1-6]|a|span|font|section)\b.*?)&gt;', re.I | re.S)
 # rexx careers pages (BUDNI, Segmüller, Cornelsen) embed a video-consent widget whose text ends up in the ad.
 _CONSENT = re.compile(r'(?:<h\d>\s*)?Redaktionell empfohlener externer Inhalt.*?\(Datenschutzerkl(?:ä|&auml;)rung\)\.?', re.S)
-def sanitize(h):
+def _abs_links(h, base):
+    # Ads copied from a careers site can carry site-relative links ("/de/jobs/..."). On our domain they would point to
+    # pages that don't exist (8 Oct: 42 AUTOHERO pages failed check_site). Resolve them against the ad's own URL, or
+    # keep only the link text when that isn't possible.
+    def fix(m):
+        href = html.unescape(m.group(1))
+        if re.match(r'(?i)(https?:|mailto:)', href): return m.group(0)
+        if base and re.match(r'(?i)https?://', base) and not href.startswith('#'):
+            return '<a href="' + html.escape(urllib.parse.urljoin(base, href), quote=True) + '">'
+        return '<a>'
+    h = re.sub(r'<a href="([^"]*)">', fix, h)
+    return re.sub(r'<a>(.*?)</a>', r'\1', h, flags=re.S)
+
+def sanitize(h, base=None):
     h = _ESC_TAG.sub(lambda m: '<' + html.unescape(m.group(1)) + '>', h)
     h = _CONSENT.sub('', h)
     h = re.sub(r'<h1[^>]*>', '<h3>', h, flags=re.I).replace('</h1>', '</h3>')
     h = re.sub(r'<(div|section|span|font)[^>]*>|</(div|section|span|font)>', lambda m: '' if m.group(0).lower().startswith(('<span', '</span', '<font', '</font')) else ('<p>' if not m.group(0).startswith('</') else '</p>'), h, flags=re.I)
     h = bleach.clean(h, tags=TAGS, attributes={'a': ['href']}, strip=True)
+    h = _abs_links(h, base)
     h = re.sub(r'<a href=', '<a rel="nofollow noopener" target="_blank" href=', h)
     h = re.sub(r'(<p>\s*(&nbsp;|\s)*</p>\s*)+', '', h)
     h = re.sub(r'(<br\s*/?>\s*){3,}', '<br><br>', h)
@@ -162,7 +176,7 @@ for c in COS:
     for jb in c.get('jobs') or []:
         m = match(jb['u'])
         if not m or not m.get('desc'): continue
-        desc = sanitize(m['desc'])
+        desc = sanitize(m['desc'], jb['u'])
         if text_len(desc) < 300: continue
         cs = slugify(c['n'])
         h = hashlib.md5(jb['u'].encode()).hexdigest()[:6]
