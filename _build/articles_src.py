@@ -27,13 +27,13 @@ ARTICLES = [
 <li>Berlin: rund 48.000 Euro</li>
 <li>Duesseldorf: rund 47.900 Euro</li>
 </ul>
-<p>Berlin zahlt nicht die hoechsten Grundgehaelter, hat dafuer aber die mit Abstand groesste Dichte an App-Unternehmen und damit die meisten Wechseloptionen. Auf diesem Board entfallen aktuell rund 818 der gut 2.200 offenen Rollen auf Berlin.</p>
+<p>Berlin zahlt nicht die hoechsten Grundgehaelter, hat dafuer aber die mit Abstand groesste Dichte an App-Unternehmen und damit die meisten Wechseloptionen. Die offenen Rollen dort: <a href="/jobs/berlin/">App-Jobs in Berlin</a>.</p>
 
 <h2>Was das Gehalt nach oben treibt</h2>
 <p>Drei Faktoren machen in der Praxis den groessten Unterschied: Erfahrung (der Sprung von Junior zu Senior ist der groesste Hebel), Spezialisierung (native iOS/Android, Kotlin Multiplatform oder Backend mit Produktverantwortung werden besser bezahlt als reine Cross-Platform-Generalistenrollen) und die Art des Arbeitgebers. Produktunternehmen mit eigener App und Nutzerbasis zahlen in der Regel besser und transparenter als Agenturen oder Dienstleister.</p>
 
 <h2>Gehaltsangabe als Signal</h2>
-<p>Immer mehr deutsche App-Firmen geben Gehaltsbaender direkt in der Anzeige an, auch mit Blick auf die EU-Entgelttransparenzrichtlinie. Eine offen genannte Spanne ist ein gutes Zeichen: Unternehmen, die ihr Band zeigen, verhandeln meist fairer und strukturierter. Auf diesem Board lassen sich Rollen mit ausgewiesenem Gehalt gezielt filtern.</p>
+<p>Bisher nennt nur rund jede zehnte Anzeige deutscher App-Firmen ein Gehalt, wie unser <a href="/gehaltstransparenz/">Gehaltstransparenz-Index</a> zeigt. Mit der EU-Entgelttransparenzrichtlinie duerfte der Anteil steigen. Eine offen genannte Spanne ist ein gutes Zeichen: Unternehmen, die ihr Band zeigen, verhandeln meist fairer und strukturierter. Alle Rollen mit ausgewiesenem Gehalt findest du unter <a href="/jobs/mit-gehalt/">Jobs mit Gehaltsangabe</a>.</p>
 
 <h2>Netto statt brutto</h2>
 <p>Als grobe Faustregel bleiben in Deutschland je nach Steuerklasse etwa 48 bis 65 Prozent des Bruttogehalts netto. Aus 48.000 Euro brutto werden so grob 29.000 bis 31.000 Euro netto im Jahr. Fuer eine belastbare Zahl lohnt ein Brutto-Netto-Rechner mit der eigenen Steuerklasse.</p>
@@ -73,13 +73,13 @@ ARTICLES = [
 <li>Berlin: around 48,000 euro</li>
 <li>Duesseldorf: around 47,900 euro</li>
 </ul>
-<p>Berlin does not pay the highest base salaries, but it has by far the densest cluster of app companies and therefore the most options to move between. Around 818 of the 2,200-plus live roles on this board are in Berlin.</p>
+<p>Berlin does not pay the highest base salaries, but it has by far the densest cluster of app companies and therefore the most options to move between. The live roles there: <a href="/en/jobs/berlin/">app jobs in Berlin</a>.</p>
 
 <h2>What moves the number up</h2>
 <p>Three things make the biggest difference in practice: experience (junior to senior is the largest single jump), specialisation (native iOS/Android, Kotlin Multiplatform or backend with product ownership pay more than pure cross-platform generalist roles), and the type of employer. Product companies with their own app and user base generally pay better, and more transparently, than agencies or service providers.</p>
 
 <h2>A published range is a good sign</h2>
-<p>More German app companies now publish salary bands directly in the ad, partly in anticipation of the EU pay transparency directive. A stated range is a positive signal: companies that show their band tend to negotiate more fairly and consistently. On this board you can filter for roles that show a salary.</p>
+<p>So far only about one in ten ads at German app companies states the pay, as our <a href="/en/salary-transparency/">Salary Transparency Index</a> shows. The EU pay transparency directive should push that share up. A stated range is a positive signal: companies that show their band tend to negotiate more fairly and consistently. Every role that shows a salary is listed under <a href="/en/jobs/with-salary/">jobs with salary</a>.</p>
 
 <h2>Gross versus net</h2>
 <p>As a rough rule, depending on tax class, about 48 to 65 percent of a gross salary lands as net in Germany. So 48,000 euro gross is roughly 29,000 to 31,000 euro net per year. For a reliable figure, use a gross-to-net calculator with your own tax class.</p>
@@ -345,7 +345,7 @@ ARTICLES = [
 <p>Berlin is the easiest major German city to work in without German, and app companies are a big reason why. Engineering, product and design teams here are international by default, and a large share of listings are written in English. This guide shows how to find those roles without wading through German-only ads.</p>
 
 <h2>Why Berlin works in English</h2>
-<p>Berlin's tech scene draws talent from across Europe and beyond, so many app companies run in English as their working language. On this board, the majority of listings are in English, and Berlin alone accounts for around 818 of the 2,200-plus live roles. That combination, international teams plus volume, is what makes the city realistic for non-German speakers.</p>
+<p>Berlin's tech scene draws talent from across Europe and beyond, so many app companies run in English as their working language. In Berlin, more than half of the listings on this board are in English (<a href="/en/jobs/english-speaking/berlin/">English-speaking jobs in Berlin</a>), and Berlin has by far the most live roles: <a href="/en/jobs/berlin/">app jobs in Berlin</a>. That combination, international teams plus volume, is what makes the city realistic for non-German speakers.</p>
 
 <h2>Which roles are usually in English</h2>
 <p>Engineering, product, design and data roles are most often English-first. Marketing splits by market focus. Customer-facing, legal and some operations roles are the most likely to require German. The honest rule: the closer a role is to the core product, the more likely it works in English.</p>
@@ -358,7 +358,7 @@ ARTICLES = [
 """,
  "faq": [
    ["Can I get a job in Berlin without speaking German?",
-    "Yes, especially at app and startup companies, where engineering, product and design teams often work in English. The majority of listings on this board are in English."],
+    "Yes, especially at app and startup companies, where engineering, product and design teams often work in English. In Berlin, more than half of the listings on this board are in English."],
    ["Which Berlin roles are usually in English?",
     "Engineering, product, design and data roles are most often English-first. Customer-facing, legal and some operations roles are more likely to require German."],
    ["How do I find only English-speaking jobs?",
