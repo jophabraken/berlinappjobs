@@ -1,93 +1,120 @@
-# Job refresh 2026-10-09
+# Job refresh 2026-10-10
 
-- API feeds: 245, failed: 9; custom career pages link-checked: 395 links, 0 removed
-- Jobs: 4001 → 4290 (new 316, closed 27, still open 3379)
-- Full descriptions read from job pages: 0 (custom career pages) + 0 (feeds without descriptions, 1 pages checked)
-- Companies that were shown as not hiring and now list jobs: 11
-- Hiring-system detection: 70 companies checked, 14 now read directly
-- Published salaries added: 4; companies kept as-is because of a suspicious result: 0
+- API feeds: 257, failed: 15; custom career pages link-checked: 395 links, 3 removed
+- Jobs: 4290 → 4574 (new 334, closed 47, still open 3645)
+- Full descriptions read from job pages: 0 (custom career pages) + 1 (feeds without descriptions, 3 pages checked)
+- Companies that were shown as not hiring and now list jobs: 12
+- Hiring-system detection: 70 companies checked, 12 now read directly
+- Published salaries added: 10; companies kept as-is because of a suspicious result: 0
 - Result: written
 
 ## Changes by company
 
-- AUTOHERO (crawl): 14 → 15 jobs (0 closed)
-- AVIRA (ashby): 112 ads from other employers dropped (EMPLOYER rule)
-- BMW GROUP (crawl): 15 → 24 jobs (0 closed)
-- BUDNI Handels- und Service GmbH & Co. KG (crawl): 40 → 42 jobs (0 closed)
-- Borussia Dortmund (softgarden): now hiring, 16 jobs listed (was tier 2)
-- Buhl Data Service GmbH (personio): 9 → 11 jobs (0 closed)
-- Bünting E-Commerce GmbH & Co. KG (crawl): now hiring, 13 jobs listed (was tier 2)
-- CEWE (workday): 38 → 39 jobs (0 closed)
-- CTS EVENTIM AG & Co. KGaA (workday): 30 → 31 jobs (0 closed)
-- Cornelsen Verlag GmbH (crawl): 12 → 15 jobs (0 closed)
-- DATEV eG (workday): 54 → 53 jobs (1 closed)
-- Deichmann SE (crawl): 48 → 60 jobs (0 closed, 7 newer ads waiting (cap 60))
-- Der Tagesspiegel (crawl): now hiring, 1 jobs listed (was tier 3)
-- Dirk Rossmann GmbH (crawl): 28 → 27 jobs (2 closed)
-- EGYM (ashby): 36 → 37 jobs (0 closed)
-- EWE AG (workday): 51 → 52 jobs (0 closed)
-- EnBW AG (crawl): now hiring, 4 jobs listed (was tier 3)
-- Enpal B.V. (ashby): 60 → 60 jobs (1 closed, 37 newer ads waiting (cap 60))
-- FRITZ! GmbH (crawl): 19 → 20 jobs (0 closed)
-- FitX | FOR ALL OF US (crawl): 51 → 52 jobs (0 closed)
-- Flix SE (greenhouse): 49 → 48 jobs (2 closed)
-- HanseMerkur Krankenversicherung AG (crawl): 16 → 17 jobs (0 closed)
+- ABOUT YOU SE & Co. KG (crawl): 38 → 39 jobs (0 closed)
+- AVIRA (ashby): 110 ads from other employers dropped (EMPLOYER rule)
+- AXA Deutschland (crawl): now hiring, 33 jobs listed (was tier 3)
+- Adolf Würth GmbH & Co. KG (crawl): now hiring, 4 jobs listed (was tier 3)
+- Axel Springer Deutschland GmbH | WELT Digital (crawl): 58 → 57 jobs (1 closed)
+- BMW GROUP (crawl): 24 → 29 jobs (0 closed)
+- BWI GmbH (crawl): 60 → 60 jobs (1 closed, 42 newer ads waiting (cap 60))
+- Bundesliga Media GmbH (personio): 10 → 11 jobs (0 closed)
+- Bünting E-Commerce GmbH & Co. KG (crawl): 13 → 21 jobs (0 closed)
+- CTS EVENTIM AG & Co. KGaA (workday): 31 → 32 jobs (0 closed)
+- DATEV eG (workday): 53 → 54 jobs (0 closed)
+- DIHK-Bildungs-gGmbH (crawl): now hiring, 6 jobs listed (was tier 3)
+- Deutscher Bundestag (custom): removed 2 dead links
+- Dirk Rossmann GmbH (crawl): 27 → 27 jobs (1 closed)
+- EGYM (ashby): 37 → 39 jobs (0 closed)
+- ERGO Group AG (crawl): 38 → 43 jobs (0 closed)
+- EWE AG (workday): 52 → 54 jobs (0 closed)
+- EnBW AG (crawl): 4 → 6 jobs (0 closed)
+- FRITZ! GmbH (crawl): 20 → 19 jobs (1 closed)
+- FitX | FOR ALL OF US (crawl): 52 → 54 jobs (1 closed)
+- Flink SE (smartrecruiters): 20 → 21 jobs (0 closed)
+- Flix SE (greenhouse): 48 → 49 jobs (1 closed)
+- Governikus Service GmbH (personio): 10 → 11 jobs (1 closed)
 - Hanseatic Bank GmbH & Co KG (custom): 4/4 links 404 (since 2026-10-04), looks like a site change, kept all
-- Kaufmännische Krankenkasse - KKH (crawl): 21 → 23 jobs (1 closed)
-- Klassik Radio AG (crawl): 5 → 7 jobs (0 closed)
-- LVM Versicherung Münster a.G. (crawl): 36 → 60 jobs (0 closed, 7 newer ads waiting (cap 60))
+- HelloFresh SE (greenhouse): 60 → 60 jobs (1 closed, 41 newer ads waiting (cap 60))
+- IDnow (greenhouse): 9 → 8 jobs (1 closed)
+- IG Metall Vorstand (crawl): 7 → 6 jobs (1 closed)
+- Immobilien Scout GmbH (custom): removed 1 dead links
+- Intelligent Apps GmbH (greenhouse): 13 → 14 jobs (0 closed)
+- JustPlay GmbH (ashby): 7 → 8 jobs (0 closed)
+- Leipziger Verkehrsbetriebe (crawl): 25 → 26 jobs (0 closed)
 - Lotum two GmbH (custom): 6/6 links 404 (since 2026-10-04), looks like a site change, kept all
-- Miele & Cie. KG (crawl): 21 → 32 jobs (0 closed)
-- Modepark Röther (crawl): now hiring, 19 jobs listed (was tier 3)
-- N26 AG (greenhouse): 25 → 27 jobs (0 closed)
+- METRO Digital GmbH (crawl): 7 → 8 jobs (0 closed)
+- MetaFlow (personio): 3 → 4 jobs (0 closed)
+- Miele & Cie. KG (crawl): 32 → 41 jobs (1 closed)
+- Modepark Röther (crawl): 19 → 24 jobs (0 closed)
+- MyTherapy (personio): fetch failed, kept 1 jobs. HTTPError: HTTP Error 404: Not Found
+- N26 AG (greenhouse): 27 → 28 jobs (0 closed)
 - NORDSEE GmbH (custom): 14/15 links 404 (since 2026-10-04), looks like a site change, kept all
-- Parfümerie Akzente GmbH (crawl): 55 → 56 jobs (0 closed)
-- Parfümerie Douglas GmbH (crawl): 41 → 51 jobs (1 closed)
+- OBI Home and Garden GmbH (crawl): now hiring, 21 jobs listed (was tier 3)
+- Ostdeutsche Medienholding GmbH (join): 12 → 15 jobs (0 closed)
+- PL Gutscheinsysteme GmbH (personio): fetch failed, kept 2 jobs. HTTPError: HTTP Error 404: Not Found
+- Parfümerie Akzente GmbH (crawl): 56 → 57 jobs (1 closed)
+- Parfümerie Douglas GmbH (crawl): 51 → 60 jobs (0 closed, 1 newer ads waiting (cap 60))
+- Pohl-Boskamp Digital Health GmbH (crawl): now hiring, 7 jobs listed (was tier 3)
 - RADIO BOB GmbH & Co. KG (softgarden): fetch failed, kept 4 jobs. HTTPError: HTTP Error 404: Not Found
 - REGIOCAST GmbH & Co.KG (softgarden): fetch failed, kept 12 jobs. HTTPError: HTTP Error 404: Not Found
-- Robert Bosch GmbH (smartrecruiters): 60 → 60 jobs (11 closed, 53 newer ads waiting (cap 60))
-- S-Payment GmbH (workday): 13 → 12 jobs (1 closed)
-- S-Payment GmbH (workday): 32 ads from other employers dropped (EMPLOYER rule)
-- Scalable AG (smartrecruiters): 60 → 60 jobs (1 closed, 43 newer ads waiting (cap 60))
+- RSG Group GmbH (crawl): 45 → 45 jobs (1 closed)
+- Raisin SE (greenhouse): 29 → 30 jobs (0 closed)
+- Robert Bosch GmbH (smartrecruiters): 60 → 60 jobs (6 closed, 53 newer ads waiting (cap 60))
+- S Broker AG & Co. KG (crawl): now hiring, 35 jobs listed (was tier 3)
+- S-Payment GmbH (workday): 31 ads from other employers dropped (EMPLOYER rule)
+- Sandbox Interactive GmbH (teamtailor): 9 → 8 jobs (1 closed)
+- Scalable AG (smartrecruiters): 60 → 60 jobs (1 closed, 42 newer ads waiting (cap 60))
 - Schwarz Digits IT KG (crawl): 40 ads from other employers dropped (EMPLOYER rule)
 - Sdui (personio): fetch failed, kept 6 jobs. HTTPError: HTTP Error 404: Not Found
-- Sellwerk GmbH & Co. KG (crawl): 20 → 19 jobs (2 closed)
+- Sonic Healthcare Germany GmbH & Co. KG (softgarden): 28 → 27 jobs (1 closed)
+- Springer Medizin Verlag GmbH (workday): now hiring, 14 jobs listed (was tier 3)
+- Stepstone (smartrecruiters): 60 → 60 jobs (2 closed)
 - Stillfront Supremacy GmbH (custom): 11/11 links 404 (since 2026-10-04), looks like a site change, kept all
-- SumUp (greenhouse): 57 → 57 jobs (1 closed)
-- TUI Hotel Betriebsgesellschaft mbH (crawl): 15 → 18 jobs (0 closed)
-- Takko Holding GmbH (crawl): 12 → 16 jobs (0 closed)
-- Targobank AG (crawl): now hiring, 40 jobs listed (was tier 3)
-- TeamBank AG (crawl): 11 → 10 jobs (1 closed)
-- Thalia Bücher GmbH (crawl): 26 → 39 jobs (0 closed)
+- Studyflix GmbH (personio): 18 → 17 jobs (1 closed)
+- SumUp (greenhouse): 57 → 56 jobs (4 closed)
+- TUI Hotel Betriebsgesellschaft mbH (crawl): 18 → 19 jobs (0 closed)
+- Takko Holding GmbH (crawl): 16 → 15 jobs (1 closed)
+- Targobank AG (crawl): 40 → 60 jobs (0 closed, 20 newer ads waiting (cap 60))
+- Taxfix SE (ashby): 18 → 16 jobs (2 closed)
+- TeamBank AG (crawl): 10 → 9 jobs (1 closed)
+- TeamViewer (teamtailor): 2 → 3 jobs (0 closed)
+- Thalia Bücher GmbH (crawl): 39 → 48 jobs (1 closed)
 - Too Good To Go (greenhouse): fetch failed, kept 7 jobs. HTTPError: HTTP Error 404: Not Found
-- Trade Republic Bank GmbH (greenhouse): 37 → 36 jobs (1 closed)
-- TÜV NORD Service GmbH & Co. KG (crawl): 60 → 60 jobs (1 closed, 28 newer ads waiting (cap 60))
-- VAG Verkehrs-Aktiengesellschaft (crawl): now hiring, 12 jobs listed (was tier 3)
-- Vattenfall Europe Sales GmbH (crawl): now hiring, 12 jobs listed (was tier 3)
-- Volkswagen Group Charging GmbH (crawl): now hiring, 1 jobs listed (was tier 3)
-- Wolt (greenhouse): 36 → 37 jobs (0 closed)
-- bitiba GmbH (crawl): 6 → 7 jobs (0 closed)
-- ifap Service-Institut für Ärzte und Apotheker GmbH (workday): now hiring, 60 jobs listed (was tier 3), 54 more waiting (cap 60)
+- VAN GRAAF (crawl): now hiring, 4 jobs listed (was tier 3)
+- Vattenfall Europe Sales GmbH (crawl): 12 → 13 jobs (1 closed)
+- Vivid Money GmbH (personio): 10 → 10 jobs (1 closed)
+- Westermann GmbH & Co. KG (softgarden): 19 → 20 jobs (0 closed)
+- Wolt (greenhouse): 37 → 36 jobs (1 closed)
+- Wolters Kluwer Tax & Accounting Deutschland GmbH (workday): now hiring, 48 jobs listed (was tier 3)
+- Yazio (ashby): 7 → 6 jobs (1 closed)
+- ZOXS (crawl): now hiring, 11 jobs listed (was tier 3)
+- Zalando SE (zalando): 60 → 60 jobs (2 closed, 13 newer ads waiting (cap 60))
+- bitiba GmbH (crawl): 7 → 8 jobs (0 closed)
+- clockin GmbH (recruitee): 2 → 2 jobs (1 closed)
+- eurodata AG (softgarden): now hiring, 13 jobs listed (was tier 2)
+- foodora (Delivery Hero) (smartrecruiters): 24 → 23 jobs (1 closed)
+- idealo internet GmbH (recruitee): 28 → 27 jobs (1 closed)
+- ifap Service-Institut für Ärzte und Apotheker GmbH (workday): 60 → 60 jobs (1 closed, 53 newer ads waiting (cap 60))
 - komoot GmbH (custom): 7/7 links 404 (since 2026-10-04), looks like a site change, kept all
-- mbits imaging GmbH (crawl): 3 → 4 jobs (0 closed)
-- meinestadt.de GmbH (personio): now hiring, 1 jobs listed (was tier 3)
+- mbits imaging GmbH (crawl): 4 → 2 jobs (2 closed)
+- mycare.de Apotheke (crawl): now hiring, 8 jobs listed (was tier 3)
+- rebuy recommerce GmbH (recruitee): 6 → 5 jobs (1 closed)
+- sevDesk GmbH (personio): fetch failed, kept 0 jobs. HTTPError: HTTP Error 404: Not Found
+- simpleclub GmbH (personio): fetch failed, kept 0 jobs. HTTPError: HTTP Error 404: Not Found
 - stashcat GmbH (crawl): 42 ads from other employers dropped (EMPLOYER rule)
-- toom Baumarkt GmbH (crawl): 17 → 20 jobs (0 closed)
-- trivago N.V. (greenhouse): 12 → 15 jobs (0 closed)
+- toom Baumarkt GmbH (crawl): 20 → 21 jobs (0 closed)
 
 ## Hiring systems found
 
-- ifap Service-Institut für Ärzte und Apotheker GmbH: workday (https://cgm.wd3.myworkdayjobs.com/cgm), had 0 jobs
-- Modepark Röther: crawl (https://karriere.modepark.de/), had 0 jobs
-- Vattenfall Europe Sales GmbH: crawl (https://careers.vattenfall.com/), had 0 jobs
-- Borussia Dortmund: softgarden (https://karriere.bvb.de/jobs.feed.json), had 0 jobs
-- meinestadt.de GmbH: personio (https://meinestadt.jobs.personio.de), had 0 jobs
-- Der Tagesspiegel: crawl (https://jobs.tagesspiegel.de/), had 0 jobs
-- S-Communication Services GmbH: workday (https://dsvgruppe.wd103.myworkdayjobs.com/DSV), had 0 jobs
-- Volkswagen Group Charging GmbH: crawl (https://jobs.volkswagen-group.com/Elli/), had 0 jobs
-- 11FREUNDE Verlag GmbH & Co. KG: softgarden (https://www.karriere-spiegelgruppe.de/jobs.feed.json), had 0 jobs
-- VAG Verkehrs-Aktiengesellschaft: crawl (https://karriere.vag.de/), had 0 jobs
-- Targobank AG: crawl (https://jobs.targobank.de/), had 0 jobs
-- CGM Mobile Services GmbH: workday (https://cgm.wd3.myworkdayjobs.com/cgm), had 0 jobs
-- EnBW AG: crawl (https://careers.enbw.com/de/de), had 0 jobs
-- Bünting E-Commerce GmbH & Co. KG: crawl (https://karriere.buenting.de/), had 0 jobs
+- Wolters Kluwer Tax & Accounting Deutschland GmbH: workday (https://wk.wd3.myworkdayjobs.com/External), had 0 jobs
+- ZOXS: crawl (https://www.zoxs.org/karriere/stellenangebote/), had 0 jobs
+- eurodata AG: softgarden (https://www.jobs.eurodata.de/jobs.feed.json), had 0 jobs
+- AXA Deutschland: crawl (https://careers-de-axa.icims.com/jobs/search), had 0 jobs
+- mycare.de Apotheke: crawl (https://jobs.mycare.de), had 0 jobs
+- VAN GRAAF: crawl (https://www.peek-und-cloppenburg.de/de/karriere/), had 0 jobs
+- DIHK-Bildungs-gGmbH: crawl (https://karriere.dihk.de), had 0 jobs
+- Adolf Würth GmbH & Co. KG: crawl (https://www.wuerth.de/web/de/awkg/karriere/jobs/stellensuche/job-finden.php), had 0 jobs
+- S Broker AG & Co. KG: crawl (https://karriere.deka.de/), had 0 jobs
+- OBI Home and Garden GmbH: crawl (https://jobs.obi.de/), had 0 jobs
+- Pohl-Boskamp Digital Health GmbH: crawl (https://www.pohl-boskamp.de/karriere/stellenangebote/), had 0 jobs
+- Springer Medizin Verlag GmbH: workday (https://springernature.wd3.myworkdayjobs.com/SpringerNatureCareers), had 0 jobs
