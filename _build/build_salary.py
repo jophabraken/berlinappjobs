@@ -105,7 +105,7 @@ def build(G):
         title = T(f"Gehaltstransparenz-Index: {pf(P_all, de)} der Stellenanzeigen nennen ein Gehalt",
                   f"Salary Transparency Index: {pf(P_all, de)} of App Job Ads Show Pay")
         if len(title) > 70: title = T("Gehaltstransparenz in Stellenanzeigen: der Index für App-Firmen", "Salary Transparency in Job Ads: App Companies Index")
-        desc = T(f"Nur {pf(P_all, de)} von {nf(N, de)} Stellenanzeigen bei {len(co)} deutschen App-Firmen nennen ein Gehalt, in der Entwicklung {pf(share(eng), de)}. Auswertung nach Bereich, Stadt und Seniorität, Stand {TODAY}.",
+        desc = T(f"Nur {pf(P_all, de)} von {nf(N, de)} Stellenanzeigen bei {len(co)} App-Firmen nennen ein Gehalt, in der Entwicklung {pf(share(eng), de)}. Nach Bereich, Stadt und Seniorität, Stand {TODAY}.",
                  f"Only {pf(P_all, de)} of {nf(N, de)} job ads at {len(co)} German app companies state the pay, {pf(share(eng), de)} in engineering. Broken down by role, city and seniority, as of {TODAY}.")
         low = sorted(disc.items(), key=lambda kv: share(kv[1]))[:2]
         hi_ = sorted(disc.items(), key=lambda kv: -share(kv[1]))[:2]
