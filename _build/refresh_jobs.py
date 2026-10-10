@@ -387,6 +387,10 @@ EMPLOYER = {
     'S-Payment GmbH': r'\bS-Payment\b',                     # dsvgruppe Workday: whole DSV group (S-Com, Deutscher Sparkassen Verlag, …)
     'Schwarz Digits IT KG': r'Schwarz Digits|\bSTACKIT\b',   # jobs.schwarz: Schwarz Gruppe head-office jobs (Bildungscampus, IPAI, …)
     'AVIRA': r'\bavira\b',                                  # Ashby board gen-digital: Gen Digital (Norton, Avast) ads, none for Avira
+    # Found by the 9 Oct detection, checked 10 Oct: none of these ads names the company.
+    'ifap Service-Institut für Ärzte und Apotheker GmbH': r'\bifap\b',      # cgm Workday: all CompuGroup Medical jobs (0 of 60 name ifap)
+    'Der Tagesspiegel': r'\bTagesspiegel\b',                              # jobs.tagesspiegel.de is a job market (ad by the Bundesanstalt für Immobilienaufgaben)
+    'Volkswagen Group Charging GmbH': r'\bElli\b|Volkswagen Group Charging',  # VW group site: a dx.one GmbH ad in Wolfsburg
 }
 
 report = []
