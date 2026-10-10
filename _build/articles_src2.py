@@ -46,21 +46,21 @@ ARTICLES2 = [
 <p>Auffällig ist die Bandbreite: Fintech (Trade Republic, N26, Taxfix), Marktplätze (Kleinanzeigen, Zalando, momox), Lernen (Babbel, Knowunity, ANTON), Gesundheit (Clue, Ada) und Reisen (GetYourGuide, HomeToGo). Berlin ist kein Ein-Themen-Standort.</p>
 
 <h2>Welche dieser Firmen gerade einstellen</h2>
-<p>Downloads sind das eine, offene Stellen das andere. Viele der größten Berliner App-Firmen suchen laufend. Auf diesem Board finden sich aktuell unter anderem:</p>
+<p>Downloads sind das eine, offene Stellen das andere. Viele der größten Berliner App-Firmen suchen laufend. Auf diesem Board finden sich unter anderem Stellen bei:</p>
 <ul>
-<li>[[N26 AG|N26]]: rund 46 offene Rollen, davon viele in Engineering</li>
-<li>[[GetYourGuide]]: rund 39</li>
-<li>[[Freecash]]: rund 36</li>
-<li>[[HelloFresh SE|HelloFresh]]: rund 34</li>
-<li>[[Trade Republic Bank GmbH|Trade Republic]]: rund 27</li>
-<li>[[Immobilien Scout GmbH|ImmoScout24]]: rund 20</li>
-<li>[[Taxfix SE|Taxfix]]: rund 18</li>
-<li>[[Zalando SE|Zalando]]: rund 10</li>
+<li>[[N26 AG|N26]], viele davon in Engineering</li>
+<li>[[GetYourGuide]]</li>
+<li>[[Freecash]]</li>
+<li>[[HelloFresh SE|HelloFresh]]</li>
+<li>[[Trade Republic Bank GmbH|Trade Republic]]</li>
+<li>[[Immobilien Scout GmbH|ImmoScout24]]</li>
+<li>[[Taxfix SE|Taxfix]]</li>
+<li>[[Zalando SE|Zalando]]</li>
 </ul>
-<p>Andere Namen aus dem Ranking, etwa SoundCloud, Babbel oder Wooga, haben gerade keine Stellen in ihren Bewerbungssystemen, die wir auslesen können. Das ändert sich schnell: Das Board wird wöchentlich aktualisiert.</p>
+<p>Wie viele Stellen jede Firma gerade offen hat, steht auf ihrer Firmenseite. Andere Namen aus dem Ranking, etwa SoundCloud oder Babbel, haben gerade keine Stellen in ihren Bewerbungssystemen, die wir auslesen können. Das ändert sich schnell: Das Board wird täglich aktualisiert.</p>
 
 <h2>Warum das für Bewerber zählt</h2>
-<p>Eine App mit zehn- oder hundertmillionenfacher Nutzung bedeutet in der Regel: große Datenmengen, echte Skalierungsprobleme, A/B-Tests mit statistischer Aussagekraft und Produktentscheidungen, die man im Lebenslauf konkret beziffern kann. Wer in Berlin arbeitet, hat mit rund 780 offenen Rollen bei knapp 100 App-Firmen außerdem mehr Wechseloptionen als in jeder anderen deutschen Stadt.</p>
+<p>Eine App mit zehn- oder hundertmillionenfacher Nutzung bedeutet in der Regel: große Datenmengen, echte Skalierungsprobleme, A/B-Tests mit statistischer Aussagekraft und Produktentscheidungen, die man im Lebenslauf konkret beziffern kann. Wer in Berlin arbeitet, hat außerdem mehr Wechseloptionen als in jeder anderen deutschen Stadt: Hier sind die meisten offenen Rollen bei App-Firmen (<a href="/jobs/berlin/">App-Jobs in Berlin</a>).</p>
 """,
  "faq": [
    ["Welche App aus Berlin hat die meisten Downloads?",
@@ -113,20 +113,20 @@ ARTICLES2 = [
 <p>The spread is the point: fintech, marketplaces, education, health and travel all have 10M+ apps built in Berlin. The city is not a one-category hub.</p>
 
 <h2>Which of them are hiring</h2>
-<p>Many of the biggest Berlin app companies hire continuously, and most of them work in English. Right now this board lists, among others:</p>
+<p>Many of the biggest Berlin app companies hire continuously, and most of them work in English. This board lists open roles at, among others:</p>
 <ul>
-<li>[[N26 AG|N26]]: around 46 open roles, many in engineering</li>
-<li>[[GetYourGuide]]: around 39</li>
-<li>[[Freecash]]: around 36</li>
-<li>[[HelloFresh SE|HelloFresh]]: around 34</li>
-<li>[[Trade Republic Bank GmbH|Trade Republic]]: around 27</li>
-<li>[[Immobilien Scout GmbH|ImmoScout24]]: around 20</li>
-<li>[[Taxfix SE|Taxfix]]: around 18</li>
+<li>[[N26 AG|N26]], many in engineering</li>
+<li>[[GetYourGuide]]</li>
+<li>[[Freecash]]</li>
+<li>[[HelloFresh SE|HelloFresh]]</li>
+<li>[[Trade Republic Bank GmbH|Trade Republic]]</li>
+<li>[[Immobilien Scout GmbH|ImmoScout24]]</li>
+<li>[[Taxfix SE|Taxfix]]</li>
 </ul>
-<p>Others on the list, such as SoundCloud, Babbel or Wooga, have no roles in the hiring systems we can read right now. That changes quickly, and the board refreshes weekly.</p>
+<p>Each company page shows how many roles it has open right now. Others on the list, such as SoundCloud or Babbel, have no roles in the hiring systems we can read right now. That changes quickly, and the board refreshes daily.</p>
 
 <h2>Why it matters if you are job hunting</h2>
-<p>An app used by tens of millions of people usually means real scale problems, A/B tests with statistical power and product decisions you can put numbers on in your CV. With around 780 open roles at close to 100 app companies, Berlin also gives you more options to move than any other German city, and roughly three out of four roles here are advertised in English.</p>
+<p>An app used by tens of millions of people usually means real scale problems, A/B tests with statistical power and product decisions you can put numbers on in your CV. Berlin also has more open roles at app companies than any other German city, so more options to move (<a href="/en/jobs/berlin/">app jobs in Berlin</a>), and more than half of the roles here are advertised in English.</p>
 """,
  "faq": [
    ["What is the most downloaded app from Berlin?",
@@ -134,7 +134,7 @@ ARTICLES2 = [
    ["Which famous apps are made in Berlin?",
     "SoundCloud, Zalando, N26, Trade Republic, Babbel, Clue, Kleinanzeigen, OneFootball, GetYourGuide, HelloFresh, Taxfix, Blinkist and Ecosia, among others."],
    ["Do Berlin app companies hire in English?",
-    "Mostly yes. Around three quarters of the Berlin roles on this board are advertised in English, especially at fintechs, marketplaces and game studios."]
+    "Mostly yes. More than half of the Berlin roles on this board are advertised in English, especially at fintechs, marketplaces and game studios."]
  ]
 },
 
@@ -221,7 +221,7 @@ ARTICLES2 = [
  "desc": "Der Jobmarkt bei deutschen App-Unternehmen in Zahlen: 2.240 offene Stellen bei 344 Firmen, verteilt nach Stadt, Bereich und Seniorität. Mit den Firmen, die am meisten einstellen.",
  "hreflang": None,
  "ctaHref": "/",
- "ctaLabel": "Alle 2.240 Stellen durchsuchen",
+ "ctaLabel": "Alle aktuellen Stellen durchsuchen",
  "related": ["gehaltstransparenz-app-jobs-2026", "remote-app-jobs-deutschland", "app-entwickler-jobs-deutschland", "erfolgreichste-apps-aus-berlin"],
  "html": """
 <p>Wie viele Jobs gibt es eigentlich bei den Firmen hinter Deutschlands Apps? Statt Schätzungen haben wir gezählt. Dieses Board liest die Bewerbungssysteme von über 1.000 deutschen App-Unternehmen aus, deren Apps in den deutschen Google-Play-Charts stehen. Der Stand dieser Auswertung: 22. September 2026.</p>
