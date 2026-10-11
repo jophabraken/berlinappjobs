@@ -167,6 +167,9 @@ h1{view-transition-name:job-title;width:fit-content;max-width:100%}.costrip img{
 @media (max-width:880px){.stick{bottom:calc(52px + env(safe-area-inset-bottom,0px));padding-bottom:10px;border-bottom:1px solid #2c2c24}}
 </style>"""
 
+# Some feeds end the ad title with a call to action ('… in Teltow – Jetzt bewerben!'). Dropped from the shown title,
+# the JobPosting title and the title-city lookup; the URL keeps its old slug (PINNED), new slugs use the raw title as before.
+CTA_SUFFIX = re.compile(r'\s*[–-]\s*jetzt bewerben!?\s*$', re.I)
 pages = []; mapping = {}; per_co = {}
 seen_slugs = set()
 # Keep a job's URL when the employer retitles the ad (or the company is renamed): reuse the slug from the last build.
@@ -183,6 +186,7 @@ for c in COS:
         slug = PINNED.get(jb['u']) or f"{cs}-{slugify(jb['t'])[:60].strip('-')}-{h}"
         if slug in seen_slugs: continue
         seen_slugs.add(slug)
+        if CTA_SUFFIX.search(jb['t']): jb = dict(jb, t=CTA_SUFFIX.sub('', jb['t']))
         rec = dict(c=c, jb=jb, m=m, desc=desc, slug=slug)
         pages.append(rec); per_co.setdefault(c['n'], []).append(rec)
         mapping[jb['u']] = f"/job/{slug}/"
@@ -193,7 +197,8 @@ from regions import REGION
 def truthy(v): return v is True or str(v).strip().lower() in ('true', '1', 'yes')
 CITY_ALIAS = {'munich': 'München', 'muenchen': 'München', 'cologne': 'Köln', 'koeln': 'Köln', 'nuremberg': 'Nürnberg',
               'frankfurt': 'Frankfurt am Main', 'hanover': 'Hannover', 'duesseldorf': 'Düsseldorf', 'esslingen': 'Esslingen am Neckar',
-              'immenstadt': 'Immenstadt i. Allgäu', 'freiburg': 'Freiburg im Breisgau', 'offenbach': 'Offenbach am Main'}
+              'immenstadt': 'Immenstadt i. Allgäu', 'freiburg': 'Freiburg im Breisgau', 'offenbach': 'Offenbach am Main',
+              'ludwigshafen': 'Ludwigshafen am Rhein'}
 _KNOWN = sorted(REGION, key=len, reverse=True)
 # Jobs outside Germany (a few feeds list e.g. Amsterdam roles): keep their own city and country in the markup, never
 # the company's German address. Google: the job location must be accurate.
@@ -214,7 +219,8 @@ _NOT_PLACE = re.compile(r'^(Deutschland|Germany|Bundesweit|Deutschlandweit|Remot
 # (regions.py) only, and only in these fixed spots of the title; Rust, Essen, Hamm and Halle count only after "in".
 _TITLE_TAG = r'\s*(?:[(\[][^)\]]*[)\]]\s*|\d{4}\s*|[*,]\s*)*$'   # trailing gender tags, "2027", "*"
 _TITLE_ALIAS = {'Heidenheim': 'Heidenheim an der Brenz', 'Limburg': 'Limburg an der Lahn', 'Frankenthal': 'Frankenthal (Pfalz)',
-                'Dallgow': 'Dallgow-Döberitz', 'Freiburg': 'Freiburg im Breisgau', 'Frankfurt': 'Frankfurt am Main'}
+                'Dallgow': 'Dallgow-Döberitz', 'Freiburg': 'Freiburg im Breisgau', 'Frankfurt': 'Frankfurt am Main',
+                'Ludwigshafen': 'Ludwigshafen am Rhein'}
 _KNOWN_RE = '|'.join(re.escape(k) for k in sorted(set(REGION) | set(_TITLE_ALIAS), key=len, reverse=True))
 _TITLE_CITY = [re.compile(x) for x in (
     r'^\s*(?P<a>' + _KNOWN_RE + r')\s+[-–]\s',                                              # 'Greven - Ausbildung …'
@@ -289,7 +295,7 @@ def contract_label(et, jt, k):
     if 'PART_TIME' in et and 'INTERN' in et: return ("Werkstudent", "Working student")[k]
     return ET_LABEL[et[-1]][k]
 NOT_A_JOB = re.compile(r'initiativbewerbung|open application|unsolicited application|speculative application|'
-                       r'keine passende stelle|blindbewerbung|\binitiativ\b|bewerbertag|recruiting[ -]event|schick uns deine bewerbung|talent ?pool', re.I)
+                       r'keine passende stelle|blindbewerbung|\binitiativ\b|bewerbertag|schnuppertag|recruiting[ -]event|schick uns deine bewerbung|talent ?pool', re.I)
 def job_desc(jt, co, where, de, et, remote, sal, desc_html):
     """~155 chars, unique per job: company, place, role, contract, remote, salary, then the ad's own opening words."""
     k = 0 if de else 1
