@@ -216,7 +216,7 @@ def company_overview(c, city, jobs, lang="de"):
         if senior: lv.append(f"{senior} für Senior- und Lead-Rollen")
         if lv: p.append("Davon "+J(lv)+".")
         if rem: p.append(f"{rem} {'Stelle ist' if rem==1 else 'Stellen sind'} remote oder hybrid möglich.")
-        if chk: p.append((f"In {sal} von {len(chk)} Anzeigen steht ein Gehalt." if sal else ("Die Anzeige nennt kein Gehalt." if len(chk)==1 else f"Keine der {len(chk)} Anzeigen nennt ein Gehalt."))
+        if chk: p.append((("Die Anzeige nennt ein Gehalt." if len(chk)==1 else f"In {sal} von {len(chk)} Anzeigen steht ein Gehalt.") if sal else ("Die Anzeige nennt kein Gehalt." if len(chk)==1 else f"Keine der {len(chk)} Anzeigen nennt ein Gehalt."))
                          +' <a href="/gehaltstransparenz/">So halten es andere App-Firmen</a>.')
         if len(locs)>1: p.append("Standorte: "+J(esc(l) for l,_ in locs.most_common(4) if l)+".")
         if apps: p.append("Bekannt für "+J(f"{esc(htmlmod.unescape(a['t']))}"+(f" ({esc(a['i'])} Downloads bei Google Play)" if a.get('i') else '') for a in apps)+".")
@@ -241,7 +241,7 @@ def company_overview(c, city, jobs, lang="de"):
     if peers:
         head_ = ("Ähnliche Arbeitgeber" if de else "Similar employers") + ((" in "+esc(city)) if city and same_city else "")
         html+=f'<h2>{head_}</h2><div class="applist">'
-        html+=''.join(f'<a href="{co_url(o["_slug"], lang)}">{esc(o["n"])} &middot; {len(o["jobs"])} {"Stellen" if de else "roles"}</a>' for o in peers)+'</div>'
+        html+=''.join(f'<a href="{co_url(o["_slug"], lang)}">{esc(o["n"])} &middot; {len(o["jobs"])} {("Stelle" if de else "role") if len(o["jobs"])==1 else ("Stellen" if de else "roles")}</a>' for o in peers)+'</div>'
     return html
 
 def company_page(c, lang):
@@ -255,11 +255,11 @@ def company_page(c, lang):
     else: title=T(f"{c['n']} Jobs 2026 - offene Stellen | Berlin App Jobs", f"{c['n']} Jobs 2026: open roles | Berlin App Jobs")
     if de:
         desc=(f"Offene Stellen bei {c['n']}"+(f" in {city}" if city else "")+f". "
-              + (f"{njobs} {'Rolle' if njobs==1 else 'Rollen'} live aus dem Bewerbungssystem, mit Direktbewerbung." if njobs else f"{total} offene Stellen.")
+              + (f"{njobs} {'Rolle' if njobs==1 else 'Rollen'} live aus dem Bewerbungssystem, mit Direktbewerbung." if njobs else f"{total} {'offene Stelle' if total==1 else 'offene Stellen'}.")
               + (f" Team hinter {apps[0]['t']}." if apps else ""))
     else:
         desc=(f"Open roles at {c['n']}"+(f" in {city}" if city else "")+". "
-              + (f"{njobs} {'role' if njobs==1 else 'roles'} live from their hiring system, apply directly." if njobs else f"{total} open roles.")
+              + (f"{njobs} {'role' if njobs==1 else 'roles'} live from their hiring system, apply directly." if njobs else f"{total} {'open role' if total==1 else 'open roles'}.")
               + (f" The team behind {apps[0]['t']}." if apps else ""))
     url=SITE+co_url(slug, lang)
     alt={'de': SITE+co_url(slug, 'de'), 'en': SITE+co_url(slug, 'en')}
@@ -284,10 +284,10 @@ def company_page(c, lang):
                         f'<div class="d">{dloc}{" &middot; "+esc(dd) if dd else ""}</div></div>'
                         +(f'<span class="apply">Details</span></a>' if jpu else f'<span class="apply">{T("Bewerben", "Apply")} &#8599;</span></a>'))
     else:
-        roleshtml=(T(f'<h2>Offene Stellen</h2><p class="sub">{esc(c["n"])} hat aktuell rund {total} offene Stellen. Diese werden noch nicht einzeln geparst.</p>',
-                     f'<h2>Open roles</h2><p class="sub">{esc(c["n"])} has around {total} open roles right now. We don\'t list them one by one yet.</p>')
+        roleshtml=(T(f'<h2>Offene Stellen</h2><p class="sub">{esc(c["n"])} hat aktuell {"eine offene Stelle" if total==1 else f"rund {total} offene Stellen"}. Diese werden noch nicht einzeln geparst.</p>',
+                     f'<h2>Open roles</h2><p class="sub">{esc(c["n"])} has {"one open role" if total==1 else f"around {total} open roles"} right now. We don\'t list them one by one yet.</p>')
                    + f'<a class="cta" href="{esc(c.get("careers") or "#")}" target="_blank" rel="noopener nofollow">'
-                   + T(f'Alle {total} Stellen auf der Karriereseite', f'All {total} roles on their careers page') + ' &#8599;</a>')
+                   + (T('Zur Stelle auf der Karriereseite', 'See the role on their careers page') if total==1 else T(f'Alle {total} Stellen auf der Karriereseite', f'All {total} roles on their careers page')) + ' &#8599;</a>')
     hub=SITE+T('/companies/', '/en/companies/')
     ld=[{"@context":"https://schema.org","@type":"Organization","name":c['n'],"url":url,
          **({"address":{"@type":"PostalAddress","streetAddress":c.get('addr',''),"addressLocality":city,"addressCountry":"DE"}} if c.get('addr') else {})},
@@ -321,7 +321,7 @@ def companies_hub(lang):
     cards=""
     for n,slug,city,nj,total in company_index:
         cards+=(f'<a class="card" href="{co_url(slug, lang)}"><div class="ct">{esc(n)}</div>'
-                f'<div class="cd">'+(esc(city)+' &middot; ' if city else '')+ (f'{nj} {T("offene Stelle", "open role") if nj==1 else T("offene Stellen", "open roles")}' if nj else f'{total} {T("Stellen", "roles")}')+'</div></a>')
+                f'<div class="cd">'+(esc(city)+' &middot; ' if city else '')+ (f'{nj} {T("offene Stelle", "open role") if nj==1 else T("offene Stellen", "open roles")}' if nj else f'{total} {T("Stelle", "role") if total==1 else T("Stellen", "roles")}')+'</div></a>')
     doc=head(T("App-Unternehmen in Deutschland: alle Firmen & Jobs | Berlin App Jobs", "App Companies in Germany: All Employers & Jobs | Berlin App Jobs"),
              T(f"Alle {len(company_index)} Unternehmen hinter Deutschlands Top-Apps mit offenen Stellen. Apps, Rollen, Standort und Direktbewerbung.",
                f"All {len(company_index)} companies behind Germany's top apps that are hiring. Their apps, open roles and location, with direct apply."),
@@ -526,7 +526,7 @@ for city, cslug, n in city_index:
     cards += ''.join(en_card(f"/en/jobs/{ROLE_EN_SLUG[d]}/{cslug}/", ROLE_EN.get(d, dname), m) for d, c2, dname, slug, m in rc_index if c2 == city)
     n_en = sum(1 for j in jl if j.get('lang') == 'en')
     en_page(cslug, fit_title(f"App Jobs in {city}: {n} open roles ({MONTH_EN})"), f"App jobs in {city}",
-            f"{n} open roles at app companies in {city}, {n_en} of them advertised in English: engineering, product, design, data, "
+            f"{n} open roles at app companies in {city}, {n_en or 'none'} of them advertised in English: engineering, product, design, data, "
             f"marketing and more. Live from their hiring systems, updated {TODAY}.",
             jl, city, cslug, limit=60,
             body_extra=(f'<a class="cta" href="/?city={esc(quote(city))}">All {esc(city)} jobs on the board &rarr;</a>'

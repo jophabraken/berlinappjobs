@@ -161,7 +161,7 @@ def build(G):
             body += f'<h2>{T("Jobs bei", "Jobs at")} {esc(con)} ({n})</h2>'
             body += f'<p class="secnote">{(T("Vor allem ", "Mostly ") + esc(", ".join(top)) + ". ") if top else ""}{T("Live aus dem Bewerbungssystem, mit Direktbewerbung.", "Live from their hiring system, apply directly.")}</p>'
             body += job_rows(jobs[:12], de, 'app-job', city=city)
-            if ch: body += f'<a class="cta" href="{ch}" data-umami-event="app-company">{T(f"Alle {n} Stellen bei {esc(con)}", f"All {n} roles at {esc(con)}")} &rarr;</a>'
+            if ch: body += f'<a class="cta" href="{ch}" data-umami-event="app-company">{T(f"Die offene Stelle bei {esc(con)}", f"The open role at {esc(con)}") if n == 1 else T(f"Alle {n} Stellen bei {esc(con)}", f"All {n} roles at {esc(con)}")} &rarr;</a>'
             else: body += f'<a class="cta" href="/?q={esc(quote(c["n"]))}" data-umami-event="app-company">{T("Im Jobboard ansehen", "See them on the job board")} &rarr;</a>'
         else:
             if game:
