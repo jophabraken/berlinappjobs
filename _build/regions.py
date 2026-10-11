@@ -38,4 +38,12 @@ REGION = {
  'Lübeck': _SH, 'Mölln': _SH, 'Norderstedt': _SH, 'Reinbek': _SH, 'Sylt': _SH, 'Dallgow-Döberitz': _BB, 'Schwerin': _MV,
  # Zalando offices (5 Oct)
  'Ansbach': _BY, 'Lahr': _BW, 'Ludwigsfelde': _BB,
+ # towns named in job titles (Targobank, Modepark, LVM, TUI, ERGO; 11 Oct)
+ 'Bensheim': _HE, 'Aschaffenburg': _BY, 'Verden': _NI, 'Lüneburg': _NI, 'Cuxhaven': _NI, 'Dinslaken': _NW, 'Bocholt': _NW,
+ 'Bünde': _NW, 'Detmold': _NW, 'Grevenbroich': _NW, 'Düren': _NW, 'Alsdorf': _NW, 'Hückelhoven': _NW, 'Moers': _NW,
+ 'Backnang': _BW, 'Villingen-Schwenningen': _BW, 'Hockenheim': _BW, 'Schwäbisch Gmünd': _BW, 'Idar-Oberstein': _RP,
+ 'Bautzen': _SN, 'Mühldorf am Inn': _BY, 'Weinheim': _BW, 'Wiesloch': _BW, 'Speyer': _RP, 'Worms': _RP,
+ 'Ludwigshafen am Rhein': _RP, 'Siegburg': _NW, 'Bergheim': _NW, 'Itzehoe': _SH, 'Elmshorn': _SH, 'Greifswald': _MV,
+ 'Ahlen': _NW, 'Ahaus': _NW, 'Legden': _NW, 'Horstmar': _NW, 'Oelde': _NW, 'Nottuln': _NW, 'Laer': _NW, 'Bramsche': _NI,
+ 'Wallenhorst': _NI, 'Twistringen': _NI, 'Lübben': _BB, 'Rottach-Egern': _BY, 'Emmelshausen': _RP,
 }
