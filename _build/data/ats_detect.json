@@ -495,7 +495,8 @@
    "https://www.bwi.de/karriere/stellenangebote/job/expert-business-integration-sap-sd-und-fms-m-w-d-70658%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/lead-it-expert-einsatznahe-it-schwerpunkt-fuhrungsinformationssysteme-m-w-d-70674%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/senior-privacy-expert-m-w-d-70638%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
-   "https://www.bwi.de/karriere/stellenangebote/job/senior-it-service-manager-product-owner-mobility-emm-mam-m-w-d-70630"
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-it-service-manager-product-owner-mobility-emm-mam-m-w-d-70630",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-it-projektleiter-m-w-d-70634%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
   ],
   "was": "custom"
  },
@@ -1362,7 +1363,8 @@
    "https://careers.enbw.com/global/en/c/other-professions-jobs",
    "https://careers.enbw.com/global/en/c/contracting-jobs",
    "https://careers.enbw.com/global/en/c/telecommunications-jobs",
-   "https://careers.enbw.com/global/en/c/marketing-communication-jobs"
+   "https://careers.enbw.com/global/en/c/marketing-communication-jobs",
+   "https://careers.enbw.com/global/en/job/EBQEBQGLOBAL25283EXTERNALENGLOBAL/Werkstudent-Projektentwicklung-Windenergie-w-m-d"
   ],
   "was": "custom"
  },
@@ -2261,7 +2263,8 @@
    "crawl https://karriere.lvm.de/client/jobs: 44 jobs, 44 in Germany, 0 match the board"
   ],
   "skip": [
-   "https://karriere.lvm.de/client/jobs"
+   "https://karriere.lvm.de/client/jobs",
+   "https://karriere.lvm.de/jobs/innendienstmitarbeiter-auch-quereinsteiger-m-w-d-10172"
   ],
   "was": "custom"
  },
@@ -2977,7 +2980,10 @@
    "https://www.pohl-boskamp.de/karriere/stellenangebote/jobsearch-jajax0.php",
    "https://www.pohl-boskamp.de/karriere/stellenangebote/stellenangebot.html",
    "https://www.pohl-boskamp.de/karriere/stellenangebote/Initiativ-de-f37.html",
-   "https://www.pohl-boskamp.de/karriere/stellenangebote/jobalert.html"
+   "https://www.pohl-boskamp.de/karriere/stellenangebote/jobalert.html",
+   "https://www.pohl-boskamp.de/karriere/wir-als-arbeitgeber",
+   "https://www.pohl-boskamp.de/karriere/traineeprogramm",
+   "https://www.pohl-boskamp.de/karriere/ausbildung"
   ],
   "was": "custom"
  },
@@ -3707,7 +3713,9 @@
    "https://jobs.takko.com/de-de/straelen/minijob",
    "https://jobs.takko.com/de-de/brake/minijob",
    "https://jobs.takko.com/de-de/abonnieren-takko-job-benachrichtigungen",
-   "https://jobs.takko.com/de-de/minijob-static-content"
+   "https://jobs.takko.com/de-de/minijob-static-content",
+   "https://jobs.takko.com/de-de/hamm/minijob",
+   "https://jobs.takko.com/de-de/rangsdorf/minijob"
   ],
   "was": "custom"
  },
@@ -3805,7 +3813,8 @@
    "https://jobs.thalia.de/cluster/buchhandlungen/67fc0503-f9d5-4444-a883-b060038aaca4",
    "https://jobs.thalia.de/cluster/zentrale/67fc0503-f9d5-4444-a883-b060038aaca4",
    "https://jobs.thalia.de/category/ausbildung-studium/67fc0503-f9d5-4444-a883-b060038aaca4",
-   "https://jobs.thalia.de/jobs-buch-bohne"
+   "https://jobs.thalia.de/jobs-buch-bohne",
+   "https://jobs.thalia.de/offer/kommissionierer-bucher-spielwaren-m/43b2d15a-111c-45f9-89cf-9f5b2db1db72"
   ],
   "was": "custom"
  },
@@ -4405,11 +4414,10 @@
   "https://omos-media.jobs.personio.de/job/2697992": "2026-10-11",
   "https://omos-media.jobs.personio.de/job/2729250": "2026-10-10",
   "https://omos-media.jobs.personio.de/job/2744999": "2026-10-11",
-  "https://omos-media.jobs.personio.de/job/2748275": "2026-10-06",
-  "https://tandem.net/pages/careers/jobs/2509364": "2026-09-28",
-  "https://tandem.net/pages/careers/jobs/2768964": "2026-09-28",
-  "https://tandem.net/pages/careers/jobs/2792207": "2026-09-28",
-  "https://tandem.net/pages/careers/jobs/2801273": "2026-09-28",
+  "https://tandem.net/pages/careers/jobs/2509364": "2026-10-12",
+  "https://tandem.net/pages/careers/jobs/2768964": "2026-10-12",
+  "https://tandem.net/pages/careers/jobs/2792207": "2026-10-12",
+  "https://tandem.net/pages/careers/jobs/2801273": "2026-10-12",
   "https://tecvia.jobs.personio.de/job/1168041": "2026-10-11"
  },
  "a&o Hostels": {
@@ -4505,7 +4513,8 @@
    "https://careers.zooplus.com/jobs/senior-local-people-partner-all-genders-munich-munchen-germany",
    "https://careers.zooplus.com/jobs/senior-data-analyst-sales-all-genders-madrid-community-of-madrid-spain",
    "https://careers.zooplus.com/jobs/data-scientist-linear-optimization-all-genders-munich-munchen-germany",
-   "https://careers.zooplus.com/jobs/senior-delivery-experience-manager-all-genders-munich-munchen-germany"
+   "https://careers.zooplus.com/jobs/senior-delivery-experience-manager-all-genders-munich-munchen-germany",
+   "https://careers.zooplus.com/jobs/senior-retail-media-intelligence-manager-all-genders-munich-munchen-germany-b9aeefb6-521d-4fc5-9c95-8c8d1652619b"
   ],
   "was": "custom"
  },
@@ -4856,7 +4865,9 @@
    "https://www.arbeitnow.com/jobs/companies/momox/werkstudentin-controlling-bis-zu-20-stunden-pro-woche-berlin-181205\\u0022\\n",
    "https://www.arbeitnow.com/jobs/companies/momox/werkstudentin-controlling-bis-zu-20-stunden-pro-woche-berlin-181205\\u0022",
    "https://www.arbeitnow.com/jobs/companies/momox/mid-or-senior-software-engineer-python-berlin-276408\\u0022\\n",
-   "https://www.arbeitnow.com/jobs/companies/momox/mid-or-senior-software-engineer-python-berlin-276408\\u0022"
+   "https://www.arbeitnow.com/jobs/companies/momox/mid-or-senior-software-engineer-python-berlin-276408\\u0022",
+   "https://www.arbeitnow.com/jobs/companies/momox/senior-pr-communications-manager-teilzeit-berlin-212206\\u0022\\n",
+   "https://www.arbeitnow.com/jobs/companies/momox/senior-pr-communications-manager-teilzeit-berlin-212206\\u0022"
   ],
   "was": "unknown"
  },
