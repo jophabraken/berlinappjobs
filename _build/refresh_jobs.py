@@ -391,6 +391,8 @@ EMPLOYER = {
     'ifap Service-Institut für Ärzte und Apotheker GmbH': r'\bifap\b',      # cgm Workday: all CompuGroup Medical jobs (0 of 60 name ifap)
     'Der Tagesspiegel': r'\bTagesspiegel\b',                              # jobs.tagesspiegel.de is a job market (ad by the Bundesanstalt für Immobilienaufgaben)
     'Volkswagen Group Charging GmbH': r'\bElli\b|Volkswagen Group Charging',  # VW group site: a dx.one GmbH ad in Wolfsburg
+    # Found 12 Oct: karriere.deka.de lists all DekaBank jobs; 54 of 60 never name S Broker ("KI-Architekt", "Fondsmanager / Aktienanalyst", …).
+    'S Broker AG & Co. KG': r'S[ -]?Broker',
 }
 
 report = []
