@@ -328,6 +328,7 @@ for rec in pages:
     fully_remote = remote and not hybrid and (says_fully or not known_city)
     de = is_de(desc)
     posted = iso(m.get('pub')) or iso(m.get('upd')) or iso(jb.get('p')) or FETCHED
+    posted = min(posted, FETCHED)   # never in the future: a feed's 'pub' can be a later date (Hamburger Hochbahn showed "Veröffentlicht 2026-11-10")
     et = emp_type(m, jb)
     cname = c['n'].split('|')[0].strip()
     cslug = co_slug(c['n'])
