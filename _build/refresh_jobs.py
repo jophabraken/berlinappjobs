@@ -6,7 +6,7 @@ What it does
   * Greenhouse, Lever, Ashby, Personio (XML), SmartRecruiters, Recruitee, softgarden, plus (in ats_more.py)
     Workday, Workable, BambooHR, JOIN, Teamtailor and any careers site whose job pages carry schema.org
     JobPosting data ("crawl"): fetch live jobs, keep German locations (plus remote), drop placeholder ads,
-    cap 60 per company.
+    keep only jobs with an impact on the app (app_roles.py), cap 60 per company (200 for app-first companies).
   * Hiring-system detection: companies without a readable feed are checked for the hiring system behind
     their careers page (up to BAJ_DETECT_MAX per run, each re-checked after 30 days). A find is only used
     after it returned German jobs that fit the board; it is then saved on the company (ats, feed, crawl)
@@ -19,6 +19,10 @@ What it does
     JobPosting; a page that could not be loaded keeps the job.
   * Published salaries from the APIs (Ashby, Lever, Recruitee, Personio) are added.
   * Manual/driving/warehouse/cleaning roles (MANUAL) and repeat postings (same title + city) are skipped.
+  * Only jobs with an impact on the app are listed (app_roles.py, Jop 12 Oct 2026): every office role at an app-first
+    company, only digital roles (software, data, product, UX, app/online marketing, e-commerce, CRM) anywhere else. Jobs
+    already on the board are checked too; a company left with none is shown as "careers link only" (tier 2) until a fitting
+    job appears.
   * Careers pages that also list other employers' ads (EMPLOYER): ads that don't name the company are dropped.
 
 Safety rails (nothing is written if a hard check fails, exit code 1)
@@ -38,10 +42,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from paths import DATA, BUILD
 from classify import discipline, seniority, language
 from regions import REGION
+import app_roles as AR
 
 DRY = '--dry-run' in sys.argv
 UA = 'Mozilla/5.0 (compatible; BerlinAppJobsBot/1.0; +https://berlinappjobs.com)'
-CAP = 60
+CAP = AR.CAP   # per company: AR.cap_for(name)
 NOW = datetime.datetime.now(datetime.timezone.utc)
 TODAY = NOW.date()
 
@@ -245,7 +250,7 @@ def f_smartrecruiters(feed):
                     remote=bool(loc.get('remote')), desc=desc, pub=x.get('releasedDate'), et=(x.get('typeOfEmployment') or {}).get('label', ''), sal='',
                     dept=(x.get('department') or {}).get('label', '') + ' ' + (x.get('function') or {}).get('label', ''), sen_hint=(x.get('experienceLevel') or {}).get('id', ''))
     with cf.ThreadPoolExecutor(8) as ex:
-        out = list(ex.map(detail, de_items[:CAP * 2]))
+        out = list(ex.map(detail, ats_more.prefilter(feed, de_items, lambda x: x.get('name'))))
     return out
 
 def f_recruitee(feed):
@@ -315,6 +320,23 @@ def due(name):
     d = (DET.get(name) or {}).get('checked')
     try: return not d or (TODAY - datetime.date.fromisoformat(d)).days >= 30
     except Exception: return True
+# ---- jobs already on the board: keep only jobs with an impact on the app (app_roles.py). A crawled site doesn't open a dropped
+# job's page again (skip list). A company left without jobs becomes "careers link only" (tier 2); its feed is still read, and it is
+# listed again once a fitting job appears.
+role_report, role_total = [], 0
+for c in B['companies']:
+    old = c.get('jobs') or []
+    keep = [jb for jb in old if AR.app_job(jb.get('t', ''), c['n'])]
+    if len(keep) == len(old): continue
+    gone = [jb for jb in old if jb not in keep]
+    role_total += len(gone)
+    if ats_of(c) in ats_more.CRAWL_ATS:
+        e = DET.setdefault(c['n'], {})
+        e['skip'] = list(dict.fromkeys((e.get('skip') or []) + [jb['u'] for jb in gone if jb.get('u')]))[-1500:]
+    c['jobs'] = keep; c['total'] = len(keep)
+    if not keep and c.get('tier') == 1: c['tier'] = 2
+    role_report.append(f'- {c["n"]}: {len(gone)} of {len(old)} jobs dropped, no impact on the app' + ('' if keep else ', now "careers link only"'))
+
 # Companies shown as "not hiring" (tier 2: careers link only, tier 3: no open roles) are checked too: a company with no
 # jobs on the day it was added would otherwise never be looked at again. Tier-1 companies come first, then the rest
 # by app installs; each company is checked at most every 30 days, so the whole board is covered in about two weeks.
@@ -330,7 +352,7 @@ T0 = time.time()
 def det(c):
     if time.time() - T0 > DETECT_SECONDS: return c, None, None
     log = []
-    try: r = ats_more.detect(c, FETCHERS, PLACEHOLDER, is_manual, log)
+    try: r = ats_more.detect(c, FETCHERS, PLACEHOLDER, lambda t, n=c['n']: is_manual(t) or not AR.app_job(t, n), log)
     except Exception as e: r = None; log.append(f'error {type(e).__name__}: {str(e)[:100]}')
     return c, r, log
 with cf.ThreadPoolExecutor(8) as ex:
@@ -364,6 +386,10 @@ for (ats, feed), cos in feeds.items():   # crawl settings: link pattern, the job
         cfg['known'] = [j['u'] for c in cos for j in c.get('jobs') or [] if j.get('u')]
         cfg['skip'] = [u for c in cos for u in (DET.get(c['n']) or {}).get('skip', [])]
         ats_more.CRAWL[feed] = cfg
+for (ats, feed), cos in feeds.items():   # readers skip ads that don't fit before opening them (app_roles.py)
+    names = [c['n'] for c in cos]
+    ats_more.TITLE_OK[feed] = lambda t, names=names: any(AR.app_job(t, n) for n in names)
+    ats_more.LIMIT[feed] = 2 * max(AR.cap_for(n) for n in names)
 
 results, errors = dict(pre_results), {}
 def run(key):
@@ -422,7 +448,7 @@ for (ats, feed), cos in feeds.items():
                 ok = url_key(o['u'])
                 if i == 0 or ok == keys[0] or ok not in in_feed: return o
             return None
-        emp, emp_dropped = EMPLOYER.get(c['n']) or (DET.get(c['n']) or {}).get('employer'), 0
+        emp, emp_dropped, role_dropped = EMPLOYER.get(c['n']) or (DET.get(c['n']) or {}).get('employer'), 0, 0
         # Some feeds list one job twice under two ids (Greenhouse at N26 and SumUp: same title, city and text), and the
         # duplicate check below keeps whichever comes first, so the job's page flipped between the two links every few days.
         # Ads whose own link already has a page go first, so the twin with the page wins (the board is re-sorted below).
@@ -437,6 +463,10 @@ for (ats, feed), cos in feeds.items():
                     claimed.add(prev['u']); seen.add(prev['u']); seen.add(url_key(prev['u'])); seen.add((re.sub(r'\W+', ' ', prev['t'].lower()).strip(), prev['loc'])); fresh.append(dict(prev))
                 continue
             if not x.get('url') or not x.get('t') or PLACEHOLDER.search(x['t']) or is_manual(x['t']): continue
+            if not AR.app_job(x['t'], c['n']):   # no impact on the app: not listed; a crawl doesn't open the page again
+                role_dropped += 1
+                if ats in ats_more.CRAWL_ATS: ats_more.CRAWL.setdefault(feed, {}).setdefault('skip_new', []).append(x['url'])
+                continue
             if emp and not ats_more.names_employer(x, (), emp): emp_dropped += 1; continue
             gl = german_loc(x.get('locs') or [], x.get('country', ''), x.get('remote', False))
             if not gl: continue
@@ -465,12 +495,15 @@ for (ats, feed), cos in feeds.items():
         old_u = {j['u'] for j in old}
         fresh.sort(key=lambda j: j.get('p') or '', reverse=True)
         fresh.sort(key=lambda j: j['u'] not in old_u)   # stable sort: old jobs first, newest first within each group
-        over_cap = max(0, len(fresh) - CAP)
-        fresh = fresh[:CAP]
+        cap = AR.cap_for(c['n'])
+        over_cap = max(0, len(fresh) - cap)
+        fresh = fresh[:cap]
         fresh.sort(key=lambda j: j.get('p') or '', reverse=True)
         if emp_dropped:
             report.append(f'- {c["n"]} ({ats}): {emp_dropped} ads from other employers dropped (EMPLOYER rule)')
-        if not fresh and len(old) >= 5 and not emp_dropped:
+        if role_dropped and not promote:
+            report.append(f'- {c["n"]} ({ats}): {role_dropped} new ads skipped, no impact on the app')
+        if not fresh and len(old) >= 5 and not emp_dropped and not role_dropped:   # the feed did answer with ads, just none that fit
             stats['suspicious'] += 1; report.append(f'- {c["n"]} ({ats}): feed returned 0 German jobs (had {len(old)}), kept old jobs'); continue
         if ats == 'ashby' and len(fresh) < len(old) / 2 and len(old) >= 4:
             stats['suspicious'] += 1; report.append(f'- {c["n"]} (ashby): would shrink {len(old)} → {len(fresh)}, kept old jobs'); continue
@@ -478,11 +511,11 @@ for (ats, feed), cos in feeds.items():
         stats['closed'] += closed
         if (len(fresh) != len(old) or closed) and not promote:
             flag = ' ⚠ big jump, worth a look' if len(fresh) >= max(3 * len(old), len(old) + 25) else ''
-            cap_note = f', {over_cap} newer ads waiting (cap {CAP})' if over_cap else ''
+            cap_note = f', {over_cap} newer ads waiting (cap {cap})' if over_cap else ''
             report.append(f'- {c["n"]} ({ats}): {len(old)} → {len(fresh)} jobs ({closed} closed{cap_note}){flag}')
         if promote and not fresh: continue   # still nothing in Germany: stays "not hiring", no report line
         if promote:
-            report.append(f'- {c["n"]} ({ats}): now hiring, {len(fresh)} jobs listed (was tier {c["tier"]}){f", {over_cap} more waiting (cap {CAP})" if over_cap else ""}')
+            report.append(f'- {c["n"]} ({ats}): now hiring, {len(fresh)} jobs listed (was tier {c["tier"]}){f", {over_cap} more waiting (cap {cap})" if over_cap else ""}')
             c['tier'] = 1; stats['promoted'] += 1
         new_n = len({j['u'] for j in fresh} - {j['u'] for j in old})   # counted after the cap and duplicate check: what reaches the board
         stats['new'] += new_n; stats['updated'] += len(fresh) - new_n
@@ -573,9 +606,11 @@ head = [f'# Job refresh {TODAY.isoformat()}' + (' (dry run)' if DRY else ''), ''
         f'- Companies that were shown as not hiring and now list jobs: {stats["promoted"]}',
         f'- Hiring-system detection: {det_checked} companies checked, {len(detected)} now read directly' + (f' ({len(todo) - det_checked} left for the next run)' if len(todo) > det_checked else ''),
         f'- Published salaries added: {stats["salaries_added"]}; companies kept as-is because of a suspicious result: {stats["suspicious"]}',
+        f'- Jobs already on the board dropped by the app-impact rule (app_roles.py): {role_total} at {len(role_report)} companies',
         f'- Result: ' + ('ABORTED, nothing written: ' + '; '.join(hard) if hard else ('not written (dry run)' if DRY else 'written')), '', '## Changes by company', '']
 det_part = (['', '## Hiring systems found', ''] + detected) if detected else []
-open(os.path.join(BUILD, 'refresh_report.md'), 'w', encoding='utf-8').write('\n'.join(head + sorted(report) + det_part) + '\n')
+role_part = (['', '## Dropped by the app-impact rule', ''] + sorted(role_report)) if role_report else []
+open(os.path.join(BUILD, 'refresh_report.md'), 'w', encoding='utf-8').write('\n'.join(head + sorted(report) + det_part + role_part) + '\n')
 print('\n'.join(head))
 if hard: sys.exit(1)
 if DRY: sys.exit(0)
@@ -588,7 +623,7 @@ for (ats, feed), cos in feeds.items():   # remember crawled pages that are not j
     for c in cos:
         if new_skip:
             e = DET.setdefault(c['n'], {})
-            e['skip'] = list(dict.fromkeys((e.get('skip') or []) + new_skip))[-300:]
+            e['skip'] = list(dict.fromkeys((e.get('skip') or []) + new_skip))[-1500:]
 json.dump(DET, open(DETECT_FILE, 'w', encoding='utf-8'), ensure_ascii=False, indent=1, sort_keys=True)
 refetched = {f'{a}:{f}' for (a, f) in results}
 live = {jb['u'].rstrip('/') for c in B['companies'] for jb in c.get('jobs') or []}   # full URLs: some sites differ only after '?'

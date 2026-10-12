@@ -255,11 +255,11 @@ def company_page(c, lang):
     else: title=T(f"{c['n']} Jobs 2026 - offene Stellen | Berlin App Jobs", f"{c['n']} Jobs 2026: open roles | Berlin App Jobs")
     if de:
         desc=(f"Offene Stellen bei {c['n']}"+(f" in {city}" if city else "")+f". "
-              + (f"{njobs} {'Rolle' if njobs==1 else 'Rollen'} live aus dem Bewerbungssystem, mit Direktbewerbung." if njobs else f"{total} {'offene Stelle' if total==1 else 'offene Stellen'}.")
+              + (f"{njobs} {'Rolle' if njobs==1 else 'Rollen'} live aus dem Bewerbungssystem, mit Direktbewerbung." if njobs else f"{total} {'offene Stelle' if total==1 else 'offene Stellen'}." if total else "Gerade keine offenen Stellen mit Bezug zur App.")
               + (f" Team hinter {apps[0]['t']}." if apps else ""))
     else:
         desc=(f"Open roles at {c['n']}"+(f" in {city}" if city else "")+". "
-              + (f"{njobs} {'role' if njobs==1 else 'roles'} live from their hiring system, apply directly." if njobs else f"{total} {'open role' if total==1 else 'open roles'}.")
+              + (f"{njobs} {'role' if njobs==1 else 'roles'} live from their hiring system, apply directly." if njobs else f"{total} {'open role' if total==1 else 'open roles'}." if total else "No open roles connected to the app right now.")
               + (f" The team behind {apps[0]['t']}." if apps else ""))
     url=SITE+co_url(slug, lang)
     alt={'de': SITE+co_url(slug, 'de'), 'en': SITE+co_url(slug, 'en')}
@@ -283,6 +283,11 @@ def company_page(c, lang):
                         f'<div class="m"><div class="t">{esc(jb["t"])}</div>'
                         f'<div class="d">{dloc}{" &middot; "+esc(dd) if dd else ""}</div></div>'
                         +(f'<span class="apply">Details</span></a>' if jpu else f'<span class="apply">{T("Bewerben", "Apply")} &#8599;</span></a>'))
+    elif not total:   # every open job is outside the board's scope (store, restaurant, branch roles: app_roles.py)
+        roleshtml=(T(f'<h2>Offene Stellen</h2><p class="sub">{esc(c["n"])} hat gerade keine offenen Stellen, die an der App arbeiten. Wir listen nur Rollen mit Bezug zur App: Entwicklung, Produkt, Design, Daten, Online-Marketing.</p>',
+                     f'<h2>Open roles</h2><p class="sub">{esc(c["n"])} has no open roles working on the app right now. We only list roles connected to the app: engineering, product, design, data, online marketing.</p>')
+                   + f'<a class="cta" href="{esc(c.get("careers") or "#")}" target="_blank" rel="noopener nofollow">'
+                   + T('Alle Stellen auf der Karriereseite', 'All roles on their careers page') + ' &#8599;</a>')
     else:
         roleshtml=(T(f'<h2>Offene Stellen</h2><p class="sub">{esc(c["n"])} hat aktuell {"eine offene Stelle" if total==1 else f"rund {total} offene Stellen"}. Diese werden noch nicht einzeln geparst.</p>',
                      f'<h2>Open roles</h2><p class="sub">{esc(c["n"])} has {"one open role" if total==1 else f"around {total} open roles"} right now. We don\'t list them one by one yet.</p>')
@@ -302,7 +307,7 @@ def company_page(c, lang):
     doc+=f'<h1>{T("Jobs bei", "Jobs at")} {esc(c["n"])}</h1>'
     doc+=f'<p class="sub">{esc(desc)}</p>'
     doc+=(f'<div class="meta">'+(f'<span class="pill">{esc(city)}</span>' if city else '')
-          +f'<span class="pill">{njobs or total} {T("offene Stelle", "open role") if (njobs or total)==1 else T("offene Stellen", "open roles")}</span><span>{T("Aktualisiert", "Updated")} {TODAY}</span></div>')
+          +(f'<span class="pill">{njobs or total} {T("offene Stelle", "open role") if (njobs or total)==1 else T("offene Stellen", "open roles")}</span>' if (njobs or total) else '')+f'<span>{T("Aktualisiert", "Updated")} {TODAY}</span></div>')
     doc+=(company_overview(c, city, c['jobs'], lang) if njobs else '')+apphtml+roleshtml
     doc+='<div style="margin-top:18px">'+cta+' '+citylink+'</div>'
     doc+='</div>'+(FOOT if de else FOOT_EN)+'</body></html>'
@@ -319,17 +324,18 @@ def companies_hub(lang):
     de = lang == "de"; T = lambda a, b: a if de else b
     url=SITE+T('/companies/', '/en/companies/')
     cards=""
-    for n,slug,city,nj,total in company_index:
+    listed=[x for x in company_index if x[3] or x[4]]   # companies with no open role connected to the app (app_roles.py) are left out
+    for n,slug,city,nj,total in listed:
         cards+=(f'<a class="card" href="{co_url(slug, lang)}"><div class="ct">{esc(n)}</div>'
                 f'<div class="cd">'+(esc(city)+' &middot; ' if city else '')+ (f'{nj} {T("offene Stelle", "open role") if nj==1 else T("offene Stellen", "open roles")}' if nj else f'{total} {T("Stelle", "role") if total==1 else T("Stellen", "roles")}')+'</div></a>')
     doc=head(T("App-Unternehmen in Deutschland: alle Firmen & Jobs | Berlin App Jobs", "App Companies in Germany: All Employers & Jobs | Berlin App Jobs"),
-             T(f"Alle {len(company_index)} Unternehmen hinter Deutschlands Top-Apps mit offenen Stellen. Apps, Rollen, Standort und Direktbewerbung.",
-               f"All {len(company_index)} companies behind Germany's top apps that are hiring. Their apps, open roles and location, with direct apply."),
+             T(f"Alle {len(listed)} Unternehmen hinter Deutschlands Top-Apps mit offenen Stellen. Apps, Rollen, Standort und Direktbewerbung.",
+               f"All {len(listed)} companies behind Germany's top apps that are hiring. Their apps, open roles and location, with direct apply."),
              url, lang=lang, alt={'de': SITE+'/companies/', 'en': SITE+'/en/companies/'}, active="companies")
     doc+='<nav class="crumb"><a href="/">Home</a> / Companies</nav>'
     doc+=f'<h1>{T("App-Unternehmen mit offenen Stellen", "App companies hiring now")}</h1>'
-    doc+=('<p class="sub">'+T(f'Die {len(company_index)} Unternehmen hinter Deutschlands meistgenutzten Apps, die aktuell einstellen. Jede Firma mit ihren Apps, offenen Rollen und Direktbewerbung.',
-                               f'The {len(company_index)} companies behind Germany\'s most-used apps that are hiring right now. Each with its apps, open roles and direct apply.')+'</p>')
+    doc+=('<p class="sub">'+T(f'Die {len(listed)} Unternehmen hinter Deutschlands meistgenutzten Apps, die aktuell einstellen. Jede Firma mit ihren Apps, offenen Rollen und Direktbewerbung.',
+                               f'The {len(listed)} companies behind Germany\'s most-used apps that are hiring right now. Each with its apps, open roles and direct apply.')+'</p>')
     doc+=f'<div class="grid">{cards}</div>'+'</div>'+(FOOT if de else FOOT_EN)+'</body></html>'
     d=os.path.join(OUT, *T('companies', 'en/companies').split('/')); os.makedirs(d, exist_ok=True)
     open(os.path.join(d,"index.html"),"w",encoding='utf-8').write(doc)
