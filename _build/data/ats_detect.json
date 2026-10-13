@@ -44,7 +44,8 @@
    "https://corporate.aboutyou.de/en/career/fashion",
    "https://corporate.aboutyou.de/en/career/benefits",
    "https://corporate.aboutyou.de/de/career",
-   "https://corporate.aboutyou.de/career"
+   "https://corporate.aboutyou.de/career",
+   "https://corporate.aboutyou.de/en/career/jobs/staff-app-engineer-discovery-consideration-all-genders-hamburg-or-berlin-germany"
   ],
   "was": "custom"
  },
@@ -496,7 +497,15 @@
    "https://www.bwi.de/karriere/stellenangebote/job/lead-it-expert-einsatznahe-it-schwerpunkt-fuhrungsinformationssysteme-m-w-d-70674%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/senior-privacy-expert-m-w-d-70638%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/senior-it-service-manager-product-owner-mobility-emm-mam-m-w-d-70630",
-   "https://www.bwi.de/karriere/stellenangebote/job/senior-it-projektleiter-m-w-d-70634%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-it-projektleiter-m-w-d-70634%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-software-engineer-m-w-d-70791%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/expert-einsatznahe-it-verlegefahige-solutions-m-w-d-70767%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-fullstack-java-jakarta-ee-developer-m-w-d-70783%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-scrum-agile-master-m-w-d-70787%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-it-architekt-e-mail-communications-m-w-d-70775%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-it-servicetechniker-systemelektroniker-m-w-d-70771%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/it-system-engineer-krankenhausinformationssystem-kis-m-w-d-70698%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/head-of-ordermanagement-it-hardware-scm-logistics-m-w-d-70274"
   ],
   "was": "custom"
  },
@@ -2264,7 +2273,8 @@
   ],
   "skip": [
    "https://karriere.lvm.de/client/jobs",
-   "https://karriere.lvm.de/jobs/innendienstmitarbeiter-auch-quereinsteiger-m-w-d-10172"
+   "https://karriere.lvm.de/jobs/innendienstmitarbeiter-auch-quereinsteiger-m-w-d-10172",
+   "https://karriere.lvm.de/jobs/trainer-schwerpunkt-weiterbildung-komposit-m-w-d-9998"
   ],
   "was": "custom"
  },
@@ -2450,7 +2460,8 @@
    "https://careers.metro.digital/cop-asset/17ba5dc8-ea24-4758-aa55-08dac1986bea/js--jquery.autocomplete",
    "https://careers.metro.digital/jobs",
    "https://careers.metro.digital/job",
-   "https://careers.metro.digital/our-job-sectors"
+   "https://careers.metro.digital/our-job-sectors",
+   "https://careers.metro.digital/job/solution-expert-mpos-air-in-soseaua-pipera-nr-43-bucuresti-jid-34859"
   ],
   "was": "smartrecruiters"
  },
@@ -3186,7 +3197,9 @@
    "https://db.jobs/de-de/Suche/Tiefbauer-in-Schlosser-in-Metallbauer-in-zur-Qualifikation-M-13119178",
    "https://db.jobs/de-de/Suche/Elektriker-in-Mechatroniker-in-Industriemechaniker-in-zur-Qual-13132570",
    "https://db.jobs/de-de/Suche/Mechaniker-in-Metallbauer-in-Maurer-in-als-Weichenmechaniker-i-13129068",
-   "https://db.jobs/de-de/Suche/Senior-Planungsingenieur-in-Verkehrsanlagen-13155670"
+   "https://db.jobs/de-de/Suche/Senior-Planungsingenieur-in-Verkehrsanlagen-13155670",
+   "https://db.jobs/de-de/Suche/Triebfahrzeugfuehrer-in-Nebenfahrzeugfuehrer-in-13104976",
+   "https://db.jobs/de-de/Suche/Forstwirt-in-Gaertner-in-als-Vegetationspfleger-in-am-Gleis-13236616"
   ],
   "was": "custom"
  },
@@ -3434,7 +3447,9 @@
    "https://hanssegmueller-portal.rexx-systems.com/Business-Development-Manager-mwd-E-Commerce-Digitaler-Vert-de-j3063.html\\",
    "https://hanssegmueller-portal.rexx-systems.com/de\\",
    "https://hanssegmueller-portal.rexx-systems.com/*",
-   "https://hanssegmueller-portal.rexx-systems.com/Business-Development-Manager-mwd-E-Commerce-Digitaler-Vert-de-j3063.html"
+   "https://hanssegmueller-portal.rexx-systems.com/Business-Development-Manager-mwd-E-Commerce-Digitaler-Vert-de-j3063.html",
+   "https://hanssegmueller-portal.rexx-systems.com/Konditor-mwd-de-j3035.html",
+   "https://hanssegmueller-portal.rexx-systems.com/Konditor-mwd-de-j3035.html\\"
   ],
   "was": "custom"
  },
@@ -3715,7 +3730,9 @@
    "https://jobs.takko.com/de-de/abonnieren-takko-job-benachrichtigungen",
    "https://jobs.takko.com/de-de/minijob-static-content",
    "https://jobs.takko.com/de-de/hamm/minijob",
-   "https://jobs.takko.com/de-de/rangsdorf/minijob"
+   "https://jobs.takko.com/de-de/rangsdorf/minijob",
+   "https://jobs.takko.com/de-de/emden/2/minijob",
+   "https://jobs.takko.com/de-de/dortmund/2/minijob"
   ],
   "was": "custom"
  },
@@ -3977,7 +3994,8 @@
    "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote/job-alarm.html",
    "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote/Accountant-Kreditorenbuchhalter-wmd-de-j5974.html",
    "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote",
-   "https://www.peek-und-cloppenburg.de/de/karriere/kontakt/"
+   "https://www.peek-und-cloppenburg.de/de/karriere/kontakt/",
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ace16a16043a*/"
   ],
   "was": "unknown"
  },
@@ -4411,6 +4429,8 @@
   "https://ionity-gmbh.jobs.personio.de/job/2796735": "2026-10-11",
   "https://ionity-gmbh.jobs.personio.de/job/2817697": "2026-10-02",
   "https://ionity-gmbh.jobs.personio.de/job/994367": "2026-10-11",
+  "https://omos-media.jobs.personio.de/job/2645310": "2026-10-13",
+  "https://omos-media.jobs.personio.de/job/2659536": "2026-10-13",
   "https://omos-media.jobs.personio.de/job/2697992": "2026-10-11",
   "https://omos-media.jobs.personio.de/job/2729250": "2026-10-10",
   "https://omos-media.jobs.personio.de/job/2744999": "2026-10-11",
