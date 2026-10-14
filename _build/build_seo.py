@@ -50,6 +50,21 @@ for _a in ARTICLES2:
     _a['html']=_colinks(_a['html'], _a.get('lang', 'de'))
 ARTICLES = ARTICLES1 + ARTICLES2
 
+# Last substantial edit of each guide's text (body, FAQ, title or description). A guide without an entry
+# counts as unchanged since its publication date. Google: don't freshen a date without real changes, so the
+# visible "Aktualisiert"/"Updated" date and Article dateModified come from here, not from the daily data refresh.
+# Whenever a PR edits a guide's text, add or raise its entry here.
+UPDATED = {
+    'gehaltstransparenz-app-jobs-2026': '2026-10-08',         # PR #28: outdated "only 3 %" claim, new title/FAQ
+    'app-developer-salary-germany-2026': '2026-10-10',        # PR #30: stale counts and claims removed
+    'app-entwickler-gehalt-deutschland-2026': '2026-10-10',   # PR #30
+    'erfolgreichste-apps-aus-berlin': '2026-10-10',           # PR #30
+    'most-successful-apps-made-in-berlin': '2026-10-10',      # PR #30
+    'startup-jobs-berlin-english': '2026-10-10',              # PR #30
+}
+def modified(a):
+    return max(a.get('date', TODAY), UPDATED.get(a['slug'], ''))
+
 SITE = "https://berlinappjobs.com"
 GUIDES_DIR = os.path.join(OUT, "guides")
 os.makedirs(GUIDES_DIR, exist_ok=True)
@@ -169,7 +184,7 @@ def article_jsonld(a, url):
     g=[{
         "@context":"https://schema.org","@type":"Article",
         "headline":a["title"],"description":a["desc"],
-        "datePublished":a.get("date",TODAY),"dateModified":TODAY,"inLanguage":a["lang"],
+        "datePublished":a.get("date",TODAY),"dateModified":modified(a),"inLanguage":a["lang"],
         "author":{"@type":"Organization","name":"Berlin App Jobs"},
         "publisher":{"@type":"Organization","name":"Berlin App Jobs"},
         "mainEntityOfPage":{"@type":"WebPage","@id":url}
@@ -198,7 +213,7 @@ def hreflang_tags(a, url):
 
 def render_article(a):
     url=f'{SITE}/guides/{a["slug"]}/'
-    updated = ("Updated " if a["lang"]=="en" else "Aktualisiert ")+TODAY
+    updated = ("Updated " if a["lang"]=="en" else "Aktualisiert ")+modified(a)
     crumbhome = "Home" if a["lang"]=="en" else "Start"
     faq_html=""
     if a.get("faq"):
