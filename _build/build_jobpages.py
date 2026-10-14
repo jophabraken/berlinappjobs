@@ -111,6 +111,14 @@ def co_slug(name):
     return sl if os.path.isdir(os.path.join(OUT, 'companies', sl)) else None
 
 JOB_DIR = os.path.join(OUT, 'job')
+# datePosted of jobs whose feed gives no date: keep the first day we saw the job (read from the page the last build
+# wrote) instead of the refresh date, which moved forward with every refresh (BMW, ABOUT YOU, AUTOHERO, S Broker, …).
+# Google: datePosted is the date the job was first posted.
+PREV_POSTED = {}
+for _sl in (os.listdir(JOB_DIR) if os.path.isdir(JOB_DIR) else []):
+    try: _m = re.search(r'"datePosted":\s*"(\d{4}-\d{2}-\d{2})', open(os.path.join(JOB_DIR, _sl, 'index.html'), encoding='utf-8').read())
+    except OSError: _m = None
+    if _m: PREV_POSTED[_sl] = _m.group(1)
 shutil.rmtree(JOB_DIR, ignore_errors=True)   # local build dir only; the repo copy is handled at deploy time
 os.makedirs(JOB_DIR, exist_ok=True)
 
@@ -327,7 +335,7 @@ for rec in pages:
     says_fully = bool(FULLY_REMOTE.search(f"{jb['t']} {ad_text}"))
     fully_remote = remote and not hybrid and (says_fully or not known_city)
     de = is_de(desc)
-    posted = iso(m.get('pub')) or iso(m.get('upd')) or iso(jb.get('p')) or FETCHED
+    posted = iso(m.get('pub')) or iso(m.get('upd')) or iso(jb.get('p')) or PREV_POSTED.get(slug) or FETCHED
     posted = min(posted, FETCHED)   # never in the future: a feed's 'pub' can be a later date (Hamburger Hochbahn showed "Veröffentlicht 2026-11-10")
     et = emp_type(m, jb)
     cname = c['n'].split('|')[0].strip()
