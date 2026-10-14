@@ -505,7 +505,13 @@
    "https://www.bwi.de/karriere/stellenangebote/job/senior-it-architekt-e-mail-communications-m-w-d-70775%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/senior-it-servicetechniker-systemelektroniker-m-w-d-70771%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/it-system-engineer-krankenhausinformationssystem-kis-m-w-d-70698%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
-   "https://www.bwi.de/karriere/stellenangebote/job/head-of-ordermanagement-it-hardware-scm-logistics-m-w-d-70274"
+   "https://www.bwi.de/karriere/stellenangebote/job/head-of-ordermanagement-it-hardware-scm-logistics-m-w-d-70274",
+   "https://www.bwi.de/karriere/stellenangebote/job/strategischer-senior-it-service-portfolio-planer-m-w-d-70823%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/strategischer-lead-it-service-portfolio-planer-m-w-d-70819%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-devops-engineer-m-w-d-70791%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/hr-supporter-m-w-d-70795%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/werkstudent-training-management-m-w-d-70807%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-service-technician-m-w-d-70602"
   ],
   "was": "custom"
  },
@@ -721,7 +727,8 @@
   "skip": [
    "https://karriere.buenting.de/category/markt/0c0b7595-cabc-4d69-a0ef-38656d5a4dcd",
    "https://karriere.buenting.de/category/produktion/32144d2e-93c2-404d-bdbc-da1d7167ff66",
-   "https://karriere.buenting.de/category/logistik/805c3764-d475-431c-9f28-b440044b4357"
+   "https://karriere.buenting.de/category/logistik/805c3764-d475-431c-9f28-b440044b4357",
+   "https://karriere.buenting.de/offer/produktionsmitarbeiter-m-w-d-fur-di/3150ad0f-c320-4bd0-b288-1a272f8b67cf"
   ],
   "was": "custom"
  },
@@ -2553,7 +2560,8 @@
    "crawl https://karriere.miele.de/: 44 jobs, 21 in Germany, 0 match the board"
   ],
   "skip": [
-   "https://karriere.miele.de/young-talents/abschlussarbeit-praktikum-werkstudierendenjob"
+   "https://karriere.miele.de/young-talents/abschlussarbeit-praktikum-werkstudierendenjob",
+   "https://karriere.miele.de/offer/servicetechniker-im-aussendienst-m-/9ab1d0dc-da3a-40f5-a2cc-362480d3959c"
   ],
   "was": "custom"
  },
@@ -2751,7 +2759,8 @@
    "crawl https://jobs.obi.de/: 44 jobs, 29 in Germany, 0 match the board"
   ],
   "skip": [
-   "https://jobs.obi.de/jobs/duales-studium-handelsmanagement-bachelor-of-arts-alle-geschlechter/08f7f3d5-27b2-4f4c-b19d-e0de8504bf84"
+   "https://jobs.obi.de/jobs/duales-studium-handelsmanagement-bachelor-of-arts-alle-geschlechter/08f7f3d5-27b2-4f4c-b19d-e0de8504bf84",
+   "https://jobs.obi.de/jobs/mitarbeiter-kasse-kassierer-alle-geschlechter/027886d8-b821-486e-85e3-e5ec41f3c034"
   ],
   "was": "custom"
  },
@@ -4174,7 +4183,8 @@
    "crawl https://jobs.volkswagen-group.com/Elli/: 44 jobs, 1 in Germany, 0 match the board"
   ],
   "skip": [
-   "https://jobs.volkswagen-group.com/Volkswagen-Group-Services/job/Braunschweig-Management-Consultant-AI-&-New-Technologies-%28wmd%29-38112/1434287533/"
+   "https://jobs.volkswagen-group.com/Volkswagen-Group-Services/job/Braunschweig-Management-Consultant-AI-&-New-Technologies-%28wmd%29-38112/1434287533/",
+   "https://jobs.volkswagen-group.com/Volkswagen-Group-Services/job/Bratislava-In%C5%A1pekcia-poriadku-m%C5%BE-843-02/1414177533/"
   ],
   "was": "custom"
  },
@@ -4434,6 +4444,7 @@
   "https://omos-media.jobs.personio.de/job/2697992": "2026-10-11",
   "https://omos-media.jobs.personio.de/job/2729250": "2026-10-10",
   "https://omos-media.jobs.personio.de/job/2744999": "2026-10-11",
+  "https://omos-media.jobs.personio.de/job/2748275": "2026-10-14",
   "https://tandem.net/pages/careers/jobs/2509364": "2026-10-12",
   "https://tandem.net/pages/careers/jobs/2768964": "2026-10-12",
   "https://tandem.net/pages/careers/jobs/2792207": "2026-10-12",
@@ -4887,7 +4898,9 @@
    "https://www.arbeitnow.com/jobs/companies/momox/mid-or-senior-software-engineer-python-berlin-276408\\u0022\\n",
    "https://www.arbeitnow.com/jobs/companies/momox/mid-or-senior-software-engineer-python-berlin-276408\\u0022",
    "https://www.arbeitnow.com/jobs/companies/momox/senior-pr-communications-manager-teilzeit-berlin-212206\\u0022\\n",
-   "https://www.arbeitnow.com/jobs/companies/momox/senior-pr-communications-manager-teilzeit-berlin-212206\\u0022"
+   "https://www.arbeitnow.com/jobs/companies/momox/senior-pr-communications-manager-teilzeit-berlin-212206\\u0022",
+   "https://www.arbeitnow.com/jobs/companies/momox/werkstudentin-it-support-berlin-345647\\u0022\\n",
+   "https://www.arbeitnow.com/jobs/companies/momox/werkstudentin-it-support-berlin-345647\\u0022"
   ],
   "was": "unknown"
  },
