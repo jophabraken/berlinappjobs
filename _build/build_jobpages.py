@@ -102,9 +102,19 @@ def is_de(h):
     return sum(t.count(w) for w in (' und ', ' die ', ' der ', ' wir ', ' mit ', ' für ')) > sum(t.count(w) for w in (' and ', ' the ', ' we ', ' with ', ' for ', ' you '))
 
 def iso(d):
+    """A feed date as YYYY-MM-DD, or None. Besides ISO dates the feeds send "20261009" (BMW), "01-10-2026 09:26"
+    (AUTO1/AUTOHERO) and "Fri Sep 18 02:00:00 UTC 2026" (Deka/S Broker, Telefónica, DAK, SIGNAL IDUNA); those used to
+    fall through to the refresh date. Impossible dates (Hamburger Hochbahn sends "2026-14-10") give None."""
     if not d: return None
-    d = str(d)
-    return d[:10] if re.match(r'\d{4}-\d{2}-\d{2}', d) else None
+    d = str(d).strip()
+    for rx, order in ((r'(\d{4})-(\d{2})-(\d{2})', 'ymd'), (r'(\d{4})(\d{2})(\d{2})$', 'ymd'), (r'(\d{2})[-.](\d{2})[-.](\d{4})\b', 'dmy')):
+        g = re.match(rx, d)
+        if g:
+            y, mo, da = (int(x) for x in (g.groups() if order == 'ymd' else g.groups()[::-1]))
+            try: return datetime.date(y, mo, da).isoformat()
+            except ValueError: return None
+    try: return datetime.datetime.strptime(d, '%a %b %d %H:%M:%S UTC %Y').date().isoformat()
+    except ValueError: return None
 
 def co_slug(name):
     sl = slugify(name)
@@ -335,8 +345,11 @@ for rec in pages:
     says_fully = bool(FULLY_REMOTE.search(f"{jb['t']} {ad_text}"))
     fully_remote = remote and not hybrid and (says_fully or not known_city)
     de = is_de(desc)
-    posted = iso(m.get('pub')) or iso(m.get('upd')) or iso(jb.get('p')) or PREV_POSTED.get(slug) or FETCHED
-    posted = min(posted, FETCHED)   # never in the future: a feed's 'pub' can be a later date (Hamburger Hochbahn showed "Veröffentlicht 2026-11-10")
+    posted = iso(m.get('pub')) or iso(m.get('upd')) or iso(jb.get('p'))
+    # never in the future (a feed's 'pub' can be a later date: Hamburger Hochbahn showed "Veröffentlicht 2026-11-10"),
+    # and a future date falls back to the previous page's date instead of the refresh date, so it doesn't move every refresh
+    if not posted or posted > FETCHED: posted = PREV_POSTED.get(slug) or FETCHED
+    posted = min(posted, FETCHED, PREV_POSTED.get(slug) or FETCHED)   # datePosted only ever moves earlier, never later
     et = emp_type(m, jb)
     cname = c['n'].split('|')[0].strip()
     cslug = co_slug(c['n'])
