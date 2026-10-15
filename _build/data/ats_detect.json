@@ -511,7 +511,12 @@
    "https://www.bwi.de/karriere/stellenangebote/job/senior-devops-engineer-m-w-d-70791%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/hr-supporter-m-w-d-70795%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/werkstudent-training-management-m-w-d-70807%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
-   "https://www.bwi.de/karriere/stellenangebote/job/senior-service-technician-m-w-d-70602"
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-service-technician-m-w-d-70602",
+   "https://www.bwi.de/karriere/stellenangebote/job/system-engineer-planung-lan-wlan-m-w-d-70855%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-system-engineer-citrix-app-virtualization-automation-m-w-d-70843%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/it-dispatcher-und-servicesteuerung-m-w-d-70831%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-it-service-manager-application-management-m-w-d-70839%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-system-engineer-infrastructure-development-automation-m-w-d-69252%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
   ],
   "was": "custom"
  },
@@ -1380,7 +1385,8 @@
    "https://careers.enbw.com/global/en/c/contracting-jobs",
    "https://careers.enbw.com/global/en/c/telecommunications-jobs",
    "https://careers.enbw.com/global/en/c/marketing-communication-jobs",
-   "https://careers.enbw.com/global/en/job/EBQEBQGLOBAL25283EXTERNALENGLOBAL/Werkstudent-Projektentwicklung-Windenergie-w-m-d"
+   "https://careers.enbw.com/global/en/job/EBQEBQGLOBAL25283EXTERNALENGLOBAL/Werkstudent-Projektentwicklung-Windenergie-w-m-d",
+   "https://careers.enbw.com/global/en/job/EBQEBQGLOBAL25284EXTERNALENGLOBAL/Servicetechniker-Offshore-w-m-d"
   ],
   "was": "custom"
  },
@@ -3741,7 +3747,8 @@
    "https://jobs.takko.com/de-de/hamm/minijob",
    "https://jobs.takko.com/de-de/rangsdorf/minijob",
    "https://jobs.takko.com/de-de/emden/2/minijob",
-   "https://jobs.takko.com/de-de/dortmund/2/minijob"
+   "https://jobs.takko.com/de-de/dortmund/2/minijob",
+   "https://jobs.takko.com/de-de/lohrammain/minijob"
   ],
   "was": "custom"
  },
@@ -4004,7 +4011,8 @@
    "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote/Accountant-Kreditorenbuchhalter-wmd-de-j5974.html",
    "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote",
    "https://www.peek-und-cloppenburg.de/de/karriere/kontakt/",
-   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ace16a16043a*/"
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ace16a16043a*/",
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad095c0752e3*/"
   ],
   "was": "unknown"
  },
@@ -4184,7 +4192,8 @@
   ],
   "skip": [
    "https://jobs.volkswagen-group.com/Volkswagen-Group-Services/job/Braunschweig-Management-Consultant-AI-&-New-Technologies-%28wmd%29-38112/1434287533/",
-   "https://jobs.volkswagen-group.com/Volkswagen-Group-Services/job/Bratislava-In%C5%A1pekcia-poriadku-m%C5%BE-843-02/1414177533/"
+   "https://jobs.volkswagen-group.com/Volkswagen-Group-Services/job/Bratislava-In%C5%A1pekcia-poriadku-m%C5%BE-843-02/1414177533/",
+   "https://jobs.volkswagen-group.com/Volkswagen/job/Toolmaker-Internship-%28-Re-Advertise%29/1419686633/"
   ],
   "was": "custom"
  },
@@ -4429,7 +4438,7 @@
   "https://finanztip.jobs.personio.de/job/2786154": "2026-10-11",
   "https://finanztip.jobs.personio.de/job/2791500": "2026-10-11",
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/1886091": "2026-10-11",
-  "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2322728": "2026-10-01",
+  "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2322728": "2026-10-15",
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2752992": "2026-10-11",
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2768300": "2026-10-11",
   "https://ionity-gmbh.jobs.personio.de/job/2624591": "2026-10-11",
@@ -4545,7 +4554,10 @@
    "https://careers.zooplus.com/jobs/senior-data-analyst-sales-all-genders-madrid-community-of-madrid-spain",
    "https://careers.zooplus.com/jobs/data-scientist-linear-optimization-all-genders-munich-munchen-germany",
    "https://careers.zooplus.com/jobs/senior-delivery-experience-manager-all-genders-munich-munchen-germany",
-   "https://careers.zooplus.com/jobs/senior-retail-media-intelligence-manager-all-genders-munich-munchen-germany-b9aeefb6-521d-4fc5-9c95-8c8d1652619b"
+   "https://careers.zooplus.com/jobs/senior-retail-media-intelligence-manager-all-genders-munich-munchen-germany-b9aeefb6-521d-4fc5-9c95-8c8d1652619b",
+   "https://careers.zooplus.com/jobs/product-owner-seo-product-content-platforms-all-genders-krakow-lesser-poland-poland",
+   "https://careers.zooplus.com/jobs/product-owner-seo-product-content-platforms-all-genders-munich-bavaria-germany",
+   "https://careers.zooplus.com/jobs/senior-vendor-manager-all-genders-munich-bavaria-germany-fec32231-9d0f-464a-992c-c82cca4807dd"
   ],
   "was": "custom"
  },
