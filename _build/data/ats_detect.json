@@ -520,7 +520,9 @@
    "https://www.bwi.de/karriere/stellenangebote/job/senior-team-leader-technical-operations-m-w-d-70880%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/ciso-topic-area-manager-information-security-m-w-d-70864%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/ciso-business-management-expert-m-w-d-70868%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
-   "https://www.bwi.de/karriere/stellenangebote/job/head-of-software-mobility-management-m-w-d-68643%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
+   "https://www.bwi.de/karriere/stellenangebote/job/head-of-software-mobility-management-m-w-d-68643%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-expert-daten-management-plattform-m-w-d-70904%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/system-engineer-betrieb-plattform-m-w-d-70896%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
   ],
   "was": "custom"
  },
@@ -1394,7 +1396,46 @@
    "https://careers.enbw.com/global/en/c/telecommunications-jobs",
    "https://careers.enbw.com/global/en/c/marketing-communication-jobs",
    "https://careers.enbw.com/global/en/job/EBQEBQGLOBAL25283EXTERNALENGLOBAL/Werkstudent-Projektentwicklung-Windenergie-w-m-d",
-   "https://careers.enbw.com/global/en/job/EBQEBQGLOBAL25284EXTERNALENGLOBAL/Servicetechniker-Offshore-w-m-d"
+   "https://careers.enbw.com/global/en/job/EBQEBQGLOBAL25284EXTERNALENGLOBAL/Servicetechniker-Offshore-w-m-d",
+   "https://careers.enbw.com/de/de/c/sonstige-berufe-jobs",
+   "https://careers.enbw.com/de/de/c/marketing-kommunikation-jobs",
+   "https://careers.enbw.com/de/de/job-test",
+   "https://careers.enbw.com/de/de/c/einkauf-logistik-jobs",
+   "https://careers.enbw.com/de/de/c/gastronomie-jobs",
+   "https://careers.enbw.com/de/de/c/anlagen-maschinenbau-jobs",
+   "https://careers.enbw.com/de/de/c/human-resources-jobs",
+   "https://careers.enbw.com/de/de/c/telekommunikation-jobs",
+   "https://careers.enbw.com/de/de/c/datenschutz-jobs",
+   "https://careers.enbw.com/de/de/c/coaching-jobs",
+   "https://careers.enbw.com/de/de/c/food-service-jobs",
+   "https://careers.enbw.com/de/de/c/trading-jobs",
+   "https://careers.enbw.com/de/de/c/it-jobs",
+   "https://careers.enbw.com/de/de/job-netze-bw-wasser-gmbh-jobs",
+   "https://careers.enbw.com/de/de/c/erneuerbare-energien-jobs",
+   "https://careers.enbw.com/de/de/c/contracting-jobs",
+   "https://careers.enbw.com/de/de/c/sekretariat-teamassistenz-jobs",
+   "https://careers.enbw.com/de/de/c/transformation-jobs",
+   "https://careers.enbw.com/de/de/job-netze-jobs",
+   "https://careers.enbw.com/de/de/c/kerntechnikstrahlenschutz-jobs",
+   "https://careers.enbw.com/de/de/c/personal-jobs",
+   "https://careers.enbw.com/de/de/c/strategie-unternehmensentwicklung-jobs",
+   "https://careers.enbw.com/de/de/c/startups-jobs",
+   "https://careers.enbw.com/de/de/c/digitalisierung-jobs",
+   "https://careers.enbw.com/de/de/c/energieabrechnung-kundenservice-jobs",
+   "https://careers.enbw.com/de/de/c/trainees-jobs",
+   "https://careers.enbw.com/de/de/c/elektro-energietechnik-jobs",
+   "https://careers.enbw.com/de/de/c/arbeitsmedizin-jobs",
+   "https://careers.enbw.com/de/de/c/other-professions-jobs",
+   "https://careers.enbw.com/de/de/c/brand-building-jobs",
+   "https://careers.enbw.com/de/de/c/recht-jobs",
+   "https://careers.enbw.com/de/de/c/internationalisierung-jobs",
+   "https://careers.enbw.com/de/de/ODR-jobs",
+   "https://careers.enbw.com/de/de/zeag-jobs",
+   "https://careers.enbw.com/de/de/c/energiewirtschaft-jobs",
+   "https://careers.enbw.com/de/de/c/netzplanung-betrieb-jobs",
+   "https://careers.enbw.com/de/de/c/innovation-forschung-und-entwicklung-jobs",
+   "https://careers.enbw.com/de/de/c/vertrieb-produktmanagement-jobs",
+   "https://careers.enbw.com/de/de/yello-jobs"
   ],
   "was": "custom"
  },
@@ -2295,7 +2336,8 @@
   "skip": [
    "https://karriere.lvm.de/client/jobs",
    "https://karriere.lvm.de/jobs/innendienstmitarbeiter-auch-quereinsteiger-m-w-d-10172",
-   "https://karriere.lvm.de/jobs/trainer-schwerpunkt-weiterbildung-komposit-m-w-d-9998"
+   "https://karriere.lvm.de/jobs/trainer-schwerpunkt-weiterbildung-komposit-m-w-d-9998",
+   "https://karriere.lvm.de/jobs/ausbildung-zum-kaufmann-fuer-versicherungen-und-finanzanlagen-m-w-d-in-enge-sande-2026-8989"
   ],
   "was": "custom"
  },
@@ -2429,7 +2471,9 @@
    "https://loewensteinmedical.com/de-de/karriere/stellenangebot/ausbildung-fachkraft-lagerlogistik-m-w-d-zum-01082027-67476197/",
    "https://loewensteinmedical.com/de-de/karriere/stellenangebot/ausbildung-industriekaufmann-industriekauffrau-m-w-d-zum-01082027-67094175/",
    "https://loewensteinmedical.com/de-de/karriere/stellenangebot/anwendungsberaterin-medical-homecare-m-w-d-67868472/",
-   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/anwendungsberaterin-medical-homecare-m-w-d-67868427/"
+   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/anwendungsberaterin-medical-homecare-m-w-d-67868427/",
+   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/abschlussarbeit-bachelor-master-initiativ-68161381/",
+   "https://loewensteinmedical.com/de-de/karriere/stellenangebot/projektmanager-digitalisierung-und-ki-m-w-d-68147061/"
   ],
   "was": "custom"
  },
@@ -2946,7 +2990,10 @@
    "https://careers.douglas.group/de/jobs/Heilbronn-UXUI-Product-Designer-Web-&-App-%28wmx%29/1364564255/",
    "https://careers.douglas.group/de/jobs/Heilbronn-Marketplace-Integration-Manager-%28wmx%29/1364560655/",
    "https://careers.douglas.group/de/jobs/Miltenberg-Beauty-Expert-bei-der-Parf%C3%BCmerie-Akzente-(wmx)/1363426655/",
-   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Team-Lead-Business-Intelligence-\\u0026amp;-Insights-Enablement-%28wmx%29/1366162855/"
+   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Team-Lead-Business-Intelligence-\\u0026amp;-Insights-Enablement-%28wmx%29/1366162855/",
+   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Lead-Creative-Store-Design-\\u0026amp;-Visual-Merchandise-%28wmx%29/1354625455/",
+   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Senior-Analyst-Finance-Processes-\\u0026amp;-Systems-%28wmx%29/1363579755/",
+   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Legal-Counsel-Commercial%2C-Procurement-\\u0026amp;-Product-Compliance-%28wmx%29-befristet-f%C3%BCr-18-Monate/1363623855/"
   ],
   "was": "custom"
  },
@@ -2970,7 +3017,14 @@
    "https://careers.douglas.group/de/jobs/Abteilungsleitung__Lager_-_Visual_Merchandising_(w%2Fm%2Fx)-16707/",
    "https://careers.douglas.group/de/author/p710549/",
    "https://careers.douglas.group/en/jobs/D%C3%BCsseldorf-Team-Lead-Business-Intelligence-\\u0026amp;-Insights-Enablement-%28fmx%29/1366162755/",
-   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Team-Lead-Business-Intelligence-\\u0026amp;-Insights-Enablement-%28wmx%29/1366162855/"
+   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Team-Lead-Business-Intelligence-\\u0026amp;-Insights-Enablement-%28wmx%29/1366162855/",
+   "https://careers.douglas.group/en/jobs/D%C3%BCsseldorf-Lead-Creative-Store-Design-\\u0026amp;-Visual-Merchandise-%28fmx%29/1354625555/",
+   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Lead-Creative-Store-Design-\\u0026amp;-Visual-Merchandise-%28wmx%29/1354625455/",
+   "https://careers.douglas.group/en/jobs/D%C3%BCsseldorf-Senior-Analyst-Finance-Processes-\\u0026amp;-Systems-%28fmx%29/1363579655/",
+   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Senior-Analyst-Finance-Processes-\\u0026amp;-Systems-%28wmx%29/1363579755/",
+   "https://careers.douglas.group/en/jobs/D%C3%BCsseldorf-Legal-Counsel-Commercial%2C-Procurement-\\u0026amp;-Product-Compliance-%28fmx%29-limited-to-18-months/1363623755/",
+   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Legal-Counsel-Commercial%2C-Procurement-\\u0026amp;-Product-Compliance-%28wmx%29-befristet-f%C3%BCr-18-Monate/1363623855/",
+   "https://careers.douglas.group/en/jobs/D%C3%BCsseldorf-Manager-Social-Media-Commerce-Operations-\\u0026amp;-Technology-%28fmx%29/1367740055/"
   ],
   "was": "custom"
  },
@@ -3764,7 +3818,9 @@
    "https://jobs.takko.com/de-de/emden/2/minijob",
    "https://jobs.takko.com/de-de/dortmund/2/minijob",
    "https://jobs.takko.com/de-de/lohrammain/minijob",
-   "https://jobs.takko.com/de-de/tutzing/minijob"
+   "https://jobs.takko.com/de-de/tutzing/minijob",
+   "https://jobs.takko.com/de-de/hamburg/5/minijob",
+   "https://jobs.takko.com/de-de/wolfsburg/minijob"
   ],
   "was": "custom"
  },
@@ -4029,7 +4085,8 @@
    "https://www.peek-und-cloppenburg.de/de/karriere/kontakt/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ace16a16043a*/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad095c0752e3*/",
-   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad1e565b7988*/"
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad1e565b7988*/",
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad32fdf3729b*/"
   ],
   "was": "unknown"
  },
@@ -4443,7 +4500,6 @@
   "https://finanzfluss.jobs.personio.de/job/2598297": "2026-10-11",
   "https://finanzfluss.jobs.personio.de/job/2748191": "2026-10-11",
   "https://finanzfluss.jobs.personio.de/job/2759610": "2026-10-11",
-  "https://finanzfluss.jobs.personio.de/job/2782859": "2026-10-11",
   "https://finanzfluss.jobs.personio.de/job/2808090": "2026-10-11",
   "https://finanztip.jobs.personio.de/job/1740845": "2026-10-11",
   "https://finanztip.jobs.personio.de/job/2711796": "2026-10-11",
@@ -4451,7 +4507,6 @@
   "https://finanztip.jobs.personio.de/job/2753169": "2026-10-11",
   "https://finanztip.jobs.personio.de/job/2767381": "2026-10-11",
   "https://finanztip.jobs.personio.de/job/2786154": "2026-10-11",
-  "https://finanztip.jobs.personio.de/job/2791500": "2026-10-11",
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/1886091": "2026-10-11",
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2322728": "2026-10-15",
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2752992": "2026-10-11",
