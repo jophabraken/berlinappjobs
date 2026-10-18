@@ -193,6 +193,13 @@ seen_slugs = set()
 # Keep a job's URL when the employer retitles the ad (or the company is renamed): reuse the slug from the last build.
 try: PINNED = {u: p.strip('/').split('/')[-1] for u, p in json.load(open(os.path.join(DATA, 'jobpages_map.json'), encoding='utf-8')).items()}
 except Exception: PINNED = {}
+# A slug made while the title still carried card text (BMW, see ats_more.split_title) is the clean title's slug plus the
+# cut-off start of the Java object id: "…-w-m-x-com-bmw-gr-45b17f", "…-com-bmw-grpw-core-a40144", "…-c-9d07dc".
+# Such a slug is not kept; the job gets the slug of its clean title, and the old page goes away with the next cleanup.
+def junk_slug(slug, cs, t, h):
+    if not (slug.startswith(cs + '-') and slug.endswith('-' + h)): return False
+    mid, clean = slug[len(cs) + 1:-len(h) - 1], slugify(t)[:60].strip('-')
+    return mid.startswith(clean + '-') and re.fullmatch(r'c(?:o(?:m(?:-[a-z0-9-]*)?)?)?', mid[len(clean) + 1:]) is not None
 for c in COS:
     for jb in c.get('jobs') or []:
         m = match(jb['u'])
@@ -201,7 +208,8 @@ for c in COS:
         if text_len(desc) < 300: continue
         cs = slugify(c['n'])
         h = hashlib.md5(jb['u'].encode()).hexdigest()[:6]
-        slug = PINNED.get(jb['u']) or f"{cs}-{slugify(jb['t'])[:60].strip('-')}-{h}"
+        slug = PINNED.get(jb['u'])
+        if not slug or junk_slug(slug, cs, jb['t'], h): slug = f"{cs}-{slugify(jb['t'])[:60].strip('-')}-{h}"
         if slug in seen_slugs: continue
         seen_slugs.add(slug)
         if CTA_SUFFIX.search(jb['t']): jb = dict(jb, t=CTA_SUFFIX.sub('', jb['t']))

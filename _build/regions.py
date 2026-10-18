@@ -46,4 +46,6 @@ REGION = {
  'Ludwigshafen am Rhein': _RP, 'Siegburg': _NW, 'Bergheim': _NW, 'Itzehoe': _SH, 'Elmshorn': _SH, 'Greifswald': _MV,
  'Ahlen': _NW, 'Ahaus': _NW, 'Legden': _NW, 'Horstmar': _NW, 'Oelde': _NW, 'Nottuln': _NW, 'Laer': _NW, 'Bramsche': _NI,
  'Wallenhorst': _NI, 'Twistringen': _NI, 'Lübben': _BB, 'Rottach-Egern': _BY, 'Emmelshausen': _RP,
+ # BMW plant named in the job card (18 Oct)
+ 'Dingolfing': _BY,
 }

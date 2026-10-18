@@ -96,6 +96,19 @@ def postings(page):
         if md: out.append(md)
     return out
 
+# Some career sites put the whole result card inside the element marked itemprop="title" (BMW Group, 18 Oct 2026): the
+# title is followed by a Java object id ("com.bmw.grpw.core.models.jobfinder.IdDisplayItem@608ef3bf"), the date, the
+# business area, "Legal Entity: …", "Location: Munich", "Job Field: …", "Job Id: …" and button labels ("Print Page …").
+# Everything from the object id on is dropped; the card's "Location:" is returned so the job still gets its city.
+JAVA_REF = re.compile(r'\s*\b(?:[a-z_]\w*\.){2,}[A-Za-z_]\w*@[0-9a-f]{4,}\b.*$', re.S)
+CARD_LOC = re.compile(r'\bLocation:\s*(.+?)\s+(?:Job Field|Job Id|Publication Date)\b', re.S)
+def split_title(t):
+    """(title without the card text, location named in the card or '')."""
+    m = JAVA_REF.search(t or '')
+    if not m: return t, ''
+    lm = CARD_LOC.search(m.group(0))
+    return t[:m.start()].strip(), (lm.group(1).strip() if lm else '')
+
 def posting_to_raw(o, url):
     locs, country = [], ''
     jl = o.get('jobLocation') or []
@@ -123,8 +136,10 @@ def posting_to_raw(o, url):
         try: sal = _sal(lo, hi, per, (bs.get('currency') or v.get('currency', '') if isinstance(v, dict) else bs.get('currency')) or '') if per else ''
         except Exception: sal = ''
     et = o.get('employmentType')
-    et = ', '.join(map(str, et)) if isinstance(et, list) else _s(et)
-    return dict(id=url, url=url, t=html.unescape(_s(o.get('title'))), locs=locs, country=country, remote=remote, desc=desc,
+    et = JAVA_REF.sub('', ', '.join(map(str, et)) if isinstance(et, list) else _s(et)).strip()
+    t, card_loc = split_title(html.unescape(_s(o.get('title'))))
+    if card_loc: locs.insert(0, card_loc)   # first, so german_loc picks the card's city over a bare "Germany"
+    return dict(id=url, url=url, t=t, locs=locs, country=country, remote=remote, desc=desc,
                 pub=_s(o.get('datePosted')), et=et, sal=sal, dept=_s(o.get('occupationalCategory') or ''), valid=_s(o.get('validThrough')),
                 org=html.unescape(_s(o.get('hiringOrganization'))))
 

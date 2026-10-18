@@ -488,6 +488,32 @@ for (ats, feed), cos in feeds.items():
         stats['new'] += new_n; stats['updated'] += len(fresh) - new_n
         c['jobs'] = fresh; c['total'] = len(fresh)
 
+# ---- card text in titles (ats_more.split_title): jobs kept from earlier runs, which the crawl doesn't reopen, are
+# cleaned here too, get the city the card named instead of "Deutschland", and are classified again from the clean title.
+def _umlauts(s): return re.sub(r'oe', 'ö', re.sub(r'ae', 'ä', re.sub(r'ue', 'ü', s)))   # "Goettingen" -> "Göttingen"
+def repair_titles(cos, descs):
+    fixed = {}
+    for c in cos:
+        for jb in c.get('jobs') or []:
+            t, card_loc = ats_more.split_title(jb['t'])
+            if t == jb['t'] or not t: continue
+            jb['t'] = t
+            if card_loc and jb.get('loc') in ('Deutschland', '', None):
+                gl = german_loc([card_loc]) or german_loc([_umlauts(card_loc)])
+                if gl and gl[0] not in ('Deutschland', 'Remote'): jb['loc'] = gl[0]
+            text = txt((descs.get(jb['u'].split('?')[0].rstrip('/')) or {}).get('desc'))
+            jb['d'], jb['s'], jb['lang'] = discipline(t, '', text), seniority(t, ''), language(t, text)
+            fixed[jb['u'].rstrip('/')] = jb
+    for x in descs.values():
+        if ats_more.JAVA_REF.search(x.get('t') or '') or ats_more.JAVA_REF.search(x.get('et') or ''):
+            x['t'] = ats_more.split_title(x.get('t') or '')[0]
+            x['et'] = ats_more.JAVA_REF.sub('', x.get('et') or '').strip()
+            jb = fixed.get((x.get('url') or '').rstrip('/'))
+            if jb: x['loc'] = jb['loc']
+    return len(fixed)
+n_titles = repair_titles(B['companies'], DESC_BY_URL)
+if n_titles: report.append(f'- Card text removed from {n_titles} job titles (ats_more.split_title)')
+
 # ---- job pages: link check for custom career pages, and full descriptions from the job's own page
 # Jobs without a full description get no job page on the site. Many careers sites put the whole ad on each
 # job page as schema.org JobPosting data (for Google for Jobs), so we read it from there:
