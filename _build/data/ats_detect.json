@@ -366,7 +366,8 @@
    "https://www.bmwgroup.jobs/content/grpw/websites/bmwgroup_jobs/de/de/search.html",
    "https://www.bmwgroup.jobs/de/de/jobs/richtig-bewerben.html",
    "https://www.bmwgroup.jobs/_jcr_content/main/layoutcontainer/jobfinder30_copy.jobfinder_table.content.html",
-   "https://www.bmwgroup.jobs/en/jobfinder.html"
+   "https://www.bmwgroup.jobs/en/jobfinder.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.198670.html"
   ],
   "was": "custom"
  },
@@ -2248,7 +2249,11 @@
    "https://jobs.klassikradio.de/de?id=7ab77a",
    "https://jobs.klassikradio.de/de?id=f7f914",
    "https://jobs.klassikradio.de/de?id=148c07",
-   "https://jobs.klassikradio.de/de?id=47735f"
+   "https://jobs.klassikradio.de/de?id=47735f",
+   "https://jobs.klassikradio.de/Quartals-",
+   "https://jobs.klassikradio.de/de\\",
+   "https://jobs.klassikradio.de/de\\\\\\",
+   "https://jobs.klassikradio.de/Woche"
   ],
   "was": "custom"
  },
@@ -3285,7 +3290,32 @@
    "https://db.jobs/de-de/Suche/Senior-Planungsingenieur-in-Verkehrsanlagen-13155670",
    "https://db.jobs/de-de/Suche/Triebfahrzeugfuehrer-in-Nebenfahrzeugfuehrer-in-13104976",
    "https://db.jobs/de-de/Suche/Forstwirt-in-Gaertner-in-als-Vegetationspfleger-in-am-Gleis-13236616",
-   "https://db.jobs/de-de/Suche/Elektroniker-in-Elektriker-in-Mechatroniker-in-fuer-eine-Qual-13247702"
+   "https://db.jobs/de-de/Suche/Elektroniker-in-Elektriker-in-Mechatroniker-in-fuer-eine-Qual-13247702",
+   "https://db.jobs/de-de/Suche/Spezialist-in-Planungsingenieur-in-Telekommunikation-13011702",
+   "https://db.jobs/de-de/Suche/Planungsingenieur-in-Spezialist-in-Leit-und-Sicherungstechnik-13014880",
+   "https://db.jobs/de-de/Suche/Sicherungsaufsicht-1-w-m-d--13024586",
+   "https://db.jobs/de-de/Suche/IHK-Meister-in-Gleisbau-als-Ultraschallpruefer-in-13029220",
+   "https://db.jobs/de-de/Suche/Vorarbeiter-in-Bahnhofsreinigung-13042194",
+   "https://db.jobs/de-de/Suche/Elektroniker-in-Elektriker-in-Mechatroniker-in-fuer-eine-Qual-13237990",
+   "https://db.jobs/de-de/Suche/Facharbeiter-in-Elektrotechnik-13799126",
+   "https://db.jobs/de-de/Suche/Praxistrainer-in-Gleisbau-13099728",
+   "https://db.jobs/de-de/Suche/Servicetechniker-in-Kabeltechnik-13116462",
+   "https://db.jobs/de-de/Suche/Teilabnahmepruefer-in-Leit-und-Sicherungstechnik-13132540",
+   "https://db.jobs/de-de/Suche/Pruefassistent-in-Leit-und-Sicherungstechnik-13132542",
+   "https://db.jobs/de-de/Suche/Maurer-in-Bauarbeiter-in-Gleisbauer-in-Schweisser-in-13132618",
+   "https://db.jobs/de-de/Suche/Elektroniker-in-Elektriker-in-Mechatroniker-in-fuer-eine-Qual-13705334",
+   "https://db.jobs/de-de/Suche/Maschinenfuehrer-in-13705576",
+   "https://db.jobs/de-de/Suche/Planungsingenieur-in-Telekommunikation-als-Bauvorlageberechtigte-13147922",
+   "https://db.jobs/de-de/Suche/Fahrdienstleiter-w-m-d--13242652",
+   "https://db.jobs/de-de/Suche/Forstwirt-in-Gaertner-in-als-Vegetationspfleger-in-am-Gleis-13247298",
+   "https://db.jobs/de-de/Suche/Elektroniker-in-Elektriker-in-Mechatroniker-in-fuer-eine-Qual-13251692",
+   "https://db.jobs/de-de/Suche/Zweite-r-Maschinenfuehrer-in-Stopftechnik-13552500",
+   "https://db.jobs/de-de/Suche/Kfz-Mechatroniker-in-Mechaniker-in-Schlosser-in-als-Facharbe-13311676",
+   "https://db.jobs/de-de/Suche/-Senior-Bauueberwacher-in-Bahn-w-m-d-fuer-Telekommunikation-13318196",
+   "https://db.jobs/de-de/Suche/Facharbeiter-in-Maurer-in-als-Gleisbauer-in-13321144",
+   "https://db.jobs/de-de/Suche/Mitarbeiter-in-Gebaeudereinigung-mit-Sonderaufgaben-13321574",
+   "https://db.jobs/de-de/Suche/Fachbauueberwacher-in-Bahn-Elektrotechnik-Kommunikationstechnik-13326194",
+   "https://db.jobs/de-de/Suche/Vertrags-und-Nachtragsmanager-in-13327144"
   ],
   "was": "custom"
  },
@@ -3785,6 +3815,9 @@
   "log": [
    "crawl https://careers.tuigroup.com/en/search-jobs: 16 jobs, 1 in Germany, 0 match the board"
   ],
+  "skip": [
+   "https://careers.tuigroup.com/en/job/flexible/register-your-interest-kinder-betreuung-animation-sommer-26-1/3117/46102489088"
+  ],
   "was": "custom"
  },
  "Takko Holding GmbH": {
@@ -3994,7 +4027,8 @@
    "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/magazin/security/",
    "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/management-und-aufsichtsrat/brief-des-vorstandsvorsitzenden/",
    "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/management-und-aufsichtsrat/die-konzerngeschaeftsleitung/",
-   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/magazin/digitale-transformation-startet-in-indonesien/"
+   "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/magazin/digitale-transformation-startet-in-indonesien/",
+   "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/initiativbewerbung-clean-energy-solutions-1319/"
   ],
   "was": "custom"
  },
@@ -4089,7 +4123,8 @@
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad095c0752e3*/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad1e565b7988*/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad32fdf3729b*/",
-   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad48603ac761*/"
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad48603ac761*/",
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad5e626054d1*/"
   ],
   "was": "unknown"
  },
@@ -4504,6 +4539,7 @@
   "https://finanzfluss.jobs.personio.de/job/2748191": "2026-10-11",
   "https://finanzfluss.jobs.personio.de/job/2759610": "2026-10-11",
   "https://finanzfluss.jobs.personio.de/job/2808090": "2026-10-11",
+  "https://finanzfluss.jobs.personio.de/job/2845792": "2026-10-19",
   "https://finanztip.jobs.personio.de/job/1740845": "2026-10-11",
   "https://finanztip.jobs.personio.de/job/2711796": "2026-10-11",
   "https://finanztip.jobs.personio.de/job/2726949": "2026-10-11",
@@ -4631,7 +4667,10 @@
    "https://careers.zooplus.com/jobs/product-owner-seo-product-content-platforms-all-genders-krakow-lesser-poland-poland",
    "https://careers.zooplus.com/jobs/product-owner-seo-product-content-platforms-all-genders-munich-bavaria-germany",
    "https://careers.zooplus.com/jobs/senior-vendor-manager-all-genders-munich-bavaria-germany-fec32231-9d0f-464a-992c-c82cca4807dd",
-   "https://careers.zooplus.com/jobs/senior-software-engineer-java-kotlin-all-genders-krakow-lesser-poland-poland-785bbe70-8871-4384-b985-653a97cd553b"
+   "https://careers.zooplus.com/jobs/senior-software-engineer-java-kotlin-all-genders-krakow-lesser-poland-poland-785bbe70-8871-4384-b985-653a97cd553b",
+   "https://careers.zooplus.com/jobs/experience-researcher-ecommerce-all-genders-madrid-spain",
+   "https://careers.zooplus.com/jobs/seo-geo-content-manager-with-french-or-german-all-genders-madrid-spain",
+   "https://careers.zooplus.com/jobs/senior-loyalty-program-manager-all-genders-munich-munchen-germany"
   ],
   "was": "custom"
  },
@@ -4924,7 +4963,10 @@
    "https://jobs.mbits.info/apply?id=daf820",
    "https://jobs.mbits.info/de?id=daf820",
    "https://jobs.mbits.info/de?id=dacdb4",
-   "https://jobs.mbits.info/de?id=99d7da"
+   "https://jobs.mbits.info/de?id=99d7da",
+   "https://jobs.mbits.info/de\\",
+   "https://jobs.mbits.info/de\\\\\\",
+   "https://jobs.mbits.info/-Programmierer*in"
   ],
   "was": "custom"
  },
