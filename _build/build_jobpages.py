@@ -69,10 +69,10 @@ def sanitize(h, base=None):
 def text_len(h): return len(re.sub(r'<[^>]+>', '', h))
 
 def emp_type(j, jb):
-    s = ' '.join(str(x or '') for x in (j.get('et'), j.get('sched'), jb.get('t'))).lower()
+    s = ' '.join(str(x or '') for x in (j.get('et'), j.get('sched'), jb.get('t'), jb.get('facts'))).lower()
     out = []
     if re.search(r'werkstud|working student', s): out = ['PART_TIME', 'INTERN']
-    elif re.search(r'intern|praktik|trainee|internship', s): out = ['INTERN']
+    elif re.search(r'\binterns?\b|praktik|trainee|internship', s): out = ['INTERN']
     elif re.search(r'part.?time|teilzeit|parttime|minijob', s): out = ['PART_TIME']
     elif re.search(r'freelanc|freiberuf|contractor', s): out = ['CONTRACTOR']
     elif re.search(r'temporary|befristet|fixed.?term|temp', s): out = ['TEMPORARY']
@@ -193,6 +193,10 @@ seen_slugs = set()
 # Keep a job's URL when the employer retitles the ad (or the company is renamed): reuse the slug from the last build.
 try: PINNED = {u: p.strip('/').split('/')[-1] for u, p in json.load(open(os.path.join(DATA, 'jobpages_map.json'), encoding='utf-8')).items()}
 except Exception: PINNED = {}
+# BMW's careers page leaks a Java object name and the page's whole fact box into the crawled title ("... (w/m/x)
+# com.bmw.grpw.core.models.jobfinder.IdDisplayItem@19ccaeb6 20261013 Automotive Munich ... Print Page URL of this page was
+# copied to paste buffer"). Cut it for the page; the slug keeps it, so URLs don't change.
+JAVA_JUNK = re.compile(r'\s+(?:[a-z]\w*\.){3,}\w+@[0-9a-f]{6,}\b.*$', re.S)
 for c in COS:
     for jb in c.get('jobs') or []:
         m = match(jb['u'])
@@ -205,6 +209,7 @@ for c in COS:
         if slug in seen_slugs: continue
         seen_slugs.add(slug)
         if CTA_SUFFIX.search(jb['t']): jb = dict(jb, t=CTA_SUFFIX.sub('', jb['t']))
+        if JAVA_JUNK.search(jb['t']): jb = dict(jb, t=JAVA_JUNK.sub('', jb['t']), facts=JAVA_JUNK.search(jb['t']).group(0))   # facts: "Internship Full-time" still sets employmentType
         rec = dict(c=c, jb=jb, m=m, desc=desc, slug=slug)
         pages.append(rec); per_co.setdefault(c['n'], []).append(rec)
         mapping[jb['u']] = f"/job/{slug}/"
