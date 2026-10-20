@@ -523,7 +523,10 @@
    "https://www.bwi.de/karriere/stellenangebote/job/ciso-business-management-expert-m-w-d-70868%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/head-of-software-mobility-management-m-w-d-68643%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/senior-expert-daten-management-plattform-m-w-d-70904%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
-   "https://www.bwi.de/karriere/stellenangebote/job/system-engineer-betrieb-plattform-m-w-d-70896%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
+   "https://www.bwi.de/karriere/stellenangebote/job/system-engineer-betrieb-plattform-m-w-d-70896%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/it-solution-consultant-hr-tools-bundeswehr-m-w-d-70943%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-engineer-emerging-accelerators-m-w-d-70939%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/management-referent-im-cihbw-m-w-d-70935%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
   ],
   "was": "custom"
  },
@@ -1436,7 +1439,9 @@
    "https://careers.enbw.com/de/de/c/netzplanung-betrieb-jobs",
    "https://careers.enbw.com/de/de/c/innovation-forschung-und-entwicklung-jobs",
    "https://careers.enbw.com/de/de/c/vertrieb-produktmanagement-jobs",
-   "https://careers.enbw.com/de/de/yello-jobs"
+   "https://careers.enbw.com/de/de/yello-jobs",
+   "https://careers.enbw.com/de/de/c/projektmanagement-jobs",
+   "https://careers.enbw.com/de/de/c/controlling-finanzen-jobs"
   ],
   "was": "custom"
  },
@@ -2825,7 +2830,8 @@
   ],
   "skip": [
    "https://jobs.obi.de/jobs/duales-studium-handelsmanagement-bachelor-of-arts-alle-geschlechter/08f7f3d5-27b2-4f4c-b19d-e0de8504bf84",
-   "https://jobs.obi.de/jobs/mitarbeiter-kasse-kassierer-alle-geschlechter/027886d8-b821-486e-85e3-e5ec41f3c034"
+   "https://jobs.obi.de/jobs/mitarbeiter-kasse-kassierer-alle-geschlechter/027886d8-b821-486e-85e3-e5ec41f3c034",
+   "https://jobs.obi.de/jobs/verkaeufer-baumarkt-alle-geschlechter/01ddc9da-28b2-4f72-a4e8-28fa96c490a0"
   ],
   "was": "custom"
  },
@@ -3269,7 +3275,8 @@
    "crawl https://karriere.deka.de/: 44 jobs, 35 in Germany, 0 match the board"
   ],
   "skip": [
-   "https://karriere.deka.de/lp/Candidate%20Community/0aceb01a48201ec3/"
+   "https://karriere.deka.de/lp/Candidate%20Community/0aceb01a48201ec3/",
+   "https://karriere.deka.de/job/Senningerberg-Praktikum-%28wmd%29-IT-Services-&-agile-Prozesse-L-1748/1439913333/"
   ],
   "was": "custom"
  },
@@ -3855,7 +3862,8 @@
    "https://jobs.takko.com/de-de/lohrammain/minijob",
    "https://jobs.takko.com/de-de/tutzing/minijob",
    "https://jobs.takko.com/de-de/hamburg/5/minijob",
-   "https://jobs.takko.com/de-de/wolfsburg/minijob"
+   "https://jobs.takko.com/de-de/wolfsburg/minijob",
+   "https://jobs.takko.com/de-de/hamburg/2/minijob"
   ],
   "was": "custom"
  },
@@ -4028,7 +4036,16 @@
    "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/management-und-aufsichtsrat/brief-des-vorstandsvorsitzenden/",
    "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/management-und-aufsichtsrat/die-konzerngeschaeftsleitung/",
    "https://www.tuev-nord-group.com/de/unternehmen/geschaeftsberichte/geschaeftsbericht-2025/magazin/digitale-transformation-startet-in-indonesien/",
-   "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/initiativbewerbung-clean-energy-solutions-1319/"
+   "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/initiativbewerbung-clean-energy-solutions-1319/",
+   "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/projektleitung-elektroingenieurin--11883/",
+   "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/senior-cyber-security-expert-m-w-d-dfir-adversary-operations-assessments-10390/",
+   "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/initiativbewerbung-anlagenbau-und-verfahrenstechnik-2052/",
+   "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/projektbearbeitung-vermessung-cad-gis-m-w-d--11911/",
+   "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/initiativbewerbung-verkehrs-psychologie-922/",
+   "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/studentische-aushilfe-m-w-d-fuer-den-samas-und-it-support-11921/",
+   "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/studentische-aushilfe-im-bereich-administration-11746/",
+   "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/projektleitung-national-international--10372/",
+   "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/stv-projektleiterin-inter-nationaler-projekte-im-kerntechnischen-bereich--11896/"
   ],
   "was": "custom"
  },
@@ -4124,7 +4141,9 @@
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad1e565b7988*/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad32fdf3729b*/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad48603ac761*/",
-   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad5e626054d1*/"
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad5e626054d1*/",
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad73183dd367*/",
+   "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote/stellenangebot.html"
   ],
   "was": "unknown"
  },
@@ -4543,7 +4562,6 @@
   "https://finanztip.jobs.personio.de/job/1740845": "2026-10-11",
   "https://finanztip.jobs.personio.de/job/2711796": "2026-10-11",
   "https://finanztip.jobs.personio.de/job/2726949": "2026-10-11",
-  "https://finanztip.jobs.personio.de/job/2753169": "2026-10-11",
   "https://finanztip.jobs.personio.de/job/2767381": "2026-10-11",
   "https://finanztip.jobs.personio.de/job/2786154": "2026-10-11",
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/1886091": "2026-10-11",
@@ -4798,7 +4816,12 @@
    "https://www.fillibri-solutions.com/impressum",
    "https://www.fillibri-solutions.com/datenschutz",
    "https://www.fillibri-solutions.com/api/",
-   "https://www.fillibri-solutions.com/envelope/"
+   "https://www.fillibri-solutions.com/envelope/",
+   "https://www.fillibri-solutions.com/leistungen/",
+   "https://www.fillibri-solutions.com/projekte/",
+   "https://www.fillibri-solutions.com/ueber-uns/",
+   "https://www.fillibri-solutions.com/karriere/",
+   "https://www.fillibri-solutions.com/kontakt/"
   ],
   "was": "custom"
  },
