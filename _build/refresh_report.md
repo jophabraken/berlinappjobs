@@ -1,8 +1,8 @@
-# Job refresh 2026-10-18
+# Job refresh 2026-10-19
 
-- API feeds: 257, failed: 17; custom career pages link-checked: 380 links, 0 removed
-- Jobs: 4692 → 4700 (new 17, closed 9, still open 4090)
-- Full descriptions read from job pages: 0 (custom career pages) + 0 (feeds without descriptions, 1 pages checked)
+- API feeds: 257, failed: 17; custom career pages link-checked: 380 links, 1 removed
+- Jobs: 4700 → 4655 (new 48, closed 92, still open 4015)
+- Full descriptions read from job pages: 0 (custom career pages) + 1 (feeds without descriptions, 3 pages checked)
 - Companies that were shown as not hiring and now list jobs: 0
 - Hiring-system detection: 0 companies checked, 0 now read directly
 - Published salaries added: 1; companies kept as-is because of a suspicious result: 1
@@ -10,43 +10,79 @@
 
 ## Changes by company
 
-- AVIRA (ashby): 113 ads from other employers dropped (EMPLOYER rule)
-- BUDNI Handels- und Service GmbH & Co. KG (crawl): 43 → 42 jobs (1 closed)
-- CTS EVENTIM AG & Co. KGaA (workday): 30 → 30 jobs (1 closed)
-- DATEV eG (workday): 52 → 52 jobs (1 closed)
-- Dirk Rossmann GmbH (crawl): 32 → 33 jobs (0 closed)
-- FitX | FOR ALL OF US (crawl): 55 → 60 jobs (0 closed)
+- AUTOHERO (crawl): 21 → 24 jobs (1 closed)
+- AVIRA (ashby): 111 ads from other employers dropped (EMPLOYER rule)
+- AXA Deutschland (crawl): 47 → 45 jobs (3 closed)
+- Aktion Mensch e.V. (personio): 6 → 5 jobs (1 closed)
+- Axel Springer Deutschland GmbH | WELT Digital (crawl): 53 → 52 jobs (1 closed)
+- BUDNI Handels- und Service GmbH & Co. KG (crawl): 42 → 40 jobs (5 closed)
+- Bloomwell GmbH (personio): 11 → 9 jobs (2 closed)
+- CEWE (workday): 39 → 38 jobs (1 closed)
+- CHECK24 GmbH (custom): removed 1 dead links
+- CTS EVENTIM AG & Co. KGaA (workday): 30 → 29 jobs (1 closed)
+- Cornelsen Verlag GmbH (crawl): 16 → 15 jobs (1 closed)
+- DATEV eG (workday): 52 → 55 jobs (0 closed)
+- DER SPIEGEL GmbH & Co. KG (softgarden): 10 → 9 jobs (1 closed)
+- Der Tagesspiegel (crawl): 1 ads from other employers dropped (EMPLOYER rule)
+- Dirk Rossmann GmbH (crawl): 33 → 32 jobs (1 closed)
+- EGYM (ashby): 37 → 36 jobs (1 closed)
+- ERGO Group AG (crawl): 59 → 60 jobs (0 closed, 2 newer ads waiting (cap 60))
+- EnBW AG (crawl): 60 → 60 jobs (1 closed, 3 newer ads waiting (cap 60))
+- FRITZ! GmbH (crawl): 16 → 15 jobs (1 closed)
+- Finflow GmbH (personio): 4 → 5 jobs (0 closed)
+- FitX | FOR ALL OF US (crawl): 60 → 59 jobs (1 closed)
+- Flix SE (greenhouse): 57 → 56 jobs (1 closed)
+- Freecash (ashby): 30 → 29 jobs (1 closed)
 - Hanseatic Bank GmbH & Co KG (custom): 4/4 links 404 (since 2026-10-04), looks like a site change, kept all
-- Holidu GmbH (ashby): would shrink 8 → 1, kept old jobs
-- Kaufmännische Krankenkasse - KKH (crawl): 22 → 21 jobs (1 closed)
+- HelloFresh SE (greenhouse): 60 → 60 jobs (1 closed, 45 newer ads waiting (cap 60))
+- Holidu GmbH (ashby): feed returned 0 German jobs (had 8), kept old jobs
+- Kassenärztliche Bundesvereinigung KdöR (crawl): 2 → 1 jobs (1 closed)
+- Kaufmännische Krankenkasse - KKH (crawl): 21 → 19 jobs (2 closed)
+- LIQUI MOLY GmbH (personio): 9 → 8 jobs (1 closed)
+- LVM Versicherung Münster a.G. (crawl): 60 → 60 jobs (1 closed, 30 newer ads waiting (cap 60))
 - Lotum two GmbH (custom): 6/6 links 404 (since 2026-10-04), looks like a site change, kept all
-- Miele & Cie. KG (crawl): 44 → 45 jobs (0 closed)
+- Miele & Cie. KG (crawl): 45 → 46 jobs (0 closed)
 - MyTherapy (personio): fetch failed, kept 1 jobs. HTTPError: HTTP Error 404: Not Found
-- Müller Handels GmbH & Co. KG (crawl): 21 → 22 jobs (0 closed)
 - NORDSEE GmbH (custom): 14/15 links 404 (since 2026-10-04), looks like a site change, kept all
+- NeuroNation (personio): 10 → 9 jobs (1 closed)
+- Nufin GmbH (ashby): 24 → 25 jobs (0 closed)
 - PL Gutscheinsysteme GmbH (personio): fetch failed, kept 2 jobs. HTTPError: HTTP Error 404: Not Found
-- Parfümerie Akzente GmbH (crawl): 60 → 60 jobs (1 closed, 6 newer ads waiting (cap 60))
-- Parfümerie Douglas GmbH (crawl): 60 → 60 jobs (1 closed, 8 newer ads waiting (cap 60))
+- Parfümerie Akzente GmbH (crawl): 60 → 60 jobs (1 closed, 7 newer ads waiting (cap 60))
+- Parfümerie Douglas GmbH (crawl): 60 → 60 jobs (2 closed, 8 newer ads waiting (cap 60))
 - RADIO BOB GmbH & Co. KG (softgarden): fetch failed, kept 4 jobs. HTTPError: HTTP Error 404: Not Found
 - REGIOCAST GmbH & Co.KG (softgarden): fetch failed, kept 12 jobs. HTTPError: HTTP Error 404: Not Found
-- S Broker AG & Co. KG (crawl): 44 ads from other employers dropped (EMPLOYER rule)
-- S-Payment GmbH (workday): 35 ads from other employers dropped (EMPLOYER rule)
+- RSG Group GmbH (crawl): 51 → 52 jobs (0 closed)
+- Robert Bosch GmbH (smartrecruiters): 60 → 60 jobs (8 closed, 55 newer ads waiting (cap 60))
+- S Broker AG & Co. KG (crawl): 45 ads from other employers dropped (EMPLOYER rule)
+- S-Bahn Berlin (crawl): 60 → 31 jobs (35 closed)
+- S-Payment GmbH (workday): 13 → 14 jobs (0 closed)
+- S-Payment GmbH (workday): 34 ads from other employers dropped (EMPLOYER rule)
+- Sanacorp Pharmahandel GmbH (crawl): 29 → 30 jobs (0 closed)
 - Schwarz Digits IT KG (crawl): 40 ads from other employers dropped (EMPLOYER rule)
 - Sdui (personio): fetch failed, kept 6 jobs. HTTPError: HTTP Error 404: Not Found
-- Springer Medizin Verlag GmbH (workday): 14 → 14 jobs (1 closed)
+- Segmüller (crawl): 21 → 22 jobs (0 closed)
+- Stepstone (smartrecruiters): 50 → 49 jobs (1 closed)
 - Stillfront Supremacy GmbH (custom): 11/11 links 404 (since 2026-10-04), looks like a site change, kept all
-- TUI Hotel Betriebsgesellschaft mbH (crawl): 36 → 37 jobs (0 closed)
+- Ströer Digital Publishing GmbH (crawl): 60 → 60 jobs (1 closed, 40 newer ads waiting (cap 60))
+- SumUp (greenhouse): 57 → 55 jobs (2 closed)
+- TUI Hotel Betriebsgesellschaft mbH (crawl): 37 → 39 jobs (0 closed)
+- Takko Holding GmbH (crawl): 17 → 17 jobs (1 closed)
+- TeamBank AG (crawl): 7 → 6 jobs (1 closed)
 - Too Good To Go (greenhouse): fetch failed, kept 7 jobs. HTTPError: HTTP Error 404: Not Found
-- Vattenfall Europe Sales GmbH (crawl): 21 → 22 jobs (0 closed)
-- Volkswagen Group Charging GmbH (crawl): 41 ads from other employers dropped (EMPLOYER rule)
-- Wolters Kluwer Tax & Accounting Deutschland GmbH (workday): 50 → 49 jobs (1 closed)
+- Trade Republic Bank GmbH (greenhouse): 37 → 35 jobs (2 closed)
+- TÜV NORD Service GmbH & Co. KG (crawl): 60 → 60 jobs (2 closed, 28 newer ads waiting (cap 60))
+- Volkswagen Group Charging GmbH (crawl): 37 ads from other employers dropped (EMPLOYER rule)
+- Wertgarantie Beteiligungen GmbH (crawl): 14 → 15 jobs (0 closed)
+- Wolt (greenhouse): 33 → 32 jobs (1 closed)
+- Wooga (greenhouse): 3 → 2 jobs (1 closed)
 - Wort und Bild Verlag (crawl): fetch failed, kept 1 jobs. SiteChanged: no job page with JobPosting data among 1 pages (site changed?)
-- bitiba GmbH (crawl): 7 → 6 jobs (1 closed)
-- fillibri GmbH & Co. KG (crawl): 2 → 3 jobs (0 closed)
+- aestimium GmbH (personio): 7 → 8 jobs (0 closed)
+- eurodata AG (softgarden): 13 → 12 jobs (1 closed)
+- idealo internet GmbH (recruitee): 21 → 20 jobs (1 closed)
 - ifap Service-Institut für Ärzte und Apotheker GmbH (workday): 113 ads from other employers dropped (EMPLOYER rule)
 - komoot GmbH (custom): 7/7 links 404 (since 2026-10-04), looks like a site change, kept all
-- mbits imaging GmbH (crawl): 2 → 3 jobs (0 closed)
 - sevDesk GmbH (personio): fetch failed, kept 0 jobs. HTTPError: HTTP Error 404: Not Found
 - simpleclub GmbH (personio): fetch failed, kept 0 jobs. HTTPError: HTTP Error 404: Not Found
 - sipgate (crawl): fetch failed, kept 1 jobs. SiteChanged: no job page with JobPosting data among 1 pages (site changed?)
 - stashcat GmbH (crawl): 38 ads from other employers dropped (EMPLOYER rule)
+- vetevo GmbH (personio): 4 → 4 jobs (1 closed)

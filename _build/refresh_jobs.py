@@ -506,8 +506,9 @@ def repair_titles(cos, descs):
             fixed[jb['u'].rstrip('/')] = jb
     for x in descs.values():
         if ats_more.JAVA_REF.search(x.get('t') or '') or ats_more.JAVA_REF.search(x.get('et') or ''):
+            m = ats_more.JAVA_REF.search(x.get('t') or '')
             x['t'] = ats_more.split_title(x.get('t') or '')[0]
-            x['et'] = ats_more.JAVA_REF.sub('', x.get('et') or '').strip()
+            x['et'] = ats_more.JAVA_REF.sub('', x.get('et') or '').strip() or (m.group(0).strip() if m else '')   # keep the card's facts for employmentType
             jb = fixed.get((x.get('url') or '').rstrip('/'))
             if jb: x['loc'] = jb['loc']
     return len(fixed)

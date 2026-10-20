@@ -137,7 +137,9 @@ def posting_to_raw(o, url):
         except Exception: sal = ''
     et = o.get('employmentType')
     et = JAVA_REF.sub('', ', '.join(map(str, et)) if isinstance(et, list) else _s(et)).strip()
-    t, card_loc = split_title(html.unescape(_s(o.get('title'))))
+    raw_t = html.unescape(_s(o.get('title')))
+    t, card_loc = split_title(raw_t)
+    if t != raw_t and not et: et = JAVA_REF.search(raw_t).group(0).strip()   # the card's facts ("Internship Full-time") set employmentType on the job page
     if card_loc: locs.insert(0, card_loc)   # first, so german_loc picks the card's city over a bare "Germany"
     return dict(id=url, url=url, t=t, locs=locs, country=country, remote=remote, desc=desc,
                 pub=_s(o.get('datePosted')), et=et, sal=sal, dept=_s(o.get('occupationalCategory') or ''), valid=_s(o.get('validThrough')),
