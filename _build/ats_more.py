@@ -32,7 +32,18 @@ def get(url, tries=2, timeout=25):
     return _fetch(url, headers=HTML_H, tries=tries, timeout=timeout).decode('utf-8', 'replace')
 def jget(url, **kw): return json.loads(_fetch(url, **kw).decode('utf-8'))
 
-CAP = 60            # jobs per company (same as refresh_jobs.py)
+CAP = 60            # default jobs per company (app_roles.py: 200 for app-first companies)
+# Set by refresh_jobs.py for each feed before fetching: the company's title test (app_roles.app_job) and how many ads
+# to open (twice its cap). Readers that see titles before opening the ads skip the rest, so store ads don't use up the budget.
+TITLE_OK = {}
+LIMIT = {}
+def prefilter(feed, items, title):
+    ok = TITLE_OK.get(feed)
+    if ok: items = [x for x in items if ok(title(x) or '')]
+    return items[:LIMIT.get(feed, CAP * 2)]
+def slug_words(u):
+    """The words in a job link's path ('/jobs/senior-cloud-engineer-12345' -> 'jobs senior cloud engineer 12345')."""
+    return re.sub(r'[-_/+.]+', ' ', urllib.parse.unquote(urllib.parse.urlsplit(u).path))
 NEW_PAGES = 45      # job pages not seen before that one crawl may open per run
 AGGREGATORS = re.compile(r'stepstone|indeed\.|linkedin\.|xing\.com|games-career|glassdoor|monster\.|jobware|kununu|arbeitsagentur|'
                          r'arbeitnow\.|google\.|facebook\.|instagram\.|twitter\.|youtube\.|goo\.gl|bit\.ly', re.I)
@@ -257,7 +268,10 @@ def f_crawl(feed, cfg=None):
         try: cands += sitemap_links(cfg)
         except Exception: pass
     known_n = {_norm(u, cfg.get('query')) for u in known}
-    new = [u for u in dict.fromkeys(cands) if u not in known_n and u not in skip][:NEW_PAGES]
+    new = [u for u in dict.fromkeys(cands) if u not in known_n and u not in skip]
+    ok = TITLE_OK.get(feed)
+    if ok: new.sort(key=lambda u: not ok(slug_words(u)))   # links whose words look like a fitting role are opened first
+    new = new[:NEW_PAGES]
     todo = list(dict.fromkeys(list(known_n) + new))
 
     def one(u):
@@ -322,7 +336,7 @@ def f_workday(feed):
     while True:
         items += d.get('jobPostings') or []
         body['offset'] += 20
-        if body['offset'] >= total or body['offset'] >= (300 if facets else 1000): break
+        if body['offset'] >= total or body['offset'] >= 1000: break
         d = post(body)
     if not facets:   # no country filter on this site: only open ads that could be in Germany
         items = [x for x in items if re.search(r'locations', x.get('locationsText') or '', re.I) or _german([x.get('locationsText') or ''])]
@@ -335,7 +349,7 @@ def f_workday(feed):
                     locs=locs, country=(i.get('country') or {}).get('descriptor', ''), remote=bool(re.search(r'remote', rt, re.I) and not re.search(r'hybrid', rt, re.I)),
                     desc=i.get('jobDescription') or '', pub=i.get('startDate') or '', et=i.get('timeType') or '', sal='', dept='')
     with cf.ThreadPoolExecutor(6) as ex:
-        return list(ex.map(detail, items[:CAP * 2]))
+        return list(ex.map(detail, prefilter(feed, items, lambda x: x.get('title'))))
 
 def f_workable(feed):
     acct = re.search(r'workable\.com/(?:api/v\d/widget/accounts/)?([\w-]+)', feed).group(1)
@@ -363,7 +377,7 @@ def f_bamboohr(feed):
                     remote=bool(x.get('isRemote')) or str(x.get('locationType')) == '1', desc=jo.get('description') or '', pub=jo.get('datePosted') or '',
                     et=jo.get('employmentStatusLabel') or x.get('employmentStatusLabel') or '', sal='', dept=x.get('departmentLabel') or '')
     with cf.ThreadPoolExecutor(6) as ex:
-        return list(ex.map(detail, lst[:CAP * 2]))
+        return list(ex.map(detail, prefilter(feed, lst, lambda x: x.get('jobOpeningName'))))
 
 # ---------------------------------------------------------------- Zalando (jobs.zalando.com)
 # Zalando's own careers site: no API, no JobPosting data. Each list page (/en/jobs?page=N, 15 jobs) carries its jobs as
@@ -444,7 +458,7 @@ def f_zalando(feed):
         return dict(id=str(x['id']), url=url, t=html.unescape(x.get('title') or ''), locs=de, country='Germany', remote=False, desc=desc,
                     pub=x.get('updated_at') or '', et=et, sal='', dept=', '.join(x.get('job_categories') or []), sen_hint=x.get('experience_level') or '')
     with cf.ThreadPoolExecutor(6) as ex:
-        return list(ex.map(detail, keep[:CAP * 2]))
+        return list(ex.map(detail, prefilter(feed, keep, lambda it: html.unescape(it[0].get('title') or ''))))
 
 FETCHERS = {'workday': f_workday, 'workable': f_workable, 'bamboohr': f_bamboohr, 'crawl': f_crawl, 'join': f_join, 'teamtailor': f_teamtailor,
             'zalando': f_zalando}
