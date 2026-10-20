@@ -560,13 +560,45 @@ urls=[(SITE+"/","1.0"),(SITE+"/guides/","0.8"),(SITE+"/companies/","0.8"),(SITE+
 for g in GUIDES: urls.append((f'{SITE}/guides/{g["slug"]}/',"0.7"))
 for n,slug,city,nj,total in company_index:
     if nj: urls += [(f'{SITE}/companies/{slug}/',"0.6"), (f'{SITE}/en/companies/{slug}/',"0.6")]   # pages without parsed jobs are noindex, so not in the sitemap
-json.dump(sorted(NOINDEX), open(os.path.join(DATA,'noindex_pages.json'),'w'), indent=0)   # cleanup_stale.py keeps these
 for d,city,dname,slug,n in rc_index: urls.append((f'{SITE}/jobs/{slug}/',"0.6"))
 for city,cslug,n in city_index: urls.append((f'{SITE}/jobs/{cslug}/',"0.6"))
 for k,city,dname,slug,n in extra_index: urls.append((f'{SITE}/jobs/{slug}/',"0.6"))
 for u in en_urls: urls.append((u,"0.6"))
 for u in APP_URLS: urls.append((u,"0.6"))
 for u in SAL_URLS: urls.append((u,"0.6"))
+
+# ============ RETIRED HUBS ============
+# A city or role x city hub that drops under its threshold (10 / 5 jobs) is no longer built. Instead of deleting it (a 404
+# for a URL Google already knows), it becomes a short noindex page that points to the live hubs, and it is built normally
+# again once there are enough jobs (Jop, 20 Oct 2026, with the app-impact rule of PR #33). The hubs that exist are the
+# folders under /jobs/ and /en/jobs/ from earlier builds, so a retired hub stays retired from build to build.
+def _hub(p): return p.startswith(('jobs/', 'en/jobs/')) and p not in ('jobs', 'en/jobs')
+_prev = set()
+for _top in ('jobs', os.path.join('en', 'jobs')):
+    for _root, _dirs, _files in os.walk(os.path.join(OUT, _top)):
+        if 'index.html' in _files: _prev.add(os.path.relpath(_root, OUT).replace(os.sep, '/'))
+_live = {u.replace(SITE, '').strip('/') for u, _ in urls}
+retired = 0
+for p in sorted(x for x in _prev - _live if _hub(x)):
+    f = os.path.join(OUT, *p.split('/'), 'index.html')
+    page = open(f, encoding='utf-8').read()
+    if 'Berlin App Jobs' not in page[:5000]: continue   # same guard as cleanup_stale.py: only our own generated pages
+    m = re.search(r'<h1[^>]*>(.*?)</h1>', page, re.S)
+    h1 = re.sub(r'\s+', ' ', re.sub(r"<[^>]+>", "", htmlmod.unescape(m.group(1)) if m else '')).strip()
+    h1 = re.sub(r'^\d[\d.,]*\s+|\s*\(\d[\d.,]*\)', '', h1).strip() or ('App jobs' if p.startswith('en/') else 'App-Jobs')
+    en = p.startswith('en/'); root = '/en/jobs/' if en else '/jobs/'
+    desc = ("Not enough open roles with an impact on the app here right now. Browse all current app jobs by city and role."
+            if en else "Gerade nicht genug offene Stellen mit Bezug zur App. Alle aktuellen App-Jobs nach Stadt und Rolle findest du hier.")
+    doc = head(f"{h1} | Berlin App Jobs", desc, f"{SITE}/{p}/", extra="\n" + '<meta name="robots" content="noindex, follow">', lang='en' if en else 'de')
+    doc += f'<nav class="crumb"><a href="/">Home</a> / <a href="{root}">Jobs</a> / {esc(h1)}</nav><h1>{esc(h1)}</h1><p class="sub">{esc(desc)}</p>'
+    doc += f'<a class="cta" href="{root}">' + ('All app jobs by city and role' if en else 'Alle App-Jobs nach Stadt und Rolle') + ' &rarr;</a>'
+    doc += '<div class="grid" style="margin-top:16px">' + ''.join(
+        f'<a class="card" href="{root}{cs}/"><div class="ct">' + (f'App jobs in {esc(c)}' if en else f'App-Jobs in {esc(c)}') + f'</div><div class="cd">{n} ' + ('open roles' if en else 'offene Stellen') + '</div></a>'
+        for c, cs, n in city_index[:12]) + '</div>'
+    doc += '</div>' + (FOOT_EN if en else FOOT) + '</body></html>'
+    open(f, 'w', encoding='utf-8').write(doc)
+    NOINDEX.append(p); retired += 1
+json.dump(sorted(NOINDEX), open(os.path.join(DATA,'noindex_pages.json'),'w'), indent=0)   # cleanup_stale.py keeps these
 urls.append((f'{SITE}/about/',"0.3"))
 sm='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 for u,p in urls: sm+=f'  <url><loc>{u}</loc><lastmod>{TODAY}</lastmod><changefreq>weekly</changefreq><priority>{p}</priority></url>\n'
@@ -579,3 +611,4 @@ print("city pages:",len(city_index))
 print("extra (iOS/Android/English-speaking) pages:",len(extra_index),"| English hub pages:",len(en_urls))
 print("app pages + hubs:",len(APP_URLS))
 print("sitemap urls:",len(urls))
+print("retired hubs (noindex):",retired)

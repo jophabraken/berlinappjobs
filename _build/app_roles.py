@@ -51,8 +51,8 @@ APP_FIRST = {
     'Personio SE & Co KG', 'Rexx Systems', 'SAP SE', 'Schulmanager Online GmbH', 'smartlab Innovationsgesellschaft mbH', 'snapAddy GmbH',
     'SoftMaker Software GmbH', 'Star Finanz GmbH', 'TeamViewer', 'Vogel-System', 'Wolters Kluwer Tax & Accounting Deutschland GmbH',
     'zollsoft GmbH', 'clockin GmbH', 'sipgate', 'Palette CAD AG',
-    # added 20 Oct 2026 (Jop): the app, online shop or smart-home app is the product
-    'tado', 'AUTOHERO', 'Lautsprecher Teufel GmbH',
+    # added 20 Oct 2026 (Jop): the smart-home app and the online car shop are the product
+    'tado', 'AUTOHERO',
 }
 
 # Roles that don't work on the product even at an app-first company.
@@ -79,8 +79,7 @@ DIGITAL = re.compile(
     r'e-?commerce|e-?shop|onlineshop|online-shop|webshop|online[ -]?marketing|digital[ -]?marketing|performance[ -]?marketing|'
     r'\bcrm\b|\bseo\b|\bsea\b|growth marketing|lifecycle|user acquisition|\baso\b|marketing automation|conversion|web ?analy|'
     r'scrum master|agile coach|tech(?:nical)? consultant|tech lead|engineering manager|\bcto\b|head of (?:engineering|data|digital)|'
-    r'digital(?:isierung)? (?:channel|kanäle|vertrieb|sales)|omnichannel|online ?redakt|'
-    r'web ?design|anwendungsbetreu|\bsiem\b|security operations|security engineer', re.I)   # last line added 20 Oct 2026 (Jop)
+    r'digital(?:isierung)? (?:channel|kanäle|vertrieb|sales)|omnichannel|online ?redakt|web ?design', re.I)   # web design: added 20 Oct 2026 (Jop)
 # A product manager counts only for a digital product: the title also has to name one of these.
 PRODUCT_MANAGER = re.compile(r'product manag|produktmanag', re.I)
 PM_DIGITAL = re.compile(r'\b(?:digital|app|apps|mobile|online|web|platform|plattform|technical|tech|data|ai|ki|genai|growth|'
