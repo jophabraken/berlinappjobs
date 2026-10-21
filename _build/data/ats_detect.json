@@ -367,7 +367,18 @@
    "https://www.bmwgroup.jobs/de/de/jobs/richtig-bewerben.html",
    "https://www.bmwgroup.jobs/_jcr_content/main/layoutcontainer/jobfinder30_copy.jobfinder_table.content.html",
    "https://www.bmwgroup.jobs/en/jobfinder.html",
-   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.198670.html"
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.198670.html",
+   "https://www.bmwgroup.jobs/ca/en/jobs.html",
+   "https://www.bmwgroup.jobs/ca/en/jobfields.html",
+   "https://www.bmwgroup.jobs/ca/en/jobfields/aftersales.html",
+   "https://www.bmwgroup.jobs/ca/en/jobfields/corporate-communication.html",
+   "https://www.bmwgroup.jobs/ca/en/jobfields/finance.html",
+   "https://www.bmwgroup.jobs/ca/en/jobfields/human-resources.html",
+   "https://www.bmwgroup.jobs/ca/en/jobfields/information-technology.html",
+   "https://www.bmwgroup.jobs/ca/en/jobfields/legal.html",
+   "https://www.bmwgroup.jobs/ca/en/jobfields/marketing.html",
+   "https://www.bmwgroup.jobs/ca/en/jobfields/risk-management.html",
+   "https://www.bmwgroup.jobs/ca/en/jobfields/sales-and-distribution.html"
   ],
   "was": "custom"
  },
@@ -526,7 +537,13 @@
    "https://www.bwi.de/karriere/stellenangebote/job/system-engineer-betrieb-plattform-m-w-d-70896%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/it-solution-consultant-hr-tools-bundeswehr-m-w-d-70943%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/senior-engineer-emerging-accelerators-m-w-d-70939%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
-   "https://www.bwi.de/karriere/stellenangebote/job/management-referent-im-cihbw-m-w-d-70935%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
+   "https://www.bwi.de/karriere/stellenangebote/job/management-referent-im-cihbw-m-w-d-70935%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/werkstudent-culture-change-m-w-d-70980%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/sap-basis-administrator-system-engineer-m-w-d-70947%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/werkstudent-customer-business-competences-m-w-d-70951%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/it-expert-ecm-knowledgemanagement-m-w-d-70888%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/lead-it-architect-architektur-fur-einsatznahe-it-services-m-w-d-70927%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/hr-supporter-m-w-d-70795"
   ],
   "was": "custom"
  },
@@ -2831,7 +2848,8 @@
   "skip": [
    "https://jobs.obi.de/jobs/duales-studium-handelsmanagement-bachelor-of-arts-alle-geschlechter/08f7f3d5-27b2-4f4c-b19d-e0de8504bf84",
    "https://jobs.obi.de/jobs/mitarbeiter-kasse-kassierer-alle-geschlechter/027886d8-b821-486e-85e3-e5ec41f3c034",
-   "https://jobs.obi.de/jobs/verkaeufer-baumarkt-alle-geschlechter/01ddc9da-28b2-4f72-a4e8-28fa96c490a0"
+   "https://jobs.obi.de/jobs/verkaeufer-baumarkt-alle-geschlechter/01ddc9da-28b2-4f72-a4e8-28fa96c490a0",
+   "https://jobs.obi.de/jobs/verkaeufer-baumarkt-alle-geschlechter/0a839915-51fa-485f-a5c0-545f8bf8ccf7"
   ],
   "was": "custom"
  },
@@ -3322,7 +3340,8 @@
    "https://db.jobs/de-de/Suche/Facharbeiter-in-Maurer-in-als-Gleisbauer-in-13321144",
    "https://db.jobs/de-de/Suche/Mitarbeiter-in-Gebaeudereinigung-mit-Sonderaufgaben-13321574",
    "https://db.jobs/de-de/Suche/Fachbauueberwacher-in-Bahn-Elektrotechnik-Kommunikationstechnik-13326194",
-   "https://db.jobs/de-de/Suche/Vertrags-und-Nachtragsmanager-in-13327144"
+   "https://db.jobs/de-de/Suche/Vertrags-und-Nachtragsmanager-in-13327144",
+   "https://db.jobs/de-de/Suche/Elektroniker-in-Mechatroniker-in-fuer-Signale-und-Weichen-13383228"
   ],
   "was": "custom"
  },
@@ -3863,7 +3882,10 @@
    "https://jobs.takko.com/de-de/tutzing/minijob",
    "https://jobs.takko.com/de-de/hamburg/5/minijob",
    "https://jobs.takko.com/de-de/wolfsburg/minijob",
-   "https://jobs.takko.com/de-de/hamburg/2/minijob"
+   "https://jobs.takko.com/de-de/hamburg/2/minijob",
+   "https://jobs.takko.com/de-de/recklinghausen/minijob",
+   "https://jobs.takko.com/de-de/w%C3%B6rnitz/minijob",
+   "https://jobs.takko.com/de-de/m%C3%BCnchen/minijob"
   ],
   "was": "custom"
  },
@@ -4143,7 +4165,8 @@
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad48603ac761*/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad5e626054d1*/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad73183dd367*/",
-   "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote/stellenangebot.html"
+   "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote/stellenangebot.html",
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad88217a3510*/"
   ],
   "was": "unknown"
  },
@@ -4569,7 +4592,6 @@
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2752992": "2026-10-11",
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2768300": "2026-10-11",
   "https://ionity-gmbh.jobs.personio.de/job/2624591": "2026-10-11",
-  "https://ionity-gmbh.jobs.personio.de/job/2774763": "2026-10-11",
   "https://ionity-gmbh.jobs.personio.de/job/2784054": "2026-10-11",
   "https://ionity-gmbh.jobs.personio.de/job/2792054": "2026-10-11",
   "https://ionity-gmbh.jobs.personio.de/job/2796735": "2026-10-11",
@@ -4688,7 +4710,9 @@
    "https://careers.zooplus.com/jobs/senior-software-engineer-java-kotlin-all-genders-krakow-lesser-poland-poland-785bbe70-8871-4384-b985-653a97cd553b",
    "https://careers.zooplus.com/jobs/experience-researcher-ecommerce-all-genders-madrid-spain",
    "https://careers.zooplus.com/jobs/seo-geo-content-manager-with-french-or-german-all-genders-madrid-spain",
-   "https://careers.zooplus.com/jobs/senior-loyalty-program-manager-all-genders-munich-munchen-germany"
+   "https://careers.zooplus.com/jobs/senior-loyalty-program-manager-all-genders-munich-munchen-germany",
+   "https://careers.zooplus.com/jobs/senior-brand-manager-all-genders-6-months-fte-munich-munchen-germany",
+   "https://careers.zooplus.com/jobs/senior-loyalty-program-manager-all-genders-munich-munchen-germany-3a8305d4-a892-41f0-8e89-bbd551decd13"
   ],
   "was": "custom"
  },
