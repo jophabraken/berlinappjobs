@@ -116,6 +116,18 @@ def iso(d):
     try: return datetime.datetime.strptime(d, '%a %b %d %H:%M:%S UTC %Y').date().isoformat()
     except ValueError: return None
 
+FETCHED_AT = datetime.datetime.fromisoformat(D['fetched'])
+YEAR_AGO = (datetime.date.fromisoformat(FETCHED) - datetime.timedelta(days=365)).isoformat()
+def fake_pub(d):
+    """True for a 'pub' that is the fetch time minus exactly two years. AXA's iCIMS pages generate their datePosted
+    when the page is read (2024-10-19T09:42:56Z for a crawl at 2026-10-19T09:40Z), so every AXA job looked 2 years old."""
+    try: t = datetime.datetime.fromisoformat(str(d).replace('Z', '+00:00'))
+    except (TypeError, ValueError): return False
+    if t.tzinfo is None: return False
+    try: two_years_ago = FETCHED_AT.replace(year=FETCHED_AT.year - 2)
+    except ValueError: two_years_ago = FETCHED_AT - datetime.timedelta(days=730)
+    return abs((t - two_years_ago).total_seconds()) < 3 * 3600
+
 def co_slug(name):
     sl = slugify(name)
     return sl if os.path.isdir(os.path.join(OUT, 'companies', sl)) else None
@@ -350,11 +362,19 @@ for rec in pages:
     says_fully = bool(FULLY_REMOTE.search(f"{jb['t']} {ad_text}"))
     fully_remote = remote and not hybrid and (says_fully or not known_city)
     de = is_de(desc)
-    posted = iso(m.get('pub')) or iso(m.get('upd')) or iso(jb.get('p'))
+    prev_posted = PREV_POSTED.get(slug)
+    if fake_pub(m.get('pub')):
+        # the first-seen date the refresh stored ('p') and earlier builds' datePosted carry the same fake two years:
+        # add them back, which gives the day we first saw the job
+        unfake = lambda d: str(int(d[:4]) + 2) + d[4:] if d and d < YEAR_AGO else d
+        prev_posted = unfake(prev_posted)
+        posted = unfake(iso(jb.get('p')))
+    else:
+        posted = iso(m.get('pub')) or iso(m.get('upd')) or iso(jb.get('p'))
     # never in the future (a feed's 'pub' can be a later date: Hamburger Hochbahn showed "Veröffentlicht 2026-11-10"),
     # and a future date falls back to the previous page's date instead of the refresh date, so it doesn't move every refresh
-    if not posted or posted > FETCHED: posted = PREV_POSTED.get(slug) or FETCHED
-    posted = min(posted, FETCHED, PREV_POSTED.get(slug) or FETCHED)   # datePosted only ever moves earlier, never later
+    if not posted or posted > FETCHED: posted = prev_posted or FETCHED
+    posted = min(posted, FETCHED, prev_posted or FETCHED)   # datePosted only ever moves earlier, never later
     et = emp_type(m, jb)
     cname = c['n'].split('|')[0].strip()
     cslug = co_slug(c['n'])
