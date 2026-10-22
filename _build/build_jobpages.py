@@ -72,7 +72,7 @@ def emp_type(j, jb):
     s = ' '.join(str(x or '') for x in (j.get('et'), j.get('sched'), jb.get('t'), jb.get('facts'))).lower()
     out = []
     if re.search(r'werkstud|working student', s): out = ['PART_TIME', 'INTERN']
-    elif re.search(r'\binterns?\b|praktik|trainee|internship', s): out = ['INTERN']
+    elif re.search(r'\binterns?\b|praktik|internship', s): out = ['INTERN']
     elif re.search(r'part.?time|teilzeit|parttime|minijob', s): out = ['PART_TIME']
     elif re.search(r'freelanc|freiberuf|contractor', s): out = ['CONTRACTOR']
     elif re.search(r'temporary|befristet|fixed.?term|temp', s): out = ['TEMPORARY']
