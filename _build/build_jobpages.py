@@ -54,7 +54,9 @@ def _abs_links(h, base):
     h = re.sub(r'<a href="([^"]*)">', fix, h)
     return re.sub(r'<a>(.*?)</a>', r'\1', h, flags=re.S)
 
+ZERO_WIDTH = re.compile('[​-‍⁠﻿]')   # zero-width space/joiners, word joiner, BOM
 def sanitize(h, base=None):
+    h = h.replace('\\r\\n', '\n').replace('\\n', '\n')   # some feeds (Miele, Thalia, Bünting, TeleClinic) store newlines as backslash + n
     h = _ESC_TAG.sub(lambda m: '<' + html.unescape(m.group(1)) + '>', h)
     h = _CONSENT.sub('', h)
     h = re.sub(r'<h1[^>]*>', '<h3>', h, flags=re.I).replace('</h1>', '</h3>')
@@ -220,6 +222,7 @@ for c in COS:
         slug = PINNED.get(jb['u']) or f"{cs}-{slugify(jb['t'])[:60].strip('-')}-{h}"
         if slug in seen_slugs: continue
         seen_slugs.add(slug)
+        if ZERO_WIDTH.search(jb['t']): jb = dict(jb, t=ZERO_WIDTH.sub('', jb['t']).strip())   # FRITZ!, LVB: zero-width spaces in the feed title
         if CTA_SUFFIX.search(jb['t']): jb = dict(jb, t=CTA_SUFFIX.sub('', jb['t']))
         if JAVA_JUNK.search(jb['t']): jb = dict(jb, t=JAVA_JUNK.sub('', jb['t']), facts=JAVA_JUNK.search(jb['t']).group(0))   # facts: "Internship Full-time" still sets employmentType
         rec = dict(c=c, jb=jb, m=m, desc=desc, slug=slug)
