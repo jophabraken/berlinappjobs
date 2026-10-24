@@ -551,7 +551,9 @@
    "https://www.bwi.de/karriere/stellenangebote/job/management-referent-im-it-security-bereich-m-w-d-70967%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/it-systems-engineer-secure-messaging-m-w-d-71004%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/system-administrator-secure-messaging-m-w-d-71008%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
-   "https://www.bwi.de/karriere/stellenangebote/job/system-engineer-fur-verschlusselungsthemen-linux-m-w-d-70996%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
+   "https://www.bwi.de/karriere/stellenangebote/job/system-engineer-fur-verschlusselungsthemen-linux-m-w-d-70996%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/it-project-program-manager-m-w-d-71039%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/junior-systems-engineer-windows-server-automation-m-w-d-70851%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
   ],
   "was": "custom"
  },
@@ -1164,7 +1166,8 @@
    "https://jobs.tagesspiegel.de/job/projektleitung-hochbau-w-m-d.2067883615.html",
    "https://jobs.tagesspiegel.de/job/fachgebietssekretariat-d-m-w.2067882275.html",
    "https://jobs.tagesspiegel.de/job/geschaeftsleitung-movement-building-m-w-d.2067059975.html",
-   "https://jobs.tagesspiegel.de/job/key-account-manager-care-und-gemeinschaftsverpflegung-m-w-d.2071395865.html"
+   "https://jobs.tagesspiegel.de/job/key-account-manager-care-und-gemeinschaftsverpflegung-m-w-d.2071395865.html",
+   "https://jobs.tagesspiegel.de/job/einkaeufer-in-fuer-liefer-und-dienstleistungen-in-der-wohnungswirtschaft.2064865745.html"
   ],
   "was": "unknown"
  },
@@ -2418,7 +2421,8 @@
    "https://karriere.lvm.de/client/jobs",
    "https://karriere.lvm.de/jobs/innendienstmitarbeiter-auch-quereinsteiger-m-w-d-10172",
    "https://karriere.lvm.de/jobs/trainer-schwerpunkt-weiterbildung-komposit-m-w-d-9998",
-   "https://karriere.lvm.de/jobs/ausbildung-zum-kaufmann-fuer-versicherungen-und-finanzanlagen-m-w-d-in-enge-sande-2026-8989"
+   "https://karriere.lvm.de/jobs/ausbildung-zum-kaufmann-fuer-versicherungen-und-finanzanlagen-m-w-d-in-enge-sande-2026-8989",
+   "https://karriere.lvm.de/jobs/data-scientist-m-w-d-10421"
   ],
   "was": "custom"
  },
@@ -3649,7 +3653,9 @@
    "https://hanssegmueller-portal.rexx-systems.com/*",
    "https://hanssegmueller-portal.rexx-systems.com/Business-Development-Manager-mwd-E-Commerce-Digitaler-Vert-de-j3063.html",
    "https://hanssegmueller-portal.rexx-systems.com/Konditor-mwd-de-j3035.html",
-   "https://hanssegmueller-portal.rexx-systems.com/Konditor-mwd-de-j3035.html\\"
+   "https://hanssegmueller-portal.rexx-systems.com/Konditor-mwd-de-j3035.html\\",
+   "https://hanssegmueller-portal.rexx-systems.com/weihnachten",
+   "https://hanssegmueller-portal.rexx-systems.com/weihnachten\\"
   ],
   "was": "custom"
  },
@@ -4033,7 +4039,52 @@
    "https://jobs.takko.com/de-de/bonn/2460/verkaeufer/teilzeit",
    "https://jobs.takko.com/de-de/heidenheimanderbrenz/2416/minijob",
    "https://jobs.takko.com/de-de/geldern/2447/filialleiter",
-   "https://jobs.takko.com/de-de/roedental/2475/verkaeufer/teilzeit"
+   "https://jobs.takko.com/de-de/roedental/2475/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/egelsbach/2567",
+   "https://jobs.takko.com/de-de/eschweiler/2569",
+   "https://jobs.takko.com/de-de/krefeld/2568",
+   "https://jobs.takko.com/de-de/muenster/2469",
+   "https://jobs.takko.com/de-de/muenster/2469/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/bremen/2479/minijob",
+   "https://jobs.takko.com/de-de/bremen/2467/minijob",
+   "https://jobs.takko.com/de-de/pritzwalk/1608",
+   "https://jobs.takko.com/de-de/pritzwalk/1608/filialleiter",
+   "https://jobs.takko.com/de-de/berlin/2535/filialleiter",
+   "https://jobs.takko.com/de-de/pirna/2342",
+   "https://jobs.takko.com/de-de/markdorf/2436",
+   "https://jobs.takko.com/de-de/ahlen/2491",
+   "https://jobs.takko.com/de-de/straelen/1639/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/hettstedt/2457",
+   "https://jobs.takko.com/de-de/muenchen/2555",
+   "https://jobs.takko.com/de-de/gieboldehausen/2466",
+   "https://jobs.takko.com/de-de/bremervoerde/1341",
+   "https://jobs.takko.com/de-de/straelen/1639",
+   "https://jobs.takko.com/de-de/rangsdorf/2508",
+   "https://jobs.takko.com/de-de/cuxhaven/2500",
+   "https://jobs.takko.com/de-de/badhersfeld/2464",
+   "https://jobs.takko.com/de-de/borkum/2472",
+   "https://jobs.takko.com/de-de/bremervoerde/1341/filialleiter",
+   "https://jobs.takko.com/de-de/straelen/1639/filialleiter",
+   "https://jobs.takko.com/de-de/cuxhaven/2500/filialleiter",
+   "https://jobs.takko.com/de-de/hildesheim/2509/filialleiter",
+   "https://jobs.takko.com/de-de/badhersfeld/2464/verkaeufer",
+   "https://jobs.takko.com/de-de/borkum/2472/filialleiter",
+   "https://jobs.takko.com/de-de/schneverdingen/2418",
+   "https://jobs.takko.com/de-de/muenchen/2431",
+   "https://jobs.takko.com/de-de/schenefeld/2392",
+   "https://jobs.takko.com/de-de/worms/2536",
+   "https://jobs.takko.com/de-de/baunatal/2554",
+   "https://jobs.takko.com/de-de/chemnitz/2544",
+   "https://jobs.takko.com/de-de/gelsenkirchen/2553",
+   "https://jobs.takko.com/de-de/celle/2262",
+   "https://jobs.takko.com/de-de/chemnitz/2552",
+   "https://jobs.takko.com/de-de/mannheim/2448",
+   "https://jobs.takko.com/de-de/gosen-neuzittau/2476",
+   "https://jobs.takko.com/de-de/bingen/2543",
+   "https://jobs.takko.com/de-de/viernheim/2550",
+   "https://jobs.takko.com/de-de/hamburg/2545",
+   "https://jobs.takko.com/de-de/berlin/2549",
+   "https://jobs.takko.com/de-de/recklinghausen/2542"
   ],
   "was": "custom"
  },
@@ -4318,7 +4369,8 @@
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad73183dd367*/",
    "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote/stellenangebot.html",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad88217a3510*/",
-   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6adb24e234766*/"
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6adb24e234766*/",
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6adc70046c42c*/"
   ],
   "was": "unknown"
  },
@@ -4749,13 +4801,12 @@
   "https://ionity-gmbh.jobs.personio.de/job/994367": "2026-10-11",
   "https://omos-media.jobs.personio.de/job/2645310": "2026-10-13",
   "https://omos-media.jobs.personio.de/job/2659536": "2026-10-13",
-  "https://omos-media.jobs.personio.de/job/2729250": "2026-10-10",
+  "https://omos-media.jobs.personio.de/job/2729250": "2026-10-24",
   "https://omos-media.jobs.personio.de/job/2744999": "2026-10-11",
   "https://omos-media.jobs.personio.de/job/2814050": "2026-10-22",
   "https://tandem.net/pages/careers/jobs/2509364": "2026-10-12",
   "https://tandem.net/pages/careers/jobs/2768964": "2026-10-12",
   "https://tandem.net/pages/careers/jobs/2792207": "2026-10-12",
-  "https://tandem.net/pages/careers/jobs/2801273": "2026-10-12",
   "https://tecvia.jobs.personio.de/job/1168041": "2026-10-11"
  },
  "a&o Hostels": {
