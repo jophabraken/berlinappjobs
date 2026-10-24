@@ -54,7 +54,7 @@ def _abs_links(h, base):
     h = re.sub(r'<a href="([^"]*)">', fix, h)
     return re.sub(r'<a>(.*?)</a>', r'\1', h, flags=re.S)
 
-ZERO_WIDTH = re.compile('[​-‍⁠﻿]')   # zero-width space/joiners, word joiner, BOM
+ZERO_WIDTH = re.compile('[%s-%s%s%s]' % (chr(0x200b), chr(0x200d), chr(0x2060), chr(0xfeff)))   # zero-width space/joiners, word joiner, BOM
 def sanitize(h, base=None):
     h = h.replace('\\r\\n', '\n').replace('\\n', '\n')   # some feeds (Miele, Thalia, Bünting, TeleClinic) store newlines as backslash + n
     h = _ESC_TAG.sub(lambda m: '<' + html.unescape(m.group(1)) + '>', h)
