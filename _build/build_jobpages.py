@@ -340,7 +340,7 @@ def job_desc(jt, co, where, de, et, remote, sal, desc_html):
     facts = [contract_label(et, jt, k)]
     if remote: facts.append("remote/hybrid möglich" if de else "remote/hybrid possible")
     if sal: facts.append(("Gehalt " if de else "salary ") + sal.split('•')[0].strip())
-    s = f"{co}, {where}: {jt}. ".replace(', Remote:', ' (Remote):') + ', '.join(facts) + '. '
+    s = f"{co}, {where}: {jt.rstrip('.')}. ".replace(', Remote:', ' (Remote):') + ', '.join(facts) + '. '
     body = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', desc_html)).replace('\xa0', ' ')).strip()
     s += body
     if len(s) > 158:
@@ -419,6 +419,8 @@ for rec in pages:
     # A link kept although it answered 404 in two or more refreshes (DEAD, see above): no markup, note shown, careers site.
     gone = jb['u'] in DEAD
     apply_u, apply_l = (c.get('careers') or jb['u'], L('Zur Karriereseite', 'Go to the careers site')) if gone else (jb['u'], L('Jetzt beim Unternehmen bewerben', 'Apply on the company site'))
+    # Some feeds store the ad URL with "&amp;" already in it; esc() would turn that into "&amp;amp;" and break the link.
+    apply_u = html.unescape(apply_u)
     not_a_job = bool(re.search(r'lorem ipsum', ad_text, re.I) or NOT_A_JOB.search(jb['t'])) or gone
     body = (head(full_title, meta_desc, url, EXTRA_CSS + "\n" + jsonld([crumbs] if not_a_job else [jp, crumbs]), lang="de" if de else "en").replace('<html lang="de">', f'<html lang="{"de" if de else "en"}">')
       + f'<a class="back" href="/" id="backlink">&larr; {L("Alle Stellen", "All jobs")}</a>'
