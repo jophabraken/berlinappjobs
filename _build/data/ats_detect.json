@@ -383,7 +383,7 @@
   "was": "custom"
  },
  "BNP Paribas S.A. Niederlassung Deutschland": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
    "load https://group.bnpparibas/en/careers/all-job-offers/bnp-paribas-personal-investors/germany: HTTPError",
@@ -553,7 +553,13 @@
    "https://www.bwi.de/karriere/stellenangebote/job/system-administrator-secure-messaging-m-w-d-71008%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/system-engineer-fur-verschlusselungsthemen-linux-m-w-d-70996%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/it-project-program-manager-m-w-d-71039%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
-   "https://www.bwi.de/karriere/stellenangebote/job/junior-systems-engineer-windows-server-automation-m-w-d-70851%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
+   "https://www.bwi.de/karriere/stellenangebote/job/junior-systems-engineer-windows-server-automation-m-w-d-70851%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/engineer-api-management-m-w-d-71048%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-service-manager-automation-m-w-d-71052%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/kuchenhilfe-m-w-d-71064%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/werkstudent-customer-enablement-learning-development-m-w-d-71023%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-devops-engineer-schwerpunkt-ki-im-cert-m-w-d-71019%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-test-automation-engineer-m-w-d-70992"
   ],
   "was": "custom"
  },
@@ -827,7 +833,7 @@
   "was": "custom"
  },
  "CHECK24 GmbH": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -988,7 +994,7 @@
   "was": "none"
  },
  "DERTOUR Deutschland GmbH": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -1169,7 +1175,10 @@
    "https://jobs.tagesspiegel.de/job/key-account-manager-care-und-gemeinschaftsverpflegung-m-w-d.2071395865.html",
    "https://jobs.tagesspiegel.de/job/einkaeufer-in-fuer-liefer-und-dienstleistungen-in-der-wohnungswirtschaft.2064865745.html",
    "https://jobs.tagesspiegel.de/job/ugc-creator-influencer-finfluencer-insurance-als-salesfluencer-m-w-d.2057659915.html",
-   "https://jobs.tagesspiegel.de/job/werkstudent-in-sales-operations-ki-automatisierung-daten-d-m-w.2072481285.html"
+   "https://jobs.tagesspiegel.de/job/werkstudent-in-sales-operations-ki-automatisierung-daten-d-m-w.2072481285.html",
+   "https://jobs.tagesspiegel.de/job/elektriker-mechatroniker-elektroniker-fuer-betriebstechnik-m-w-d.2066143545.html",
+   "https://jobs.tagesspiegel.de/job/strategic-partner-manager-m-f-d-germany.2065782525.html",
+   "https://jobs.tagesspiegel.de/job/agile-coach-scrum-master-m-w-d-konstanz-berlin-oder-remote.2065692755.html"
   ],
   "was": "unknown"
  },
@@ -1246,7 +1255,7 @@
   "was": "custom"
  },
  "Deutscher Bundestag": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -1494,7 +1503,7 @@
   "was": "custom"
  },
  "Ernst Klett Verlag GmbH": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
    "crawl https://www.klett-gruppe.de/karriere/stellenangebote: SiteChanged no job page with JobPosting data among 6 pages (site changed?)"
@@ -2190,7 +2199,7 @@
   "was": "custom"
  },
  "Immobilien Scout GmbH": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "https://www.immobilienscout24.de/karriere/",
   "log": [
    "load https://www.immobilienscout24.de/karriere/: HTTPError"
@@ -2214,7 +2223,7 @@
   "was": "join"
  },
  "JEANS FRITZ": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -2503,7 +2512,7 @@
   "was": "unknown"
  },
  "Lotum one GmbH": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
    "job links too generic to crawl"
@@ -2511,10 +2520,9 @@
   "was": "custom"
  },
  "Lotum two GmbH": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
-   "load https://www.lotum.com: HTTPError",
    "crawl https://www.lotum.com: SiteChanged no job page with JobPosting data among 1 pages (site changed?)"
   ],
   "was": "custom"
@@ -2537,7 +2545,7 @@
   "was": "custom"
  },
  "Luitpold-Apotheke": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -2821,10 +2829,13 @@
   "was": "custom"
  },
  "NORDSEE GmbH": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
+  "feed": "https://karriere.nordsee.com/de/",
   "feed_was": "",
+  "found": "crawl",
   "log": [
-   "crawl https://karriere.nordsee.com/de/: 20 jobs, 0 in Germany, 0 match the board"
+   "load https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8601.html: HTTPError",
+   "crawl https://karriere.nordsee.com/de/: 20 jobs, 2 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -2856,7 +2867,7 @@
   "was": "unknown"
  },
  "Netto Marken-Discount Stiftung & Co. KG": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
    "load https://www.netto-online.de/karriere/Stellenangebote.chtm: HTTPError",
@@ -2868,7 +2879,7 @@
   "was": "custom"
  },
  "Neudorff": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
    "crawl https://www.neudorff.de/karriere: 0 jobs, 0 in Germany, 0 match the board"
@@ -2884,7 +2895,7 @@
   "was": "unknown"
  },
  "Nextcloud": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
    "crawl https://nextcloud.com/jobs/: SiteChanged no job page with JobPosting data among 46 pages (site changed?)"
@@ -3033,10 +3044,10 @@
   "was": "custom"
  },
  "PAYBACK": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
-   "crawl https://jobs.payback.group/de_DE/careers: 35 jobs, 0 in Germany, 0 match the board"
+   "crawl https://jobs.payback.group/de_DE/careers: 32 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -3125,7 +3136,7 @@
   "was": "custom"
  },
  "Pflegecampus": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -3303,7 +3314,7 @@
   "was": "unknown"
  },
  "Rheinbahn": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -3440,7 +3451,7 @@
   "was": "custom"
  },
  "SAP SE": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -3455,7 +3466,7 @@
   "was": "custom"
  },
  "SIGNAL IDUNA Allgemeine Versicherung AG": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
    "crawl https://karriere.signal-iduna.de/: 45 jobs, 0 in Germany, 0 match the board"
@@ -3485,7 +3496,7 @@
   "was": "custom"
  },
  "SWK AG": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -3686,7 +3697,7 @@
   "was": "custom"
  },
  "Siemens-Betriebskrankenkasse | SBK": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
    "crawl https://www.sbk.org/karriere/stellenangebote/: SiteChanged no job page with JobPosting data among 26 pages (site changed?)"
@@ -3794,7 +3805,7 @@
   "was": "join"
  },
  "Star Finanz GmbH": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -3830,7 +3841,7 @@
   "was": "custom"
  },
  "Stillfront Supremacy GmbH": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
    "teamtailor https://bytro.teamtailor.com/jobs: SiteChanged no job page with JobPosting data among 3 pages (site changed?)",
@@ -3876,10 +3887,11 @@
   "was": "custom"
  },
  "Süwag Vertrieb AG & Co. KG": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
-   "crawl https://karriere.suewag.com/go/S%C3%BCwag-Karriere/3833301/: 25 jobs, 0 in Germany, 0 match the board"
+   "load https://karriere.suewag.com/go/S%C3%BCwag-Karriere/3833301/: HTTPError",
+   "crawl https://karriere.suewag.com/go/S%C3%BCwag-Karriere/3833301/: 1 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -3923,7 +3935,6 @@
    "crawl https://jobs.takko.com/de-de: 19 jobs, 19 in Germany, 0 match the board"
   ],
   "skip": [
-   "https://jobs.takko.com/de-de/verkauf/minijob-aushilfe",
    "https://jobs.takko.com/de-de/alljobs",
    "https://jobs.takko.com/de-de/d%C3%BCsseldorf/minijob",
    "https://jobs.takko.com/de-de/bernau/minijob",
@@ -4178,7 +4189,52 @@
    "https://jobs.takko.com/de-de/vergiate/6102",
    "https://jobs.takko.com/de-de/lublin/3499",
    "https://jobs.takko.com/de-de/titz/2415",
-   "https://jobs.takko.com/de-de/wien/4620"
+   "https://jobs.takko.com/de-de/wien/4620",
+   "https://jobs.takko.com/de-de/tutzing/2497/minijob",
+   "https://jobs.takko.com/de-de/koeln/2564",
+   "https://jobs.takko.com/de-de/wien/4623",
+   "https://jobs.takko.com/de-de/koermend/4785",
+   "https://jobs.takko.com/de-de/fr%C3%BDdek-m%C3%ADstek1/4473",
+   "https://jobs.takko.com/de-de/breda/4141",
+   "https://jobs.takko.com/de-de/hamburg/2446",
+   "https://jobs.takko.com/de-de/zagreb-sesvete/5734",
+   "https://jobs.takko.com/de-de/bassanodelgrappa/6103",
+   "https://jobs.takko.com/de-de/wienerneustadt/4626",
+   "https://jobs.takko.com/de-de/lachapelle-saint-luc/3548",
+   "https://jobs.takko.com/de-de/%C4%8Desk%C3%A9bud%C4%9Bjovice/4475",
+   "https://jobs.takko.com/de-de/winsen/8440",
+   "https://jobs.takko.com/de-de/hamm/2465",
+   "https://jobs.takko.com/de-de/rotterdam/4161",
+   "https://jobs.takko.com/de-de/media%C8%99/3239",
+   "https://jobs.takko.com/de-de/badhoenningen/2503",
+   "https://jobs.takko.com/de-de/ar%C3%A7onnay/3554",
+   "https://jobs.takko.com/de-de/st.georgen/2484",
+   "https://jobs.takko.com/de-de/arad/3327",
+   "https://jobs.takko.com/de-de/torino%28to%29/6085",
+   "https://jobs.takko.com/de-de/koeln/2502",
+   "https://jobs.takko.com/de-de/hohenstein-ernstthal/2409",
+   "https://jobs.takko.com/de-de/mannheim/2482",
+   "https://jobs.takko.com/de-de/zeist/4159",
+   "https://jobs.takko.com/de-de/kaunas/5228",
+   "https://jobs.takko.com/de-de/kaposv%C3%A1r/4787",
+   "https://jobs.takko.com/de-de/veghel/4170",
+   "https://jobs.takko.com/de-de/uni%C4%8Dov/4472",
+   "https://jobs.takko.com/de-de/ottobrunn/2445",
+   "https://jobs.takko.com/de-de/houten/4163",
+   "https://jobs.takko.com/de-de/heerhugowaard/4158",
+   "https://jobs.takko.com/de-de/vlaardingen/4160",
+   "https://jobs.takko.com/de-de/cluj-napoca/3331",
+   "https://jobs.takko.com/de-de/zierikzee/4157",
+   "https://jobs.takko.com/de-de/leiderdorp/4162",
+   "https://jobs.takko.com/de-de/venlo/4167",
+   "https://jobs.takko.com/de-de/roma/6100",
+   "https://jobs.takko.com/de-de/barleduc/3547",
+   "https://jobs.takko.com/de-de/marktredwitz/2438",
+   "https://jobs.takko.com/de-de/corsnecourssurloire/3555",
+   "https://jobs.takko.com/de-de/concarneau/3552",
+   "https://jobs.takko.com/de-de/alkmaar/4165",
+   "https://jobs.takko.com/de-de/telfs/4627",
+   "https://jobs.takko.com/de-de/%C5%BEilina/3912"
   ],
   "was": "custom"
  },
@@ -4236,7 +4292,7 @@
   "was": "custom"
  },
  "TeleClinic GmbH": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
    "crawl https://jobs.teleclinic.com/de: SiteChanged no job page with JobPosting data among 14 pages (site changed?)"
@@ -4464,7 +4520,8 @@
    "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote/stellenangebot.html",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ad88217a3510*/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6adb24e234766*/",
-   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6adc70046c42c*/"
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6adc70046c42c*/",
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae0720b57cfa*/"
   ],
   "was": "unknown"
  },
@@ -4475,7 +4532,7 @@
   "was": "custom"
  },
  "VHV Versicherungen": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
    "softgarden https://www.vhv-gruppe.de/jobs.feed.json: HTTPError HTTP Error 404: Not Found"
@@ -4605,10 +4662,10 @@
   "was": "unknown"
  },
  "Vinted": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "https://careers.vinted.com/jobs",
   "log": [
-   "crawl https://careers.vinted.com/: SiteChanged no job page with JobPosting data among 29 pages (site changed?)"
+   "crawl https://careers.vinted.com/: SiteChanged no job page with JobPosting data among 25 pages (site changed?)"
   ],
   "was": "Custom (careers.vinted.com)"
  },
@@ -4675,7 +4732,7 @@
   "was": "unknown"
  },
  "WGV-Informatik und Media GmbH": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -4853,32 +4910,14 @@
   "https://bytro.teamtailor.com/jobs": "2026-10-04",
   "https://bytro.teamtailor.com/jobs/5599151-backend-developer-java": "2026-10-04",
   "https://bytro.teamtailor.com/jobs/6274405-senior-crm-manager": "2026-10-04",
-  "https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8601.html": "2026-10-04",
-  "https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8605.html": "2026-10-04",
-  "https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8613.html": "2026-10-04",
-  "https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8653.html": "2026-10-04",
-  "https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8654.html": "2026-10-04",
-  "https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8658.html": "2026-10-04",
-  "https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8665.html": "2026-10-04",
-  "https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8670.html": "2026-10-04",
-  "https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8673.html": "2026-10-04",
-  "https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8680.html": "2026-10-04",
-  "https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8685.html": "2026-10-04",
-  "https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8692.html": "2026-10-04",
-  "https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8697.html": "2026-10-04",
-  "https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8700.html": "2026-10-04",
   "https://www.hanseaticbank.de/karriere/jobs/03573487": "2026-10-04",
   "https://www.hanseaticbank.de/karriere/jobs/03576758": "2026-10-04",
   "https://www.hanseaticbank.de/karriere/jobs/03577790": "2026-10-04",
   "https://www.hanseaticbank.de/karriere/jobs/03578045": "2026-10-04",
-  "https://www.komoot.com/jobs": "2026-10-04",
-  "https://www.lotum.com": "2026-10-04"
+  "https://www.komoot.com/jobs": "2026-10-04"
  },
  "_nodesc": {
   "https://finanzfluss.jobs.personio.de/job/2598297": "2026-10-25",
-  "https://finanzfluss.jobs.personio.de/job/2748191": "2026-10-25",
-  "https://finanzfluss.jobs.personio.de/job/2759610": "2026-10-25",
-  "https://finanzfluss.jobs.personio.de/job/2845792": "2026-10-19",
   "https://finanztip.jobs.personio.de/job/1740845": "2026-10-25",
   "https://finanztip.jobs.personio.de/job/2711796": "2026-10-25",
   "https://finanztip.jobs.personio.de/job/2726949": "2026-10-25",
@@ -4893,8 +4932,8 @@
   "https://ionity-gmbh.jobs.personio.de/job/2796735": "2026-10-25",
   "https://ionity-gmbh.jobs.personio.de/job/2817697": "2026-10-16",
   "https://ionity-gmbh.jobs.personio.de/job/994367": "2026-10-25",
-  "https://omos-media.jobs.personio.de/job/2645310": "2026-10-13",
-  "https://omos-media.jobs.personio.de/job/2659536": "2026-10-13",
+  "https://omos-media.jobs.personio.de/job/2645310": "2026-10-27",
+  "https://omos-media.jobs.personio.de/job/2659536": "2026-10-27",
   "https://omos-media.jobs.personio.de/job/2729250": "2026-10-24",
   "https://omos-media.jobs.personio.de/job/2744999": "2026-10-25",
   "https://omos-media.jobs.personio.de/job/2814050": "2026-10-22",
@@ -5170,7 +5209,7 @@
   "was": "custom"
  },
  "freenet.de GmbH": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
    "crawl https://karriere.freenet-group.de/: SiteChanged no job page with JobPosting data among 1 pages (site changed?)"
@@ -5251,7 +5290,7 @@
   "was": "custom"
  },
  "klarmobil": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
    "crawl https://karriere.freenet-group.de/: SiteChanged no job page with JobPosting data among 1 pages (site changed?)"
@@ -5267,7 +5306,7 @@
   "was": "custom"
  },
  "komoot GmbH": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [
    "load https://www.komoot.com/jobs: HTTPError",
@@ -5418,7 +5457,7 @@
   "was": "custom"
  },
  "petaFuel GmbH": {
-  "checked": "2026-09-27",
+  "checked": "2026-10-27",
   "feed_was": "",
   "log": [],
   "was": "custom"
