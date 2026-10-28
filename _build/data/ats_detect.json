@@ -18,7 +18,7 @@
   "was": "custom"
  },
  "1822direkt Ges. der Frankfurter Sparkasse mbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [
    "crawl https://www.1822direkt.de/ueber-uns/karriere/: SiteChanged no job page with JobPosting data among 40 pages (site changed?)"
@@ -559,7 +559,12 @@
    "https://www.bwi.de/karriere/stellenangebote/job/kuchenhilfe-m-w-d-71064%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/werkstudent-customer-enablement-learning-development-m-w-d-71023%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/senior-devops-engineer-schwerpunkt-ki-im-cert-m-w-d-71019%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
-   "https://www.bwi.de/karriere/stellenangebote/job/senior-test-automation-engineer-m-w-d-70992"
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-test-automation-engineer-m-w-d-70992",
+   "https://www.bwi.de/karriere/stellenangebote/job/bachelorbwi-duales-studium-wirtschaftsinformatik-m-w-d-71068%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/masterbwi-duales-studium-devops-cloud-computing-m-w-d-71072%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-it-architekt-sharepoint-m-w-d-71076%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/junior-expert-pm-methods-m-w-d-71088%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/system-engineer-betrieb-plattform-m-w-d-70896"
   ],
   "was": "custom"
  },
@@ -612,7 +617,7 @@
   "was": "custom"
  },
  "Berlin-Brandenburg Academy": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -718,9 +723,12 @@
   "was": "custom"
  },
  "Bundesamt Verbraucherschutz Lebensmittelsicherheit": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
-  "log": [],
+  "log": [
+   "load https://www.bvl.bund.de/SharedDocs/Stellenangebote/DE/2026/1_2026_1.html: HTTPError",
+   "load https://www.bvl.bund.de/SharedDocs/Stellenangebote/DE/2026/121_2026_1.html: HTTPError"
+  ],
   "was": "custom"
  },
  "Bundesamt für Bevölkerungsschutz (Deutschland)": {
@@ -733,7 +741,7 @@
   "was": "custom"
  },
  "Bundesinstitut für Risikobewertung": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -798,12 +806,9 @@
   "was": "custom"
  },
  "CALL A PIZZA MARKETING GMBH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
-  "log": [
-   "load https://www.call-a-pizza.de/jobs: URLError",
-   "load https://www.call-a-pizza.de/jobs-in-berlin-zentrale: URLError"
-  ],
+  "log": [],
   "was": "custom"
  },
  "CASO DESIGN": {
@@ -874,7 +879,7 @@
   "was": "custom"
  },
  "Changers.com / Blacksquared GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -906,7 +911,7 @@
   "was": "join"
  },
  "Clue Period Tracker by BioWink": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "https://helloclue.bamboohr.com/careers/list",
   "log": [
    "bamboohr https://helloclue.bamboohr.com/careers: 3 jobs, 0 in Germany, 0 match the board",
@@ -935,7 +940,7 @@
   "was": "custom"
  },
  "Conntac GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -1178,7 +1183,10 @@
    "https://jobs.tagesspiegel.de/job/werkstudent-in-sales-operations-ki-automatisierung-daten-d-m-w.2072481285.html",
    "https://jobs.tagesspiegel.de/job/elektriker-mechatroniker-elektroniker-fuer-betriebstechnik-m-w-d.2066143545.html",
    "https://jobs.tagesspiegel.de/job/strategic-partner-manager-m-f-d-germany.2065782525.html",
-   "https://jobs.tagesspiegel.de/job/agile-coach-scrum-master-m-w-d-konstanz-berlin-oder-remote.2065692755.html"
+   "https://jobs.tagesspiegel.de/job/agile-coach-scrum-master-m-w-d-konstanz-berlin-oder-remote.2065692755.html",
+   "https://jobs.tagesspiegel.de/job/senior-key-account-manager-vertrieb-m-w-d.2066465065.html",
+   "https://jobs.tagesspiegel.de/job/ingenieur-in-fuer-den-organisatorischen-vorbeugenden-brandschutz-zentrale-r-brandschutzbeauftragte-r-m-w-d.2066457345.html",
+   "https://jobs.tagesspiegel.de/job/geschaeftsfuehrer-m-w-d-etablierter-anlagenbauer-im-wachstumsmarkt.2066455805.html"
   ],
   "was": "unknown"
  },
@@ -1343,7 +1351,7 @@
   "was": "custom"
  },
  "EHC Eisbären Management GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [
    "crawl https://www.eisbaeren.de/club/jobs: SiteChanged no job page with JobPosting data among 6 pages (site changed?)"
@@ -1377,7 +1385,7 @@
   "was": "custom"
  },
  "Edkon Games GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [
    "crawl http://www.edkongames.com/: SiteChanged no job page with JobPosting data among 1 pages (site changed?)"
@@ -1692,13 +1700,13 @@
   "was": "custom"
  },
  "Fryd GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
  },
  "G Data CyberDefense AG": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -1737,7 +1745,7 @@
   "was": "custom"
  },
  "GamerProfiles": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [
    "crawl https://gamerprofiles.com/jobs: SiteChanged no job page with JobPosting data among 46 pages (site changed?)"
@@ -1799,13 +1807,13 @@
   "was": "none"
  },
  "Gryphon Games": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
  },
  "Gymondo GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -1819,10 +1827,10 @@
   "was": "custom"
  },
  "H2 Technologies GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [
-   "crawl https://amara.app/karriere: SiteChanged no job page with JobPosting data among 14 pages (site changed?)"
+   "crawl https://amara.app/karriere: SiteChanged no job page with JobPosting data among 9 pages (site changed?)"
   ],
   "was": "custom"
  },
@@ -1960,7 +1968,7 @@
   "was": "custom"
  },
  "Hanseatic Bank GmbH & Co KG": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [
    "load https://www.hanseaticbank.de/karriere/jobs/03573487: HTTPError",
@@ -1971,7 +1979,7 @@
   "was": "custom"
  },
  "Heide-Park Soltau GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -2193,7 +2201,7 @@
   "was": "custom"
  },
  "IhreApotheken GmbH & Co. KGaA": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -2207,7 +2215,7 @@
   "was": "custom"
  },
  "InstiKom GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "https://littlebirdgroup.factorialhr.de/embed/jobs",
   "log": [],
   "was": "custom"
@@ -2255,7 +2263,7 @@
   "was": "custom"
  },
  "KRUU GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -2286,6 +2294,9 @@
   "log": [
    "crawl https://www.kkh.de/karriere/stellenangebote: 19 jobs, 18 in Germany, 0 match the board"
   ],
+  "skip": [
+   "https://www.kkh.de/karriere/stellenangebote/werkstudent-m-w-d-sachbearbeitung-krankengeld-krankenkasse-duesseldorf-16132"
+  ],
   "was": "custom"
  },
  "KiK Textilien und Non-Food GmbH": {
@@ -2304,7 +2315,7 @@
   "was": "custom"
  },
  "Kindaling": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -2536,7 +2547,7 @@
   "was": "custom"
  },
  "Lufthansa Innovation Hub": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [
    "join https://join.com/companies/usecosmos: 0 jobs, 0 in Germany, 0 match the board",
@@ -2629,7 +2640,7 @@
   "was": "smartrecruiters"
  },
  "MMS Technology GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [
    "crawl https://careers.mediamarktsaturn.com/search/: SiteChanged no job page with JobPosting data among 46 pages (site changed?)"
@@ -2702,7 +2713,7 @@
   "was": "custom"
  },
  "Mellowdrop Studio": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -2736,7 +2747,7 @@
   "was": "custom"
  },
  "Mobile-Team der DAK-Gesundheit": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [
    "crawl https://karriere.dak.de/go/Stellenangebote/9002455/: 41 jobs, 0 in Germany, 0 match the board"
@@ -2755,7 +2766,8 @@
    "https://karriere.modepark.de/stellenangebote/5785349/bewerbung",
    "https://karriere.modepark.de/jobs",
    "https://karriere.modepark.de/jobs&title=",
-   "https://karriere.modepark.de/stellenangebote/Lagermitarbeiter-m-w-d-im-Wareneingang-Teilzeit-Esslingen-Roether-Beteiligungs-GmbH--35276099"
+   "https://karriere.modepark.de/stellenangebote/Lagermitarbeiter-m-w-d-im-Wareneingang-Teilzeit-Esslingen-Roether-Beteiligungs-GmbH--35276099",
+   "https://karriere.modepark.de/stellenangebote/Buying-Assistant-m-w-d-Michelfeld-bei-Schwaebisch-Hall-Roether-Beteiligungs-GmbH--110436009"
   ],
   "was": "custom"
  },
@@ -2776,7 +2788,7 @@
   "was": "unknown"
  },
  "MyPostcard Photo Postcards and Greeting Cards App": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [
    "crawl https://www.mypostcard.com/jobs: SiteChanged no job page with JobPosting data among 46 pages (site changed?)"
@@ -2836,6 +2848,10 @@
   "log": [
    "load https://karriere.nordsee.com/de/Ausbildung-Fachkraft-fuer-Gastronomie-mwd-de-j8601.html: HTTPError",
    "crawl https://karriere.nordsee.com/de/: 20 jobs, 2 in Germany, 0 match the board"
+  ],
+  "skip": [
+   "https://karriere.nordsee.com/de/stellenangebote.html",
+   "https://karriere.nordsee.com/de/jobsearch-jajax0.php"
   ],
   "was": "custom"
  },
@@ -3036,7 +3052,7 @@
   "was": "custom"
  },
  "PAJ GPS": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [
    "crawl https://www.paj-gps.com/careers/: SiteChanged no job page with JobPosting data among 18 pages (site changed?)"
@@ -3060,7 +3076,7 @@
   "was": "unknown"
  },
  "PENNY Markt GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -3205,7 +3221,7 @@
   "was": "unknown"
  },
  "Preventicus GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -3443,7 +3459,7 @@
   "was": "unknown"
  },
  "SAGAFLOR AG": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [
    "crawl https://www.zooundco.de/karriere: SiteChanged no job page with JobPosting data among 1 pages (site changed?)"
@@ -3760,7 +3776,7 @@
   "was": "none"
  },
  "Spiele-Palast GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [
    "load https://www.creative-city-berlin.de/de/jobs/job/7853227/: HTTPError",
@@ -3819,7 +3835,7 @@
   "was": "unknown"
  },
  "Stay Informed": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "https://littlebirdgroup.factorialhr.de/embed/jobs",
   "log": [],
   "was": "custom"
@@ -3935,51 +3951,6 @@
    "crawl https://jobs.takko.com/de-de: 19 jobs, 19 in Germany, 0 match the board"
   ],
   "skip": [
-   "https://jobs.takko.com/de-de/alljobs",
-   "https://jobs.takko.com/de-de/d%C3%BCsseldorf/minijob",
-   "https://jobs.takko.com/de-de/bernau/minijob",
-   "https://jobs.takko.com/de-de/kahla/minijob",
-   "https://jobs.takko.com/de-de/heidenheimanderbrenz/minijob",
-   "https://jobs.takko.com/de-de/heidelberg/minijob",
-   "https://jobs.takko.com/de-de/bremerhaven/minijob",
-   "https://jobs.takko.com/de-de/bremen/2/minijob",
-   "https://jobs.takko.com/de-de/bremen/minijob",
-   "https://jobs.takko.com/de-de/bremen/3/minijob",
-   "https://jobs.takko.com/de-de/d%C3%BCsseldorf/2/minijob",
-   "https://jobs.takko.com/de-de/singen/minijob",
-   "https://jobs.takko.com/de-de/wesel/minijob",
-   "https://jobs.takko.com/de-de/bremerv%C3%B6rde/minijob",
-   "https://jobs.takko.com/de-de/straelen/minijob",
-   "https://jobs.takko.com/de-de/brake/minijob",
-   "https://jobs.takko.com/de-de/abonnieren-takko-job-benachrichtigungen",
-   "https://jobs.takko.com/de-de/minijob-static-content",
-   "https://jobs.takko.com/de-de/hamm/minijob",
-   "https://jobs.takko.com/de-de/rangsdorf/minijob",
-   "https://jobs.takko.com/de-de/emden/2/minijob",
-   "https://jobs.takko.com/de-de/dortmund/2/minijob",
-   "https://jobs.takko.com/de-de/lohrammain/minijob",
-   "https://jobs.takko.com/de-de/tutzing/minijob",
-   "https://jobs.takko.com/de-de/hamburg/5/minijob",
-   "https://jobs.takko.com/de-de/wolfsburg/minijob",
-   "https://jobs.takko.com/de-de/hamburg/2/minijob",
-   "https://jobs.takko.com/de-de/recklinghausen/minijob",
-   "https://jobs.takko.com/de-de/w%C3%B6rnitz/minijob",
-   "https://jobs.takko.com/de-de/m%C3%BCnchen/minijob",
-   "https://jobs.takko.com/de-de/kahla/2443",
-   "https://jobs.takko.com/de-de/fuerth/2474",
-   "https://jobs.takko.com/de-de/hamm/2477",
-   "https://jobs.takko.com/de-de/duesseldorf/2511",
-   "https://jobs.takko.com/de-de/duesseldorf/2486",
-   "https://jobs.takko.com/de-de/sinzig/2562",
-   "https://jobs.takko.com/de-de/hamburg/2485",
-   "https://jobs.takko.com/de-de/tutzing/2497",
-   "https://jobs.takko.com/de-de/ratingen/2495",
-   "https://jobs.takko.com/de-de/berlin/2419",
-   "https://jobs.takko.com/de-de/singen/2471",
-   "https://jobs.takko.com/de-de/hamburg/2441",
-   "https://jobs.takko.com/de-de/wolfsburg/2470",
-   "https://jobs.takko.com/de-de/heidelberg/1248",
-   "https://jobs.takko.com/de-de/leonberg/2519",
    "https://jobs.takko.com/de-de/essen/2558",
    "https://jobs.takko.com/de-de/wesel/2462",
    "https://jobs.takko.com/de-de/hoexter/2506",
@@ -4234,7 +4205,52 @@
    "https://jobs.takko.com/de-de/concarneau/3552",
    "https://jobs.takko.com/de-de/alkmaar/4165",
    "https://jobs.takko.com/de-de/telfs/4627",
-   "https://jobs.takko.com/de-de/%C5%BEilina/3912"
+   "https://jobs.takko.com/de-de/%C5%BEilina/3912",
+   "https://jobs.takko.com/de-de/verkauf/minijob-aushilfe",
+   "https://jobs.takko.com/de-de/homburg/2426/minijob",
+   "https://jobs.takko.com/de-de/kevelaer/2172/verkaeufer",
+   "https://jobs.takko.com/de-de/solingen/2565/verkaeufer",
+   "https://jobs.takko.com/de-de/solingen/2565/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/pirna/2342/minijob",
+   "https://jobs.takko.com/de-de/badschandau/8884",
+   "https://jobs.takko.com/de-de/ortona/6099",
+   "https://jobs.takko.com/de-de/brest/3553",
+   "https://jobs.takko.com/de-de/linz/4629",
+   "https://jobs.takko.com/de-de/eugendorf/4633",
+   "https://jobs.takko.com/de-de/saintchristophe%28ao%29/6106",
+   "https://jobs.takko.com/de-de/praha/4477",
+   "https://jobs.takko.com/de-de/alphenaandenrijn/4176",
+   "https://jobs.takko.com/de-de/ostrava/4476",
+   "https://jobs.takko.com/de-de/gaenserndorf/4617",
+   "https://jobs.takko.com/de-de/p%C3%A9cs/4786",
+   "https://jobs.takko.com/de-de/salzburg/4630",
+   "https://jobs.takko.com/de-de/bischofshofen/4625",
+   "https://jobs.takko.com/de-de/strausberg/2425",
+   "https://jobs.takko.com/de-de/bremen/2479",
+   "https://jobs.takko.com/de-de/borchen/2498",
+   "https://jobs.takko.com/de-de/woernitz/2481",
+   "https://jobs.takko.com/de-de/auerbach/2496",
+   "https://jobs.takko.com/de-de/hallstadt/2494",
+   "https://jobs.takko.com/de-de/muehlhausen/2487",
+   "https://jobs.takko.com/de-de/radebeul/2488",
+   "https://jobs.takko.com/de-de/erbach/2499",
+   "https://jobs.takko.com/de-de/voesendorf/4631",
+   "https://jobs.takko.com/de-de/wien/4632",
+   "https://jobs.takko.com/de-de/sundern/2492",
+   "https://jobs.takko.com/de-de/amersfoort/4174",
+   "https://jobs.takko.com/de-de/freital/2461",
+   "https://jobs.takko.com/de-de/schagen/4166",
+   "https://jobs.takko.com/de-de/denburg/4168",
+   "https://jobs.takko.com/de-de/zoetermeer/4169",
+   "https://jobs.takko.com/de-de/hilvarenbeek/4173",
+   "https://jobs.takko.com/de-de/barsinghausen/2449",
+   "https://jobs.takko.com/de-de/t%C5%99ebo%C5%88/4474",
+   "https://jobs.takko.com/de-de/halle/2473",
+   "https://jobs.takko.com/de-de/almere/4171",
+   "https://jobs.takko.com/de-de/dresden/2489",
+   "https://jobs.takko.com/de-de/geislingenandersteige/2483",
+   "https://jobs.takko.com/de-de/villach/4628",
+   "https://jobs.takko.com/de-de/oelde/2468"
   ],
   "was": "custom"
  },
@@ -4363,7 +4379,7 @@
   "was": "custom"
  },
  "Tutao GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -4526,7 +4542,7 @@
   "was": "unknown"
  },
  "VBB Verkehrsverbund Berlin-Brandenburg GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -4556,7 +4572,7 @@
   "was": "unknown"
  },
  "VRT GmbH": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -4686,7 +4702,7 @@
   "was": "custom"
  },
  "Volkswagen AG": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -4929,7 +4945,6 @@
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2768300": "2026-10-25",
   "https://ionity-gmbh.jobs.personio.de/job/2624591": "2026-10-25",
   "https://ionity-gmbh.jobs.personio.de/job/2792054": "2026-10-25",
-  "https://ionity-gmbh.jobs.personio.de/job/2796735": "2026-10-25",
   "https://ionity-gmbh.jobs.personio.de/job/2817697": "2026-10-16",
   "https://ionity-gmbh.jobs.personio.de/job/994367": "2026-10-25",
   "https://omos-media.jobs.personio.de/job/2645310": "2026-10-27",
@@ -5201,7 +5216,7 @@
   "was": "custom"
  },
  "freenet": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [
    "crawl https://karriere.freenet-group.de/: SiteChanged no job page with JobPosting data among 1 pages (site changed?)"
@@ -5463,7 +5478,7 @@
   "was": "custom"
  },
  "s.Oliver": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -5517,13 +5532,13 @@
   "was": "custom"
  },
  "sunshine live GmbH & Co.KG": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
  },
  "taz, die tageszeitung": {
-  "checked": "2026-09-28",
+  "checked": "2026-10-28",
   "feed_was": "",
   "log": [],
   "was": "custom"
