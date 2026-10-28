@@ -62,6 +62,7 @@ def sanitize(h, base=None):
     h = re.sub(r'<h1[^>]*>', '<h3>', h, flags=re.I).replace('</h1>', '</h3>')
     h = re.sub(r'<(div|section|span|font)[^>]*>|</(div|section|span|font)>', lambda m: '' if m.group(0).lower().startswith(('<span', '</span', '<font', '</font')) else ('<p>' if not m.group(0).startswith('</') else '</p>'), h, flags=re.I)
     h = bleach.clean(h, tags=TAGS, attributes={'a': ['href']}, strip=True)
+    h = h.replace('&amp;amp;', '&amp;')   # some feeds (Europa-Park) store "&" escaped twice, so pages showed "F&amp;B"
     h = _abs_links(h, base)
     h = re.sub(r'<a href=', '<a rel="nofollow noopener" target="_blank" href=', h)
     h = re.sub(r'(<p>\s*(&nbsp;|\s)*</p>\s*)+', '', h)
