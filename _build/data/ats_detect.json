@@ -579,7 +579,10 @@
    "https://www.bwi.de/karriere/stellenangebote/job/senior-it-projektmanager-rechenzentrumsprojekte-m-w-d-71192%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/senior-ux-designerin-bundesmessenger-m-w-d-71151%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/lead-expert-bereitstellung-ecosystem-bundesmessenger-m-w-d-71155%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
-   "https://www.bwi.de/karriere/stellenangebote/job/senior-service-technician-m-w-d-71139%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-service-technician-m-w-d-71139%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/lead-service-technician-fertigung-verlegefahiger-rechenzentren-m-w-d-71207%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-solution-architekt-application-migration-m-w-d-71211%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-ux-designerin-bundesmessenger-m-w-d-71151"
   ],
   "was": "custom"
  },
@@ -1209,7 +1212,11 @@
    "https://jobs.tagesspiegel.de/job/mitarbeiter-in-fuer-wissenschaftskommunikation-und-projektdokumentation-im-projekt-inter-m-w-d.2074496705.html",
    "https://jobs.tagesspiegel.de/job/honorartrainer-in-m-w-d-controlling-business-intelligence-mit-power-bi-und-ki-tools.2074604015.html",
    "https://jobs.tagesspiegel.de/job/bauingenieur-in-architekt-in-bautechniker-in-fuer-die-objektueberwachung-bauleitung.2074576905.html",
-   "https://jobs.tagesspiegel.de/job/forschungskoordinator-in-m-w-d-der-abteilung-bauwerkssicherheit.2068106685.html"
+   "https://jobs.tagesspiegel.de/job/forschungskoordinator-in-m-w-d-der-abteilung-bauwerkssicherheit.2068106685.html",
+   "https://jobs.tagesspiegel.de/job/projektverantwortliche-n-architekt-in-oder-bauingenieur-in-w-m-d.2068543915.html",
+   "https://jobs.tagesspiegel.de/job/teamleitung-w-m-d-fuer-den-bereich-kreislaufwirtschaft-mit-dem-schwerpunkt-verpackungspolitik.2068473335.html",
+   "https://jobs.tagesspiegel.de/job/technischer-qualitaetspruefer-m-w-d-warenausgang.2068496925.html",
+   "https://jobs.tagesspiegel.de/job/servicetechniker-m-w-d-im-aussendienst.2068370445.html"
   ],
   "was": "unknown"
  },
@@ -1668,6 +1675,9 @@
    "softgarden https://certificate.softgarden.io/jobs.feed.json: HTTPError HTTP Error 404: Not Found",
    "softgarden https://www.fitx.de/jobs.feed.json: JSONDecodeError Expecting value: line 1 column 1 (char 0)",
    "crawl https://www.fitx.de/fitness-jobs: 49 jobs, 24 in Germany, 20 match the board"
+  ],
+  "skip": [
+   "https://www.fitx.de/fitness-jobs/66930010"
   ],
   "was": "softgarden"
  },
@@ -3413,7 +3423,8 @@
   ],
   "skip": [
    "https://karriere.deka.de/lp/Candidate%20Community/0aceb01a48201ec3/",
-   "https://karriere.deka.de/job/Senningerberg-Praktikum-%28wmd%29-IT-Services-&-agile-Prozesse-L-1748/1439913333/"
+   "https://karriere.deka.de/job/Senningerberg-Praktikum-%28wmd%29-IT-Services-&-agile-Prozesse-L-1748/1439913333/",
+   "https://karriere.deka.de/job/Frankfurt-am-Main-Werkstudent-%28wmd%29-Betriebsteam-Finance-Cloud-Native-HE-60315/1433533033/"
   ],
   "was": "custom"
  },
@@ -3909,6 +3920,9 @@
   "log": [
    "crawl https://karriere.stroeer.com/de/jobs: 57 jobs, 56 in Germany, 12 match the board"
   ],
+  "skip": [
+   "https://karriere.stroeer.com/de/job/vertriebsmitarbeiter-aussendienst-neukundenakquise-m-w-d-in-braunschweig-jid-1264"
+  ],
   "was": "smartrecruiters"
  },
  "Studyflix GmbH": {
@@ -3985,35 +3999,6 @@
    "crawl https://jobs.takko.com/de-de: 19 jobs, 19 in Germany, 0 match the board"
   ],
   "skip": [
-   "https://jobs.takko.com/de-de/hamburg/2485/minijob",
-   "https://jobs.takko.com/de-de/berlin/2419/filialleiter",
-   "https://jobs.takko.com/de-de/roedental/2475/filialleiter",
-   "https://jobs.takko.com/de-de/hamburg/2441/minijob",
-   "https://jobs.takko.com/de-de/wolfsburg/2470/minijob",
-   "https://jobs.takko.com/de-de/wuppertal/2557/verkaeufer",
-   "https://jobs.takko.com/de-de/wuppertal/2557/filialleiter",
-   "https://jobs.takko.com/de-de/lohrammain/2547/minijob",
-   "https://jobs.takko.com/de-de/leonberg/2519/verkaeufer/teilzeit",
-   "https://jobs.takko.com/de-de/leonberg/2519/filialleiter",
-   "https://jobs.takko.com/de-de/emden/2501/minijob",
-   "https://jobs.takko.com/de-de/dortmund/2524/minijob",
-   "https://jobs.takko.com/de-de/rangsdorf/2508/minijob",
-   "https://jobs.takko.com/de-de/emden/2501/verkaeufer/teilzeit",
-   "https://jobs.takko.com/de-de/rothenburgobdertauber/2556/verkaeufer/teilzeit",
-   "https://jobs.takko.com/de-de/rothenburgobdertauber/2556/filialleiter",
-   "https://jobs.takko.com/de-de/mainz/2541/verkaeufer/teilzeit",
-   "https://jobs.takko.com/de-de/mainz/2541/filialleiter",
-   "https://jobs.takko.com/de-de/lohrammain/2547/verkaeufer/teilzeit",
-   "https://jobs.takko.com/de-de/lohrammain/2547/filialleiter",
-   "https://jobs.takko.com/de-de/gladbeck/2452/verkaeufer/teilzeit",
-   "https://jobs.takko.com/de-de/kevelaer/2172/verkaeufer/teilzeit",
-   "https://jobs.takko.com/de-de/chemnitz/2442/verkaeufer/teilzeit",
-   "https://jobs.takko.com/de-de/bernau/2430/minijob",
-   "https://jobs.takko.com/de-de/bonn/2460/verkaeufer/teilzeit",
-   "https://jobs.takko.com/de-de/heidenheimanderbrenz/2416/minijob",
-   "https://jobs.takko.com/de-de/geldern/2447/filialleiter",
-   "https://jobs.takko.com/de-de/roedental/2475/verkaeufer/teilzeit",
-   "https://jobs.takko.com/de-de/egelsbach/2567",
    "https://jobs.takko.com/de-de/eschweiler/2569",
    "https://jobs.takko.com/de-de/krefeld/2568",
    "https://jobs.takko.com/de-de/muenster/2469",
@@ -4284,7 +4269,36 @@
    "https://jobs.takko.com/de-de/wuppertal/2557",
    "https://jobs.takko.com/de-de/saarlouis/2559",
    "https://jobs.takko.com/de-de/gummersbach/2561",
-   "https://jobs.takko.com/de-de/geldern/2447"
+   "https://jobs.takko.com/de-de/geldern/2447",
+   "https://jobs.takko.com/de-de/koeln/2564/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/duesseldorf/2511/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/pritzwalk/1608/minijob",
+   "https://jobs.takko.com/de-de/koeln/2564/verkaeufer",
+   "https://jobs.takko.com/de-de/koeln/2564/filialleiter",
+   "https://jobs.takko.com/de-de/neubrandenburg/2560/verkaeufer",
+   "https://jobs.takko.com/de-de/neubrandenburg/2560/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/buchholzindernordheide/2516/filialleiter",
+   "https://jobs.takko.com/de-de/heidelberg/1248/minijob",
+   "https://jobs.takko.com/de-de/datteln/2566",
+   "https://jobs.takko.com/de-de/solingen/2565",
+   "https://jobs.takko.com/de-de/bologna/6110",
+   "https://jobs.takko.com/de-de/ferrarafe/6112",
+   "https://jobs.takko.com/de-de/bremen/2479/verkaeufer",
+   "https://jobs.takko.com/de-de/mainz/2541/verkaeufer",
+   "https://jobs.takko.com/de-de/cuxhaven/2500/verkaeufer",
+   "https://jobs.takko.com/de-de/bremervoerde/1341/verkaeufer",
+   "https://jobs.takko.com/de-de/leonberg/2519/verkaeufer",
+   "https://jobs.takko.com/de-de/duisburg/2518/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/duisburg/2518/filialleiter",
+   "https://jobs.takko.com/de-de/recklinghausen/2542/minijob",
+   "https://jobs.takko.com/de-de/neubrandenburg/2560",
+   "https://jobs.takko.com/de-de/salg%C3%B3tarj%C3%A1n/4789",
+   "https://jobs.takko.com/de-de/roedental/2475",
+   "https://jobs.takko.com/de-de/solingen/2480",
+   "https://jobs.takko.com/de-de/saalfelden/4638",
+   "https://jobs.takko.com/de-de/volketswil/4245",
+   "https://jobs.takko.com/de-de/delmenhorst/2427",
+   "https://jobs.takko.com/de-de/arnsberg/2459"
   ],
   "was": "custom"
  },
@@ -4573,7 +4587,8 @@
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6adc70046c42c*/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae0720b57cfa*/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae324b32943d*/",
-   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae4758498ff7*/"
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae4758498ff7*/",
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae5bfc767321*/"
   ],
   "was": "unknown"
  },
@@ -4800,7 +4815,25 @@
   "skip": [
    "https://wertgarantie-group.com/karriere/stellenangebote/initiativbewerbung-schulerpraktikum-mwd",
    "https://wertgarantie-group.com/karriere/stellenangebote/initiativbewerbung\\",
-   "https://wertgarantie-group.com/karriere/stellenangebote/initiativbewerbung"
+   "https://wertgarantie-group.com/karriere/stellenangebote/initiativbewerbung",
+   "https://wertgarantie-group.com/karriere/stellenangebote/accountmanager-niederlande-west-mwd",
+   "https://wertgarantie-group.com/karriere/stellenangebote/kostenbuchhalter-mwd",
+   "https://wertgarantie-group.com/karriere/stellenangebote/prozessmanager-mwd-schwerpunkt-testautomatisierung",
+   "https://wertgarantie-group.com/karriere/stellenangebote/mitarbeiter-direkte-steuern-mwd",
+   "https://wertgarantie-group.com/karriere/stellenangebote/werkstudent-kundenkommunikation-mwd\\",
+   "https://wertgarantie-group.com/karriere/stellenangebote/teamleitung-kundenkommunikation-mwd\\",
+   "https://wertgarantie-group.com/karriere/stellenangebote/sachbearbeiter-leistungsbearbeitung-bike-mwd\\",
+   "https://wertgarantie-group.com/karriere/stellenangebote/teamleitung-leistungsbearbeitung-qualitatsmanagement-mwd\\",
+   "https://wertgarantie-group.com/karriere/stellenangebote/mitarbeiter-im-kundenservice-mwd\\",
+   "https://wertgarantie-group.com/karriere/stellenangebote/mitarbeiter-kundenbindung-mwd\\",
+   "https://wertgarantie-group.com/karriere/stellenangebote/werkstudent-test-und-customer-support-mwd\\",
+   "https://wertgarantie-group.com/karriere/stellenangebote/mitarbeiter-kundenservice-niederlande-mwd\\",
+   "https://wertgarantie-group.com/karriere/stellenangebote/prasenz-trainer-vertrieb-mwd\\",
+   "https://wertgarantie-group.com/karriere/stellenangebote/werkstudent-controlling-rechnungswesen-mwd\\",
+   "https://wertgarantie-group.com/karriere/stellenangebote/accountmanager-niederlande-west-mwd\\",
+   "https://wertgarantie-group.com/karriere/stellenangebote/spezialist-softwarequalitat-und-testmanagement-mwd\\",
+   "https://wertgarantie-group.com/karriere/stellenangebote/projektmanager-mwd\\",
+   "https://wertgarantie-group.com/karriere/stellenangebote/initiativbewerbung-schulerpraktikum-mwd\\"
   ],
   "was": "custom"
  },
