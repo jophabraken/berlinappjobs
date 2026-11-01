@@ -1216,7 +1216,11 @@
    "https://jobs.tagesspiegel.de/job/projektverantwortliche-n-architekt-in-oder-bauingenieur-in-w-m-d.2068543915.html",
    "https://jobs.tagesspiegel.de/job/teamleitung-w-m-d-fuer-den-bereich-kreislaufwirtschaft-mit-dem-schwerpunkt-verpackungspolitik.2068473335.html",
    "https://jobs.tagesspiegel.de/job/technischer-qualitaetspruefer-m-w-d-warenausgang.2068496925.html",
-   "https://jobs.tagesspiegel.de/job/servicetechniker-m-w-d-im-aussendienst.2068370445.html"
+   "https://jobs.tagesspiegel.de/job/servicetechniker-m-w-d-im-aussendienst.2068370445.html",
+   "https://jobs.tagesspiegel.de/job/projektleiter-in-m-w-d-fuer-oberleitungsanlagen-im-fahrleitungsbau.2064609465.html",
+   "https://jobs.tagesspiegel.de/job/maschinist-in-m-w-d-gleisbau-fliessbandtechnik.2060942125.html",
+   "https://jobs.tagesspiegel.de/job/account-manager-m-w-d.2060928935.html",
+   "https://jobs.tagesspiegel.de/job/aussendienstmitarbeiter-m-w-d.2060920515.html"
   ],
   "was": "unknown"
  },
@@ -3731,7 +3735,8 @@
    "https://hanssegmueller-portal.rexx-systems.com/Konditor-mwd-de-j3035.html",
    "https://hanssegmueller-portal.rexx-systems.com/Konditor-mwd-de-j3035.html\\",
    "https://hanssegmueller-portal.rexx-systems.com/weihnachten",
-   "https://hanssegmueller-portal.rexx-systems.com/weihnachten\\"
+   "https://hanssegmueller-portal.rexx-systems.com/weihnachten\\",
+   "https://hanssegmueller-portal.rexx-systems.com/it-application-specialist-mwd-de-j2983.html"
   ],
   "was": "custom"
  },
@@ -3999,23 +4004,6 @@
    "crawl https://jobs.takko.com/de-de: 19 jobs, 19 in Germany, 0 match the board"
   ],
   "skip": [
-   "https://jobs.takko.com/de-de/eschweiler/2569",
-   "https://jobs.takko.com/de-de/krefeld/2568",
-   "https://jobs.takko.com/de-de/muenster/2469",
-   "https://jobs.takko.com/de-de/muenster/2469/verkaeufer/teilzeit",
-   "https://jobs.takko.com/de-de/bremen/2479/minijob",
-   "https://jobs.takko.com/de-de/bremen/2467/minijob",
-   "https://jobs.takko.com/de-de/pritzwalk/1608",
-   "https://jobs.takko.com/de-de/pritzwalk/1608/filialleiter",
-   "https://jobs.takko.com/de-de/berlin/2535/filialleiter",
-   "https://jobs.takko.com/de-de/pirna/2342",
-   "https://jobs.takko.com/de-de/markdorf/2436",
-   "https://jobs.takko.com/de-de/ahlen/2491",
-   "https://jobs.takko.com/de-de/straelen/1639/verkaeufer/teilzeit",
-   "https://jobs.takko.com/de-de/hettstedt/2457",
-   "https://jobs.takko.com/de-de/muenchen/2555",
-   "https://jobs.takko.com/de-de/gieboldehausen/2466",
-   "https://jobs.takko.com/de-de/bremervoerde/1341",
    "https://jobs.takko.com/de-de/straelen/1639",
    "https://jobs.takko.com/de-de/rangsdorf/2508",
    "https://jobs.takko.com/de-de/cuxhaven/2500",
@@ -4298,7 +4286,24 @@
    "https://jobs.takko.com/de-de/saalfelden/4638",
    "https://jobs.takko.com/de-de/volketswil/4245",
    "https://jobs.takko.com/de-de/delmenhorst/2427",
-   "https://jobs.takko.com/de-de/arnsberg/2459"
+   "https://jobs.takko.com/de-de/arnsberg/2459",
+   "https://jobs.takko.com/de-de/egelsbach/2567",
+   "https://jobs.takko.com/de-de/berlin/2419/filialleiter",
+   "https://jobs.takko.com/de-de/roedental/2475/filialleiter",
+   "https://jobs.takko.com/de-de/hamburg/2441/minijob",
+   "https://jobs.takko.com/de-de/wolfsburg/2470/minijob",
+   "https://jobs.takko.com/de-de/lohrammain/2547/minijob",
+   "https://jobs.takko.com/de-de/leonberg/2519/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/emden/2501/minijob",
+   "https://jobs.takko.com/de-de/dortmund/2524/minijob",
+   "https://jobs.takko.com/de-de/emden/2501/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/rothenburgobdertauber/2556/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/mainz/2541/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/mainz/2541/filialleiter",
+   "https://jobs.takko.com/de-de/gladbeck/2452/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/kevelaer/2172/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/chemnitz/2442/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/geldern/2447/filialleiter"
   ],
   "was": "custom"
  },
