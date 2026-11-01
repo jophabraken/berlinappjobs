@@ -4004,21 +4004,6 @@
    "crawl https://jobs.takko.com/de-de: 19 jobs, 19 in Germany, 0 match the board"
   ],
   "skip": [
-   "https://jobs.takko.com/de-de/straelen/1639",
-   "https://jobs.takko.com/de-de/rangsdorf/2508",
-   "https://jobs.takko.com/de-de/cuxhaven/2500",
-   "https://jobs.takko.com/de-de/badhersfeld/2464",
-   "https://jobs.takko.com/de-de/borkum/2472",
-   "https://jobs.takko.com/de-de/bremervoerde/1341/filialleiter",
-   "https://jobs.takko.com/de-de/straelen/1639/filialleiter",
-   "https://jobs.takko.com/de-de/cuxhaven/2500/filialleiter",
-   "https://jobs.takko.com/de-de/hildesheim/2509/filialleiter",
-   "https://jobs.takko.com/de-de/badhersfeld/2464/verkaeufer",
-   "https://jobs.takko.com/de-de/borkum/2472/filialleiter",
-   "https://jobs.takko.com/de-de/schneverdingen/2418",
-   "https://jobs.takko.com/de-de/muenchen/2431",
-   "https://jobs.takko.com/de-de/schenefeld/2392",
-   "https://jobs.takko.com/de-de/worms/2536",
    "https://jobs.takko.com/de-de/baunatal/2554",
    "https://jobs.takko.com/de-de/chemnitz/2544",
    "https://jobs.takko.com/de-de/gelsenkirchen/2553",
@@ -4303,7 +4288,22 @@
    "https://jobs.takko.com/de-de/gladbeck/2452/verkaeufer/teilzeit",
    "https://jobs.takko.com/de-de/kevelaer/2172/verkaeufer/teilzeit",
    "https://jobs.takko.com/de-de/chemnitz/2442/verkaeufer/teilzeit",
-   "https://jobs.takko.com/de-de/geldern/2447/filialleiter"
+   "https://jobs.takko.com/de-de/geldern/2447/filialleiter",
+   "https://jobs.takko.com/de-de/pirna/2342",
+   "https://jobs.takko.com/de-de/eschweiler/2569",
+   "https://jobs.takko.com/de-de/krefeld/2568",
+   "https://jobs.takko.com/de-de/muenster/2469",
+   "https://jobs.takko.com/de-de/muenster/2469/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/pritzwalk/1608",
+   "https://jobs.takko.com/de-de/pritzwalk/1608/filialleiter",
+   "https://jobs.takko.com/de-de/berlin/2535/filialleiter",
+   "https://jobs.takko.com/de-de/markdorf/2436",
+   "https://jobs.takko.com/de-de/ahlen/2491",
+   "https://jobs.takko.com/de-de/straelen/1639/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/hettstedt/2457",
+   "https://jobs.takko.com/de-de/muenchen/2555",
+   "https://jobs.takko.com/de-de/gieboldehausen/2466",
+   "https://jobs.takko.com/de-de/bremervoerde/1341"
   ],
   "was": "custom"
  },
@@ -4593,7 +4593,8 @@
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae0720b57cfa*/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae324b32943d*/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae4758498ff7*/",
-   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae5bfc767321*/"
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae5bfc767321*/",
+   "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote/Junior-Store-Manager-wmd-de-j6092.html"
   ],
   "was": "unknown"
  },
