@@ -5,6 +5,7 @@ from paths import OUT, DATA, TODAY
 import fonts   # self-hosted Archivo: fonts.HEAD replaces the Google Fonts links
 from articles_src import ARTICLES as ARTICLES1
 from articles_src2 import ARTICLES2
+from articles_src3 import ARTICLES3
 import unicodedata
 
 def _slugify(name):
@@ -45,10 +46,10 @@ for _a in ARTICLES1:
         for k in ('title','metaTitle','desc','ctaLabel'): _a[k]=_uml_text(_a[k])
         _a['html']=_uml_html(_a['html'])
         _a['faq']=[[_uml_text(q),_uml_text(x)] for q,x in _a['faq']]
-for _a in ARTICLES2:
+for _a in ARTICLES2 + ARTICLES3:
     _a.setdefault('date','2026-09-22')
     _a['html']=_colinks(_a['html'], _a.get('lang', 'de'))
-ARTICLES = ARTICLES1 + ARTICLES2
+ARTICLES = ARTICLES1 + ARTICLES2 + ARTICLES3
 
 # Last substantial edit of each guide's text (body, FAQ, title or description). A guide without an entry
 # counts as unchanged since its publication date. Google: don't freshen a date without real changes, so the
