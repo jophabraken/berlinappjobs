@@ -136,14 +136,26 @@ def co_slug(name):
     return sl if os.path.isdir(os.path.join(OUT, 'companies', sl)) else None
 
 JOB_DIR = os.path.join(OUT, 'job')
+def page_sig(h):
+    """What counts as a real change for the sitemap's lastmod: title, meta description, apply link, ad text and whether
+    the page has JobPosting markup. Not the daily "last checked" date or validThrough, which change on every refresh."""
+    ms = [re.search(r'<title>(.*?)</title>', h, re.S), re.search(r'<meta name="description" content="([^"]*)"', h),
+          re.search(r'class="cta applybtn" href="([^"]*)"', h), re.search(r'<div class="jd">(.*?)</div>', h, re.S)]
+    return hashlib.md5(('\n'.join(m.group(1) if m else '' for m in ms) + str('"JobPosting"' in h)).encode()).hexdigest()
 # datePosted of jobs whose feed gives no date: keep the first day we saw the job (read from the page the last build
 # wrote) instead of the refresh date, which moved forward with every refresh (BMW, ABOUT YOU, AUTOHERO, S Broker, …).
 # Google: datePosted is the date the job was first posted.
-PREV_POSTED = {}
+PREV_POSTED = {}; PREV_SIG = {}
 for _sl in (os.listdir(JOB_DIR) if os.path.isdir(JOB_DIR) else []):
-    try: _m = re.search(r'"datePosted":\s*"(\d{4}-\d{2}-\d{2})', open(os.path.join(JOB_DIR, _sl, 'index.html'), encoding='utf-8').read())
-    except OSError: _m = None
+    try: _h = open(os.path.join(JOB_DIR, _sl, 'index.html'), encoding='utf-8').read()
+    except OSError: continue
+    _m = re.search(r'"datePosted":\s*"(\d{4}-\d{2}-\d{2})', _h)
     if _m: PREV_POSTED[_sl] = _m.group(1)
+    PREV_SIG[_sl] = page_sig(_h)
+# sitemap-jobs.xml lastmod: the day the page appeared or its content last changed, not the refresh date on every URL
+# (Google uses lastmod only if it is consistently accurate; then new pages stand out from the ~3,900 unchanged ones).
+try: PREV_LASTMOD = dict(re.findall(r'/job/([^/<]+)/</loc><lastmod>(\d{4}-\d{2}-\d{2})<', open(os.path.join(OUT, 'sitemap-jobs.xml'), encoding='utf-8').read()))
+except OSError: PREV_LASTMOD = {}
 shutil.rmtree(JOB_DIR, ignore_errors=True)   # local build dir only; the repo copy is handled at deploy time
 os.makedirs(JOB_DIR, exist_ok=True)
 
@@ -444,11 +456,13 @@ for rec in pages:
       + (FOOT if de else FOOT_EN) + EXPIRE_JS + BACK_JS + '</body></html>')
     d = os.path.join(JOB_DIR, slug); os.makedirs(d, exist_ok=True)
     open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(body)
+    _lm = PREV_LASTMOD.get(slug)
+    rec['lastmod'] = _lm if _lm and _lm <= FETCHED and PREV_SIG.get(slug) == page_sig(body) else FETCHED
 
 json.dump(mapping, open(os.path.join(DATA,'jobpages_map.json'), 'w'), ensure_ascii=False)
 sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 for rec in pages:
-    sm += f'  <url><loc>{SITE}/job/{rec["slug"]}/</loc><lastmod>{FETCHED}</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>\n'
+    sm += f'  <url><loc>{SITE}/job/{rec["slug"]}/</loc><lastmod>{rec["lastmod"]}</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>\n'
 sm += '</urlset>\n'
 open(os.path.join(OUT, 'sitemap-jobs.xml'), 'w', encoding='utf-8').write(sm)
 print('job pages:', len(pages), 'companies:', len(per_co), 'validThrough', VALID_THROUGH)
