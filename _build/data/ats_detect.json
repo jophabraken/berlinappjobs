@@ -583,7 +583,9 @@
    "https://www.bwi.de/karriere/stellenangebote/job/lead-service-technician-fertigung-verlegefahiger-rechenzentren-m-w-d-71207%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/senior-solution-architekt-application-migration-m-w-d-71211%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/senior-ux-designerin-bundesmessenger-m-w-d-71151",
-   "https://www.bwi.de/karriere/stellenangebote/job/operation-manager-fur-erp-business-applikations-w-m-d-71219%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
+   "https://www.bwi.de/karriere/stellenangebote/job/operation-manager-fur-erp-business-applikations-w-m-d-71219%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-csi-expert-service-portfolio-m-w-d-71284%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/it-architect-software-management-m-w-d-71168%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
   ],
   "was": "custom"
  },
@@ -1225,7 +1227,12 @@
    "https://jobs.tagesspiegel.de/job/jurist-in-w-m-d-vergabe-und-vertragsrecht-fachaufsicht-bundesbau-gestalten.2075846995.html",
    "https://jobs.tagesspiegel.de/job/projektingenieur-in-m-w-d-fassadentechnik-standort-berlin.2067082585.html",
    "https://jobs.tagesspiegel.de/job/aussendienstmitarbeiter-vertrieb-m-w-d.2054043595.html",
-   "https://jobs.tagesspiegel.de/job/quereinsteiger-kundenberater-aussendienst-m-w-d.2054041845.html"
+   "https://jobs.tagesspiegel.de/job/quereinsteiger-kundenberater-aussendienst-m-w-d.2054041845.html",
+   "https://jobs.tagesspiegel.de/job/physiotherapeut-m-w-d-hausbesuche.2076291705.html",
+   "https://jobs.tagesspiegel.de/job/lagerarbeiter-lagerhelfer-als-quereinsteiger-m-w-d.2076277615.html",
+   "https://jobs.tagesspiegel.de/job/mehrere-mitarbeitende-w-m-d-fuer-den-bereich-bewerbungsservice.2076271975.html",
+   "https://jobs.tagesspiegel.de/job/arbeitsvorbereiter-in-50hz-m-w-d-elektrotechnik-im-fahrleitungsbau.2076209585.html",
+   "https://jobs.tagesspiegel.de/job/projektmanager-in-schnittstellenmanager-in-m-w-d-umwelt-und-technische-planung.2069568425.html"
   ],
   "was": "unknown"
  },
@@ -2160,7 +2167,9 @@
    "https://www.igmetall.de/en/gewerkschaftstag-2023/so-funktioniert-der-gewerkschaftstag",
    "https://www.igmetall.de/gewerkschaftstag-2023/so-startet-der-gewerkschaftstag-2023",
    "https://www.igmetall.de/en/gewerkschaftstag-2023/so-startet-der-gewerkschaftstag-2023",
-   "https://www.igmetall.de/gewerkschaftstag-2023/tagesrueckblick-dienstag-gewerkschaftstag-2023"
+   "https://www.igmetall.de/gewerkschaftstag-2023/tagesrueckblick-dienstag-gewerkschaftstag-2023",
+   "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/Auszubildender-zum-Koch-mwd-de-j2052.html",
+   "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/Auszubildender-zum-Koch-mwd-de-j2114.html"
   ],
   "was": "custom"
  },
@@ -4017,23 +4026,6 @@
    "crawl https://jobs.takko.com/de-de: 19 jobs, 19 in Germany, 0 match the board"
   ],
   "skip": [
-   "https://jobs.takko.com/de-de/baunatal/2554",
-   "https://jobs.takko.com/de-de/chemnitz/2544",
-   "https://jobs.takko.com/de-de/gelsenkirchen/2553",
-   "https://jobs.takko.com/de-de/celle/2262",
-   "https://jobs.takko.com/de-de/chemnitz/2552",
-   "https://jobs.takko.com/de-de/mannheim/2448",
-   "https://jobs.takko.com/de-de/gosen-neuzittau/2476",
-   "https://jobs.takko.com/de-de/bingen/2543",
-   "https://jobs.takko.com/de-de/viernheim/2550",
-   "https://jobs.takko.com/de-de/hamburg/2545",
-   "https://jobs.takko.com/de-de/berlin/2549",
-   "https://jobs.takko.com/de-de/recklinghausen/2542",
-   "https://jobs.takko.com/de-de/mainz/2541",
-   "https://jobs.takko.com/de-de/messancy/3850",
-   "https://jobs.takko.com/de-de/lohrammain/2547",
-   "https://jobs.takko.com/de-de/aachen/2539",
-   "https://jobs.takko.com/de-de/paderborn/2537",
    "https://jobs.takko.com/de-de/kassel/2540",
    "https://jobs.takko.com/de-de/marghera/6113",
    "https://jobs.takko.com/de-de/santavittoriad%E2%80%99alba/6114",
@@ -4316,7 +4308,24 @@
    "https://jobs.takko.com/de-de/hettstedt/2457",
    "https://jobs.takko.com/de-de/muenchen/2555",
    "https://jobs.takko.com/de-de/gieboldehausen/2466",
-   "https://jobs.takko.com/de-de/bremervoerde/1341"
+   "https://jobs.takko.com/de-de/bremervoerde/1341",
+   "https://jobs.takko.com/de-de/wuppertal/2563",
+   "https://jobs.takko.com/de-de/essen/2513/minijob",
+   "https://jobs.takko.com/de-de/sondershausen/2435/minijob",
+   "https://jobs.takko.com/de-de/rangsdorf/2508",
+   "https://jobs.takko.com/de-de/straelen/1639",
+   "https://jobs.takko.com/de-de/cuxhaven/2500",
+   "https://jobs.takko.com/de-de/badhersfeld/2464",
+   "https://jobs.takko.com/de-de/borkum/2472",
+   "https://jobs.takko.com/de-de/bremervoerde/1341/filialleiter",
+   "https://jobs.takko.com/de-de/straelen/1639/filialleiter",
+   "https://jobs.takko.com/de-de/hildesheim/2509/filialleiter",
+   "https://jobs.takko.com/de-de/badhersfeld/2464/verkaeufer",
+   "https://jobs.takko.com/de-de/borkum/2472/filialleiter",
+   "https://jobs.takko.com/de-de/schneverdingen/2418",
+   "https://jobs.takko.com/de-de/muenchen/2431",
+   "https://jobs.takko.com/de-de/schenefeld/2392",
+   "https://jobs.takko.com/de-de/worms/2536"
   ],
   "was": "custom"
  },
@@ -4607,7 +4616,8 @@
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae324b32943d*/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae4758498ff7*/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae5bfc767321*/",
-   "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote/Junior-Store-Manager-wmd-de-j6092.html"
+   "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote/Junior-Store-Manager-wmd-de-j6092.html",
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae9c8f0a0507*/"
   ],
   "was": "unknown"
  },
@@ -5034,6 +5044,7 @@
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2752992": "2026-10-25",
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2768300": "2026-10-25",
   "https://ionity-gmbh.jobs.personio.de/job/2624591": "2026-10-25",
+  "https://ionity-gmbh.jobs.personio.de/job/2630311": "2026-11-03",
   "https://ionity-gmbh.jobs.personio.de/job/2817697": "2026-10-30",
   "https://ionity-gmbh.jobs.personio.de/job/994367": "2026-10-25",
   "https://omos-media.jobs.personio.de/job/2645310": "2026-10-27",
