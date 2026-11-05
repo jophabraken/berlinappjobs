@@ -100,7 +100,7 @@
   "was": "custom"
  },
  "AOK – Die Gesundheitskasse": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.aok.de/karriere/: 0 jobs, 0 in Germany, 0 match the board"
@@ -124,7 +124,7 @@
   "was": "unknown"
  },
  "AUTODOC SE - Auto Parts Online Store": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://career.autodoc.group/en/: 0 jobs, 0 in Germany, 0 match the board"
@@ -250,7 +250,7 @@
   "was": "custom"
  },
  "Atruvia AG": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://karriere.atruvia.de/: 0 jobs, 0 in Germany, 0 match the board"
@@ -291,7 +291,7 @@
   "was": "custom"
  },
  "Axel Springer Deutschland GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "load https://careers.axelspringer.com: URLError",
@@ -323,7 +323,7 @@
   "was": "unknown"
  },
  "BARMER": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://jobs.barmer.de/: 0 jobs, 0 in Germany, 0 match the board"
@@ -598,12 +598,14 @@
    "https://www.bwi.de/karriere/stellenangebote/job/senior-it-architect-wan-m-w-d-71260%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/lead-devsecops-engineer-m-w-d-71268%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
    "https://www.bwi.de/karriere/stellenangebote/job/systems-engineer-m-w-d-71296%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
-   "https://www.bwi.de/karriere/stellenangebote/job/senior-it-architect-collaboration-file-share-m-w-d-71244%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
+   "https://www.bwi.de/karriere/stellenangebote/job/senior-it-architect-collaboration-file-share-m-w-d-71244%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/hr-senior-supporter-m-w-d-71324%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/cloud-engineer-m-w-d-71228%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20"
   ],
   "was": "custom"
  },
  "Babbel": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://jobs.babbel.com/: 0 jobs, 0 in Germany, 0 match the board"
@@ -665,7 +667,7 @@
   "was": "custom"
  },
  "BestSecret GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://careersportal.bestsecret.com/search/?q=&searchResultView=LIST: 45 jobs, 0 in Germany, 0 match the board"
@@ -698,7 +700,7 @@
   "was": "join"
  },
  "Blinks Labs GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "load https://www.blinkist.com/en/jobs: HTTPError",
@@ -717,7 +719,7 @@
   "was": "unknown"
  },
  "BodyFast GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.bodyfast.app/jobs: 0 jobs, 0 in Germany, 0 match the board"
@@ -766,7 +768,7 @@
   "was": "custom"
  },
  "Bundesamt für Bevölkerungsschutz (Deutschland)": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "load https://www.bbk.bund.de/DE/Service/Stellenangebote/stellenangebote_node.html: HTTPError",
@@ -824,7 +826,7 @@
   "was": "custom"
  },
  "C&A Mode GmbH & Co. KG": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.c-and-a.com/eu/en/corporate/company/careers/start: 0 jobs, 0 in Germany, 0 match the board"
@@ -888,7 +890,7 @@
   "was": "custom"
  },
  "Callosum Software": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://info.tellonym.me/jobs: 0 jobs, 0 in Germany, 0 match the board"
@@ -919,7 +921,7 @@
   "was": "custom"
  },
  "Chefkoch GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "load https://team.chefkoch.de/: HTTPError",
@@ -957,7 +959,7 @@
   "was": "custom"
  },
  "CodeCheck": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "load https://codecheck-app.com/?page_id=4528: HTTPError",
@@ -966,7 +968,7 @@
   "was": "none"
  },
  "Commerzbank AG": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://jobs.commerzbank.com/: 0 jobs, 0 in Germany, 0 match the board"
@@ -1122,7 +1124,7 @@
   "was": "custom"
  },
  "Deca Games": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://deca-games.breezy.hr/: 0 jobs, 0 in Germany, 0 match the board"
@@ -1251,7 +1253,13 @@
    "https://jobs.tagesspiegel.de/job/rohrnetzfacharbeiter-in-fuer-spezialtechnik-w-m-d.2069951165.html",
    "https://jobs.tagesspiegel.de/job/projektingenieurin-projektingenieur-licht-und-kraftanlagen-in-grossprojekten-w-m-d.2069932025.html",
    "https://jobs.tagesspiegel.de/job/technischer-fachberater-shk-tga-m-w-d-im-aussendienst-region-berlin-brandenburg.2069812645.html",
-   "https://jobs.tagesspiegel.de/job/nachwuchsingenieur-in-m-w-d-im-ingenieur-und-infrastrukturbau.2069752855.html"
+   "https://jobs.tagesspiegel.de/job/nachwuchsingenieur-in-m-w-d-im-ingenieur-und-infrastrukturbau.2069752855.html",
+   "https://jobs.tagesspiegel.de/job/assistent-in-m-w-d-der-geschaeftsfuehrung-schwerpunkt-buchhaltung-buchhalter-teamassistenz-executive-assistant-o-ae.2077749715.html",
+   "https://jobs.tagesspiegel.de/job/facheinkaeufer-in-bau-w-m-d-befristet.2077762915.html",
+   "https://jobs.tagesspiegel.de/job/leiter-in-wasser-w-m-d.2077761895.html",
+   "https://jobs.tagesspiegel.de/job/mitarbeiter-in-beschaffungsmanagement-elektromobilitaet-w-m-d.2077776135.html",
+   "https://jobs.tagesspiegel.de/job/mitarbeiter-in-im-netzbetrieb-abwasser-w-m-d-standort-schoeneberg.2077758675.html",
+   "https://jobs.tagesspiegel.de/job/teamkoordination-w-m-d-im-rechenzentrumsbetrieb.2077644235.html"
   ],
   "was": "unknown"
  },
@@ -1262,7 +1270,7 @@
   "was": "custom"
  },
  "Deutsche Bahn": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://db.jobs: 0 jobs, 0 in Germany, 0 match the board"
@@ -1287,7 +1295,7 @@
   "was": "custom"
  },
  "Deutsche Post AG": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://careers.dhl.com/: 0 jobs, 0 in Germany, 0 match the board"
@@ -1303,7 +1311,7 @@
   "was": "personio"
  },
  "Deutsche Telekom AG": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://careers.telekom.com/de: 0 jobs, 0 in Germany, 0 match the board"
@@ -1340,7 +1348,7 @@
   "was": "custom"
  },
  "Deutscher Wetterdienst": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "load https://www.dwd.de/DE/karriere/karriere_node.html: HTTPError",
@@ -1367,7 +1375,7 @@
   "was": "custom"
  },
  "DoctorBox": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "join https://join.com/companies/doctorbox: 0 jobs, 0 in Germany, 0 match the board",
@@ -1556,7 +1564,8 @@
    "https://careers.enbw.com/de/de/c/projektmanagement-jobs",
    "https://careers.enbw.com/de/de/c/controlling-finanzen-jobs",
    "https://careers.enbw.com/de/de/job/EBQEBQGLOBAL25855EXTERNALDEDE/Senior-Communications-Manager-m-f-d",
-   "https://careers.enbw.com/global/en/job/EBQEBQGLOBAL24240EXTERNALENGLOBAL/Manager-Contract-Excellence-Center-Procurement-w-m-d"
+   "https://careers.enbw.com/global/en/job/EBQEBQGLOBAL24240EXTERNALENGLOBAL/Manager-Contract-Excellence-Center-Procurement-w-m-d",
+   "https://careers.enbw.com/global/en/job/EBQEBQGLOBAL25023EXTERNALENGLOBAL/Senior-PMO-m-f-d-Trading-Technology-Energy-Trading"
   ],
   "was": "custom"
  },
@@ -1621,7 +1630,7 @@
   "was": "custom"
  },
  "FDG Entertainment GmbH & Co.KG": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.fdg-entertainment.com/jobs: 0 jobs, 0 in Germany, 0 match the board"
@@ -1729,7 +1738,7 @@
   "was": "greenhouse"
  },
  "Flaregames": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "load https://www.flaregames.com/careers: HTTPError",
@@ -1738,7 +1747,7 @@
   "was": "none"
  },
  "Fox & Sheep": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [],
   "was": "none"
@@ -1753,7 +1762,7 @@
   "was": "unknown"
  },
  "Freeletics": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.freeletics.com/en/corporate/jobs/: 0 jobs, 0 in Germany, 0 match the board"
@@ -1761,7 +1770,7 @@
   "was": "custom"
  },
  "Fressnapf": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://jobs.fressnapf-maxizoo.com/de/: 0 jobs, 0 in Germany, 0 match the board"
@@ -1806,7 +1815,7 @@
   "was": "custom"
  },
  "GameDuell": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://inside.gameduell.com/jobs/: 0 jobs, 0 in Germany, 0 match the board"
@@ -2309,7 +2318,7 @@
   "was": "custom"
  },
  "Joyride GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "join https://join.com/companies/jaumo: 0 jobs, 0 in Germany, 0 match the board",
@@ -2393,10 +2402,10 @@
   "was": "custom"
  },
  "King": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "https://careers.king.com/sitemap.xml",
   "log": [
-   "crawl https://careers.king.com/: 25 jobs, 0 in Germany, 0 match the board"
+   "crawl https://careers.king.com/: 16 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -2427,7 +2436,8 @@
    "https://jobs.klassikradio.de/Quartals-",
    "https://jobs.klassikradio.de/de\\",
    "https://jobs.klassikradio.de/de\\\\\\",
-   "https://jobs.klassikradio.de/Woche"
+   "https://jobs.klassikradio.de/Woche",
+   "https://jobs.klassikradio.de/de?id=dcbde0"
   ],
   "was": "custom"
  },
@@ -2438,7 +2448,7 @@
   "was": "custom"
  },
  "KptnCook GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.kptncook.com/jobs: 0 jobs, 0 in Germany, 0 match the board"
@@ -2480,7 +2490,7 @@
   "was": "custom"
  },
  "LEO GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "load https://dict.leo.org/pages/about/ende/jobs_de.html: HTTPError",
@@ -2489,7 +2499,7 @@
   "was": "none"
  },
  "LITE Games": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.lite.games/jobs/: 0 jobs, 0 in Germany, 0 match the board"
@@ -2518,7 +2528,8 @@
    "https://karriere.lvm.de/jobs/trainer-schwerpunkt-weiterbildung-komposit-m-w-d-9998",
    "https://karriere.lvm.de/jobs/ausbildung-zum-kaufmann-fuer-versicherungen-und-finanzanlagen-m-w-d-in-enge-sande-2026-8989",
    "https://karriere.lvm.de/jobs/data-scientist-m-w-d-10421",
-   "https://karriere.lvm.de/jobs/regionalverantwortlicher-agenturausbau-und-entwicklung-m-w-d-fuer-westthueringen-10071"
+   "https://karriere.lvm.de/jobs/regionalverantwortlicher-agenturausbau-und-entwicklung-m-w-d-fuer-westthueringen-10071",
+   "https://karriere.lvm.de/jobs/ausbildung-zum-kaufmann-fuer-versicherungen-und-finanzanlagen-m-w-d-in-vreden-9909"
   ],
   "was": "custom"
  },
@@ -2553,7 +2564,7 @@
   "was": "unknown"
  },
  "Lidl": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://jobs.lidl.de: 0 jobs, 0 in Germany, 0 match the board"
@@ -2611,7 +2622,7 @@
   "was": "custom"
  },
  "Lufthansa Group": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.lufthansagroup.careers/: 0 jobs, 0 in Germany, 0 match the board"
@@ -2751,7 +2762,7 @@
   "was": "none"
  },
  "McDonald's Deutschland LLC": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "load https://karriere.mcdonalds.de/jobangebote/: HTTPError",
@@ -2801,7 +2812,8 @@
   ],
   "skip": [
    "https://karriere.miele.de/young-talents/abschlussarbeit-praktikum-werkstudierendenjob",
-   "https://karriere.miele.de/offer/servicetechniker-im-aussendienst-m-/9ab1d0dc-da3a-40f5-a2cc-362480d3959c"
+   "https://karriere.miele.de/offer/servicetechniker-im-aussendienst-m-/9ab1d0dc-da3a-40f5-a2cc-362480d3959c",
+   "https://karriere.miele.de/offer/ausbildung-als-elektroniker-fur-bet/1e40c09d-2160-47e8-97b5-fd8a6ac89106"
   ],
   "was": "custom"
  },
@@ -2909,7 +2921,7 @@
   "was": "unknown"
  },
  "NEW YORKER Marketing & Media International GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://jobs.newyorker.de/: 0 jobs, 0 in Germany, 0 match the board"
@@ -2949,7 +2961,7 @@
   "was": "custom"
  },
  "Nero AG": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "bamboohr https://nerointernal.bamboohr.com/careers: 0 jobs, 0 in Germany, 0 match the board",
@@ -3104,7 +3116,7 @@
   "was": "join"
  },
  "Otto GmbH & Co. KGaA": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.otto.de/jobs: 0 jobs, 0 in Germany, 0 match the board"
@@ -3248,7 +3260,7 @@
   "was": "softgarden"
  },
  "Playa Games": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.playa-games.com/career/index.html: 0 jobs, 0 in Germany, 0 match the board"
@@ -3346,7 +3358,7 @@
   "was": "custom"
  },
  "RTL interactive GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "load https://karriere.rtl.de/: URLError",
@@ -3797,7 +3809,7 @@
   "was": "custom"
  },
  "SevenOne Entertainment Group GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://jobs.prosiebensat1.com: 44 jobs, 0 in Germany, 0 match the board"
@@ -3834,7 +3846,7 @@
   "was": "none"
  },
  "Sky Deutschland Fernsehen GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://careers.sky.com/: 0 jobs, 0 in Germany, 0 match the board"
@@ -3860,7 +3872,7 @@
   "was": "custom"
  },
  "SoundCloud": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://soundcloud.com/company/careers: 0 jobs, 0 in Germany, 0 match the board"
@@ -3919,7 +3931,7 @@
   "was": "custom"
  },
  "StarBerry Games": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.starberry.games/careers: 0 jobs, 0 in Germany, 0 match the board"
@@ -3985,7 +3997,7 @@
   "was": "custom"
  },
  "Sunday.gg": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "join https://join.com/companies/sunday: 0 jobs, 0 in Germany, 0 match the board",
@@ -4048,27 +4060,6 @@
    "crawl https://jobs.takko.com/de-de: 19 jobs, 19 in Germany, 0 match the board"
   ],
   "skip": [
-   "https://jobs.takko.com/de-de/laatzen/2530",
-   "https://jobs.takko.com/de-de/kemnath/2453",
-   "https://jobs.takko.com/de-de/kempten/2526",
-   "https://jobs.takko.com/de-de/osnabrueck/2434",
-   "https://jobs.takko.com/de-de/guestrow/2504",
-   "https://jobs.takko.com/de-de/passau/2410",
-   "https://jobs.takko.com/de-de/hilden/2525",
-   "https://jobs.takko.com/de-de/duisburg/2518",
-   "https://jobs.takko.com/de-de/euskirchen/2523",
-   "https://jobs.takko.com/de-de/bergamo/6111",
-   "https://jobs.takko.com/de-de/solym%C3%A1r/4788",
-   "https://jobs.takko.com/de-de/ninove/3842",
-   "https://jobs.takko.com/de-de/duesseldorf/2515",
-   "https://jobs.takko.com/de-de/dortmund/2517",
-   "https://jobs.takko.com/de-de/hameln/2521",
-   "https://jobs.takko.com/de-de/hamburg/2520",
-   "https://jobs.takko.com/de-de/dortmund/2524",
-   "https://jobs.takko.com/de-de/buchholzindernordheide/2516",
-   "https://jobs.takko.com/de-de/meissen/2522",
-   "https://jobs.takko.com/de-de/wien/4637",
-   "https://jobs.takko.com/de-de/utrecht/4182",
    "https://jobs.takko.com/de-de/wesendorf/2463",
    "https://jobs.takko.com/de-de/guetersloh/2514",
    "https://jobs.takko.com/de-de/cisanobergamasco/6109",
@@ -4347,7 +4338,28 @@
    "https://jobs.takko.com/de-de/messancy/3850",
    "https://jobs.takko.com/de-de/lohrammain/2547",
    "https://jobs.takko.com/de-de/aachen/2539",
-   "https://jobs.takko.com/de-de/paderborn/2537"
+   "https://jobs.takko.com/de-de/paderborn/2537",
+   "https://jobs.takko.com/de-de/wuppertal/2563/minijob",
+   "https://jobs.takko.com/de-de/kassel/2540",
+   "https://jobs.takko.com/de-de/marghera/6113",
+   "https://jobs.takko.com/de-de/santavittoriad%E2%80%99alba/6114",
+   "https://jobs.takko.com/de-de/offenburg/2551",
+   "https://jobs.takko.com/de-de/hannover/2546",
+   "https://jobs.takko.com/de-de/hagen/2458",
+   "https://jobs.takko.com/de-de/wiesbaden/2531",
+   "https://jobs.takko.com/de-de/oberwart/4639",
+   "https://jobs.takko.com/de-de/muenchen/2532",
+   "https://jobs.takko.com/de-de/goeppingen/2533",
+   "https://jobs.takko.com/de-de/dallgow-doeberitz/2534",
+   "https://jobs.takko.com/de-de/berlin/2535",
+   "https://jobs.takko.com/de-de/tielt-winge/3844",
+   "https://jobs.takko.com/de-de/sint-lambrechts-woluwe/3845",
+   "https://jobs.takko.com/de-de/baeleneupen/3846",
+   "https://jobs.takko.com/de-de/westerlo/3847",
+   "https://jobs.takko.com/de-de/lalouvi%C3%A8re/3848",
+   "https://jobs.takko.com/de-de/aschaffenburg/2527",
+   "https://jobs.takko.com/de-de/steinheim/2528",
+   "https://jobs.takko.com/de-de/alpen/2529"
   ],
   "was": "custom"
  },
@@ -4397,7 +4409,7 @@
   "was": "custom"
  },
  "Techniker Krankenkasse (TK)": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.tk.de/karriere: 0 jobs, 0 in Germany, 0 match the board"
@@ -4423,7 +4435,7 @@
   "was": "custom"
  },
  "Telekom Deutschland GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://careers.telekom.com/de: 0 jobs, 0 in Germany, 0 match the board"
@@ -4641,7 +4653,8 @@
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae5bfc767321*/",
    "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote/Junior-Store-Manager-wmd-de-j6092.html",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6ae9c8f0a0507*/",
-   "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote/Junior-Floor-Manager-wmd-de-j5582.html"
+   "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote/Junior-Floor-Manager-wmd-de-j5582.html",
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6aec707181a20*/"
   ],
   "was": "unknown"
  },
@@ -4798,7 +4811,7 @@
   "was": "none"
  },
  "Vodafone GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://careers.vodafone.com/de/: 0 jobs, 0 in Germany, 0 match the board"
@@ -4835,10 +4848,12 @@
   "was": "custom"
  },
  "WEB.DE": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
+  "feed": "https://www.united-internet.de/jobs-karriere/",
   "feed_was": "",
+  "found": "crawl",
   "log": [
-   "crawl https://www.united-internet.de/jobs-karriere/: 0 jobs, 0 in Germany, 0 match the board"
+   "crawl https://www.united-internet.de/jobs-karriere/: 19 jobs, 18 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -4983,10 +4998,10 @@
   "was": "custom"
  },
  "ZDFonline": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
-   "crawl https://jobs.zdf.de/: 25 jobs, 0 in Germany, 0 match the board"
+   "crawl https://jobs.zdf.de/: 34 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -5065,18 +5080,16 @@
   "https://finanztip.jobs.personio.de/job/2862489": "2026-10-29",
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/1886091": "2026-10-25",
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2322728": "2026-10-29",
-  "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2752992": "2026-10-25",
   "https://franckh-kosmos-verlags-gmbh.jobs.personio.de/job/2768300": "2026-10-25",
   "https://ionity-gmbh.jobs.personio.de/job/2624591": "2026-10-25",
-  "https://ionity-gmbh.jobs.personio.de/job/2630311": "2026-11-03",
-  "https://ionity-gmbh.jobs.personio.de/job/2817697": "2026-10-30",
   "https://ionity-gmbh.jobs.personio.de/job/994367": "2026-10-25",
   "https://omos-media.jobs.personio.de/job/2645310": "2026-10-27",
   "https://omos-media.jobs.personio.de/job/2659536": "2026-10-27",
   "https://omos-media.jobs.personio.de/job/2729250": "2026-10-24",
   "https://omos-media.jobs.personio.de/job/2734154": "2026-11-02",
-  "https://omos-media.jobs.personio.de/job/2814050": "2026-10-22",
+  "https://omos-media.jobs.personio.de/job/2814050": "2026-11-05",
   "https://omos-media.jobs.personio.de/job/2857314": "2026-11-04",
+  "https://omos-media.jobs.personio.de/job/2875469": "2026-11-05",
   "https://tandem.net/pages/careers/jobs/2509364": "2026-10-26",
   "https://tandem.net/pages/careers/jobs/2768964": "2026-10-26",
   "https://tandem.net/pages/careers/jobs/2792207": "2026-10-26",
@@ -5091,7 +5104,7 @@
   "was": "custom"
  },
  "adidas": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "load https://careers.adidas-group.com: TimeoutError",
@@ -5202,7 +5215,7 @@
   "was": "unknown"
  },
  "bonprix": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://bonprix.jobs/de/job-portal: 0 jobs, 0 in Germany, 0 match the board"
@@ -5210,7 +5223,7 @@
   "was": "custom"
  },
  "clickworker GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.clickworker.com/careers/: 0 jobs, 0 in Germany, 0 match the board"
@@ -5226,7 +5239,7 @@
   "was": "custom"
  },
  "congstar GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.congstar.de/das-ist-congstar/jobs-karriere/: 0 jobs, 0 in Germany, 0 match the board"
@@ -5234,7 +5247,7 @@
   "was": "unknown"
  },
  "corporate benefits IT solutions GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.corporate-benefits.de/karriere: 0 jobs, 0 in Germany, 0 match the board"
@@ -5274,7 +5287,7 @@
   "was": "none"
  },
  "dm-drogerie markt GmbH + Co. KG": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://www.dm-jobs.de/: 0 jobs, 0 in Germany, 0 match the board"
@@ -5334,7 +5347,7 @@
   "was": "unknown"
  },
  "flowkey": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "https://flowkey.breezy.hr/json",
   "log": [
    "crawl https://flowkey.breezy.hr/: 0 jobs, 0 in Germany, 0 match the board"
@@ -5439,7 +5452,7 @@
   "was": "custom"
  },
  "kleinanzeigen.de GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://kleinanzeigendegmbh.careers.hibob.com/: 0 jobs, 0 in Germany, 0 match the board"
@@ -5520,7 +5533,7 @@
   "was": "unknown"
  },
  "mobile.de GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://mobilede.careers.hibob.com/jobs: 0 jobs, 0 in Germany, 0 match the board"
@@ -5694,7 +5707,7 @@
   "was": "custom"
  },
  "wetter.com Group GmbH": {
-  "checked": "2026-10-06",
+  "checked": "2026-11-05",
   "feed_was": "",
   "log": [
    "crawl https://karriere.wetter.com/en/jobs: 0 jobs, 0 in Germany, 0 match the board"
