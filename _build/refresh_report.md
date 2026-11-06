@@ -1,124 +1,338 @@
-# Job refresh 2026-11-05
+# Job refresh 2026-11-06
 
-- API feeds: 260, failed: 21; custom career pages link-checked: 344 links, 0 removed
-- Jobs: 4655 → 4678 (new 157, closed 134, still open 3951)
-- Full descriptions read from job pages: 0 (custom career pages) + 1 (feeds without descriptions, 3 pages checked)
-- Companies that were shown as not hiring and now list jobs: 1
-- Hiring-system detection: 60 companies checked, 1 now read directly
-- Published salaries added: 3; companies kept as-is because of a suspicious result: 1
+- API feeds: 260, failed: 20; custom career pages link-checked: 200 links, 21 removed
+- Jobs: 1962 → 2200 (new 312, closed 53, still open 1594)
+- Full descriptions read from job pages: 0 (custom career pages) + 0 (feeds without descriptions, 0 pages checked)
+- Companies that were shown as not hiring and now list jobs: 8
+- Hiring-system detection: 0 companies checked, 0 now read directly
+- Published salaries added: 5; companies kept as-is because of a suspicious result: 1
+- Jobs already on the board dropped by the app-impact rule (app_roles.py): 2716 at 170 companies
 - Result: written
 
 ## Changes by company
 
-- ABOUT YOU SE & Co. KG (crawl): 52 → 52 jobs (3 closed)
-- AMBOSS (ashby): 11 → 12 jobs (0 closed)
-- AUTOHERO (crawl): 38 → 37 jobs (3 closed)
-- AVIRA (ashby): 99 ads from other employers dropped (EMPLOYER rule)
-- AXA Deutschland (crawl): 56 → 53 jobs (3 closed)
-- Aktion Mensch e.V. (personio): 7 → 6 jobs (1 closed)
-- Axel Springer Deutschland GmbH | WELT Digital (crawl): 52 → 54 jobs (3 closed)
-- BUDNI Handels- und Service GmbH & Co. KG (crawl): 34 → 36 jobs (0 closed)
-- BWI GmbH (crawl): 60 → 60 jobs (3 closed, 33 newer ads waiting (cap 60))
-- Bloomwell GmbH (personio): 14 → 15 jobs (0 closed)
-- Borussia Dortmund (softgarden): 17 → 15 jobs (2 closed)
-- Buhl Data Service GmbH (personio): 10 → 9 jobs (1 closed)
-- CEWE (workday): 32 → 33 jobs (0 closed)
-- CTS EVENTIM AG & Co. KGaA (workday): 27 → 29 jobs (0 closed)
-- Cornelsen Verlag GmbH (crawl): 14 → 12 jobs (2 closed)
-- DATEV eG (workday): 57 → 58 jobs (0 closed)
-- DIHK-Bildungs-gGmbH (crawl): 6 → 7 jobs (0 closed)
-- Debeka (workday): 60 → 60 jobs (1 closed, 42 newer ads waiting (cap 60))
-- Der Tagesspiegel (crawl): 1 ads from other employers dropped (EMPLOYER rule)
-- Dirk Rossmann GmbH (crawl): 33 → 33 jobs (1 closed)
-- ERGO Group AG (crawl): 60 → 60 jobs (1 closed, 8 newer ads waiting (cap 60))
-- EWE AG (workday): 53 → 54 jobs (2 closed)
-- EnBW AG (crawl): 60 → 60 jobs (2 closed, 4 newer ads waiting (cap 60))
-- Enpal B.V. (ashby): 60 → 60 jobs (2 closed, 55 newer ads waiting (cap 60))
-- FRITZ! GmbH (crawl): 20 → 16 jobs (4 closed)
-- FitX | FOR ALL OF US (crawl): 55 → 53 jobs (5 closed)
-- Flink SE (smartrecruiters): 20 → 18 jobs (2 closed)
-- Flix SE (greenhouse): 40 → 38 jobs (4 closed)
-- Franckh-Kosmos Verlags GmbH & Co. KG (personio): 4 → 3 jobs (1 closed)
-- Globus Fachmärkte (crawl): 60 → 60 jobs (3 closed, 4 newer ads waiting (cap 60))
-- Governikus Service GmbH (personio): 13 → 14 jobs (0 closed)
-- Handelsblatt GmbH (crawl): 20 → 22 jobs (0 closed)
-- HanseMerkur Krankenversicherung AG (crawl): 19 → 20 jobs (0 closed)
-- Hanseatic Bank GmbH & Co KG (custom): 4/4 links 404 (since 2026-10-04), looks like a site change, kept all
-- HelloFresh SE (greenhouse): 60 → 60 jobs (3 closed, 30 newer ads waiting (cap 60))
-- Holidu GmbH (ashby): would shrink 8 → 1, kept old jobs
-- HomeToGo (personio): 8 → 7 jobs (1 closed)
-- IG Metall Vorstand (crawl): fetch failed, kept 8 jobs. SiteChanged: no job page with JobPosting data among 8 pages (site changed?)
-- ING Deutschland (crawl): 36 → 39 jobs (1 closed)
-- IONITY GmbH (personio): 4 → 2 jobs (2 closed)
-- InStaff & Jobs GmbH (personio): 3 → 2 jobs (1 closed)
-- Intelligent Apps GmbH (greenhouse): 4 → 2 jobs (2 closed)
-- Kaufmännische Krankenkasse - KKH (crawl): 28 → 44 jobs (1 closed)
-- Klassik Radio AG (crawl): 7 → 6 jobs (1 closed)
-- L'Osteria Pizza e Pasta (softgarden): 60 → 60 jobs (2 closed, 127 newer ads waiting (cap 60))
-- LIQUI MOLY GmbH (personio): 11 → 13 jobs (0 closed)
-- LOTTO24 (ashby): 13 → 12 jobs (1 closed)
-- LVM Versicherung Münster a.G. (crawl): 59 → 60 jobs (0 closed, 26 newer ads waiting (cap 60))
-- Leipziger Verkehrsbetriebe (crawl): 19 → 18 jobs (1 closed)
-- METRO Digital GmbH (crawl): 14 → 15 jobs (0 closed)
-- MetaFlow (personio): 6 → 7 jobs (0 closed)
+- 1. FC Köln (personio): 3 new ads skipped, no impact on the app
+- ABOUT YOU SE & Co. KG (crawl): 52 → 53 jobs (2 closed)
+- AMBOSS (ashby): 12 → 10 jobs (2 closed)
+- ATP Autoteile GmbH (personio): 1 new ads skipped, no impact on the app
+- AUTOHERO (crawl): 1 new ads skipped, no impact on the app
+- AUTOHERO (crawl): 34 → 36 jobs (1 closed)
+- AVIRA (ashby): 46 ads from other employers dropped (EMPLOYER rule)
+- AVIRA (ashby): 55 new ads skipped, no impact on the app
+- AXA Deutschland (crawl): 24 new ads skipped, no impact on the app
+- AXA Deutschland (crawl): 7 → 6 jobs (1 closed)
+- Axel Springer Deutschland GmbH | WELT Digital (crawl): 29 new ads skipped, no impact on the app
+- BMW GROUP (crawl): 44 new ads skipped, no impact on the app
+- BWI GmbH (crawl): 11 → 36 jobs (1 closed) ⚠ big jump, worth a look
+- Bloomwell GmbH (personio): 1 new ads skipped, no impact on the app
+- Blue Ocean Entertainment AG (personio): 2 new ads skipped, no impact on the app
+- Bundesliga Media GmbH (personio): 14 new ads skipped, no impact on the app
+- Bünting E-Commerce GmbH & Co. KG (crawl): now hiring, 1 jobs listed (was tier 2)
+- CTS EVENTIM AG & Co. KGaA (workday): 6 → 7 jobs (0 closed)
+- DATEV eG (workday): 58 → 60 jobs (0 closed)
+- DER SPIEGEL GmbH & Co. KG (softgarden): 8 new ads skipped, no impact on the app
+- Debeka (workday): 7 → 17 jobs (0 closed)
+- Deichmann SE (crawl): 20 new ads skipped, no impact on the app
+- Der Tagesspiegel (crawl): 1 new ads skipped, no impact on the app
+- Dirk Rossmann GmbH (crawl): 6 → 18 jobs (0 closed)
+- EGYM (ashby): 36 → 37 jobs (0 closed)
+- ERGO Group AG (crawl): 13 new ads skipped, no impact on the app
+- EnBW AG (crawl): 3 new ads skipped, no impact on the app
+- EnBW AG (crawl): 6 → 7 jobs (1 closed)
+- Enpal B.V. (ashby): 141 new ads skipped, no impact on the app
+- Enpal B.V. (ashby): 7 → 8 jobs (0 closed)
+- Europa-Park GmbH & Co Mack KG (crawl): 1 → 3 jobs (0 closed)
+- Europa-Park GmbH & Co Mack KG (crawl): 24 new ads skipped, no impact on the app
+- Flaconi (greenhouse): 4 new ads skipped, no impact on the app
+- Flix SE (greenhouse): 2 new ads skipped, no impact on the app
+- Flix SE (greenhouse): 36 → 39 jobs (1 closed)
+- Freecash (ashby): 22 → 22 jobs (2 closed)
+- Good Hood GmbH (personio): 5 → 6 jobs (0 closed)
+- HanseMerkur Krankenversicherung AG (crawl): 3 new ads skipped, no impact on the app
+- Hanseatic Bank GmbH & Co KG (custom): removed 1 dead links
+- HelloFresh SE (greenhouse): 44 → 68 jobs (1 closed)
+- HelloFresh SE (greenhouse): 69 new ads skipped, no impact on the app
+- Holidu GmbH (ashby): would shrink 8 → 1, kept old jobs (0 days so far)
+- Hörmann KG Antriebstechnik (crawl): 28 new ads skipped, no impact on the app
+- IDnow (greenhouse): 6 → 5 jobs (1 closed)
+- ING Deutschland (crawl): 1 new ads skipped, no impact on the app
+- InnoGames GmbH (lever): 4 new ads skipped, no impact on the app
+- Intelligent Apps GmbH (greenhouse): 2 → 5 jobs (0 closed)
+- JustWatch GmbH (lever): 2 → 3 jobs (0 closed)
+- Kaufmännische Krankenkasse - KKH (crawl): 2 new ads skipped, no impact on the app
+- Klassik Radio AG (crawl): 2 new ads skipped, no impact on the app
+- LIQUI MOLY GmbH (personio): 13 new ads skipped, no impact on the app
+- LOTTO24 (ashby): 12 → 11 jobs (1 closed)
+- LVM Versicherung Münster a.G. (crawl): now hiring, 6 jobs listed (was tier 2)
+- MAINGAU Energie GmbH (recruitee): 2 new ads skipped, no impact on the app
+- MILES Mobility GmbH (personio): 1 new ads skipped, no impact on the app
+- MILES Mobility GmbH (personio): 20 → 19 jobs (1 closed)
+- Media Pioneer Publishing AG (personio): 15 new ads skipped, no impact on the app
+- MetaFlow (personio): 7 → 6 jobs (1 closed)
+- Miele & Cie. KG (crawl): 14 new ads skipped, no impact on the app
+- Miele & Cie. KG (crawl): 4 → 5 jobs (1 closed)
+- Modepark Röther (crawl): now hiring, 1 jobs listed (was tier 2)
 - MyTherapy (personio): fetch failed, kept 1 jobs. HTTPError: HTTP Error 404: Not Found
-- Müller Handels GmbH & Co. KG (crawl): 33 → 32 jobs (1 closed)
-- N26 AG (greenhouse): 21 → 22 jobs (1 closed)
+- Müller Handels GmbH & Co. KG (crawl): 25 new ads skipped, no impact on the app
+- N26 AG (greenhouse): 22 → 20 jobs (2 closed)
+- Nufin GmbH (ashby): 27 → 26 jobs (1 closed)
+- OBI Home and Garden GmbH (crawl): 3 → 20 jobs (0 closed)
+- OBI Home and Garden GmbH (crawl): 9 new ads skipped, no impact on the app
+- Olympia-Verlag (crawl): now hiring, 1 jobs listed (was tier 2)
+- Ostdeutsche Medienholding GmbH (join): 5 new ads skipped, no impact on the app
+- PAYBACK (custom): removed 1 dead links
 - PL Gutscheinsysteme GmbH (personio): fetch failed, kept 2 jobs. HTTPError: HTTP Error 404: Not Found
-- Parfümerie Akzente GmbH (crawl): 60 → 60 jobs (2 closed, 24 newer ads waiting (cap 60))
-- Parfümerie Douglas GmbH (crawl): 60 → 60 jobs (1 closed, 33 newer ads waiting (cap 60))
-- RADIO BOB GmbH & Co. KG (softgarden): fetch failed, kept 4 jobs. HTTPError: HTTP Error 404: Not Found
-- REGIOCAST GmbH & Co.KG (softgarden): fetch failed, kept 12 jobs. HTTPError: HTTP Error 404: Not Found
-- RSG Group GmbH (crawl): 48 → 49 jobs (1 closed)
-- Raisin SE (greenhouse): 19 → 20 jobs (0 closed)
-- Robert Bosch GmbH (smartrecruiters): 60 → 60 jobs (26 closed, 52 newer ads waiting (cap 60))
-- S Broker AG & Co. KG (crawl): 45 ads from other employers dropped (EMPLOYER rule)
-- S-Bahn Berlin (crawl): 60 → 60 jobs (3 closed, 9 newer ads waiting (cap 60))
-- S-Payment GmbH (workday): 35 ads from other employers dropped (EMPLOYER rule)
-- Sanacorp Pharmahandel GmbH (crawl): 28 → 26 jobs (2 closed)
-- Scalable AG (smartrecruiters): 60 → 60 jobs (1 closed, 37 newer ads waiting (cap 60))
-- Schwarz Digits IT KG (crawl): 41 ads from other employers dropped (EMPLOYER rule)
+- POCO Einrichtungsmärkte GmbH (crawl): 1 new ads skipped, no impact on the app
+- Parfümerie Akzente GmbH (crawl): 31 new ads skipped, no impact on the app
+- Parfümerie Akzente GmbH (crawl): 9 → 13 jobs (0 closed)
+- Parfümerie Douglas GmbH (crawl): 22 new ads skipped, no impact on the app
+- Parfümerie Douglas GmbH (crawl): 9 → 14 jobs (0 closed)
+- Pharmatechnik GmbH & Co. KG (crawl): 4 → 3 jobs (1 closed)
+- Plantura (personio): 2 → 3 jobs (0 closed)
+- Pohl-Boskamp Digital Health GmbH (crawl): 8 → 9 jobs (0 closed)
+- REGIOCAST GmbH & Co.KG (softgarden): fetch failed, kept 1 jobs. HTTPError: HTTP Error 404: Not Found
+- Raisin SE (greenhouse): 20 → 21 jobs (0 closed)
+- Rausgegangen GmbH (personio): 5 → 6 jobs (0 closed)
+- Robert Bosch GmbH (smartrecruiters): 4 → 28 jobs (0 closed)
+- S Broker AG & Co. KG (crawl): 21 ads from other employers dropped (EMPLOYER rule)
+- S Broker AG & Co. KG (crawl): 24 new ads skipped, no impact on the app
+- S-Bahn Berlin (crawl): now hiring, 14 jobs listed (was tier 2)
+- S-Payment GmbH (workday): 9 ads from other employers dropped (EMPLOYER rule)
+- Sanacorp Pharmahandel GmbH (crawl): 1 new ads skipped, no impact on the app
+- Sandbox Interactive GmbH (teamtailor): 7 → 8 jobs (0 closed)
+- Scalable AG (smartrecruiters): 60 → 99 jobs (3 closed)
+- Schwarz Digits IT KG (crawl): 40 new ads skipped, no impact on the app
 - Sdui (personio): fetch failed, kept 6 jobs. HTTPError: HTTP Error 404: Not Found
-- Sonic Healthcare Germany GmbH & Co. KG (softgarden): 25 → 26 jobs (1 closed)
-- Springer Medizin Verlag GmbH (workday): 17 → 15 jobs (2 closed)
-- Stepstone (smartrecruiters): 60 → 60 jobs (1 closed, 13 newer ads waiting (cap 60))
-- Stillfront Supremacy GmbH (custom): 11/11 links 404 (since 2026-10-04), looks like a site change, kept all
-- Ströer Media Brands GmbH (smartrecruiters): 60 → 60 jobs (2 closed, 59 newer ads waiting (cap 60))
+- Segmüller (crawl): 2 → 3 jobs (0 closed)
+- Segmüller (crawl): 6 new ads skipped, no impact on the app
+- Sixt (crawl): 1 new ads skipped, no impact on the app
+- Star Finanz GmbH (custom): removed 1 dead links
+- Stepstone (smartrecruiters): 59 → 72 jobs (5 closed)
+- Stillfront Supremacy GmbH (custom): 11 links 404 since 2026-10-04 (33 days, also for a browser), removed them
+- Ströer Digital Publishing GmbH (crawl): 3 → 9 jobs (1 closed)
+- Ströer Digital Publishing GmbH (crawl): 35 new ads skipped, no impact on the app
+- Ströer Media Brands GmbH (smartrecruiters): 1 → 9 jobs (0 closed)
+- Studyflix GmbH (personio): 18 → 19 jobs (0 closed)
 - SumUp (greenhouse): 58 → 58 jobs (1 closed)
-- TeamBank AG (crawl): 10 → 11 jobs (0 closed)
-- TeamViewer (teamtailor): 11 → 12 jobs (0 closed)
-- Telefónica Germany GmbH & Co. OHG (crawl): 12 → 11 jobs (1 closed)
-- Thalia Bücher GmbH (crawl): 60 → 60 jobs (2 closed, 2 newer ads waiting (cap 60))
+- TUI Hotel Betriebsgesellschaft mbH (crawl): 15 new ads skipped, no impact on the app
+- Takko Holding GmbH (crawl): now hiring, 2 jobs listed (was tier 2)
+- Targobank AG (crawl): now hiring, 9 jobs listed (was tier 2)
+- Taxfix SE (ashby): 12 → 11 jobs (1 closed)
+- Telefónica Germany GmbH & Co. OHG (crawl): 5 → 6 jobs (0 closed)
+- Thalia Bücher GmbH (crawl): 33 new ads skipped, no impact on the app
+- Thalia Bücher GmbH (crawl): 4 → 8 jobs (0 closed)
 - Too Good To Go (greenhouse): fetch failed, kept 7 jobs. HTTPError: HTTP Error 404: Not Found
-- Travian Games GmbH (personio): 2 → 1 jobs (1 closed)
-- TÜV NORD Service GmbH & Co. KG (crawl): 59 → 60 jobs (2 closed, 27 newer ads waiting (cap 60))
+- Trade Republic Bank GmbH (greenhouse): 40 → 37 jobs (3 closed)
+- TÜV NORD Service GmbH & Co. KG (crawl): now hiring, 2 jobs listed (was tier 2)
 - Urban Sports GmbH (greenhouse): fetch failed, kept 1 jobs. HTTPError: HTTP Error 404: Not Found
-- VAG Verkehrs-Aktiengesellschaft (crawl): 15 → 16 jobs (0 closed)
-- Vattenfall Europe Sales GmbH (crawl): 31 → 27 jobs (4 closed)
-- Volkswagen Group Charging GmbH (crawl): 38 ads from other employers dropped (EMPLOYER rule)
-- WEB.DE (crawl): now hiring, 18 jobs listed (was tier 3)
-- Wertgarantie Beteiligungen GmbH (crawl): 14 → 13 jobs (1 closed)
-- Wolt (greenhouse): 23 → 23 jobs (1 closed)
-- Wolters Kluwer Tax & Accounting Deutschland GmbH (workday): 38 → 38 jobs (1 closed)
-- Wort und Bild Verlag (crawl): fetch failed, kept 1 jobs. SiteChanged: no job page with JobPosting data among 1 pages (site changed?)
-- Zalando SE (zalando): 60 → 60 jobs (1 closed, 16 newer ads waiting (cap 60))
-- aestimium GmbH (personio): 16 → 17 jobs (0 closed)
-- bitiba GmbH (crawl): 7 → 6 jobs (2 closed)
-- falkemedia digital GmbH (personio): 3 → 2 jobs (1 closed)
+- Vattenfall Europe Sales GmbH (crawl): 19 new ads skipped, no impact on the app
+- Vattenfall Europe Sales GmbH (crawl): 8 → 7 jobs (1 closed)
+- Verivox GmbH (personio): 9 → 10 jobs (0 closed)
+- Volkswagen Group Charging GmbH (crawl): 45 ads from other employers dropped (EMPLOYER rule)
+- WEB.DE (crawl): 1 new ads skipped, no impact on the app
+- WEB.DE (crawl): 3 → 4 jobs (0 closed)
+- Wertgarantie Beteiligungen GmbH (crawl): 1 new ads skipped, no impact on the app
+- Wolt (greenhouse): 20 new ads skipped, no impact on the app
+- Wolt (greenhouse): 22 → 23 jobs (0 closed)
+- Wolters Kluwer Tax & Accounting Deutschland GmbH (workday): 37 → 36 jobs (2 closed)
+- Zalando SE (zalando): 60 → 82 jobs (1 closed)
+- celebrate apps (recruitee): 1 new ads skipped, no impact on the app
+- celebrate apps (recruitee): 3 → 1 jobs (2 closed)
+- falkemedia digital GmbH (personio): 2 → 3 jobs (0 closed)
 - fillibri GmbH & Co. KG (crawl): fetch failed, kept 3 jobs. SiteChanged: no job page with JobPosting data among 3 pages (site changed?)
-- foodora (Delivery Hero) (smartrecruiters): 22 → 25 jobs (2 closed)
-- home24 SE (softgarden): 9 → 8 jobs (1 closed)
-- ifap Service-Institut für Ärzte und Apotheker GmbH (workday): 114 ads from other employers dropped (EMPLOYER rule)
-- komoot GmbH (custom): 7/7 links 404 (since 2026-10-04), looks like a site change, kept all
-- momox SE (crawl): 39 ads from other employers dropped (EMPLOYER rule)
+- foodora (Delivery Hero) (smartrecruiters): 25 → 26 jobs (3 closed)
+- gematik (personio): 14 new ads skipped, no impact on the app
+- home24 SE (softgarden): 1 new ads skipped, no impact on the app
+- idealo internet GmbH (recruitee): 14 → 15 jobs (1 closed)
+- ifap Service-Institut für Ärzte und Apotheker GmbH (workday): 132 ads from other employers dropped (EMPLOYER rule)
+- ifap Service-Institut für Ärzte und Apotheker GmbH (workday): 3 → 5 jobs (0 closed)
+- justDice GmbH (ashby): 3 → 1 jobs (2 closed)
+- kfzteile24 GmbH (recruitee): 1 new ads skipped, no impact on the app
+- komoot GmbH (custom): 7 links 404 since 2026-10-04 (33 days, also for a browser), removed them
+- kv.digital GmbH (crawl): fetch failed, kept 1 jobs. SiteChanged: no job page with JobPosting data among 1 pages (site changed?)
+- mbits imaging GmbH (crawl): 3 → 2 jobs (1 closed)
+- meinestadt.de GmbH (personio): 1 → 0 jobs (1 closed)
+- momox SE (crawl): 38 ads from other employers dropped (EMPLOYER rule)
+- momox SE (crawl): 4 → 3 jobs (1 closed)
+- nextbike (personio): 10 new ads skipped, no impact on the app
 - sevDesk GmbH (personio): fetch failed, kept 0 jobs. HTTPError: HTTP Error 404: Not Found
 - simpleclub GmbH (personio): fetch failed, kept 0 jobs. HTTPError: HTTP Error 404: Not Found
-- sipgate (crawl): fetch failed, kept 1 jobs. SiteChanged: no job page with JobPosting data among 1 pages (site changed?)
+- sipgate (crawl): fetch failed, kept 1 jobs. SiteChanged: no job page with JobPosting data among 3 pages (site changed?)
 - stashcat GmbH (crawl): fetch failed, kept 2 jobs. SiteChanged: no job page with JobPosting data among 2 pages (site changed?)
-- tonies GmbH (personio): 3 → 0 jobs (3 closed)
-- trivago N.V. (greenhouse): 16 → 16 jobs (1 closed)
-- zollsoft GmbH (personio): 59 → 60 jobs (0 closed, 1 newer ads waiting (cap 60))
+- tonies GmbH (personio): 1 new ads skipped, no impact on the app
+- trivago N.V. (greenhouse): 16 → 14 jobs (2 closed)
+- zollsoft GmbH (personio): 1 new ads skipped, no impact on the app
+- zollsoft GmbH (personio): 60 → 60 jobs (1 closed)
 
-## Hiring systems found
+## Dropped by the app-impact rule
 
-- WEB.DE: crawl (https://www.united-internet.de/jobs-karriere/), had 0 jobs
+- 1. FC Köln: 4 of 5 jobs dropped, no impact on the app
+- 1822direkt Ges. der Frankfurter Sparkasse mbH: 4 of 4 jobs dropped, no impact on the app, now "careers link only"
+- ALDI International Services SE & Co. oHG: 2 of 2 jobs dropped, no impact on the app, now "careers link only"
+- ANTENNE BAYERN: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- ATP Autoteile GmbH: 1 of 5 jobs dropped, no impact on the app
+- AUTOHERO: 3 of 37 jobs dropped, no impact on the app
+- AXA Deutschland: 46 of 53 jobs dropped, no impact on the app
+- Adolf Würth GmbH & Co. KG: 1 of 4 jobs dropped, no impact on the app
+- Aktion Mensch e.V.: 6 of 6 jobs dropped, no impact on the app, now "careers link only"
+- Axel Springer Deutschland GmbH | WELT Digital: 39 of 54 jobs dropped, no impact on the app
+- BMW GROUP: 53 of 60 jobs dropped, no impact on the app
+- BNP Paribas S.A. Niederlassung Deutschland: 10 of 10 jobs dropped, no impact on the app, now "careers link only"
+- BUDNI Handels- und Service GmbH & Co. KG: 36 of 36 jobs dropped, no impact on the app, now "careers link only"
+- BWI GmbH: 49 of 60 jobs dropped, no impact on the app
+- Bayerischer Fußball-Verband e.V.: 5 of 5 jobs dropped, no impact on the app, now "careers link only"
+- Berlin-Brandenburg Academy: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- Bloomwell GmbH: 1 of 15 jobs dropped, no impact on the app
+- Blue Ocean Entertainment AG: 2 of 3 jobs dropped, no impact on the app
+- Borussia Dortmund: 15 of 15 jobs dropped, no impact on the app, now "careers link only"
+- Bundesinstitut für Risikobewertung: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- Bundesliga Media GmbH: 10 of 13 jobs dropped, no impact on the app
+- Bünting E-Commerce GmbH & Co. KG: 22 of 22 jobs dropped, no impact on the app, now "careers link only"
+- CALL A PIZZA MARKETING GMBH: 3 of 3 jobs dropped, no impact on the app, now "careers link only"
+- CASO DESIGN: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- CEWE: 29 of 33 jobs dropped, no impact on the app
+- CTS EVENTIM AG & Co. KGaA: 23 of 29 jobs dropped, no impact on the app
+- Cornelsen Verlag GmbH: 12 of 12 jobs dropped, no impact on the app, now "careers link only"
+- Cosmema WITTICH GmbH: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- Cyber IT: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- DER SPIEGEL GmbH & Co. KG: 6 of 8 jobs dropped, no impact on the app
+- DERTOUR Deutschland GmbH: 4 of 4 jobs dropped, no impact on the app, now "careers link only"
+- DIHK-Bildungs-gGmbH: 7 of 7 jobs dropped, no impact on the app, now "careers link only"
+- DRV Bund: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- Debeka: 53 of 60 jobs dropped, no impact on the app
+- Deichmann SE: 55 of 60 jobs dropped, no impact on the app
+- Deutscher Bundestag: 2 of 2 jobs dropped, no impact on the app, now "careers link only"
+- Deutscher Volkshochschul-Verband: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- Dirk Rossmann GmbH: 27 of 33 jobs dropped, no impact on the app
+- Dogorama GmbH: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- EHC Eisbären Management GmbH: 2 of 2 jobs dropped, no impact on the app, now "careers link only"
+- ERGO Group AG: 52 of 60 jobs dropped, no impact on the app
+- EWE AG: 48 of 54 jobs dropped, no impact on the app
+- EnBW AG: 54 of 60 jobs dropped, no impact on the app
+- Enpal B.V.: 53 of 60 jobs dropped, no impact on the app
+- Ernst Klett Verlag GmbH: 27 of 27 jobs dropped, no impact on the app, now "careers link only"
+- Europa-Park GmbH & Co Mack KG: 59 of 60 jobs dropped, no impact on the app
+- FRITZ! GmbH: 9 of 16 jobs dropped, no impact on the app
+- FitX | FOR ALL OF US: 53 of 53 jobs dropped, no impact on the app, now "careers link only"
+- Flaconi: 3 of 9 jobs dropped, no impact on the app
+- Flink SE: 9 of 18 jobs dropped, no impact on the app
+- Flix SE: 2 of 38 jobs dropped, no impact on the app
+- Franckh-Kosmos Verlags GmbH & Co. KG: 3 of 3 jobs dropped, no impact on the app, now "careers link only"
+- Globus Fachmärkte: 60 of 60 jobs dropped, no impact on the app, now "careers link only"
+- HOWOGE GmbH: 3 of 3 jobs dropped, no impact on the app, now "careers link only"
+- Haema Blut- und Plasmaspende: 5 of 5 jobs dropped, no impact on the app, now "careers link only"
+- Hamburger HOCHBAHN AG: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- Handelsblatt GmbH: 17 of 22 jobs dropped, no impact on the app
+- HanseMerkur Krankenversicherung AG: 19 of 20 jobs dropped, no impact on the app
+- Hanseatic Bank GmbH & Co KG: 3 of 4 jobs dropped, no impact on the app
+- Heide-Park Soltau GmbH: 3 of 3 jobs dropped, no impact on the app, now "careers link only"
+- HelloFresh SE: 16 of 60 jobs dropped, no impact on the app
+- Hueber Verlag GmbH & Co. KG: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- Hörmann KG Antriebstechnik: 27 of 29 jobs dropped, no impact on the app
+- IG Metall Vorstand: 8 of 8 jobs dropped, no impact on the app, now "careers link only"
+- ING Deutschland: 32 of 39 jobs dropped, no impact on the app
+- IONITY GmbH: 2 of 2 jobs dropped, no impact on the app, now "careers link only"
+- InnoGames GmbH: 4 of 6 jobs dropped, no impact on the app
+- JEANS FRITZ: 12 of 12 jobs dropped, no impact on the app, now "careers link only"
+- KRUU GmbH: 2 of 2 jobs dropped, no impact on the app, now "careers link only"
+- Kassenärztliche Bundesvereinigung KdöR: 3 of 5 jobs dropped, no impact on the app
+- Kaufmännische Krankenkasse - KKH: 43 of 44 jobs dropped, no impact on the app
+- Klassik Radio AG: 5 of 6 jobs dropped, no impact on the app
+- Klima-Bündnis Services: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- L'Osteria Pizza e Pasta: 60 of 60 jobs dropped, no impact on the app, now "careers link only"
+- LIQUI MOLY GmbH: 12 of 13 jobs dropped, no impact on the app
+- LVM Versicherung Münster a.G.: 60 of 60 jobs dropped, no impact on the app, now "careers link only"
+- LW Medien GmbH: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- Lautsprecher Teufel GmbH: 7 of 7 jobs dropped, no impact on the app, now "careers link only"
+- Leipziger Verkehrsbetriebe: 18 of 18 jobs dropped, no impact on the app, now "careers link only"
+- Luitpold-Apotheke: 4 of 4 jobs dropped, no impact on the app, now "careers link only"
+- Löwenstein Medical Technology GmbH + Co.KG: 7 of 7 jobs dropped, no impact on the app, now "careers link only"
+- MAINGAU Energie GmbH: 2 of 3 jobs dropped, no impact on the app
+- MEDION GmbH: 2 of 2 jobs dropped, no impact on the app, now "careers link only"
+- MILES Mobility GmbH: 1 of 21 jobs dropped, no impact on the app
+- MMS Technology GmbH: 2 of 2 jobs dropped, no impact on the app, now "careers link only"
+- Media Pioneer Publishing AG: 16 of 18 jobs dropped, no impact on the app
+- Medienkontor Fulda: 2 of 2 jobs dropped, no impact on the app, now "careers link only"
+- Miele & Cie. KG: 52 of 56 jobs dropped, no impact on the app
+- Mobil Betriebskrankenkasse: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- Modepark Röther: 38 of 38 jobs dropped, no impact on the app, now "careers link only"
+- Müller Handels GmbH & Co. KG: 31 of 32 jobs dropped, no impact on the app
+- NORDSEE GmbH: 2 of 2 jobs dropped, no impact on the app, now "careers link only"
+- Nahverkehrsservice Sachsen-Anhalt GmbH (NASA GmbH): 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- Netto Marken-Discount Stiftung & Co. KG: 7 of 7 jobs dropped, no impact on the app, now "careers link only"
+- Neudorff: 7 of 10 jobs dropped, no impact on the app
+- OBI Home and Garden GmbH: 38 of 41 jobs dropped, no impact on the app
+- OUTLETCITY AG: 6 of 6 jobs dropped, no impact on the app, now "careers link only"
+- Olympia-Verlag: 3 of 3 jobs dropped, no impact on the app, now "careers link only"
+- Openbank Deutschland AG: 57 of 60 jobs dropped, no impact on the app
+- Ostdeutsche Medienholding GmbH: 13 of 14 jobs dropped, no impact on the app
+- PAJ GPS: 3 of 3 jobs dropped, no impact on the app, now "careers link only"
+- PENNY Markt GmbH: 4 of 4 jobs dropped, no impact on the app, now "careers link only"
+- POCO Einrichtungsmärkte GmbH: 15 of 16 jobs dropped, no impact on the app
+- Parfümerie Akzente GmbH: 51 of 60 jobs dropped, no impact on the app
+- Parfümerie Douglas GmbH: 51 of 60 jobs dropped, no impact on the app
+- Pharmatechnik GmbH & Co. KG: 9 of 13 jobs dropped, no impact on the app
+- Pohl-Boskamp Digital Health GmbH: 1 of 9 jobs dropped, no impact on the app
+- RADIO BOB GmbH & Co. KG: 4 of 4 jobs dropped, no impact on the app, now "careers link only"
+- REGIOCAST GmbH & Co.KG: 11 of 12 jobs dropped, no impact on the app
+- RSG Group GmbH: 49 of 49 jobs dropped, no impact on the app, now "careers link only"
+- Rheinbahn: 18 of 18 jobs dropped, no impact on the app, now "careers link only"
+- Robert Bosch GmbH: 56 of 60 jobs dropped, no impact on the app
+- S Broker AG & Co. KG: 15 of 20 jobs dropped, no impact on the app
+- S-Bahn Berlin: 60 of 60 jobs dropped, no impact on the app, now "careers link only"
+- S-Payment GmbH: 14 of 22 jobs dropped, no impact on the app
+- SAGAFLOR AG: 3 of 3 jobs dropped, no impact on the app, now "careers link only"
+- SIGNAL IDUNA Allgemeine Versicherung AG: 11 of 11 jobs dropped, no impact on the app, now "careers link only"
+- SSI Scuba Schools International: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- SWK AG: 25 of 25 jobs dropped, no impact on the app, now "careers link only"
+- Sanacorp Pharmahandel GmbH: 24 of 26 jobs dropped, no impact on the app
+- Segmüller: 19 of 21 jobs dropped, no impact on the app
+- Sellwerk GmbH & Co. KG: 15 of 15 jobs dropped, no impact on the app, now "careers link only"
+- Siemens-Betriebskrankenkasse | SBK: 6 of 7 jobs dropped, no impact on the app
+- Sixt: 19 of 20 jobs dropped, no impact on the app
+- Solakon GmbH: 6 of 6 jobs dropped, no impact on the app, now "careers link only"
+- Sonic Healthcare Germany GmbH & Co. KG: 26 of 26 jobs dropped, no impact on the app, now "careers link only"
+- Springer Medizin Verlag GmbH: 12 of 15 jobs dropped, no impact on the app
+- Stepstone: 1 of 60 jobs dropped, no impact on the app
+- Ströer Digital Publishing GmbH: 57 of 60 jobs dropped, no impact on the app
+- Ströer Media Brands GmbH: 59 of 60 jobs dropped, no impact on the app
+- Süwag Vertrieb AG & Co. KG: 15 of 16 jobs dropped, no impact on the app
+- TUI Hotel Betriebsgesellschaft mbH: 57 of 60 jobs dropped, no impact on the app
+- Takko Holding GmbH: 11 of 11 jobs dropped, no impact on the app, now "careers link only"
+- Targobank AG: 60 of 60 jobs dropped, no impact on the app, now "careers link only"
+- TeamBank AG: 8 of 11 jobs dropped, no impact on the app
+- Telefónica Germany GmbH & Co. OHG: 6 of 11 jobs dropped, no impact on the app
+- Thalia Bücher GmbH: 56 of 60 jobs dropped, no impact on the app
+- TÜV NORD Service GmbH & Co. KG: 60 of 60 jobs dropped, no impact on the app, now "careers link only"
+- VAG Verkehrs-Aktiengesellschaft: 14 of 16 jobs dropped, no impact on the app
+- VAN GRAAF: 2 of 2 jobs dropped, no impact on the app, now "careers link only"
+- VBB Verkehrsverbund Berlin-Brandenburg GmbH: 2 of 2 jobs dropped, no impact on the app, now "careers link only"
+- VHV Versicherungen: 3 of 4 jobs dropped, no impact on the app
+- VRT GmbH: 3 of 3 jobs dropped, no impact on the app, now "careers link only"
+- Vattenfall Europe Sales GmbH: 19 of 27 jobs dropped, no impact on the app
+- Verband der Sparda-Banken: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- Verkehrsverbund Rhein-Ruhr AöR: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- Volkswagen AG: 3 of 4 jobs dropped, no impact on the app
+- WEB.DE: 15 of 18 jobs dropped, no impact on the app
+- WGV-Informatik und Media GmbH: 8 of 10 jobs dropped, no impact on the app
+- Wertgarantie Beteiligungen GmbH: 11 of 13 jobs dropped, no impact on the app
+- Westdeutsche Lotterie GmbH & Co. OHG: 2 of 2 jobs dropped, no impact on the app, now "careers link only"
+- Westermann GmbH & Co. KG: 20 of 20 jobs dropped, no impact on the app, now "careers link only"
+- Wolt: 1 of 23 jobs dropped, no impact on the app
+- Wolters Kluwer Tax & Accounting Deutschland GmbH: 1 of 38 jobs dropped, no impact on the app
+- Wort und Bild Verlag: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- celebrate apps: 1 of 4 jobs dropped, no impact on the app
+- felmo GmbH: 1 of 1 jobs dropped, no impact on the app, now "careers link only"
+- freenet.de GmbH: 1 of 10 jobs dropped, no impact on the app
+- freenet: 2 of 3 jobs dropped, no impact on the app
+- gematik: 16 of 18 jobs dropped, no impact on the app
+- home24 SE: 1 of 8 jobs dropped, no impact on the app
+- kfzteile24 GmbH: 1 of 3 jobs dropped, no impact on the app
+- klarmobil: 5 of 10 jobs dropped, no impact on the app
+- mycare.de Apotheke: 2 of 8 jobs dropped, no impact on the app
+- nextbike: 10 of 12 jobs dropped, no impact on the app
+- s.Oliver: 1 of 2 jobs dropped, no impact on the app
+- sunshine live GmbH & Co.KG: 3 of 3 jobs dropped, no impact on the app, now "careers link only"
+- taz, die tageszeitung: 3 of 3 jobs dropped, no impact on the app, now "careers link only"
+- toom Baumarkt GmbH: 10 of 10 jobs dropped, no impact on the app, now "careers link only"
+- vetevo GmbH: 4 of 4 jobs dropped, no impact on the app, now "careers link only"
