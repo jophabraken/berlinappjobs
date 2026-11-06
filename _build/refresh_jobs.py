@@ -421,6 +421,19 @@ EMPLOYER = {
     'S Broker AG & Co. KG': r'S[ -]?Broker',
 }
 
+# ---- stale jobs (6 Nov 2026): the rails below keep a company's old jobs when its feed or careers site looks broken, which
+# is right for a day or two but left dead ads online for weeks (komoot, Stillfront, Hanseatic: all links 404 since 4 Oct;
+# Too Good To Go, Sdui, REGIOCAST: feed 404 for weeks; Holidu: Ashby feed "would shrink" for 8+ refreshes). Each rail now
+# remembers the first day it fired per company (ats_detect.json "_stale"); after STALE_DAYS in a row the jobs go.
+# The company page then turns noindex (0 jobs) and comes back as soon as the company lists jobs again.
+STALE_DAYS = 7
+STALE = DET.setdefault('_stale', {})   # "company|rail" -> first day the rail fired
+def stale_for(company, rail):
+    k = f'{company}|{rail}'; STALE.setdefault(k, TODAY.isoformat())
+    return (TODAY - datetime.date.fromisoformat(STALE[k])).days
+def stale_clear(company, rail): STALE.pop(f'{company}|{rail}', None)
+GONE_ERR = re.compile(r'HTTP Error (?:404|410)\b')
+
 report = []
 before_total = sum(len(c.get('jobs') or []) for c in B['companies'])
 new_desc, stats = [], dict(kept_failed=0, new=0, closed=0, updated=0, suspicious=0, salaries_added=0, promoted=0)
@@ -431,9 +444,18 @@ for (ats, feed), cos in feeds.items():
         promote = c.get('tier') in (2, 3)   # a "not hiring" company: listed only once its feed has German jobs
         if raw is None:
             if promote: continue   # stays as it is; its failures don't count against the safety rail (see fail_share)
+            err = errors.get((ats, feed), '')
+            if GONE_ERR.search(err) and old:
+                days = stale_for(c['n'], 'feed404')
+                if days >= STALE_DAYS:
+                    stats['closed'] += len(old)
+                    report.append(f'- {c["n"]} ({ats}): feed gone (404) for {days} days, removed {len(old)} jobs. {err}')
+                    c['jobs'] = []; c['total'] = 0
+                    continue
             stats['kept_failed'] += 1
-            report.append(f'- {c["n"]} ({ats}): fetch failed, kept {len(old)} jobs. {errors.get((ats, feed), "")}')
+            report.append(f'- {c["n"]} ({ats}): fetch failed, kept {len(old)} jobs. {err}')
             continue
+        stale_clear(c['n'], 'feed404')
         old_by = {}
         for jb in old:
             for k in key_ids(jb['u']): old_by.setdefault(k, jb)
@@ -506,7 +528,11 @@ for (ats, feed), cos in feeds.items():
         if not fresh and len(old) >= 5 and not emp_dropped and not role_dropped:   # the feed did answer with ads, just none that fit
             stats['suspicious'] += 1; report.append(f'- {c["n"]} ({ats}): feed returned 0 German jobs (had {len(old)}), kept old jobs'); continue
         if ats == 'ashby' and len(fresh) < len(old) / 2 and len(old) >= 4:
-            stats['suspicious'] += 1; report.append(f'- {c["n"]} (ashby): would shrink {len(old)} → {len(fresh)}, kept old jobs'); continue
+            days = stale_for(c['n'], 'shrink')
+            if days < STALE_DAYS:
+                stats['suspicious'] += 1; report.append(f'- {c["n"]} (ashby): would shrink {len(old)} → {len(fresh)}, kept old jobs ({days} days so far)'); continue
+            report.append(f'- {c["n"]} (ashby): shrink {len(old)} → {len(fresh)} accepted after {days} days in a row')
+        stale_clear(c['n'], 'shrink')
         closed = len({j['u'] for j in old} - {j['u'] for j in fresh})
         stats['closed'] += closed
         if (len(fresh) != len(old) or closed) and not promote:
@@ -570,6 +596,14 @@ def page_check(u):
         return e.code not in (404, 410), None
     except Exception:
         return True, None
+BROWSER_UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36'
+def browser_alive(u):
+    """False only if the page answers 404/410 to a normal browser too."""
+    try:
+        req = urllib.request.Request(u, headers={'User-Agent': BROWSER_UA, **ats_more.HTML_H}, method='GET')
+        with urllib.request.urlopen(req, timeout=20) as r: return True
+    except urllib.error.HTTPError as e: return e.code not in (404, 410)
+    except Exception: return True
 def desc_record(jb, raw, src):
     return {'src': src, 'id': jb['u'], 'url': jb['u'], 't': jb['t'], 'loc': jb.get('loc', ''), 'desc': raw['desc'], 'et': raw.get('et', ''),
             'pub': raw.get('pub') or jb.get('p') or '', 'rem': str(bool(jb.get('rem')))}
@@ -611,7 +645,13 @@ for c in custom:
     if not dead: continue
     if len(dead) > len(c['jobs']) / 2 and len(c['jobs']) >= 4:
         for jb in dead: DEAD.setdefault(jb['u'], TODAY.isoformat())
-        report.append(f'- {c["n"]} (custom): {len(dead)}/{len(c["jobs"])} links 404 (since {min(DEAD[jb["u"]] for jb in dead)}), looks like a site change, kept all'); continue
+        since = min(DEAD[jb['u']] for jb in dead)
+        days = (TODAY - datetime.date.fromisoformat(since)).days
+        # 404 to our bot for STALE_DAYS+ days: check once more as a normal browser, so a site that only blocks bots keeps its jobs
+        if days >= STALE_DAYS and not any(browser_alive(jb['u']) for jb in dead):
+            c['jobs'] = [jb for jb in c['jobs'] if status.get(jb['u']) is not False]; c['total'] = len(c['jobs']); dead_total += len(dead)
+            report.append(f'- {c["n"]} (custom): {len(dead)} links 404 since {since} ({days} days, also for a browser), removed them'); continue
+        report.append(f'- {c["n"]} (custom): {len(dead)}/{len(c["jobs"])} links 404 (since {since}), looks like a site change, kept all'); continue
     c['jobs'] = [jb for jb in c['jobs'] if status.get(jb['u']) is not False]; c['total'] = len(c['jobs']); dead_total += len(dead)
     report.append(f'- {c["n"]} (custom): removed {len(dead)} dead links')
 on_board = {jb['u'] for c in B['companies'] for jb in c.get('jobs') or []}
