@@ -110,7 +110,7 @@ ARTICLES2 = [
 <li><b>OneFootball</b>, <b>Clue</b>, <b>Babbel</b>, <b>Kleinanzeigen</b>, <b>AUTODOC</b> and <b>wetter.com</b>: 50M+ each.</li>
 <li><b>Trade Republic</b>, <b>N26</b>, <b>GetYourGuide</b>, <b>HelloFresh</b>, <b>ImmoScout24</b>, <b>idealo</b>, <b>JustWatch</b>, <b>Knowunity</b>, <b>Blinkist</b>, <b>Ecosia</b> and <b>Freecash</b>: 10M+ each.</li>
 </ul>
-<p>The spread is the point: fintech, marketplaces, education, health and travel all have 10M+ apps built in Berlin. The city is not a one-category hub.</p>
+<p>The spread is the point: <a href="/guides/fintech-app-jobs-germany/">fintech</a>, marketplaces, education, health and travel all have 10M+ apps built in Berlin. The city is not a one-category hub.</p>
 
 <h2>Which of them are hiring</h2>
 <p>Many of the biggest Berlin app companies hire continuously, and most of them work in English. This board lists open roles at, among others:</p>
@@ -265,7 +265,7 @@ ARTICLES2 = [
 <p>Engineering ist der größte einzelne Bereich, aber weniger als ein Fünftel aller Stellen. Wer nicht programmiert, hat bei App-Firmen also mehr Chancen, als man denkt. Product- und Design-Rollen sind dagegen knapp: Auf eine Product-Stelle kommen rund fünf Engineering-Stellen. Rund 70 Stellentitel nennen explizit KI, Machine Learning oder LLMs, vor allem bei CHECK24, Scalable und Freecash.</p>
 
 <h2>Seniorität und Einstieg</h2>
-<p>Etwa jede vierte Stelle ist eine Senior- oder Lead-Rolle (531). Für Einsteiger gibt es 143 Werkstudentenstellen und 194 Praktika oder Traineeprogramme, dazu knapp 100 explizite Junior-Rollen. Der Rest sind Rollen mit einigen Jahren Erfahrung.</p>
+<p>Etwa jede vierte Stelle ist eine Senior- oder Lead-Rolle (531). Für Einsteiger gibt es 143 <a href="/guides/werkstudent-praktikum-app-jobs/">Werkstudentenstellen</a> und 194 Praktika oder Traineeprogramme, dazu knapp 100 explizite Junior-Rollen. Der Rest sind Rollen mit einigen Jahren Erfahrung.</p>
 
 <h2>Die Firmen, die am meisten einstellen</h2>
 <ul>
@@ -385,13 +385,13 @@ ARTICLES2 += [
 </ul>
 
 <h2>Which roles are open in English</h2>
-<p>Engineering and data dominate: data platform engineers, data scientists, engineering leads, product owners and product managers. Operations, support and people roles are also often in English at the international companies, although customer-facing roles for the German market usually require German.</p>
+<p>Engineering and data dominate: data platform engineers, data scientists, engineering leads, product owners and <a href="/guides/product-manager-jobs-germany/">product managers</a>. Operations, support and people roles are also often in English at the international companies, although customer-facing roles for the German market usually require German.</p>
 
 <h2>Do you really not need German?</h2>
 <p>For the job itself, often not. For everything around it, German helps a lot: Munich is less international in daily life than Berlin, and bureaucracy, housing and social life are easier with at least basic German. Many companies offer German classes as a benefit. A practical rule: tech and data roles at international companies work in English, sales and support roles for German customers do not.</p>
 
 <h2>Munich vs Berlin for English speakers</h2>
-<p>Berlin has more than three times as many open roles at app companies (779 vs 232) and a slightly higher share in English (about 75 percent). Munich tends to pay more, with higher salaries for experienced engineers and a strong base of established, profitable companies. Rents are higher too. If you want the most options, start with Berlin. If you want fewer but often more senior and better-paid roles, Munich is worth a serious look.</p>
+<p>Berlin has more than three times as many open roles at app companies (779 vs 232) and a slightly higher share in English (about 75 percent). Munich tends to pay more, with <a href="/guides/app-developer-salary-germany-2026/">higher salaries</a> for experienced engineers and a strong base of established, profitable companies. Rents are higher too. If you want the most options, start with Berlin. If you want fewer but often more senior and better-paid roles, Munich is worth a serious look.</p>
 
 <h2>How to search efficiently</h2>
 <p>On this board you can filter by city and by ad language. Language is a good proxy, not a guarantee: an English ad usually means an English working language, but check the requirements section for "German is a plus" versus "fluent German required".</p>
@@ -424,7 +424,7 @@ ARTICLES2 += [
 <ul>
 <li>[[Intelligent Apps GmbH|Intelligent Apps]]: the company behind the FREENOW ride-hailing app (part of Lyft since 2025), around 24 English-language roles.</li>
 <li>[[aestimium GmbH|aestimium]]: the team behind the empfohlen.de app, around 19 roles, mostly senior engineering and data.</li>
-<li>[[Stillfront Supremacy GmbH|Stillfront Supremacy]]: game studio (Supremacy: Call of War), around 11 roles.</li>
+<li>[[Stillfront Supremacy GmbH|Stillfront Supremacy]]: <a href="/guides/mobile-game-studios-germany/">game studio</a> (Supremacy: Call of War), around 11 roles.</li>
 <li>[[ABOUT YOU SE & Co. KG|ABOUT YOU]]: fashion e-commerce, around 10 roles.</li>
 <li>[[LOTTO24]] (also behind Tipp24): lottery apps, several roles with remote options.</li>
 <li>[[InnoGames GmbH|InnoGames]]: Forge of Empires, with published salary ranges.</li>
@@ -432,7 +432,7 @@ ARTICLES2 += [
 </ul>
 
 <h2>Which roles are open in English</h2>
-<p>Engineering and data lead: backend engineers (Go, PHP), fullstack developers, Android developers, data analysts and heads of engineering. Hamburg also has an unusually high number of product roles for its size, from product managers for AI search to technical product owners. Game studios add game designers, economy designers and analysts.</p>
+<p>Engineering and data lead: backend engineers (Go, PHP), fullstack developers, Android developers, data analysts and heads of engineering. Hamburg also has an unusually high number of product roles for its size, from <a href="/guides/product-manager-jobs-germany/">product managers</a> for AI search to technical product owners. Game studios add game designers, economy designers and analysts.</p>
 
 <h2>Where German is still expected</h2>
 <p>Hamburg's traditional employers (insurers, publishers, retailers) mostly advertise in German even for digital roles. At HanseMerkur, SIGNAL IDUNA and many media houses most roles are advertised in German. If you do not speak German, focus on the game studios, e-commerce and the venture-backed companies above.</p>
@@ -596,7 +596,7 @@ ARTICLES2 += [
 <p>Almost every fintech role on this list is advertised in English, and the working language at N26, Trade Republic, Raisin, Scalable and SumUp is English. German is required mainly for customer-facing roles for the German market and for some regulatory roles.</p>
 
 <h2>Salary expectations</h2>
-<p>Fintechs rarely publish salary ranges in Germany. They do tend to pay at the upper end of the German market for engineering, often with equity or virtual shares on top. Ask for the range early in the process. Under the EU pay transparency directive, employers will have to share it before the first interview once Germany has passed its law.</p>
+<p>Fintechs rarely publish <a href="/guides/app-developer-salary-germany-2026/">salary ranges</a> in Germany. They do tend to pay at the upper end of the German market for engineering, often with equity or virtual shares on top. Ask for the range early in the process. Under the EU pay transparency directive, employers will have to share it before the first interview once Germany has passed its law.</p>
 """,
  "faq": [
    ["Which fintech companies in Germany are hiring?",
@@ -647,7 +647,7 @@ ARTICLES2 += [
 <li><b>Erzähl Ergebnisse, nicht Projekte.</b> Statt „Wir haben die App für Kunde X gebaut“ lieber „Die App hat nach dem Relaunch 4,7 Sterne und 30 Prozent weniger Abstürze“. Frag deine Kunden nach Kennzahlen.</li>
 <li><b>Zeig, dass du über den Launch hinaus denkst.</b> Hast du Tracking eingebaut, einen Test aufgesetzt, eine Metrik verbessert? Das ist Gold wert.</li>
 <li><b>Wähle eine App, die du selbst nutzt.</b> Nutzerperspektive und eigene Verbesserungsideen machen im Gespräch einen großen Unterschied.</li>
-<li><b>Starte mit Firmen, die viel einstellen.</b> Große Produktteams haben strukturierte Prozesse und nehmen eher Quereinsteiger aus Agenturen. Aktuell stellen etwa <a href="/companies/n26/">N26</a>, <a href="/companies/check24/">CHECK24</a> und <a href="/companies/freecash/">Freecash</a> viel ein.</li>
+<li><b>Starte mit Firmen, die viel einstellen.</b> Große Produktteams haben strukturierte Prozesse und nehmen eher <a href="/guides/quereinstieg-app-entwicklung/">Quereinsteiger</a> aus Agenturen. Aktuell stellen etwa <a href="/companies/n26/">N26</a>, <a href="/companies/check24/">CHECK24</a> und <a href="/companies/freecash/">Freecash</a> viel ein.</li>
 </ul>
 
 <h2>Für Designer und Projektmanager</h2>
@@ -697,7 +697,7 @@ ARTICLES2 += [
 <li>[[N26 AG|N26]]: Associate Product Manager im Bereich Investments</li>
 <li>[[Taxfix SE|Taxfix]]: eine „AI First Builder“-Rolle im Product Management</li>
 </ul>
-<p>Associate- und Junior-PM-Rollen sind rar und hart umkämpft. Parallel lohnt der Blick auf Product-Analyst-, Product-Operations- oder Werkstudentenrollen in Produktteams.</p>
+<p>Associate- und Junior-PM-Rollen sind rar und hart umkämpft. Parallel lohnt der Blick auf Product-Analyst-, Product-Operations- oder <a href="/guides/werkstudent-praktikum-app-jobs/">Werkstudentenrollen</a> in Produktteams.</p>
 
 <h2>Was im Bewerbungsprozess zählt</h2>
 <ul>
