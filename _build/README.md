@@ -29,6 +29,7 @@ Needs Python 3.10+ and `pip install bleach`. It takes about 5 seconds.
 | `refresh_jobs.py` | Weekly job refresh from the hiring systems' public APIs (see Automation) |
 | `classify.py` | Discipline, seniority and language labels for newly found jobs |
 | `regions.py` | City → German state, for JobPosting addresses |
+| `app_roles.py` | Which jobs belong on the board: only jobs with an impact on the app. All office roles at app-first companies (`APP_FIRST`), only digital roles elsewhere; cap 60 per company, 200 for app-first ones |
 | `cleanup_stale.py` | Removes company/city pages that are no longer in `sitemap.xml` (e.g. a city below 10 jobs) |
 
 Rules:

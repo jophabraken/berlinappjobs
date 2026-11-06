@@ -255,11 +255,11 @@ def company_page(c, lang):
     else: title=T(f"{c['n']} Jobs 2026 - offene Stellen | Berlin App Jobs", f"{c['n']} Jobs 2026: open roles | Berlin App Jobs")
     if de:
         desc=(f"Offene Stellen bei {c['n']}"+(f" in {city}" if city else "")+f". "
-              + (f"{njobs} {'Rolle' if njobs==1 else 'Rollen'} live aus dem Bewerbungssystem, mit Direktbewerbung." if njobs else f"{total} {'offene Stelle' if total==1 else 'offene Stellen'}.")
+              + (f"{njobs} {'Rolle' if njobs==1 else 'Rollen'} live aus dem Bewerbungssystem, mit Direktbewerbung." if njobs else f"{total} {'offene Stelle' if total==1 else 'offene Stellen'}." if total else "Gerade keine offenen Stellen mit Bezug zur App.")
               + (f" Team hinter {apps[0]['t']}." if apps else ""))
     else:
         desc=(f"Open roles at {c['n']}"+(f" in {city}" if city else "")+". "
-              + (f"{njobs} {'role' if njobs==1 else 'roles'} live from their hiring system, apply directly." if njobs else f"{total} {'open role' if total==1 else 'open roles'}.")
+              + (f"{njobs} {'role' if njobs==1 else 'roles'} live from their hiring system, apply directly." if njobs else f"{total} {'open role' if total==1 else 'open roles'}." if total else "No open roles connected to the app right now.")
               + (f" The team behind {apps[0]['t']}." if apps else ""))
     url=SITE+co_url(slug, lang)
     alt={'de': SITE+co_url(slug, 'de'), 'en': SITE+co_url(slug, 'en')}
@@ -283,6 +283,11 @@ def company_page(c, lang):
                         f'<div class="m"><div class="t">{esc(jb["t"])}</div>'
                         f'<div class="d">{dloc}{" &middot; "+esc(dd) if dd else ""}</div></div>'
                         +(f'<span class="apply">Details</span></a>' if jpu else f'<span class="apply">{T("Bewerben", "Apply")} &#8599;</span></a>'))
+    elif not total:   # every open job is outside the board's scope (store, restaurant, branch roles: app_roles.py)
+        roleshtml=(T(f'<h2>Offene Stellen</h2><p class="sub">{esc(c["n"])} hat gerade keine offenen Stellen, die an der App arbeiten. Wir listen nur Rollen mit Bezug zur App: Entwicklung, Produkt, Design, Daten, Online-Marketing.</p>',
+                     f'<h2>Open roles</h2><p class="sub">{esc(c["n"])} has no open roles working on the app right now. We only list roles connected to the app: engineering, product, design, data, online marketing.</p>')
+                   + f'<a class="cta" href="{esc(c.get("careers") or "#")}" target="_blank" rel="noopener nofollow">'
+                   + T('Alle Stellen auf der Karriereseite', 'All roles on their careers page') + ' &#8599;</a>')
     else:
         roleshtml=(T(f'<h2>Offene Stellen</h2><p class="sub">{esc(c["n"])} hat aktuell {"eine offene Stelle" if total==1 else f"rund {total} offene Stellen"}. Diese werden noch nicht einzeln geparst.</p>',
                      f'<h2>Open roles</h2><p class="sub">{esc(c["n"])} has {"one open role" if total==1 else f"around {total} open roles"} right now. We don\'t list them one by one yet.</p>')
@@ -302,7 +307,7 @@ def company_page(c, lang):
     doc+=f'<h1>{T("Jobs bei", "Jobs at")} {esc(c["n"])}</h1>'
     doc+=f'<p class="sub">{esc(desc)}</p>'
     doc+=(f'<div class="meta">'+(f'<span class="pill">{esc(city)}</span>' if city else '')
-          +f'<span class="pill">{njobs or total} {T("offene Stelle", "open role") if (njobs or total)==1 else T("offene Stellen", "open roles")}</span><span>{T("Aktualisiert", "Updated")} {TODAY}</span></div>')
+          +(f'<span class="pill">{njobs or total} {T("offene Stelle", "open role") if (njobs or total)==1 else T("offene Stellen", "open roles")}</span>' if (njobs or total) else '')+f'<span>{T("Aktualisiert", "Updated")} {TODAY}</span></div>')
     doc+=(company_overview(c, city, c['jobs'], lang) if njobs else '')+apphtml+roleshtml
     doc+='<div style="margin-top:18px">'+cta+' '+citylink+'</div>'
     doc+='</div>'+(FOOT if de else FOOT_EN)+'</body></html>'
@@ -319,17 +324,18 @@ def companies_hub(lang):
     de = lang == "de"; T = lambda a, b: a if de else b
     url=SITE+T('/companies/', '/en/companies/')
     cards=""
-    for n,slug,city,nj,total in company_index:
+    listed=[x for x in company_index if x[3] or x[4]]   # companies with no open role connected to the app (app_roles.py) are left out
+    for n,slug,city,nj,total in listed:
         cards+=(f'<a class="card" href="{co_url(slug, lang)}"><div class="ct">{esc(n)}</div>'
                 f'<div class="cd">'+(esc(city)+' &middot; ' if city else '')+ (f'{nj} {T("offene Stelle", "open role") if nj==1 else T("offene Stellen", "open roles")}' if nj else f'{total} {T("Stelle", "role") if total==1 else T("Stellen", "roles")}')+'</div></a>')
     doc=head(T("App-Unternehmen in Deutschland: alle Firmen & Jobs | Berlin App Jobs", "App Companies in Germany: All Employers & Jobs | Berlin App Jobs"),
-             T(f"Alle {len(company_index)} Unternehmen hinter Deutschlands Top-Apps mit offenen Stellen. Apps, Rollen, Standort und Direktbewerbung.",
-               f"All {len(company_index)} companies behind Germany's top apps that are hiring. Their apps, open roles and location, with direct apply."),
+             T(f"Alle {len(listed)} Unternehmen hinter Deutschlands Top-Apps mit offenen Stellen. Apps, Rollen, Standort und Direktbewerbung.",
+               f"All {len(listed)} companies behind Germany's top apps that are hiring. Their apps, open roles and location, with direct apply."),
              url, lang=lang, alt={'de': SITE+'/companies/', 'en': SITE+'/en/companies/'}, active="companies")
     doc+='<nav class="crumb"><a href="/">Home</a> / Companies</nav>'
     doc+=f'<h1>{T("App-Unternehmen mit offenen Stellen", "App companies hiring now")}</h1>'
-    doc+=('<p class="sub">'+T(f'Die {len(company_index)} Unternehmen hinter Deutschlands meistgenutzten Apps, die aktuell einstellen. Jede Firma mit ihren Apps, offenen Rollen und Direktbewerbung.',
-                               f'The {len(company_index)} companies behind Germany\'s most-used apps that are hiring right now. Each with its apps, open roles and direct apply.')+'</p>')
+    doc+=('<p class="sub">'+T(f'Die {len(listed)} Unternehmen hinter Deutschlands meistgenutzten Apps, die aktuell einstellen. Jede Firma mit ihren Apps, offenen Rollen und Direktbewerbung.',
+                               f'The {len(listed)} companies behind Germany\'s most-used apps that are hiring right now. Each with its apps, open roles and direct apply.')+'</p>')
     doc+=f'<div class="grid">{cards}</div>'+'</div>'+(FOOT if de else FOOT_EN)+'</body></html>'
     d=os.path.join(OUT, *T('companies', 'en/companies').split('/')); os.makedirs(d, exist_ok=True)
     open(os.path.join(d,"index.html"),"w",encoding='utf-8').write(doc)
@@ -554,13 +560,45 @@ urls=[(SITE+"/","1.0"),(SITE+"/guides/","0.8"),(SITE+"/companies/","0.8"),(SITE+
 for g in GUIDES: urls.append((f'{SITE}/guides/{g["slug"]}/',"0.7"))
 for n,slug,city,nj,total in company_index:
     if nj: urls += [(f'{SITE}/companies/{slug}/',"0.6"), (f'{SITE}/en/companies/{slug}/',"0.6")]   # pages without parsed jobs are noindex, so not in the sitemap
-json.dump(sorted(NOINDEX), open(os.path.join(DATA,'noindex_pages.json'),'w'), indent=0)   # cleanup_stale.py keeps these
 for d,city,dname,slug,n in rc_index: urls.append((f'{SITE}/jobs/{slug}/',"0.6"))
 for city,cslug,n in city_index: urls.append((f'{SITE}/jobs/{cslug}/',"0.6"))
 for k,city,dname,slug,n in extra_index: urls.append((f'{SITE}/jobs/{slug}/',"0.6"))
 for u in en_urls: urls.append((u,"0.6"))
 for u in APP_URLS: urls.append((u,"0.6"))
 for u in SAL_URLS: urls.append((u,"0.6"))
+
+# ============ RETIRED HUBS ============
+# A city or role x city hub that drops under its threshold (10 / 5 jobs) is no longer built. Instead of deleting it (a 404
+# for a URL Google already knows), it becomes a short noindex page that points to the live hubs, and it is built normally
+# again once there are enough jobs (Jop, 20 Oct 2026, with the app-impact rule of PR #33). The hubs that exist are the
+# folders under /jobs/ and /en/jobs/ from earlier builds, so a retired hub stays retired from build to build.
+def _hub(p): return p.startswith(('jobs/', 'en/jobs/')) and p not in ('jobs', 'en/jobs')
+_prev = set()
+for _top in ('jobs', os.path.join('en', 'jobs')):
+    for _root, _dirs, _files in os.walk(os.path.join(OUT, _top)):
+        if 'index.html' in _files: _prev.add(os.path.relpath(_root, OUT).replace(os.sep, '/'))
+_live = {u.replace(SITE, '').strip('/') for u, _ in urls}
+retired = 0
+for p in sorted(x for x in _prev - _live if _hub(x)):
+    f = os.path.join(OUT, *p.split('/'), 'index.html')
+    page = open(f, encoding='utf-8').read()
+    if 'Berlin App Jobs' not in page[:5000]: continue   # same guard as cleanup_stale.py: only our own generated pages
+    m = re.search(r'<h1[^>]*>(.*?)</h1>', page, re.S)
+    h1 = re.sub(r'\s+', ' ', re.sub(r"<[^>]+>", "", htmlmod.unescape(m.group(1)) if m else '')).strip()
+    h1 = re.sub(r'^\d[\d.,]*\s+|\s*\(\d[\d.,]*\)', '', h1).strip() or ('App jobs' if p.startswith('en/') else 'App-Jobs')
+    en = p.startswith('en/'); root = '/en/jobs/' if en else '/jobs/'
+    desc = ("Not enough open roles with an impact on the app here right now. Browse all current app jobs by city and role."
+            if en else "Gerade nicht genug offene Stellen mit Bezug zur App. Alle aktuellen App-Jobs nach Stadt und Rolle findest du hier.")
+    doc = head(f"{h1} | Berlin App Jobs", desc, f"{SITE}/{p}/", extra="\n" + '<meta name="robots" content="noindex, follow">', lang='en' if en else 'de')
+    doc += f'<nav class="crumb"><a href="/">Home</a> / <a href="{root}">Jobs</a> / {esc(h1)}</nav><h1>{esc(h1)}</h1><p class="sub">{esc(desc)}</p>'
+    doc += f'<a class="cta" href="{root}">' + ('All app jobs by city and role' if en else 'Alle App-Jobs nach Stadt und Rolle') + ' &rarr;</a>'
+    doc += '<div class="grid" style="margin-top:16px">' + ''.join(
+        f'<a class="card" href="{root}{cs}/"><div class="ct">' + (f'App jobs in {esc(c)}' if en else f'App-Jobs in {esc(c)}') + f'</div><div class="cd">{n} ' + ('open roles' if en else 'offene Stellen') + '</div></a>'
+        for c, cs, n in city_index[:12]) + '</div>'
+    doc += '</div>' + (FOOT_EN if en else FOOT) + '</body></html>'
+    open(f, 'w', encoding='utf-8').write(doc)
+    NOINDEX.append(p); retired += 1
+json.dump(sorted(NOINDEX), open(os.path.join(DATA,'noindex_pages.json'),'w'), indent=0)   # cleanup_stale.py keeps these
 urls.append((f'{SITE}/about/',"0.3"))
 sm='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 for u,p in urls: sm+=f'  <url><loc>{u}</loc><lastmod>{TODAY}</lastmod><changefreq>weekly</changefreq><priority>{p}</priority></url>\n'
@@ -573,3 +611,4 @@ print("city pages:",len(city_index))
 print("extra (iOS/Android/English-speaking) pages:",len(extra_index),"| English hub pages:",len(en_urls))
 print("app pages + hubs:",len(APP_URLS))
 print("sitemap urls:",len(urls))
+print("retired hubs (noindex):",retired)
