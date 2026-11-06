@@ -163,3 +163,48 @@ def similar_jobs(rec, by_team, k=5):
         seen.add(r['c']['n']); out.append(r)
         if len(out) == k: break
     return out
+
+def hub_glance(jl, lang, SAL, TODAY, DISC, ROLE_EN, esc, show_teams=True, show_lang=True):
+    """'At a glance' for a list page (role x city, city, English-speaking, iOS/Android): counted from the listed ads.
+    Newly seen roles, employers with the most roles, level mix, teams, language, remote, pay stated and pay range."""
+    de = lang == 'de'; L = (lambda a, b: a if de else b); n = len(jl)
+    if not n: return ''
+    pre = '' if de else '/en'
+    wk = (datetime.date.fromisoformat(TODAY) - datetime.timedelta(days=7)).isoformat()
+    new = sum(1 for j in jl if (j.get('p') or '') > wk)
+    cos = collections.Counter((j['_co'], j.get('_coslug')) for j in jl)
+    top = [f'<a href="{pre}/companies/{s}/">{esc(c)}</a> ({k})' if s else f'{esc(c)} ({k})' for (c, s), k in cos.most_common(5)]
+    lv = collections.Counter('entry' if j.get('s') in ('intern', 'junior') else 'senior' if j.get('s') in ('senior', 'lead') else 'mid' for j in jl)
+    en = sum(1 for j in jl if j.get('lang') == 'en')
+    rem = sum(1 for j in jl if j.get('rem') is True or str(j.get('rem')).lower() in ('true', '1', 'yes'))
+    chk = [SAL[j['u']] for j in jl if j.get('u') in SAL and SAL[j['u']]['checked']]
+    sal = sum(1 for x in chk if x['sal'])
+    yearly = sorted(sum(x['vals']) / len(x['vals']) for x in chk if x['kind'] == 'y' and x['vals'] and x['rt'] == 'pro')
+    items = []
+    items.append(L(f"{n} offene {'Stelle' if n == 1 else 'Stellen'} bei {len(cos)} App-{'Firma' if len(cos) == 1 else 'Firmen'}"
+                   + (f", davon {new} in den letzten 7 Tagen neu dazugekommen." if new else ", in den letzten 7 Tagen kam keine neue dazu."),
+                   f"{n} open {'role' if n == 1 else 'roles'} at {len(cos)} app {'company' if len(cos) == 1 else 'companies'}"
+                   + (f", {new} of them new in the last 7 days." if new else ", none new in the last 7 days.")))
+    items.append(L("Die meisten Stellen: ", "Most roles: ") + ', '.join(top) + '.')
+    lvp = [(k, lv[k]) for k in ('entry', 'mid', 'senior') if lv[k]]
+    names = {'entry': L('Einstieg (Praktikum, Werkstudent, Junior)', 'entry level (internship, working student, junior)'),
+             'mid': L('Professional', 'mid level'), 'senior': L('Senior und Lead', 'senior and lead')}
+    items.append(L("Level: ", "Level: ") + ', '.join(f"{names[k]} {v}" for k, v in lvp) + '.')
+    if show_teams:
+        tm = collections.Counter(j.get('d') for j in jl if j.get('d') in DISC)
+        if len(tm) > 1:
+            tn = (lambda d: DISC[d][1]) if de else (lambda d: ROLE_EN.get(d, DISC[d][1]))
+            items.append(L("Teams: ", "Teams: ") + ', '.join(f"{tn(d)} {k}" for d, k in tm.most_common(4)) + '.')
+    bits = []
+    if show_lang: bits.append(L(f"{en} von {n} Anzeigen sind auf Englisch", f"{en} of {n} ads are in English"))
+    if rem: bits.append(L(f"{rem} mit Remote- oder Hybrid-Option", f"{rem} offer remote or hybrid work"))
+    if bits: items.append('; '.join(bits) + '.')
+    if chk:
+        s = L(f"{sal} von {len(chk)} Anzeigen nennen ein Gehalt ({round(100 * sal / len(chk))} %)", f"{sal} of {len(chk)} ads state the pay ({round(100 * sal / len(chk))}%)")
+        if len(yearly) >= PAY_MIN:
+            q = statistics.quantiles(yearly, n=4)
+            s += L(f"; die genannten Jahresgehälter liegen meist bei {euro(q[0], True)} bis {euro(q[2], True)}",
+                   f"; the yearly salaries they state mostly range from {euro(q[0], False)} to {euro(q[2], False)}")
+        items.append(s + '.')
+    return ('<div class="ctx"><span class="lbl">' + L('Auf einen Blick', 'At a glance') + f' &middot; {L("Stand", "as of")} {TODAY}</span><ul>'
+            + ''.join(f'<li>{x}</li>' for x in items) + '</ul></div>')

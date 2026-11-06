@@ -98,6 +98,9 @@ h2{font-family:Archivo;font-weight:800;font-size:20px;margin:30px 0 10px}
 .card .cd{color:var(--muted);font-size:13px;margin-top:5px}
 .applist a{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);border-radius:8px;padding:8px 12px;margin:0 8px 8px 0;text-decoration:none;background:var(--surface);font-weight:600;font-size:13.5px}
 .applist a:hover{background:var(--chip)}
+.ctx{border:1.5px solid var(--line);border-left:5px solid #FFD400;border-radius:10px;padding:12px 16px;margin:14px 0;background:var(--surface);font-size:14.5px;line-height:1.5}
+.ctx .lbl{display:block;font:800 10.5px/1.2 Archivo,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
+.ctx ul{margin:0;padding-left:18px}.ctx li{margin:3px 0}
 .signal{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.signal p{flex:1;min-width:220px;margin:0}.spark{flex:none;color:var(--ink,#131310)}
 .secnote{color:var(--faint);font-size:13px;margin:2px 0 14px}
 """
@@ -375,8 +378,13 @@ for c in COS:
 rc_pages=[(k,v) for k,v in rc.items() if len(v)>=5]
 city_pages=[(city,jl) for city,jl in citymap.items() if len(jl)>=10]
 
+def glance(jl, lang, **kw):
+    """'At a glance' facts for a list page (page_value.hub_glance), counted from the listed ads."""
+    return page_value.hub_glance(jl, lang, SAL, TODAY, DISC, ROLE_EN, esc, **kw)
+
 def role_rows(jobs, limit=100, lang="de"):
     out=""
+    jobs=sorted(jobs, key=lambda j: (j.get('p') or ''), reverse=True)   # newest first (first seen), so fresh roles lead the page
     for jb in jobs[:limit]:
         co=jb['_co']; coslug=jb.get('_coslug')
         colink=f'/companies/{coslug}/' if coslug else '#'
@@ -401,6 +409,7 @@ for (d,city),jl in sorted(rc_pages,key=lambda x:-len(x[1])):
     doc+=f'<h1>{esc(dname)}-Jobs in {esc(city)}</h1>'
     doc+=f'<p class="sub">{esc(desc)}</p>'
     doc+=f'<div class="meta"><span class="pill">{len(jl)} offene Stellen</span><span class="pill">{len(cos)} Unternehmen</span></div>'
+    doc+=glance(jl, 'de', show_teams=False)
     doc+=f'<a class="cta" href="/?disc={d}&amp;city={esc(quote(city))}">Diese Stellen im Jobboard filtern &rarr;</a>'
     doc+=f'<h2>Offene {esc(dname)}-Stellen in {esc(city)}</h2>'+role_rows(jl)
     doc+=f'<h2>Unternehmen, die einstellen</h2><p class="secnote">'+", ".join(esc(x) for x in cos[:40])+'</p>'
@@ -440,6 +449,7 @@ for kind, city, ds, dn, es, en_, jl in extra_pages:
     doc = head(title, desc, url, extra="\n"+jsonld(ld), alt={'de': url, 'en': f"{SITE}/en/jobs/{es}/"})
     doc += f'<nav class="crumb"><a href="/">Home</a> / <a href="/jobs/">Jobs</a> / {esc(h1)}</nav><h1>{esc(h1)}</h1><p class="sub">{esc(desc)}</p>'
     doc += f'<div class="meta"><span class="pill">{len(jl)} Stellen</span><span class="pill">{len(cos)} Unternehmen</span></div>'
+    doc += glance(jl, 'de', show_teams=(kind == 'english'), show_lang=(kind != 'english'))
     doc += f'<h2>Offene Stellen</h2>' + role_rows(jl)
     doc += f'<h2>Unternehmen, die einstellen</h2><p class="secnote">' + ", ".join(esc(x) for x in cos[:40]) + '</p>'
     doc += f'<div style="margin-top:16px"><a class="nav" style="color:var(--accent);margin:0" href="/jobs/{city_slug(city)}/">Alle App-Jobs in {esc(city)} &rarr;</a></div>'
@@ -471,6 +481,7 @@ for city,jl in sorted(city_pages,key=lambda x:-len(x[1])):
     doc+=f'<h1>App-Jobs in {esc(city)}</h1>'
     doc+=f'<p class="sub">{esc(desc)}</p>'
     doc+=f'<div class="meta"><span class="pill">{len(jl)} offene Stellen</span><span class="pill">{len(cos)} Unternehmen</span></div>'
+    doc+=glance(jl, 'de')
     doc+=f'<a class="cta" href="/?city={esc(quote(city))}">Alle {city}-Stellen im Jobboard &rarr;</a>'
     if rl or extra_links: doc+=f'<h2>Nach Disziplin</h2><div class="grid">{extra_links}{rl}</div>'
     doc+=f'<p class="secnote" style="margin-top:10px"><a href="/en/jobs/{cslug}/" hreflang="en">English version: app jobs in {esc(city)} &rarr;</a></p>'
@@ -503,7 +514,7 @@ jobs_hub()
 # each linked to its German twin with hreflang.
 en_dir = os.path.join(OUT, "en", "jobs"); os.makedirs(en_dir, exist_ok=True)
 en_urls = []
-def en_page(rel, title, h1, desc, jl, crumb, de_rel, body_extra="", limit=100):
+def en_page(rel, title, h1, desc, jl, crumb, de_rel, body_extra="", limit=100, glance_teams=None):
     url = f"{SITE}/en/jobs/{rel}/" if rel else f"{SITE}/en/jobs/"
     cos = sorted({jb['_co'] for jb in jl}) if jl else []
     ld = ([jobposting_list(jl)] if jl else []) + [breadcrumb([("Home", SITE+"/"), ("Jobs", SITE+"/en/jobs/")] + ([(crumb, url)] if rel else []))]
@@ -514,6 +525,7 @@ def en_page(rel, title, h1, desc, jl, crumb, de_rel, body_extra="", limit=100):
         n_en = sum(1 for j in jl if j.get('lang') == 'en')
         doc += (f'<div class="meta"><span class="pill">{len(jl)} open roles</span><span class="pill">{len(cos)} companies</span>'
                 + (f'<span class="pill">{n_en} advertised in English</span>' if n_en and n_en < len(jl) else '') + '</div>')
+        doc += glance(jl, 'en', show_teams=(glance_teams if glance_teams is not None else True), show_lang=(n_en < len(jl)))
     doc += body_extra
     if jl:
         doc += '<h2>Open roles</h2>' + role_rows(jl, limit=limit, lang="en")
@@ -530,7 +542,7 @@ for d, city, dname, slug, n in rc_index:
     jl = rc[(d, city)]; cs = city_slug(city); role = ROLE_EN.get(d, dname)
     en_page(f"{ROLE_EN_SLUG[d]}/{cs}", fit_title(f"{tcase(role)} Jobs in {city}: {n} open roles ({MONTH_EN})"), f"{role} jobs in {city}",
             f"{n} open {role.lower()} roles at app companies in {city}, live from their hiring systems. Apply directly. Updated {TODAY}.",
-            jl, f"{role} in {city}", slug,
+            jl, f"{role} in {city}", slug, glance_teams=False,
             body_extra=f'<a class="cta" href="/?disc={d}&amp;city={esc(quote(city))}">Filter these jobs on the board &rarr;</a>')
 for k, city, ds, dn, es, en_, jl in extra_pages:
     if k == 'english':
@@ -542,7 +554,7 @@ for k, city, ds, dn, es, en_, jl in extra_pages:
         h1 = f"{en_} jobs in {city}"
         title = fit_title(f"{tcase(en_)} Jobs in {city}: {len(jl)} open roles ({MONTH_EN})")
         desc = f"{len(jl)} open {en_} roles at app companies in {city}, live from their hiring systems. Apply directly. Updated {TODAY}."
-    en_page(es, title, h1, desc, jl, h1, ds)
+    en_page(es, title, h1, desc, jl, h1, ds, glance_teams=(k == 'english'))
 for city, cslug, n in city_index:
     jl = citymap[city]
     cards = ''.join(en_card(f"/en/jobs/{es}/", f"{en_} jobs in {city}", m) for k, c2, en_, es, m in en_extra if c2 == city)
