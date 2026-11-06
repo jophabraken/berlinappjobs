@@ -98,6 +98,7 @@ h2{font-family:Archivo;font-weight:800;font-size:20px;margin:30px 0 10px}
 .card .cd{color:var(--muted);font-size:13px;margin-top:5px}
 .applist a{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--line);border-radius:8px;padding:8px 12px;margin:0 8px 8px 0;text-decoration:none;background:var(--surface);font-weight:600;font-size:13.5px}
 .applist a:hover{background:var(--chip)}
+.signal{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.signal p{flex:1;min-width:220px;margin:0}.spark{flex:none;color:var(--ink,#131310)}
 .secnote{color:var(--faint);font-size:13px;margin:2px 0 14px}
 """
 
@@ -172,6 +173,8 @@ os.makedirs(OUT, exist_ok=True)
 # ---- does each ad state the pay? (salary_detect.py): job url -> info; used by company pages and build_salary.py ----
 import salary_detect
 SAL=salary_detect.salary_map(COS, DATA)
+# ---- facts only this board has: hiring trend, pay transparency rank, similar teams (page_value.py) ----
+import page_value
 
 # ============ COMPANY PAGES ============
 comp_dir=os.path.join(OUT,"companies"); os.makedirs(comp_dir, exist_ok=True)
@@ -185,6 +188,7 @@ for c in comps:   # slugs first, so pages can link to similar companies
     while slug in used: slug=f"{base}-{k}"; k+=1
     used.add(slug)
     c['_slug']=slug
+FACTS=page_value.Facts(COS, SAL, DATA)
 NOINDEX=[]   # company pages without parsed jobs: kept for visitors and links, hidden from Google (thin content)
 _truthy=lambda v: v is True or str(v).strip().lower() in ('true','1','yes')
 def _join(xs, lang="de"):
@@ -235,14 +239,27 @@ def company_overview(c, city, jobs, lang="de"):
         if len(locs)>1: p.append("Locations: "+J(esc(l) for l,_ in locs.most_common(4) if l)+".")
         if apps: p.append("Known for "+J(f"{esc(htmlmod.unescape(a['t']))}"+(f" ({esc(a['i'])} installs on Google Play)" if a.get('i') else '') for a in apps)+".")
     html=('<h2>Überblick</h2>' if de else '<h2>Overview</h2>')+'<p>'+' '.join(p)+'</p>'
-    peers=[o for o in comps if o is not c and o.get('jobs') and (o.get('city') or '')==city][:6]
-    same_city=len(peers)>=3
-    if not same_city: peers=[o for o in comps if o is not c and o.get('jobs')][:6]
+    html+=hiring_signal(c, lang)
+    peers=FACTS.similar_companies(c)   # hiring for the most similar mix of teams, same city as a tie-breaker
     if peers:
-        head_ = ("Ähnliche Arbeitgeber" if de else "Similar employers") + ((" in "+esc(city)) if city and same_city else "")
+        head_ = "Firmen, die für ähnliche Teams einstellen" if de else "Companies hiring for similar teams"
         html+=f'<h2>{head_}</h2><div class="applist">'
         html+=''.join(f'<a href="{co_url(o["_slug"], lang)}">{esc(o["n"])} &middot; {len(o["jobs"])} {("Stelle" if de else "role") if len(o["jobs"])==1 else ("Stellen" if de else "roles")}</a>' for o in peers)+'</div>'
     return html
+
+def hiring_signal(c, lang):
+    """Hiring trend from our daily snapshots and pay transparency against all app companies (page_value.py)."""
+    de = lang == "de"; short = esc(short_name(c['n']))
+    trend = FACTS.trend_sentence(c['n'], short, de); pay = FACTS.pay_sentence(c['n'], short, de)
+    if not (trend or pay): return ''
+    t = FACTS.trend(c['n'])
+    out = '<h2>' + ('Einstellungstrend' if de else 'Hiring trend') + '</h2>'
+    if trend:
+        out += ('<div class="signal">' + FACTS.sparkline(c['n']) + '<p>' + trend + ' '
+                + (f"Wir zählen die offenen App-Rollen jeden Tag, seit dem {page_value.day_label(t['since'], True)}".rstrip('.') + "."
+                   if de else f"We count the open app roles every day, since {page_value.day_label(t['since'], False)}.") + '</p></div>')
+    if pay: out += '<p>' + pay + '</p>'
+    return out
 
 def company_page(c, lang):
     """One company page. German at /companies/<slug>/, English at /en/companies/<slug>/, hreflang pairs both ways."""
