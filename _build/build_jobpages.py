@@ -192,6 +192,9 @@ EXTRA_CSS = """<style>
 .jd ul{padding-left:20px}.jd p{margin:0 0 12px}
 .expired{background:#FFE9E3;color:#7A1F0C;border:1.5px solid #7A1F0C;border-radius:8px;padding:12px 14px;margin:10px 0;font-weight:700}
 .note{color:var(--faint);font-size:12.5px;margin-top:10px}
+.ctx{border:1.5px solid var(--line);border-left:5px solid #FFD400;border-radius:10px;padding:12px 16px;margin:14px 0 0;background:var(--surface);font-size:14.5px;line-height:1.5}
+.ctx .lbl{display:block;font:800 10.5px/1.2 Archivo,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
+.ctx ul{margin:0;padding-left:18px}.ctx li{margin:3px 0}
 .costrip{display:flex;align-items:center;gap:13px;flex-wrap:wrap;background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;margin:14px 0 6px}
 .costrip img{width:48px;height:48px;border-radius:9px;flex:none}.costrip .ct{min-width:0;flex:1 1 220px}
 .costrip .lbl{display:block;font:800 10.5px/1.2 Archivo,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
@@ -244,6 +247,51 @@ for c in COS:
 
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from regions import REGION
+# ---- "In context" block and similar jobs (page_value.py): facts the employer's own ad can't give ----
+import collections, salary_detect, page_value
+SAL = salary_detect.salary_map(COS, DATA)
+FACTS = page_value.Facts(COS, SAL, DATA)
+BY_TEAM = collections.defaultdict(list)
+for _r in pages: BY_TEAM[_r['jb'].get('d')].append(_r)
+HUB_N = collections.Counter((jb.get('d'), c.get('city')) for c in COS if c.get('city') for jb in c.get('jobs') or [] if jb.get('d') in DISC)
+def in_context(rec, cname, cslug, de):
+    """A few lines that put the ad in context: pay stated or not (vs. the company and all app companies), the pay range
+    in comparable ads that state it, the company's hiring trend, and the matching role x city page."""
+    c, jb = rec['c'], rec['jb']; L = (lambda a, b: a if de else b); short = esc(short_co(cname)); lines = []
+    x = SAL.get(jb['u'])
+    if x and x['checked'] and FACTS.board_share is not None:
+        q = round(100 * FACTS.board_share); s_, n_ = FACTS.pay.get(c['n'], (0, 0))
+        if x['sal']:
+            lab = salary_detect.pay_label(x, 'de' if de else 'en', jb.get('sal') or None)
+            lines.append(L(f"Diese Anzeige nennt ein Gehalt{(': ' + esc(lab)) if lab else ''}. Das machen nur {q} % der Anzeigen von App-Firmen.",
+                           f"This ad states the pay{(': ' + esc(lab)) if lab else ''}. Only {q}% of ads from app companies do."))
+        else:
+            co_part = ('' if n_ < 2 else L(f" Bei {short} nennt keine der {n_} Anzeigen eins,", f" None of {short}'s {n_} ads state it;") if not s_
+                       else L(f" Bei {short} nennen {s_} von {n_} Anzeigen eins,", f" At {short}, {s_} of {n_} ads state it;"))
+            lines.append(L(f"Diese Anzeige nennt kein Gehalt.{co_part} über alle App-Firmen sind es {q} %.",
+                           f"This ad doesn't state the pay.{co_part} across all app companies it's {q}%."))
+    d = jb.get('d'); team = DISC.get(d, ('', ''))[1] if de else ROLE_EN.get(d, DISC.get(d, ('', ''))[1])
+    pr = FACTS.team_pay_range(d) if d in DISC else None
+    if pr and x and x.get('rt') == 'pro':
+        E = lambda v: page_value.euro(v, de)
+        lines.append(L(f"{team}-Anzeigen von App-Firmen, die ein Jahresgehalt nennen, liegen meist bei {E(pr['lo'])} bis {E(pr['hi'])} (Median {E(pr['med'])}, aus {pr['n']} Anzeigen auf dem Board).",
+                       f"{team} ads from app companies that state a yearly salary mostly pay {E(pr['lo'])} to {E(pr['hi'])} (median {E(pr['med'])}, from {pr['n']} ads on the board)."))
+    tr = FACTS.trend_sentence(c['n'], short, de)
+    if tr and cslug: lines.append(tr.replace(short, f'<a href="{L("", "/en")}/companies/{cslug}/">{short}</a>', 1))
+    city = c.get('city')
+    if d in DISC and city and HUB_N[(d, city)] >= 5:
+        hub = f"/jobs/{DISC[d][0]}/{city_slug(city)}/" if de else f"/en/jobs/{ROLE_EN_SLUG[d]}/{city_slug(city)}/"
+        lines.append(f'<a href="{hub}">' + L(f"Alle {HUB_N[(d, city)]} {team}-Jobs bei App-Firmen in {esc(city)}", f"All {HUB_N[(d, city)]} {team.lower()} jobs at app companies in {esc(city)}") + ' &rarr;</a>')
+    if not lines: return ''
+    return '<div class="ctx"><span class="lbl">' + L('Einordnung', 'In context') + '</span><ul>' + ''.join(f'<li>{l}</li>' for l in lines) + '</ul></div>'
+def similar_html(rec, de):
+    sim = page_value.similar_jobs(rec, BY_TEAM)
+    if not sim: return ''
+    L = (lambda a, b: a if de else b)
+    return f"<h2>{L('Ähnliche Stellen bei anderen App-Firmen', 'Similar jobs at other app companies')}</h2>" + ''.join(
+        f'<a class="row" href="/job/{r["slug"]}/"><div class="m"><div class="t">{esc(r["jb"]["t"])}</div>'
+        f'<div class="d">{esc(short_co(r["c"]["n"].split("|")[0].strip()))} &middot; {esc(r["jb"].get("loc") or r["c"].get("city") or "")}</div></div>'
+        f'<span class="apply">{L("Ansehen", "View")}</span></a>' for r in sim)
 # Feed values can be strings: descriptions.json stores rem as "True"/"False", and bool("False") is True.
 def truthy(v): return v is True or str(v).strip().lower() in ('true', '1', 'yes')
 CITY_ALIAS = {'munich': 'München', 'muenchen': 'München', 'cologne': 'Köln', 'koeln': 'Köln', 'nuremberg': 'Nürnberg',
@@ -444,10 +492,11 @@ for rec in pages:
       + costrip(c, cname, cslug, L)
       + f'<div id="expired" class="expired"{"" if gone else " hidden"}>{L("Diese Anzeige ist möglicherweise nicht mehr aktuell. Prüfe die Stelle auf der Karriereseite des Unternehmens.", "This posting may no longer be open. Check the role on the company careers page.")}</div>'
       + f'<a class="cta applybtn" href="{esc(apply_u)}" target="_blank" rel="noopener nofollow">{apply_l} &#8599;</a>'
+      + in_context(rec, cname, cslug, de)
       + f'<div class="jd">{desc}</div>'
       + f'<a class="cta applybtn" href="{esc(apply_u)}" target="_blank" rel="noopener nofollow" style="margin-top:16px">{apply_l} &#8599;</a>'
       + f'<p class="note">{L("Quelle: Bewerbungssystem von", "Source: hiring system of")} {esc(cname)}, {L("zuletzt geprüft am", "last checked")} {FETCHED}. {L("Du bewirbst dich direkt beim Unternehmen.", "You apply directly with the company.")}</p>'
-      + other_html
+      + other_html + similar_html(rec, de)
       + (f'<p style="margin-top:22px"><a href="{L("", "/en")}/companies/{cslug}/">{L("Alle Infos und Apps von", "All info and apps from")} {esc(cname)} &rarr;</a> &middot; ' if cslug else '<p style="margin-top:22px">')
       + f'<a href="/">{L("Alle Stellen auf dem Board", "All jobs on the board")} &rarr;</a></p>'
       + '</div>'
