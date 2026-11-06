@@ -22,7 +22,7 @@ ARTICLES3 = [
 <p>Jede App, die du täglich nutzt, hat jemanden, der entschieden hat, wie sie sich anfühlt: wo der Button sitzt, wie das Onboarding abläuft, warum sich die Bezahlung in drei Schritten statt in sieben erledigen lässt. Das sind die Designerinnen und Designer hinter den Produkten. Dieser Guide erklärt, welche Design-Rollen es bei deutschen App-Firmen gibt, wer einstellt, was man verdient, und wie du so suchst, dass du Gespräche bekommst statt Absagen.</p>
 
 <h2>Warum App-Firmen eigene Designer brauchen</h2>
-<p>Bei einer App ist das Design nicht Deko, sondern das Produkt selbst. Wenn ein Nutzer auf dem Smartphone nach fünf Sekunden nicht versteht, was er tun soll, ist er weg. Deshalb beschäftigen Produktfirmen, anders als klassische Agenturen, feste Design-Teams, die eng mit Produktmanagement und Entwicklung an denselben Screens arbeiten. Für dich als Bewerber heißt das: mehr Ownership, längere Zusammenarbeit an einem Produkt und messbare Wirkung, weil Design-Entscheidungen direkt in A/B-Tests und Nutzungszahlen landen.</p>
+<p>Bei einer App ist das Design nicht Deko, sondern das Produkt selbst. Wenn ein Nutzer auf dem Smartphone nach fünf Sekunden nicht versteht, was er tun soll, ist er weg. Deshalb beschäftigen <a href="/guides/agentur-oder-produktfirma/">Produktfirmen</a>, anders als klassische Agenturen, feste Design-Teams, die eng mit Produktmanagement und Entwicklung an denselben Screens arbeiten. Für dich als Bewerber heißt das: mehr Ownership, längere Zusammenarbeit an einem Produkt und messbare Wirkung, weil Design-Entscheidungen direkt in A/B-Tests und Nutzungszahlen landen.</p>
 <p>Auf diesem Board erfassen wir aktuell rund 2.240 offene Stellen bei 344 einstellenden Firmen, aus einem Feld von etwa 1.045 App-Unternehmen in ganz Deutschland. Design ist dabei eine kleinere, aber konstante Kategorie: Fast jede Firma, die eine App betreibt und ernst nimmt, sucht früher oder später mindestens eine Person, die sich um die Nutzerführung kümmert.</p>
 
 <h2>Die Rollen, und was sie wirklich bedeuten</h2>
@@ -34,7 +34,7 @@ ARTICLES3 = [
 <li><b>UX Researcher</b> führen Interviews, Usability-Tests und Umfragen durch und liefern die Belege, auf denen die anderen aufbauen. Diese Rolle gibt es meist erst in größeren Teams.</li>
 <li><b>Design Lead</b> und <b>Design Manager</b> führen Teams, pflegen das Design-System und vertreten Design gegenüber dem Rest der Firma.</li>
 </ul>
-<p>Werkstudenten- und Junior-Stellen im Design sind seltener als in der Entwicklung, aber es gibt sie, vor allem bei den größeren Firmen mit mehreren Produkt-Teams.</p>
+<p><a href="/guides/werkstudent-praktikum-app-jobs/">Werkstudenten- und Junior-Stellen</a> im Design sind seltener als in der Entwicklung, aber es gibt sie, vor allem bei den größeren Firmen mit mehreren Produkt-Teams.</p>
 
 <h2>Wer in Deutschland einstellt</h2>
 <p>Die größten Design-Arbeitgeber sind die Firmen mit den meisten Nutzern. In Berlin, mit rund 779 der offenen Stellen das mit Abstand größte Zentrum, konkurrieren [[Zalando SE|Zalando]], [[N26 AG|N26]], Delivery Hero, [[HelloFresh SE|HelloFresh]], [[GetYourGuide]] und [[Trade Republic Bank GmbH|Trade Republic]] um dieselben Produkt- und Design-Talente. In München, mit etwa 232 Rollen die Nummer zwei, bauen Firmen wie Scalable Capital, [[Flix SE|FlixBus]] und Personio ihre Apps. Hamburg mit rund 202 Stellen bringt unter anderem das Spielestudio [[InnoGames]] und die New Work SE (XING) mit. Dazu kommen Games-Firmen wie [[Wooga]] in Berlin, bei denen Interface- und UX-Design eine eigene Rolle spielen.</p>

@@ -58,10 +58,19 @@ ARTICLES = ARTICLES1 + ARTICLES2 + ARTICLES3
 UPDATED = {
     'gehaltstransparenz-app-jobs-2026': '2026-10-08',         # PR #28: outdated "only 3 %" claim, new title/FAQ
     'app-developer-salary-germany-2026': '2026-10-10',        # PR #30: stale counts and claims removed
-    'app-entwickler-gehalt-deutschland-2026': '2026-10-10',   # PR #30
+    'app-entwickler-gehalt-deutschland-2026': '2026-11-06',   # internal guide links (6 Nov)
     'erfolgreichste-apps-aus-berlin': '2026-10-10',           # PR #30
-    'most-successful-apps-made-in-berlin': '2026-10-10',      # PR #30
+    'most-successful-apps-made-in-berlin': '2026-11-06',   # internal guide links (6 Nov)
     'startup-jobs-berlin-english': '2026-10-10',              # PR #30
+    'ux-designer-jobs-app-unternehmen-deutschland': '2026-11-06',   # internal guide links (6 Nov)
+    'app-jobmarkt-deutschland-2026': '2026-11-06',   # internal guide links (6 Nov)
+    'quereinstieg-app-entwicklung': '2026-11-06',   # internal guide links (6 Nov)
+    'product-manager-werden': '2026-11-06',   # internal guide links (6 Nov)
+    'fintech-app-jobs-germany': '2026-11-06',   # internal guide links (6 Nov)
+    'english-speaking-tech-jobs-munich': '2026-11-06',   # internal guide links (6 Nov)
+    'product-manager-jobs-germany': '2026-11-06',   # internal guide links (6 Nov)
+    'english-speaking-tech-jobs-hamburg': '2026-11-06',   # internal guide links (6 Nov)
+    'agentur-oder-produktfirma': '2026-11-06',   # internal guide links (6 Nov)
 }
 def modified(a):
     return max(a.get('date', TODAY), UPDATED.get(a['slug'], ''))

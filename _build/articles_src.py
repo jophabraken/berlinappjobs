@@ -17,7 +17,7 @@ ARTICLES = [
 <p>Wer eine Stelle als App- oder Mobile-Entwickler sucht, will vor der Bewerbung eine ehrliche Antwort auf eine Frage: Was ist realistisch drin? Dieser Guide fasst die aktuellen Gehaltszahlen fuer Deutschland 2026 zusammen und ordnet sie ein, mit Blick auf Stadt, Erfahrung und Spezialisierung.</p>
 
 <h2>Das Durchschnittsgehalt auf einen Blick</h2>
-<p>Laut aktuellen StepStone-Daten (2026) liegt das mittlere Jahresgehalt fuer App-Entwickler in Deutschland bei rund 44.600 Euro brutto, mit einer typischen Spanne von etwa 38.900 bis 54.300 Euro. Der Einstieg beginnt oft bei rund 40.000 Euro. Diese Zahl mischt allerdings Junior-, Generalisten- und Agenturrollen. Erfahrene Mobile Engineers und Spezialisten fuer iOS (Swift) oder Android (Kotlin) liegen bei etablierten App-Unternehmen deutlich hoeher, haeufig im Bereich 60.000 bis 85.000 Euro, in Lead- und Principal-Rollen darueber.</p>
+<p>Laut aktuellen StepStone-Daten (2026) liegt das mittlere Jahresgehalt fuer App-Entwickler in Deutschland bei rund 44.600 Euro brutto, mit einer typischen Spanne von etwa 38.900 bis 54.300 Euro. Der Einstieg beginnt oft bei rund 40.000 Euro. Diese Zahl mischt allerdings Junior-, Generalisten- und <a href="/guides/agentur-oder-produktfirma/">Agenturrollen</a>. Erfahrene Mobile Engineers und Spezialisten fuer iOS (Swift) oder Android (Kotlin) liegen bei etablierten App-Unternehmen deutlich hoeher, haeufig im Bereich 60.000 bis 85.000 Euro, in Lead- und Principal-Rollen darueber.</p>
 
 <h2>Gehalt nach Stadt</h2>
 <p>Die Unterschiede zwischen den Staedten sind spuerbar, folgen aber auch den Lebenshaltungskosten. Aktuelle Durchschnittswerte fuer App-Entwickler:</p>
@@ -186,7 +186,7 @@ ARTICLES = [
 <p>Eine Plattform waehlen (nicht beide gleichzeitig), die offiziellen Grundlagen durcharbeiten (Android Developer Docs oder Apples SwiftUI-Tutorials), dann sofort eigene Projekte bauen. Ein guter Startbogen: eine App, die eine echte API anbindet, Daten lokal speichert und einen sauberen Zustand verwaltet. Danach eine zweite App, die etwas loest, das man selbst braucht. Genau diese Projekte werden im Bewerbungsgespraech besprochen.</p>
 
 <h2>Wo Quereinsteiger einsteigen</h2>
-<p>Werkstudenten- und Praktikumsstellen sind ein realer Weg hinein, App-Unternehmen nutzen sie intensiv und uebernehmen haeufiger als andere Branchen. Auch Junior-Rollen und Rollen mit dem Zusatz Quereinstieg tauchen regelmaessig auf. Manche Unternehmen, etwa im Health- und Software-Bereich, schreiben Quereinstieg explizit aus. Auf dem Board lassen sich Einstiegsrollen ueber die Filter fuer Seniority und Anstellungsart finden.</p>
+<p><a href="/guides/werkstudent-praktikum-app-jobs/">Werkstudenten- und Praktikumsstellen</a> sind ein realer Weg hinein, App-Unternehmen nutzen sie intensiv und uebernehmen haeufiger als andere Branchen. Auch Junior-Rollen und Rollen mit dem Zusatz Quereinstieg tauchen regelmaessig auf. Manche Unternehmen, etwa im Health- und Software-Bereich, schreiben Quereinstieg explizit aus. Auf dem Board lassen sich Einstiegsrollen ueber die Filter fuer Seniority und Anstellungsart finden.</p>
 
 <h2>Was den Unterschied macht</h2>
 <p>Zwei Dinge ueberzeugen Teams: fertige, vorzeigbare Projekte und die Faehigkeit, den eigenen Code zu erklaeren. Ein Bootcamp kann Struktur geben, ersetzt aber nicht das Portfolio. Wer aus einem verwandten Feld kommt (Web, Backend, Design, QA), sollte das als Bruecke nutzen und die vorhandenen Staerken sichtbar machen.</p>
@@ -318,7 +318,7 @@ ARTICLES = [
 <p>Product management pays well in Germany. Current StepStone data (2026) puts a senior product manager in Berlin at a median of around 74,500 euro gross per year, with a range of roughly 64,300 to 85,900 euro. Regular and associate PM roles sit below that, lead and group PM roles above. Product companies with real user bases tend to pay more, and more transparently, than agencies.</p>
 
 <h2>Who is hiring</h2>
-<p>Product roles show up across fintech, health, gaming, mobility and commerce apps. On this board there are dozens of open product roles at any time, each attached to a real product you can actually open and try. That last part matters: the strongest PM applications show you have used the product and have a point of view on it.</p>
+<p>Product roles show up across <a href="/guides/fintech-app-jobs-germany/">fintech</a>, health, gaming, mobility and commerce apps. On this board there are dozens of open product roles at any time, each attached to a real product you can actually open and try. That last part matters: the strongest PM applications show you have used the product and have a point of view on it.</p>
 
 <h2>How to get in</h2>
 <p>For a first PM role, the most reliable routes are adjacent: from engineering, design, data, analytics or a strong operations background. Show evidence of shipping and of making prioritisation calls under real constraints. For a move between companies, come with a clear thesis on the target product. Filter this board to product roles and look for teams whose app you genuinely rate.</p>
