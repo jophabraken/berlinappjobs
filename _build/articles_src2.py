@@ -218,85 +218,59 @@ ARTICLES2 = [
  "lang": "de",
  "title": "App-Jobmarkt Deutschland 2026: Wer stellt ein, wo, und in welchen Rollen",
  "metaTitle": "App-Jobmarkt Deutschland 2026: Zahlen, Städte, Rollen | Berlin App Jobs",
- "desc": "Der Jobmarkt bei deutschen App-Unternehmen in Zahlen: 2.240 offene Stellen bei 344 Firmen, verteilt nach Stadt, Bereich und Seniorität. Mit den Firmen, die am meisten einstellen.",
+ "desc": "Der Jobmarkt bei deutschen App-Unternehmen in Zahlen: offene Stellen nach Stadt, Bundesland, Bereich und Seniorität, bei jedem Daten-Update neu gezählt. Mit den Firmen, die am meisten einstellen.",
  "hreflang": None,
  "ctaHref": "/",
  "ctaLabel": "Alle aktuellen Stellen durchsuchen",
  "related": ["gehaltstransparenz-app-jobs-2026", "remote-app-jobs-deutschland", "app-entwickler-jobs-deutschland", "erfolgreichste-apps-aus-berlin"],
  "html": """
-<p>Wie viele Jobs gibt es eigentlich bei den Firmen hinter Deutschlands Apps? Statt Schätzungen haben wir gezählt. Dieses Board liest die Bewerbungssysteme von über 1.000 deutschen App-Unternehmen aus, deren Apps in den deutschen Google-Play-Charts stehen. Der Stand dieser Auswertung: 22. September 2026.</p>
+<p>Wie viele Jobs gibt es eigentlich bei den Firmen hinter Deutschlands Apps? Statt Schätzungen haben wir gezählt. Dieses Board liest die Bewerbungssysteme von {{tracked}} deutschen App-Unternehmen aus, deren Apps in den deutschen Google-Play-Charts stehen. Alle Zahlen auf dieser Seite werden bei jedem Daten-Update neu gezählt, Stand: {{month}}.</p>
 
 <h2>Die Zahlen auf einen Blick</h2>
 <ul>
-<li><b>2.240</b> offene Stellen</li>
-<li><b>344</b> App-Unternehmen mit offenen Stellen (von 1.045 erfassten)</li>
-<li><b>rund 10 Prozent</b> der Rollen sind remote oder mit Homeoffice ausgeschrieben</li>
-<li><b>rund jede zehnte</b> Anzeige nennt ein Gehalt (aktuelle Zahl: <a href="/gehaltstransparenz/">Gehaltstransparenz-Index</a>)</li>
+<li><b>{{jobs}}</b> offene Stellen</li>
+<li><b>{{cos}}</b> App-Unternehmen mit offenen Stellen (von {{tracked}} erfassten)</li>
+<li><b>{{pct:remote}} Prozent</b> der Rollen sind remote oder mit Homeoffice ausgeschrieben</li>
+<li><b>{{sal}} Prozent</b> der Anzeigen nennen ein Gehalt (Details: <a href="/gehaltstransparenz/">Gehaltstransparenz-Index</a>)</li>
 </ul>
-<p>Nur ein Drittel der App-Firmen stellt also gerade aktiv ein. Viele kleinere Entwickler haben keine offenen Stellen, andere suchen fast permanent.</p>
+<p>Nur ein Teil der App-Firmen stellt also gerade aktiv ein. Viele kleinere Entwickler haben keine offenen Stellen, andere suchen fast permanent.</p>
 
 <h2>Die Städte</h2>
 <ul>
-<li>Berlin: 779 Stellen</li>
-<li>München: 232</li>
-<li>Hamburg: 202</li>
-<li>Düsseldorf: 86</li>
-<li>Frankfurt am Main: 67</li>
-<li>Stuttgart: 66</li>
-<li>Jena: 64</li>
-<li>Köln: 62</li>
-<li>Leipzig: 41</li>
+{{list:cities:9}}
 </ul>
-<p>Berlin allein vereint gut ein Drittel aller Stellen. Nach Bundesländern liegt Bayern mit 445 Stellen vor Nordrhein-Westfalen (260), Hamburg (202) und Baden-Württemberg (182). Jena ist ein Sonderfall: Fast alle Stellen dort kommen von einem einzigen Arbeitgeber, [[zollsoft GmbH|zollsoft]].</p>
+<p>Berlin allein vereint {{pct:city:Berlin}} Prozent aller Stellen (Sitz des Unternehmens). Nach Bundesländern: Bayern {{state:Bayern}}, Nordrhein-Westfalen {{state:Nordrhein-Westfalen}}, Baden-Württemberg {{state:Baden-Württemberg}}, Hamburg {{state:Hamburg}}. Jena ist ein Sonderfall: Fast alle Stellen dort kommen von einem einzigen Arbeitgeber, [[zollsoft GmbH|zollsoft]].</p>
 
 <h2>Die Bereiche</h2>
 <ul>
-<li>Engineering: 402 Stellen</li>
-<li>Ops &amp; Support: 295</li>
-<li>Marketing: 232</li>
-<li>People &amp; Finance: 211</li>
-<li>Sales: 184</li>
-<li>Data: 164</li>
-<li>Product: 79</li>
-<li>Design: 65</li>
-<li>Health: 41</li>
-<li>Sonstige: 567</li>
+{{list:disc}}
 </ul>
-<p>Engineering ist der größte einzelne Bereich, aber weniger als ein Fünftel aller Stellen. Wer nicht programmiert, hat bei App-Firmen also mehr Chancen, als man denkt. Product- und Design-Rollen sind dagegen knapp: Auf eine Product-Stelle kommen rund fünf Engineering-Stellen. Rund 70 Stellentitel nennen explizit KI, Machine Learning oder LLMs, vor allem bei CHECK24, Scalable und Freecash.</p>
+<p>Engineering ist der größte einzelne Bereich, aber nur {{pct:eng}} Prozent aller Stellen. Wer nicht programmiert, hat bei App-Firmen also mehr Chancen, als man denkt. Product- und Design-Rollen sind dagegen knapp ({{product}} und {{design}} Stellen).</p>
 
 <h2>Seniorität und Einstieg</h2>
-<p>Etwa jede vierte Stelle ist eine Senior- oder Lead-Rolle (531). Für Einsteiger gibt es 143 <a href="/guides/werkstudent-praktikum-app-jobs/">Werkstudentenstellen</a> und 194 Praktika oder Traineeprogramme, dazu knapp 100 explizite Junior-Rollen. Der Rest sind Rollen mit einigen Jahren Erfahrung.</p>
+<p>Neben Senior- und Lead-Rollen gibt es für Einsteiger <a href="/guides/werkstudent-praktikum-app-jobs/">Werkstudentenstellen</a>, Praktika, Traineeprogramme und explizite Junior-Rollen. Der Rest sind Rollen mit einigen Jahren Erfahrung.</p>
 
 <h2>Die Firmen, die am meisten einstellen</h2>
 <ul>
-<li>[[Enpal B.V.|Enpal]] (Berlin): 71</li>
-<li>[[zollsoft GmbH|zollsoft]] (Jena): 62</li>
-<li>[[N26 AG|N26]] (Berlin): 46</li>
-<li>[[CHECK24 GmbH|CHECK24]] (München): 46</li>
-<li>[[GetYourGuide]] (Berlin): 39</li>
-<li>[[Freecash]] (Berlin): 36</li>
-<li>[[Scalable AG|Scalable Capital]] (München): 36</li>
-<li>[[HelloFresh SE|HelloFresh]] (Berlin): 34</li>
-<li>[[Raisin SE|Raisin]] (Berlin): 28</li>
-<li>[[Trade Republic Bank GmbH|Trade Republic]] (Berlin): 27</li>
+{{list:cos:10}}
 </ul>
-<p>Fintech ist dabei der stärkste Einzelsektor: N26, Scalable, Raisin, Trade Republic, smava, Moss und Taxfix kommen zusammen auf über 200 offene Stellen.</p>
+<p>Fintech ist dabei einer der stärksten Sektoren: [[Scalable AG|Scalable]], [[SumUp]], [[Trade Republic Bank GmbH|Trade Republic]], [[smava]], [[Raisin SE|Raisin]], [[N26 AG|N26]] und [[Taxfix SE|Taxfix]] stellen laufend ein, mehr dazu im <a href="/guides/fintech-app-jobs-germany/">Fintech-Guide</a>.</p>
 
 <h2>Sprache: Englisch ist Standard</h2>
-<p>In Berlin sind rund drei Viertel der Stellen auf Englisch ausgeschrieben, in München rund 70 Prozent, in Hamburg rund 60 Prozent. Außerhalb der drei großen Städte überwiegen deutsche Anzeigen deutlich.</p>
+<p>In Berlin sind {{en:Berlin}} Prozent der Stellen auf Englisch ausgeschrieben, in München {{en:München}} Prozent, in Hamburg {{en:Hamburg}} Prozent. Außerhalb der drei großen Städte überwiegen deutsche Anzeigen deutlich.</p>
 
 <h2>Methodik</h2>
-<p>Erfasst werden Unternehmen, deren Apps in den deutschen Google-Play-Top-Charts stehen und die eine deutsche Geschäftsadresse haben. Die Stellen stammen direkt aus deren Bewerbungssystemen (etwa Greenhouse, Personio, Ashby) und werden täglich aktualisiert. Doppelte Einträge, Initiativbewerbungen und Stellen außerhalb Deutschlands werden herausgefiltert. Bei großen Konzernen zählen wir nur einen Teil der Stellen.</p>
+<p>Erfasst werden Unternehmen, deren Apps in den deutschen Google-Play-Top-Charts stehen und die eine deutsche Geschäftsadresse haben. Die Stellen stammen direkt aus deren Bewerbungssystemen (etwa Greenhouse, Personio, Ashby) und werden regelmäßig aktualisiert. Doppelte Einträge, Initiativbewerbungen und Stellen außerhalb Deutschlands werden herausgefiltert. Bei großen Konzernen zählen wir nur einen Teil der Stellen.</p>
 """,
  "faq": [
    ["Wie viele Jobs gibt es bei App-Unternehmen in Deutschland?",
-    "Im September 2026 zählt dieses Board 2.240 offene Stellen bei 344 App-Unternehmen mit deutscher Adresse."],
+    "Im {{month}} zählt dieses Board {{jobs}} offene Stellen bei {{cos}} App-Unternehmen mit deutscher Adresse."],
    ["In welcher Stadt gibt es die meisten App-Jobs?",
-    "In Berlin (779 Stellen), gefolgt von München (232) und Hamburg (202)."],
+    "In Berlin ({{city:Berlin}} Stellen), mit großem Abstand vor München ({{city:München}}). Die weiteren Städte stehen oben im Abschnitt „Die Städte“."],
    ["Welche App-Firmen stellen am meisten ein?",
-    "Aktuell Enpal, zollsoft, N26, CHECK24, GetYourGuide, Freecash, Scalable Capital, HelloFresh, Raisin und Trade Republic."],
+    "Die aktuelle Top 10 steht oben im Abschnitt „Die Firmen, die am meisten einstellen“; sie wird bei jedem Daten-Update neu berechnet."],
    ["Braucht man für App-Jobs Deutschkenntnisse?",
-    "In Berlin, München und Hamburg meist nicht: Dort sind 60 bis 75 Prozent der Stellen auf Englisch ausgeschrieben. In anderen Städten überwiegen deutsche Anzeigen."]
+    "In Berlin, München und Hamburg meist nicht: Dort ist die Mehrheit der Stellen auf Englisch ausgeschrieben (Berlin {{en:Berlin}}, München {{en:München}}, Hamburg {{en:Hamburg}} Prozent). In anderen Städten überwiegen deutsche Anzeigen."]
  ]
 },
 
@@ -456,27 +430,19 @@ ARTICLES2 += [
  "lang": "de",
  "title": "Remote-Jobs bei App-Unternehmen: Wer in Deutschland 100 % Homeoffice anbietet",
  "metaTitle": "Remote App-Jobs Deutschland 2026: Firmen mit 100 % Homeoffice | Berlin App Jobs",
- "desc": "Rund 230 der 2.240 Stellen bei deutschen App-Firmen sind remote oder mit Homeoffice ausgeschrieben. Welche Unternehmen voll remote einstellen und worauf man achten sollte.",
+ "desc": "Wie viele Stellen bei deutschen App-Firmen remote oder mit Homeoffice ausgeschrieben sind, welche Unternehmen voll remote einstellen und worauf man achten sollte.",
  "hreflang": None,
  "ctaHref": "/?wp=remote",
  "ctaLabel": "Nur Remote-Stellen anzeigen",
  "related": ["app-jobmarkt-deutschland-2026", "app-entwickler-jobs-deutschland", "health-app-jobs-deutschland", "gehaltstransparenz-app-jobs-2026"],
  "html": """
-<p>Voll remote arbeiten und trotzdem an einer App mit Millionen Nutzern: Das geht, aber seltener, als viele denken. Von 2.240 offenen Stellen bei deutschen App-Unternehmen sind rund 230 remote oder mit Homeoffice ausgeschrieben, also etwa jede zehnte. Stand: September 2026.</p>
+<p>Voll remote arbeiten und trotzdem an einer App mit Millionen Nutzern: Das geht, aber seltener, als viele denken. Von {{jobs}} offenen Stellen bei deutschen App-Unternehmen sind {{remote}} remote oder mit Homeoffice ausgeschrieben, also {{pct:remote}} Prozent. Stand: {{month}}.</p>
 
 <h2>Die Firmen mit den meisten Remote-Stellen</h2>
 <ul>
-<li>[[zollsoft GmbH|zollsoft]] (Jena): rund 30 Remote-Stellen, vor allem Entwicklung (Flutter, Angular, Kotlin) für Praxissoftware und Videosprechstunden.</li>
-<li>[[Nextcloud]] (Stuttgart): alle rund 22 Stellen remote, von Engineering bis Sales und Finance.</li>
-<li>[[Enpal B.V.|Enpal]] (Berlin): rund 15 Stellen mit Homeoffice, vor allem im Vertrieb.</li>
-<li>[[smava]] (Berlin): rund 14 Stellen, viele davon als Kreditspezialist im Homeoffice.</li>
-<li>[[tonies GmbH|tonies]] (Düsseldorf): rund 8 Stellen remote.</li>
-<li>[[Vivid Money GmbH|Vivid Money]] (Berlin), [[komoot GmbH|komoot]] und [[IONITY GmbH|IONITY]]: jeweils rund 7.</li>
-<li>[[SOFTGAMES Mobile Entertainment Services|Softgames]] (Berlin) und [[GOREHA GmbH|GOREHA]]: jeweils 5, alle voll remote.</li>
-<li>[[Yazio]] (Erfurt): alle 4 Stellen remote, darunter Senior Mobile Engineers für Kotlin Multiplatform.</li>
-<li>[[LOTTO24]] (auch Tipp24), [[AMBOSS]] und MetaFlow: mehrere Remote-Rollen.</li>
+{{list:remote:10}}
 </ul>
-<p>Auffällig: komoot, Yazio und Nextcloud sind Firmen, die remote nicht als Ausnahme behandeln, sondern als Arbeitsmodell. Bei den großen Berliner Fintechs und Marktplätzen ist dagegen fast immer Hybrid mit Bürotagen üblich.</p>
+<p>Auffällig: Firmen wie [[Nextcloud]], [[zollsoft GmbH|zollsoft]] und [[Yazio]] behandeln remote nicht als Ausnahme, sondern als Arbeitsmodell. Bei den großen Berliner Fintechs und Marktplätzen ist dagegen fast immer Hybrid mit Bürotagen üblich.</p>
 
 <h2>Remote heißt nicht immer weltweit</h2>
 <p>Die meisten Remote-Stellen deutscher Firmen sind „remote in Deutschland“. Der Grund ist meist Steuer- und Sozialversicherungsrecht: Wer aus einem anderen Land arbeitet, macht die Anstellung komplizierter. Einige Firmen erlauben remote innerhalb der EU oder bestimmter Zeitzonen. Das steht selten in der Überschrift, fast immer aber im Anzeigentext. Wenn es fehlt: fragen.</p>
@@ -494,9 +460,9 @@ ARTICLES2 += [
 """,
  "faq": [
    ["Welche App-Firmen bieten 100 % Remote an?",
-    "Unter anderem zollsoft, Nextcloud, komoot, Yazio, Softgames, GOREHA und AMBOSS. Bei vielen weiteren Firmen gibt es einzelne Remote-Rollen."],
+    "Unter anderem zollsoft, Nextcloud, Yazio und GOREHA. Die Firmen mit den meisten Remote-Stellen stehen oben in der Liste, die bei jedem Daten-Update neu gezählt wird. Bei vielen weiteren Firmen gibt es einzelne Remote-Rollen."],
    ["Wie viele App-Jobs sind remote?",
-    "Rund 230 von 2.240 Stellen bei deutschen App-Unternehmen, also etwa jede zehnte (Stand September 2026)."],
+    "{{remote}} von {{jobs}} Stellen bei deutschen App-Unternehmen, also {{pct:remote}} Prozent (Stand {{month}})."],
    ["Kann ich aus dem Ausland für eine deutsche Firma remote arbeiten?",
     "Meist nur eingeschränkt. Die meisten Remote-Stellen sind „remote in Deutschland“, einige erlauben EU-weites Arbeiten. Das steht im Anzeigentext oder lässt sich im Erstgespräch klären."]
  ]
