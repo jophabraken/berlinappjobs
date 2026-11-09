@@ -7,6 +7,9 @@ from articles_src import ARTICLES as ARTICLES1
 from articles_src2 import ARTICLES2
 from articles_src3 import ARTICLES3
 import unicodedata
+import live_numbers   # {{token}} counts in guide bodies, recomputed from the job data on every build
+for _a in ARTICLES1 + ARTICLES2 + ARTICLES3:
+    live_numbers.expand(_a)
 
 def _slugify(name):
     n=re.sub(r'\b(GmbH & Co\.? KG|GmbH & Co KG|GmbH|AG|SE|mbH|Inc\.?|Ltd\.?|LLC|e\.?V\.?|Co\.?|KG|Stiftung|& Co|Group|Holding|Deutschland|Verlag)\b','',name, flags=re.I)
@@ -62,8 +65,6 @@ UPDATED = {
     'erfolgreichste-apps-aus-berlin': '2026-10-10',           # PR #30
     'most-successful-apps-made-in-berlin': '2026-11-06',   # internal guide links (6 Nov)
     'startup-jobs-berlin-english': '2026-10-10',              # PR #30
-    'ux-designer-jobs-app-unternehmen-deutschland': '2026-11-06',   # internal guide links (6 Nov)
-    'app-jobmarkt-deutschland-2026': '2026-11-06',   # internal guide links (6 Nov)
     'quereinstieg-app-entwicklung': '2026-11-06',   # internal guide links (6 Nov)
     'product-manager-werden': '2026-11-06',   # internal guide links (6 Nov)
     'fintech-app-jobs-germany': '2026-11-06',   # internal guide links (6 Nov)
@@ -71,6 +72,9 @@ UPDATED = {
     'product-manager-jobs-germany': '2026-11-06',   # internal guide links (6 Nov)
     'english-speaking-tech-jobs-hamburg': '2026-11-06',   # internal guide links (6 Nov)
     'agentur-oder-produktfirma': '2026-11-06',   # internal guide links (6 Nov)
+    'ux-designer-jobs-app-unternehmen-deutschland': '2026-11-09',   # live counts instead of Sept numbers, employers without roles removed
+    'app-jobmarkt-deutschland-2026': '2026-11-09',   # all counts live ({{tokens}}, live_numbers.py), new desc without numbers
+    'remote-app-jobs-deutschland': '2026-11-09',   # live remote count
 }
 def modified(a):
     return max(a.get('date', TODAY), UPDATED.get(a['slug'], ''))
