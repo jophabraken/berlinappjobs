@@ -1,81 +1,125 @@
-# Job refresh 2026-11-15
+# Job refresh 2026-11-16
 
 - API feeds: 261, failed: 21; custom career pages link-checked: 187 links, 0 removed
-- Jobs: 2246 → 2244 (new 3, closed 5, still open 1888)
-- Full descriptions read from job pages: 0 (custom career pages) + 0 (feeds without descriptions, 2 pages checked)
+- Jobs: 2244 → 2232 (new 93, closed 105, still open 1878)
+- Full descriptions read from job pages: 0 (custom career pages) + 0 (feeds without descriptions, 3 pages checked)
 - Companies that were shown as not hiring and now list jobs: 0
 - Hiring-system detection: 0 companies checked, 0 now read directly
-- Published salaries added: 2; companies kept as-is because of a suspicious result: 1
+- Published salaries added: 4; companies kept as-is because of a suspicious result: 0
 - Jobs already on the board dropped by the app-impact rule (app_roles.py): 0 at 0 companies
 - Result: written
 
 ## Changes by company
 
-- 1. FC Köln (personio): 5 new ads skipped, no impact on the app
+- 1. FC Köln (personio): 4 new ads skipped, no impact on the app
+- ABOUT YOU SE & Co. KG (crawl): 59 → 59 jobs (2 closed)
+- AMBOSS (ashby): 10 → 8 jobs (2 closed)
 - AOK connect GbR (personio): 2 new ads skipped, no impact on the app
 - ATP Autoteile GmbH (personio): 1 new ads skipped, no impact on the app
-- AVIRA (ashby): 42 ads from other employers dropped (EMPLOYER rule)
+- AVIRA (ashby): 41 ads from other employers dropped (EMPLOYER rule)
 - AVIRA (ashby): 48 new ads skipped, no impact on the app
+- AXA Deutschland (crawl): 17 new ads skipped, no impact on the app
 - Aktion Mensch e.V. (personio): 6 new ads skipped, no impact on the app
-- BMW GROUP (crawl): 21 → 24 jobs (0 closed)
-- BMW GROUP (crawl): 30 new ads skipped, no impact on the app
-- BWI GmbH (crawl): fetch failed, kept 36 jobs. SiteChanged: no job page with JobPosting data among 36 pages (site changed?)
+- Axel Springer Deutschland GmbH | WELT Digital (crawl): 2 new ads skipped, no impact on the app
+- BMW GROUP (crawl): 24 → 27 jobs (0 closed)
+- BMW GROUP (crawl): 29 new ads skipped, no impact on the app
+- BWI GmbH (crawl): 3 new ads skipped, no impact on the app
+- BWI GmbH (crawl): 36 → 36 jobs (2 closed)
 - Bloomwell GmbH (personio): 1 new ads skipped, no impact on the app
 - Blue Ocean Entertainment AG (personio): 3 new ads skipped, no impact on the app
 - Borussia Dortmund (softgarden): 15 new ads skipped, no impact on the app
+- Buhl Data Service GmbH (personio): 8 → 6 jobs (2 closed)
 - Bundesliga Media GmbH (personio): 11 new ads skipped, no impact on the app
-- DATEV eG (workday): 63 → 62 jobs (1 closed)
-- DER SPIEGEL GmbH & Co. KG (softgarden): 7 new ads skipped, no impact on the app
-- Deichmann SE (crawl): 12 new ads skipped, no impact on the app
-- EnBW AG (crawl): 1 new ads skipped, no impact on the app
+- DATEV eG (workday): 62 → 63 jobs (0 closed)
+- DER SPIEGEL GmbH & Co. KG (softgarden): 8 new ads skipped, no impact on the app
+- Deichmann SE (crawl): 5 new ads skipped, no impact on the app
+- Deichmann SE (crawl): 6 → 8 jobs (0 closed)
+- Dirk Rossmann GmbH (crawl): 1 new ads skipped, no impact on the app
+- Dirk Rossmann GmbH (crawl): 18 → 16 jobs (2 closed)
+- EGYM (ashby): 42 → 43 jobs (0 closed)
+- ERGO Group AG (crawl): 1 new ads skipped, no impact on the app
+- EWE AG (workday): 6 → 7 jobs (0 closed)
+- EnBW AG (crawl): 5 → 5 jobs (1 closed)
 - Enpal B.V. (ashby): 152 new ads skipped, no impact on the app
-- Europa-Park GmbH & Co Mack KG (crawl): 3 new ads skipped, no impact on the app
+- Enpal B.V. (ashby): 7 → 8 jobs (0 closed)
 - Finflow GmbH (personio): 1 new ads skipped, no impact on the app
 - Flaconi (greenhouse): 4 new ads skipped, no impact on the app
 - Flix SE (greenhouse): 3 new ads skipped, no impact on the app
-- GetYourGuide (greenhouse): feed returned 0 German jobs (had 55), kept old jobs
-- Globus Fachmärkte (crawl): 2 new ads skipped, no impact on the app
-- Handelsblatt GmbH (crawl): 6 → 5 jobs (1 closed)
+- Flix SE (greenhouse): 50 → 50 jobs (1 closed)
+- GOREHA GmbH (personio): 7 → 7 jobs (1 closed)
+- GetYourGuide (ashby): 55 → 51 jobs (55 closed)
+- Globus Fachmärkte (crawl): 10 new ads skipped, no impact on the app
+- Handelsblatt GmbH (crawl): 5 → 4 jobs (1 closed)
+- HelloFresh SE (greenhouse): 61 → 57 jobs (5 closed)
 - HelloFresh SE (greenhouse): 66 new ads skipped, no impact on the app
 - Hörmann KG Antriebstechnik (crawl): 28 new ads skipped, no impact on the app
 - InnoGames GmbH (lever): 4 new ads skipped, no impact on the app
+- Kassenärztliche Bundesvereinigung KdöR (crawl): 2 → 1 jobs (1 closed)
+- Knuddels - Chat und Spiele Community (recruitee): 1 → 0 jobs (1 closed)
 - LIQUI MOLY GmbH (personio): 14 new ads skipped, no impact on the app
-- LVM Versicherung Münster a.G. (crawl): 44 new ads skipped, no impact on the app
+- LVM Versicherung Münster a.G. (crawl): 43 new ads skipped, no impact on the app
+- Leipziger Verkehrsbetriebe (crawl): 1 new ads skipped, no impact on the app
 - MAINGAU Energie GmbH (recruitee): 3 new ads skipped, no impact on the app
 - MILES Mobility GmbH (personio): 1 new ads skipped, no impact on the app
 - Media Pioneer Publishing AG (personio): 16 new ads skipped, no impact on the app
 - MyTherapy (personio): fetch failed, kept 0 jobs. HTTPError: HTTP Error 404: Not Found
 - Müller Handels GmbH & Co. KG (crawl): 5 new ads skipped, no impact on the app
+- N26 AG (greenhouse): 22 → 21 jobs (1 closed)
+- OBI Home and Garden GmbH (crawl): 18 → 17 jobs (1 closed)
+- Olympia-Verlag (crawl): fetch failed, kept 1 jobs. SiteChanged: no job page with JobPosting data among 1 pages (site changed?)
+- Ostrom GmbH (ashby): 2 → 3 jobs (0 closed)
 - PL Gutscheinsysteme GmbH (personio): fetch failed, kept 0 jobs. HTTPError: HTTP Error 404: Not Found
-- Parfümerie Akzente GmbH (crawl): 1 new ads skipped, no impact on the app
-- Parfümerie Douglas GmbH (crawl): 31 new ads skipped, no impact on the app
-- PowerUs (ashby): fetch failed, kept 2 jobs. HTTPError: HTTP Error 404: Not Found
+- Parfümerie Akzente GmbH (crawl): 12 new ads skipped, no impact on the app
+- Parfümerie Douglas GmbH (crawl): 17 new ads skipped, no impact on the app
+- PowerUs (ashby): feed gone (404) for 7 days, removed 2 jobs. HTTPError: HTTP Error 404: Not Found
 - REGIOCAST GmbH & Co.KG (softgarden): fetch failed, kept 0 jobs. HTTPError: HTTP Error 404: Not Found
+- Robert Bosch GmbH (smartrecruiters): 30 → 28 jobs (2 closed)
 - S Broker AG & Co. KG (crawl): 17 ads from other employers dropped (EMPLOYER rule)
+- S-Bahn Berlin (crawl): 15 → 14 jobs (1 closed)
 - S-Bahn Berlin (crawl): 3 new ads skipped, no impact on the app
 - S-Payment GmbH (workday): 8 ads from other employers dropped (EMPLOYER rule)
+- Scalable AG (smartrecruiters): 103 → 104 jobs (1 closed)
 - Schwarz Digits IT KG (crawl): 11 ads from other employers dropped (EMPLOYER rule)
+- Schwarz Digits IT KG (crawl): 3 new ads skipped, no impact on the app
 - Sdui (personio): fetch failed, kept 0 jobs. HTTPError: HTTP Error 404: Not Found
-- TUI Hotel Betriebsgesellschaft mbH (crawl): 2 → 1 jobs (1 closed)
-- Thalia Bücher GmbH (crawl): 22 new ads skipped, no impact on the app
+- Stepstone (smartrecruiters): 83 → 83 jobs (8 closed)
+- Ströer Digital Publishing GmbH (crawl): 2 new ads skipped, no impact on the app
+- SumUp (greenhouse): 51 → 51 jobs (1 closed)
+- TUI Hotel Betriebsgesellschaft mbH (crawl): 6 new ads skipped, no impact on the app
+- Targobank AG (crawl): 3 new ads skipped, no impact on the app
+- TeamViewer (teamtailor): 14 → 15 jobs (0 closed)
+- Thalia Bücher GmbH (crawl): 20 new ads skipped, no impact on the app
 - Too Good To Go (greenhouse): fetch failed, kept 0 jobs. HTTPError: HTTP Error 404: Not Found
-- Trade Republic Bank GmbH (greenhouse): 32 → 31 jobs (1 closed)
+- TÜV NORD Service GmbH & Co. KG (crawl): 1 new ads skipped, no impact on the app
 - Urban Sports GmbH (greenhouse): fetch failed, kept 0 jobs. HTTPError: HTTP Error 404: Not Found
+- Vattenfall Europe Sales GmbH (crawl): 16 new ads skipped, no impact on the app
+- Vattenfall Europe Sales GmbH (crawl): 4 → 2 jobs (4 closed)
 - Volkswagen Group Charging GmbH (crawl): 45 ads from other employers dropped (EMPLOYER rule)
 - Wolt (greenhouse): 17 new ads skipped, no impact on the app
-- Wolt (greenhouse): 27 → 26 jobs (1 closed)
+- Wolt (greenhouse): 26 → 26 jobs (1 closed)
+- Yazio (ashby): 3 → 2 jobs (1 closed)
+- Zalando SE (zalando): 77 → 80 jobs (0 closed)
+- bitiba GmbH (crawl): 7 → 8 jobs (0 closed)
 - celebrate apps (recruitee): 1 new ads skipped, no impact on the app
 - fillibri GmbH & Co. KG (crawl): fetch failed, kept 3 jobs. SiteChanged: no job page with JobPosting data among 3 pages (site changed?)
-- gematik (personio): 16 new ads skipped, no impact on the app
+- foodora (Delivery Hero) (smartrecruiters): 30 → 31 jobs (1 closed)
+- gematik (personio): 15 new ads skipped, no impact on the app
 - home24 SE (softgarden): 1 new ads skipped, no impact on the app
+- idealo internet GmbH (recruitee): 14 → 13 jobs (1 closed)
 - ifap Service-Institut für Ärzte und Apotheker GmbH (workday): 130 ads from other employers dropped (EMPLOYER rule)
 - kfzteile24 GmbH (recruitee): 1 new ads skipped, no impact on the app
+- kfzteile24 GmbH (recruitee): 2 → 1 jobs (1 closed)
 - kv.digital GmbH (crawl): fetch failed, kept 1 jobs. SiteChanged: no job page with JobPosting data among 1 pages (site changed?)
-- momox SE (crawl): 45 ads from other employers dropped (EMPLOYER rule)
+- momox SE (crawl): 1 new ads skipped, no impact on the app
+- momox SE (crawl): 35 ads from other employers dropped (EMPLOYER rule)
+- momox SE (crawl): 4 → 5 jobs (0 closed)
 - nextbike (personio): 3 new ads skipped, no impact on the app
+- ryd GmbH (personio): 3 → 2 jobs (1 closed)
 - sevDesk GmbH (personio): fetch failed, kept 0 jobs. HTTPError: HTTP Error 404: Not Found
 - simpleclub GmbH (personio): fetch failed, kept 0 jobs. HTTPError: HTTP Error 404: Not Found
 - sipgate (crawl): fetch failed, kept 1 jobs. SiteChanged: no job page with JobPosting data among 1 pages (site changed?)
+- sofatutor.com (recruitee): 2 → 2 jobs (1 closed)
 - stashcat GmbH (crawl): 42 ads from other employers dropped (EMPLOYER rule)
 - tonies GmbH (personio): 1 new ads skipped, no impact on the app
 - zollsoft GmbH (personio): 1 new ads skipped, no impact on the app
+- zollsoft GmbH (personio): 59 → 59 jobs (1 closed)
