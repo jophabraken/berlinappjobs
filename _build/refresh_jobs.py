@@ -118,6 +118,18 @@ def load_board():
     return s, i, j, json.loads(s[i + len('const BOARD = '):j].rstrip().rstrip(';').rstrip())
 
 SRC, I0, J0, B = load_board()
+
+# Hiring systems that moved, checked by hand. A company whose old feed still answers (200) but lists no jobs is never
+# re-detected (detection only looks at companies without a readable feed), so the move is written here. The refresh
+# then reads the new feed: the old ads close, the new ones get pages, and board_data.js keeps the new feed from then on.
+FEED_MOVED = {
+    # The Greenhouse board has listed 0 jobs since 7 Nov 2026 and its old job links return 404. careers.getyourguide.com
+    # now redirects to getyourguide.careers, which links jobs.ashbyhq.com/GetYourGuide (50 German roles that fit the board on 16 Nov 2026).
+    'GetYourGuide': ('ashby', 'https://api.ashbyhq.com/posting-api/job-board/getyourguide'),
+}
+for c in B['companies']:
+    if c['n'] in FEED_MOVED: c['ats'], c['feed'] = FEED_MOVED[c['n']]
+
 GERMAN = set(REGION) | {'Dresden', 'Potsdam', 'Darmstadt', 'Wiesbaden', 'Mainz', 'Dortmund', 'Duisburg', 'Wuppertal', 'Bielefeld', 'Rostock', 'Lübeck',
                         'Regensburg', 'Göttingen', 'Paderborn', 'Osnabrück', 'Kaiserslautern', 'Saarbrücken', 'Chemnitz', 'Halle', 'Erlangen', 'Fürth',
                         'Konstanz', 'Tübingen', 'Esslingen', 'Ludwigsburg', 'Böblingen', 'Sindelfingen', 'Pforzheim', 'Reutlingen', 'Gütersloh', 'Hamm',
