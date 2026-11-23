@@ -70,11 +70,14 @@ UPDATED = {
     'fintech-app-jobs-germany': '2026-11-06',   # internal guide links (6 Nov)
     'english-speaking-tech-jobs-munich': '2026-11-06',   # internal guide links (6 Nov)
     'product-manager-jobs-germany': '2026-11-06',   # internal guide links (6 Nov)
-    'english-speaking-tech-jobs-hamburg': '2026-11-06',   # internal guide links (6 Nov)
+    'english-speaking-tech-jobs-hamburg': '2026-11-23',   # live counts ({{tokens}}), comparison with Berlin rewritten, new desc without numbers
     'agentur-oder-produktfirma': '2026-11-06',   # internal guide links (6 Nov)
     'ux-designer-jobs-app-unternehmen-deutschland': '2026-11-09',   # live counts instead of Sept numbers, employers without roles removed
     'app-jobmarkt-deutschland-2026': '2026-11-09',   # all counts live ({{tokens}}, live_numbers.py), new desc without numbers
     'remote-app-jobs-deutschland': '2026-11-09',   # live remote count
+    'mobile-game-studios-germany': '2026-11-23',   # live hiring counts, studios without roles unlinked, link to /en/apps/games/
+    'app-jobs-nrw': '2026-11-23',   # live counts, employers without roles removed, IDnow (Munich) removed, new desc without numbers
+    'app-jobs-frankfurt-rhein-main': '2026-11-23',   # live counts, employers without roles removed, new desc without numbers
 }
 def modified(a):
     return max(a.get('date', TODAY), UPDATED.get(a['slug'], ''))

@@ -150,7 +150,7 @@ ARTICLES2 = [
  "ctaLabel": "Search game studio roles on the board",
  "related": ["most-successful-apps-made-in-berlin", "english-speaking-tech-jobs-hamburg", "startup-jobs-berlin-english", "app-developer-salary-germany-2026"],
  "html": """
-<p>Most "game studios in Germany" lists are written by outsourcing agencies selling their own services. This one is built from data: we matched the German Google Play charts to the studios behind them and checked which of them have live openings. Install numbers are Google Play brackets (Android, worldwide, lifetime). Data as of September 2026.</p>
+<p>Most "game studios in Germany" lists are written by outsourcing agencies selling their own services. This one is built from data: we matched the German Google Play charts to the studios behind them and checked which of them have live openings. Install numbers are Google Play brackets (Android, worldwide, lifetime), checked in September 2026. Open roles are counted live from the board (job data: {{month}}).</p>
 
 <h2>Berlin: the biggest cluster</h2>
 <p>Berlin has the densest concentration of mobile game studios in the country, and some of the biggest hits:</p>
@@ -158,13 +158,13 @@ ARTICLES2 = [
 <li>[[Kolibri Games]]: Idle Miner Tycoon (100M+), Idle Bank Tycoon (10M+). Part of Ubisoft since 2020.</li>
 <li>[[Edkon Games GmbH|Edkon Games]]: Modern Ops (100M+), World War 2 (50M+), Tactical OPS (10M+).</li>
 <li><b>Deca Games</b>: Zombie Catchers (100M+), The Walking Dead: No Man's Land (10M+).</li>
-<li><b>Wooga</b>: June's Journey (50M+), Pearl's Peril (10M+). Owned by Playtika.</li>
+<li>[[Wooga]]: June's Journey (50M+), Pearl's Peril (10M+). Owned by Playtika.</li>
 <li><b>Playflux</b>: Colorscapes (50M+) and several 10M+ puzzle titles.</li>
 <li><b>Flaregames</b>: Royal Revolt 2 (10M+).</li>
 <li>[[Sandbox Interactive GmbH|Sandbox Interactive]]: Albion Online (10M+), a cross-platform MMO.</li>
 <li>[[SWIFT GAMES|Swift Games]]: Heroes vs Hordes (10M+).</li>
 <li><b>GameDuell</b>, [[Spiele-Palast GmbH|Spiele-Palast]] and [[SOFTGAMES Mobile Entertainment Services|Softgames]]: card and casual games with a strong German player base.</li>
-<li>[[Gryphon Games]] and [[Awesome Prototype - Football Manager Game Creators|Awesome Prototype]]: sports management games.</li>
+<li>[[Gryphon Games]] and <b>Awesome Prototype</b>: sports management games.</li>
 </ul>
 <p>King also distributes Candy Crush in Germany through a Berlin address.</p>
 
@@ -172,7 +172,7 @@ ARTICLES2 = [
 <ul>
 <li>[[InnoGames GmbH|InnoGames]]: Forge of Empires (10M+). Majority-owned by MTG.</li>
 <li><b>Goodgame Studios</b>: Big Farm and Empire. Part of Stillfront.</li>
-<li>[[Stillfront Supremacy GmbH|Stillfront Supremacy]]: Supremacy: Call of War (5M+).</li>
+<li><b>Stillfront Supremacy</b>: Supremacy: Call of War (5M+).</li>
 <li><b>Playa Games</b>: Shakes &amp; Fidget (5M+).</li>
 <li>[[Whow Games GmbH|Whow Games]]: social casino titles.</li>
 </ul>
@@ -180,25 +180,25 @@ ARTICLES2 = [
 <h2>The rest of Germany</h2>
 <ul>
 <li><b>Lotum</b> in Bad Nauheim near Frankfurt: 4 Bilder 1 Wort (10M+) and [[Lotum one GmbH|Quiz Planet]] (5M+).</li>
-<li>[[Knuddels - Chat und Spiele Community|Knuddels]] and [[Iteration One GmbH|Iteration One]] (Idle Nightclub Tycoon, 5M+) in Karlsruhe.</li>
-<li>[[Travian Games GmbH|Travian Games]] in Munich.</li>
+<li><b>Knuddels</b> and [[Iteration One GmbH|Iteration One]] (Idle Nightclub Tycoon, 5M+) in Karlsruhe.</li>
+<li><b>Travian Games</b> in Munich.</li>
 <li><b>LITE Games</b> in Bremen, <b>DobroGames</b> in Duisburg and <b>StammtischGames</b> in Augsburg.</li>
 </ul>
 
 <h2>Who is hiring right now</h2>
 <p>Game studios hire in waves, and many of the big names have no public openings at any given moment. On this board right now:</p>
 <ul>
-<li>[[Stillfront Supremacy GmbH|Stillfront Supremacy]] (Hamburg): around 11 roles</li>
-<li>[[Sandbox Interactive GmbH|Sandbox Interactive]] (Berlin): around 8</li>
-<li>Lotum (Bad Nauheim): around 12 across two entities, including senior iOS, Android and backend roles</li>
-<li>[[InnoGames GmbH|InnoGames]] (Hamburg): around 6, with published salary ranges</li>
-<li>[[SOFTGAMES Mobile Entertainment Services|Softgames]] (Berlin): 5, all fully remote</li>
-<li>[[Gryphon Games]], [[Iteration One GmbH|Iteration One]], [[Awesome Prototype - Football Manager Game Creators|Awesome Prototype]], [[Knuddels - Chat und Spiele Community|Knuddels]], [[Kolibri Games]] and [[Edkon Games GmbH|Edkon Games]]: a few roles each</li>
+<li>[[Sandbox Interactive GmbH|Sandbox Interactive]] (Berlin): {{co:Sandbox Interactive GmbH}} roles</li>
+<li>Lotum (Bad Nauheim): {{co:Lotum two GmbH}} roles at [[Lotum two GmbH|Lotum two]] and {{co:Lotum one GmbH}} at [[Lotum one GmbH|Lotum one]], including senior iOS, Android and backend roles</li>
+<li>[[Wooga]] (Berlin): {{co:Wooga}} roles</li>
+<li>[[SOFTGAMES Mobile Entertainment Services|Softgames]] (Berlin): {{co:SOFTGAMES Mobile Entertainment Services}} roles, fully remote</li>
+<li>[[Gryphon Games]], [[Kolibri Games]], [[Iteration One GmbH|Iteration One]], [[Edkon Games GmbH|Edkon Games]], [[Spiele-Palast GmbH|Spiele-Palast]], [[InnoGames GmbH|InnoGames]] and [[Whow Games GmbH|Whow Games]]: a few roles each</li>
 </ul>
+<p>The full list, updated daily: <a href="/en/apps/games/">game studios in Germany with open roles</a>.</p>
 <p>Typical openings are game designers (systems and economy), game and data analysts, backend engineers, user acquisition managers and CRM or live-ops roles. Pure client engineering roles (Unity, C#) are rarer than you might expect. A lot of hiring is on the monetisation and live-ops side.</p>
 
 <h2>What to know before applying</h2>
-<p>Most German game studios work in English, and Berlin and Hamburg studios hire internationally. Salary transparency is still rare, but InnoGames publishes ranges, for example around 55,000 to 72,000 euro for an analyst role. For free-to-play studios, being able to talk about retention, LTV and event design matters as much as your craft skills.</p>
+<p>Most German game studios work in English, and Berlin and Hamburg studios hire internationally. Salary transparency is still rare, but some studios, such as InnoGames and Whow Games in Hamburg, state pay ranges in their ads. For free-to-play studios, being able to talk about retention, LTV and event design matters as much as your craft skills.</p>
 """,
  "faq": [
    ["What are the biggest mobile game studios in Germany?",
@@ -386,39 +386,38 @@ ARTICLES2 += [
  "lang": "en",
  "title": "English-Speaking Tech Jobs in Hamburg: Companies That Hire in English",
  "metaTitle": "English-Speaking Tech Jobs in Hamburg (2026): Who Hires in English | Berlin App Jobs",
- "desc": "Around 60 percent of roles at Hamburg's app companies are advertised in English. The companies, the roles, and how Hamburg compares to Berlin and Munich.",
+ "desc": "Most roles at Hamburg's app companies are advertised in English. The companies that hire in English, the roles, and how Hamburg compares to Berlin and Munich.",
  "hreflang": None,
  "ctaHref": "/?city=Hamburg&lg=en",
  "ctaLabel": "See English-language roles in Hamburg",
  "related": ["english-speaking-tech-jobs-munich", "mobile-game-studios-germany", "app-jobs-hamburg", "startup-jobs-berlin-english"],
  "html": """
-<p>Hamburg is Germany's second city and a serious tech hub: games, e-commerce, media and insurance. Of the 202 open roles at Hamburg app companies on this board, about 121, or 60 percent, are advertised in English. Data as of September 2026.</p>
+<p>Hamburg is Germany's second city and a serious tech hub: games, e-commerce, media and insurance. Of the {{city:Hamburg}} open roles at Hamburg app companies on this board, {{en:Hamburg}} percent are advertised in English (job data: {{month}}).</p>
 
 <h2>Companies in Hamburg that hire in English</h2>
 <ul>
-<li>[[Intelligent Apps GmbH|Intelligent Apps]]: the company behind the FREENOW ride-hailing app (part of Lyft since 2025), around 24 English-language roles.</li>
-<li>[[aestimium GmbH|aestimium]]: the team behind the empfohlen.de app, around 19 roles, mostly senior engineering and data.</li>
-<li>[[Stillfront Supremacy GmbH|Stillfront Supremacy]]: <a href="/guides/mobile-game-studios-germany/">game studio</a> (Supremacy: Call of War), around 11 roles.</li>
-<li>[[ABOUT YOU SE & Co. KG|ABOUT YOU]]: fashion e-commerce, around 10 roles.</li>
-<li>[[LOTTO24]] (also behind Tipp24): lottery apps, several roles with remote options.</li>
-<li>[[InnoGames GmbH|InnoGames]]: Forge of Empires, with published salary ranges.</li>
+<li>[[ABOUT YOU SE & Co. KG|ABOUT YOU]]: fashion e-commerce, {{co:ABOUT YOU SE & Co. KG}} roles, from backend, frontend and app engineering to data, product and buying.</li>
+<li>[[aestimium GmbH|aestimium]]: the team behind the empfohlen.de app, {{co:aestimium GmbH}} roles, mostly senior engineering and data.</li>
+<li>[[LOTTO24]] (also behind Tipp24): lottery apps, {{co:LOTTO24}} roles, most with remote options.</li>
+<li>[[Intelligent Apps GmbH|Intelligent Apps]]: the company behind the FREENOW ride-hailing app (part of Lyft since 2025), {{co:Intelligent Apps GmbH}} roles, some of them in Berlin.</li>
+<li>[[InnoGames GmbH|InnoGames]]: the <a href="/guides/mobile-game-studios-germany/">game studio</a> behind Forge of Empires, with published salary ranges.</li>
 <li>[[Star Finanz GmbH|Star Finanz]] (the S-pushTAN and Sparkasse app maker), [[freenet.de GmbH|freenet]], Rexx Systems, DER SPIEGEL and the DAK mobile team: a mix of English and German roles.</li>
 </ul>
 
 <h2>Which roles are open in English</h2>
-<p>Engineering and data lead: backend engineers (Go, PHP), fullstack developers, Android developers, data analysts and heads of engineering. Hamburg also has an unusually high number of product roles for its size, from <a href="/guides/product-manager-jobs-germany/">product managers</a> for AI search to technical product owners. Game studios add game designers, economy designers and analysts.</p>
+<p>Engineering and data lead: backend, frontend and full-stack engineers, app engineers, QA and platform engineers, data analysts and data engineers, plus engineering team leads. Product roles range from <a href="/guides/product-manager-jobs-germany/">product managers</a> to technical product owners. Game studios add game design and art roles.</p>
 
 <h2>Where German is still expected</h2>
-<p>Hamburg's traditional employers (insurers, publishers, retailers) mostly advertise in German even for digital roles. At HanseMerkur, SIGNAL IDUNA and many media houses most roles are advertised in German. If you do not speak German, focus on the game studios, e-commerce and the venture-backed companies above.</p>
+<p>Hamburg's traditional employers (insurers, publishers, retailers) more often advertise in German, even for digital roles. If you do not speak German, focus on the game studios, e-commerce and the venture-backed companies above.</p>
 
 <h2>Hamburg vs Berlin and Munich</h2>
-<p>Hamburg has fewer open roles than Berlin (202 vs 779) and a lower English share (60 vs 75 percent), but a strong games scene and many established, profitable companies. Compared to Munich, rents are somewhat lower and the job market is more mixed between international and traditional German employers.</p>
+<p>Hamburg has far fewer open roles than Berlin ({{city:Hamburg}} vs {{city:Berlin}}). {{en:Hamburg}} percent of Hamburg's roles are advertised in English, against {{en:Berlin}} percent in Berlin. With fewer employers, one large employer moves Hamburg's share a lot; ABOUT YOU, for example, advertises in English. Hamburg also has a strong games scene and many established, profitable companies. Compared to Munich, rents are somewhat lower and the job market is more mixed between international and traditional German employers.</p>
 """,
  "faq": [
    ["Can I work in tech in Hamburg without German?",
-    "Yes, at many companies. About 60 percent of roles at Hamburg app companies are advertised in English, especially at game studios, e-commerce and venture-backed companies."],
+    "Yes, at many companies. About {{en:Hamburg}} percent of roles at Hamburg app companies are advertised in English, especially in e-commerce, at game studios and at venture-backed companies."],
    ["Which Hamburg companies hire in English?",
-    "Intelligent Apps, aestimium, Stillfront Supremacy, ABOUT YOU, LOTTO24 and InnoGames, among others."],
+    "ABOUT YOU, aestimium, LOTTO24, Intelligent Apps (FREENOW), freenet and InnoGames, among others."],
    ["Is Hamburg good for game developers?",
     "Yes. Hamburg is Germany's second games hub after Berlin, home to InnoGames, Goodgame Studios, Stillfront Supremacy and Playa Games."]
  ]
@@ -699,55 +698,54 @@ ARTICLES2 += [
  "lang": "de",
  "title": "App-Jobs in NRW: Köln, Düsseldorf und das Ruhrgebiet",
  "metaTitle": "App-Jobs in NRW 2026: Firmen in Köln, Düsseldorf & Co. | Berlin App Jobs",
- "desc": "260 offene Stellen bei 42 App-Unternehmen in Nordrhein-Westfalen: trivago, tonies, DeepL, Handelsblatt, t-online und mehr. Wer in Köln, Düsseldorf, Münster und Aachen einstellt.",
+ "desc": "App-Firmen in NRW mit offenen Stellen: Stepstone, trivago, METRO Digital, Douglas, t-online und mehr. Wer in Düsseldorf, Köln, Essen, Münster und Aachen einstellt.",
  "hreflang": None,
  "ctaHref": "/?city=D%C3%BCsseldorf",
  "ctaLabel": "Stellen in Düsseldorf ansehen",
  "related": ["app-jobs-frankfurt-rhein-main", "app-jobs-baden-wuerttemberg", "app-jobmarkt-deutschland-2026", "agentur-oder-produktfirma"],
  "html": """
-<p>Wer in NRW nach „App-Firmen“ sucht, findet vor allem Agenturen, die Apps für Kunden bauen. Dabei sitzen in Nordrhein-Westfalen auch Firmen mit eigenen Apps und Millionen Nutzern. Auf diesem Board sind es aktuell 42 App-Unternehmen mit zusammen 260 offenen Stellen. Damit ist NRW nach Berlin und Bayern der drittgrößte Standort. Stand: September 2026.</p>
+<p>Wer in NRW nach „App-Firmen“ sucht, findet vor allem Agenturen, die Apps für Kunden bauen. Dabei sitzen in Nordrhein-Westfalen auch Firmen mit eigenen Apps und Millionen Nutzern. Auf diesem Board haben App-Unternehmen aus NRW aktuell {{state:Nordrhein-Westfalen}} offene Stellen. Damit ist NRW nach Berlin und Bayern der drittgrößte Standort. Stand: {{month}}.</p>
 
-<h2>Düsseldorf: 86 Stellen</h2>
+<h2>Düsseldorf: {{city:Düsseldorf}} Stellen</h2>
 <ul>
-<li>[[trivago N.V.|trivago]]: die Hotelsuche mit über 100 Mio. Installationen, rund 11 Stellen, darunter Data Science für AI Search.</li>
-<li>[[tonies GmbH|tonies]]: die Toniebox und ihre App, rund 14 Stellen, viele davon remote.</li>
-<li>[[Handelsblatt GmbH|Handelsblatt]]: rund 22 Stellen in Produkt, Sales und Content.</li>
-<li>[[IDnow]]: Identitätsprüfung, rund 8 Stellen.</li>
-<li>[[sipgate]]: Telefonie-Apps, rund 6 Stellen, darunter Produktmanagement.</li>
-<li>Außerdem ERGO, die Rheinbahn (Mobilitäts-App redy) und TorAlarm (GoalAlert, über 5 Mio. Installationen).</li>
+<li>[[Stepstone]]: die Jobbörse mit eigener App, {{co:Stepstone}} Stellen, vor allem Vertrieb, Sales Operations und Analyse, meist auf Deutsch.</li>
+<li>[[trivago N.V.|trivago]]: die Hotelsuche mit über 100 Mio. Installationen, {{co:trivago N.V.}} Stellen auf Englisch, darunter Data Science, Produktmanagement und Platform Engineering.</li>
+<li>[[METRO Digital GmbH|METRO Digital]]: die Tech-Einheit von METRO, {{co:METRO Digital GmbH}} Stellen, überwiegend auf Englisch, etwa Architektur und KI.</li>
+<li>[[Parfümerie Douglas GmbH|Douglas]]: {{co:Parfümerie Douglas GmbH}} Stellen in Data, Produkt und Full-Stack-Entwicklung, teils in Heilbronn und Hamburg.</li>
+<li>[[Handelsblatt GmbH|Handelsblatt]]: {{co:Handelsblatt GmbH}} Stellen, vor allem Software Engineering und Data.</li>
+<li>Außerdem [[Targobank AG|Targobank]], [[ERGO Group AG|ERGO]], [[sipgate]] (Telefonie-Apps) und [[TorAlarm GmbH|TorAlarm]] (GoalAlert, über 5 Mio. Installationen).</li>
 </ul>
 <p>Alle Stellen: <a href="/jobs/duesseldorf/">App-Jobs in Düsseldorf</a>.</p>
 
-<h2>Köln: 62 Stellen</h2>
+<h2>Köln: {{city:Köln}} Stellen</h2>
 <ul>
-<li>[[Ströer Digital Publishing GmbH|Ströer Digital Publishing]]: das Team hinter t-online, rund 12 Stellen.</li>
-<li>[[1. FC Köln]]: die Vereins-App und viele Rollen rund um den Verein, rund 15 Stellen.</li>
-<li>[[DERTOUR Deutschland GmbH|DERTOUR]]: Reise-Apps, rund 7 Stellen.</li>
-<li>[[FLOYT Mobility GmbH|FLOYT Mobility]] (billiger-mietwagen.de), [[Pixum]] und Dyn Media (Sport-Streaming): jeweils rund 5.</li>
-<li>[[DeepL SE|DeepL]]: der Übersetzer aus Köln mit über 10 Mio. Installationen. Viele DeepL-Stellen sind international ausgeschrieben, auf diesem Board zählen nur die deutschen.</li>
-<li>Rausgegangen, VYTAL, onvista und die App-Teams von REWE und PENNY.</li>
+<li>[[Ströer Digital Publishing GmbH|Ströer Digital Publishing]]: das Team hinter t-online, {{co:Ströer Digital Publishing GmbH}} Stellen, viele davon am Standort Berlin.</li>
+<li>[[FLOYT Mobility GmbH|FLOYT Mobility]] (billiger-mietwagen.de): {{co:FLOYT Mobility GmbH}} Stellen.</li>
+<li>[[Rausgegangen GmbH|Rausgegangen]]: die Event-App, {{co:Rausgegangen GmbH}} Stellen.</li>
+<li>[[AXA Deutschland|AXA]]: {{co:AXA Deutschland}} Stellen in Data, KI und Java-Entwicklung.</li>
+<li>[[DeepL SE|DeepL]]: der Übersetzer aus Köln mit über 10 Mio. Installationen. DeepL schreibt die meisten Stellen international aus, etwa in Berlin und Amsterdam.</li>
+<li>Außerdem [[Pixum]], [[Dyn Media GmbH|Dyn Media]] (Sport-Streaming), [[onvista media GmbH|onvista]] und der [[1. FC Köln]] (Vereins-App).</li>
 </ul>
 <p>Alle Stellen: <a href="/jobs/koeln/">App-Jobs in Köln</a>.</p>
 
-<h2>Münster, Aachen, Bonn und das Ruhrgebiet</h2>
+<h2>Ruhrgebiet, Münster, Aachen und Bonn</h2>
 <ul>
-<li><b>Münster:</b> WestLotto (rund 8 Stellen), fillibri (Tank- und Lade-App, drei Entwicklerstellen, alle remote) und clockin.</li>
-<li><b>Aachen:</b> smartlab mit der ladeapp für E-Autos (rund 10 Stellen) und MOQO.</li>
-<li><b>Bonn:</b> Aktion Mensch (rund 10 Stellen, mit Gehaltsangaben für Werkstudierende).</li>
-<li><b>Ruhrgebiet:</b> G Data in Bochum (Mobile Security), FitX und MEDION in Essen, dazu der VRR in Gelsenkirchen.</li>
-<li><b>Krefeld:</b> die Stadtwerke SWK mit rund 25 Stellen, die meisten allerdings außerhalb der App-Entwicklung.</li>
+<li><b>Ruhrgebiet:</b> [[Machineseeker Group GmbH|Machineseeker]] in Essen ({{co:Machineseeker Group GmbH}} Stellen, darunter iOS- und Android-Entwicklung), [[Deichmann SE|Deichmann]] in Essen (Mobile App und E-Commerce) und [[G Data CyberDefense AG|G Data]] in Bochum (Mobile Security).</li>
+<li><b>Münster:</b> [[LVM Versicherung Münster a.G.|LVM]] ({{co:LVM Versicherung Münster a.G.}} Stellen, darunter Data Science und KI), [[fillibri GmbH & Co. KG|fillibri]] (Tank- und Lade-App, Entwicklerstellen remote) und clockin.</li>
+<li><b>Aachen:</b> [[smartlab Innovationsgesellschaft mbH|smartlab]] mit der ladeapp für E-Autos ({{co:smartlab Innovationsgesellschaft mbH}} Stellen).</li>
+<li><b>Bonn und Meckenheim:</b> [[BWI GmbH|BWI]], der IT-Dienstleister der Bundeswehr ({{co:BWI GmbH}} Stellen, viele davon in Berlin, Bonn und München), und Aktion Mensch.</li>
 </ul>
 
 <h2>Was NRW von Berlin unterscheidet</h2>
-<p>Die App-Landschaft in NRW ist stärker von etablierten Unternehmen geprägt: Medienhäuser, Versicherer, Handel und Mobilität. Venture-finanzierte Start-ups sind seltener, dafür sind viele Arbeitgeber profitabel und stabil. Die Arbeitssprache ist häufiger Deutsch: Außerhalb von trivago, tonies und DeepL sind die meisten Anzeigen deutschsprachig. Wer Deutsch spricht und nicht nach Berlin ziehen möchte, findet in Köln und Düsseldorf aber echte Alternativen.</p>
+<p>Die App-Landschaft in NRW ist stärker von etablierten Unternehmen geprägt: Medienhäuser, Versicherer, Handel und Mobilität. Venture-finanzierte Start-ups sind seltener, dafür sind viele Arbeitgeber profitabel und stabil. Die Arbeitssprache ist häufiger Deutsch: In Düsseldorf sind {{en:Düsseldorf}} Prozent der Stellen auf Englisch ausgeschrieben, in Köln {{en:Köln}} Prozent, in Berlin {{en:Berlin}} Prozent. Englisch ist vor allem bei trivago und METRO Digital die Regel. Wer Deutsch spricht und nicht nach Berlin ziehen möchte, findet in Köln und Düsseldorf aber echte Alternativen.</p>
 """,
  "faq": [
    ["Welche App-Firmen gibt es in Köln?",
-    "Unter anderem DeepL, Ströer Digital Publishing (t-online), DERTOUR, FLOYT Mobility (billiger-mietwagen.de), Pixum, Rausgegangen, VYTAL und onvista."],
+    "Unter anderem Ströer Digital Publishing (t-online), FLOYT Mobility (billiger-mietwagen.de), Rausgegangen, AXA, Pixum, onvista und DeepL."],
    ["Welche App-Firmen gibt es in Düsseldorf?",
-    "Unter anderem trivago, tonies, Handelsblatt, IDnow, sipgate, ERGO und TorAlarm (GoalAlert)."],
+    "Unter anderem Stepstone, trivago, METRO Digital, Douglas, Handelsblatt, ERGO, sipgate und TorAlarm (GoalAlert)."],
    ["Wie viele App-Jobs gibt es in NRW?",
-    "Aktuell 260 offene Stellen bei 42 App-Unternehmen, davon 86 in Düsseldorf und 62 in Köln (Stand September 2026)."]
+    "Aktuell {{state:Nordrhein-Westfalen}} offene Stellen bei App-Unternehmen aus NRW, davon {{city:Düsseldorf}} in Düsseldorf und {{city:Köln}} in Köln (Stand {{month}})."]
  ]
 },
 
@@ -816,34 +814,30 @@ ARTICLES2 += [
  "lang": "de",
  "title": "App-Jobs in Frankfurt und Rhein-Main: Wer außerhalb der Banken Apps baut",
  "metaTitle": "App-Jobs Frankfurt & Rhein-Main 2026: Firmen mit eigener App | Berlin App Jobs",
- "desc": "91 offene Stellen bei 16 App-Unternehmen in Hessen: Lotum in Bad Nauheim, Finanzguru, Meet5, Bloomwell, ING und mehr. Die App-Szene in Frankfurt jenseits der Großbanken.",
+ "desc": "App-Firmen in Hessen mit offenen Stellen: Lotum in Bad Nauheim, Bloomwell, ING, Meet5, S Broker und mehr. Die App-Szene in Frankfurt jenseits der Großbanken.",
  "hreflang": None,
  "ctaHref": "/?city=Frankfurt%20am%20Main",
  "ctaLabel": "Stellen in Frankfurt ansehen",
  "related": ["app-jobs-nrw", "fintech-app-jobs-germany", "mobile-game-studios-germany", "app-jobs-baden-wuerttemberg"],
  "html": """
-<p>Frankfurt ist Bankenstadt, aber die App-Szene der Region ist vielfältiger, als der Ruf vermuten lässt: Games, Social Apps, Telemedizin und Fintechs für Endkunden. Auf diesem Board sind es in Hessen 16 App-Unternehmen mit zusammen 91 offenen Stellen, davon 67 in Frankfurt selbst. Stand: September 2026.</p>
+<p>Frankfurt ist Bankenstadt, aber die App-Szene der Region ist vielfältiger, als der Ruf vermuten lässt: Games, Social Apps, Telemedizin und Fintechs für Endkunden. Auf diesem Board haben App-Unternehmen aus Hessen aktuell {{state:Hessen}} offene Stellen, davon {{city:Frankfurt am Main}} in Frankfurt selbst. Stand: {{month}}.</p>
 
-<h2>Frankfurt: 67 Stellen</h2>
+<h2>Frankfurt: {{city:Frankfurt am Main}} Stellen</h2>
 <ul>
-<li>[[Bloomwell GmbH|Bloomwell]]: Telemedizin-Plattform, rund 17 Stellen, darunter Fullstack Engineering (React, Node) und Product Owner.</li>
-<li>[[EintrachtTech GmbH|EintrachtTech]]: die Digitaltochter von Eintracht Frankfurt, rund 14 Stellen, etwa Data Analyst.</li>
-<li>[[Süwag Vertrieb AG & Co. KG|Süwag]]: der Energieversorger mit der App Meine Süwag, rund 16 Stellen, darunter IT und E-Mobilität.</li>
-<li>[[ING Deutschland]]: die Direktbank mit über 5 Mio. App-Installationen, rund 5 Stellen.</li>
-<li>[[dwins GmbH|dwins]]: das Team hinter Finanzguru (über 1 Mio. Installationen), Vertriebsstellen remote.</li>
-<li>[[Meet5 GmbH|Meet5]]: die Social-App für neue Kontakte mit über 1 Mio. Installationen, Praktika in Marketing und Partnerships.</li>
-<li>Außerdem 1822direkt, der Verband der Sparda-Banken (SpardaBanking App) und Klima-Bündnis (City Cycling).</li>
+<li>[[Bloomwell GmbH|Bloomwell]]: Telemedizin-Plattform, {{co:Bloomwell GmbH}} Stellen, darunter DevOps, AI Automation und Product Owner.</li>
+<li>[[ING Deutschland]]: die Direktbank mit über 5 Mio. App-Installationen, {{co:ING Deutschland}} Stellen, darunter Produktmanagement für die Banking-App.</li>
+<li>[[Meet5 GmbH|Meet5]]: die Social-App für neue Kontakte mit über 1 Mio. Installationen, Praktika in Social Media und Community Management.</li>
+<li>Außerdem [[Süwag Vertrieb AG & Co. KG|Süwag]], der Energieversorger mit der App Meine Süwag.</li>
 </ul>
 <p>Alle Stellen: <a href="/jobs/frankfurt-am-main/">App-Jobs in Frankfurt</a>.</p>
 
 <h2>Bad Nauheim: eines der erfolgreichsten deutschen Games-Studios</h2>
-<p>30 Minuten nördlich von Frankfurt sitzt Lotum, das Studio hinter 4 Bilder 1 Wort (über 10 Mio. Installationen) und [[Lotum one GmbH|Quiz Planet]] (über 5 Mio.). Über zwei Gesellschaften sind rund 12 Stellen offen: Senior iOS, Android und Backend Developer, Product Designer und eine Rolle als AI-driven Product Manager und Game Lead. Für Mobile-Engineers ist Lotum einer der interessantesten Arbeitgeber in Hessen.</p>
+<p>30 Minuten nördlich von Frankfurt sitzt Lotum, das Studio hinter 4 Bilder 1 Wort (über 10 Mio. Installationen) und [[Lotum one GmbH|Quiz Planet]] (über 5 Mio.). Bei [[Lotum two GmbH|Lotum two]] sind {{co:Lotum two GmbH}} Stellen offen, bei Lotum one {{co:Lotum one GmbH}}, darunter Senior iOS, Android und Backend Developer, Product Designer und eine Rolle als AI-driven Product Manager und Game Lead. Für Mobile-Engineers ist Lotum einer der interessantesten Arbeitgeber in Hessen.</p>
 
-<h2>Kassel, Offenbach und der Rest</h2>
+<h2>Wiesbaden, Offenbach und der Rest</h2>
 <ul>
-<li><b>Kassel:</b> RADIO BOB mit der myBOB-App (Praktika in Redaktion) und ZOO &amp; Co.</li>
-<li><b>Obertshausen:</b> MAINGAU Energie mit der Autostrom-App, unter anderem IT Security und Marketing Automation.</li>
-<li><b>Fulda:</b> Osthessen News mit IT-Projektmanagement und Design.</li>
+<li><b>Wiesbaden:</b> [[S Broker AG & Co. KG|S Broker]], der Online-Broker der Sparkassen, mit {{co:S Broker AG & Co. KG}} Stellen in Java-Entwicklung und Product Ownership.</li>
+<li><b>Obertshausen bei Offenbach:</b> [[MAINGAU Energie GmbH|MAINGAU Energie]] mit der Autostrom-App, etwa Marketing Automation.</li>
 </ul>
 
 <h2>Warum Frankfurt für App-Leute unterschätzt wird</h2>
@@ -851,11 +845,11 @@ ARTICLES2 += [
 """,
  "faq": [
    ["Welche App-Firmen gibt es in Frankfurt?",
-    "Unter anderem Bloomwell, EintrachtTech, ING Deutschland, dwins (Finanzguru), Meet5, 1822direkt und die Sparda-Banken. In Bad Nauheim sitzt zudem das Games-Studio Lotum."],
+    "Unter anderem Bloomwell, ING Deutschland, Meet5 und Süwag, in Wiesbaden S Broker. In Bad Nauheim sitzt zudem das Games-Studio Lotum."],
    ["Gibt es Game-Studios bei Frankfurt?",
-    "Ja, Lotum in Bad Nauheim (4 Bilder 1 Wort, Quiz Planet) ist eines der erfolgreichsten deutschen Mobile-Games-Studios und sucht aktuell iOS-, Android- und Backend-Entwickler."],
+    "Ja, Lotum in Bad Nauheim (4 Bilder 1 Wort, Quiz Planet) ist eines der erfolgreichsten deutschen Mobile-Games-Studios und sucht regelmäßig iOS-, Android- und Backend-Entwickler."],
    ["Wie viele App-Jobs gibt es in Hessen?",
-    "Aktuell 91 offene Stellen bei 16 App-Unternehmen, davon 67 in Frankfurt am Main (Stand September 2026)."]
+    "Aktuell {{state:Hessen}} offene Stellen bei App-Unternehmen aus Hessen, davon {{city:Frankfurt am Main}} in Frankfurt am Main (Stand {{month}})."]
  ]
 },
 ]
