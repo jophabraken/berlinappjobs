@@ -317,7 +317,9 @@
    "https://careers-de-axa.icims.com/jobs/31068/teamleiter%3ain-actuarial-modelling-l%26s/job",
    "https://careers-de-axa.icims.com/jobs/30375/fachspezialist%3ain-leistungen-berufliche-vorsorge/job",
    "https://careers-de-axa.icims.com/jobs/30958/regional-social-media-manager-%28all-genders%29-befristet-6-monate/job",
-   "https://careers-de-axa.icims.com/jobs/30496/senior-partner-manager-assistance-%28all-genders%29/job"
+   "https://careers-de-axa.icims.com/jobs/30496/senior-partner-manager-assistance-%28all-genders%29/job",
+   "https://careers-de-axa.icims.com/jobs/31344/aktuar-reserving-sachversicherung-%28m-w-d%29/job",
+   "https://careers-de-axa.icims.com/jobs/31294/regionalmanager-hannover-%28m-w-d%29/job"
   ],
   "was": "custom"
  },
@@ -1193,19 +1195,51 @@
    "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.199489.html",
    "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.196400.html",
    "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.195886.html",
-   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.179801.html"
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.179801.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.193961.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.198792.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.199700.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201582.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.192798.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201419.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201858.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.187055.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201388.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.194130.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.200522.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201732.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.197595.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.197596.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201484.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201516.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201243.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201172.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.199881.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.200378.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201768.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201477.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.200406.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.185547.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.200064.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201515.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201055.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201197.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.200888.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201628.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201855.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201716.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.200781.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.201383.html",
+   "https://www.bmwgroup.jobs/en/jobfinder/job-description-copy.200311.html"
   ],
   "was": "custom"
  },
  "BNP Paribas S.A. Niederlassung Deutschland": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [
    "load https://group.bnpparibas/en/careers/all-job-offers/bnp-paribas-personal-investors/germany: HTTPError",
-   "load https://group.bnpparibas/en/careers/job-offer/customer-relationship-manager-schwerpunkt-wealth-management-all-genders-bei-personal-investors-1: HTTPError",
-   "load https://group.bnpparibas/en/careers/job-offer/praktikum-im-bereich-wealth-management-investment-strategy-all-genders-bei-personal-investors-3: HTTPError",
-   "load https://group.bnpparibas/en/careers/job-offer/investment-manager-im-wertpapierbereich-all-genders-bei-bnp-paribas-wealth-management-private-banking: HTTPError",
-   "load https://group.bnpparibas/en/careers/job-offer/head-of-management-control-all-genders-bei-personal-investors: HTTPError"
+   "crawl https://group.bnpparibas/en/careers/all-job-offers/bnp-paribas-personal-investors/germany: 0 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -1735,7 +1769,13 @@
    "https://www.bwi.de/karriere/stellenangebote/job/mlops-devsecops-fur-aufklarungs-und-wirkverbund-m-w-d-71815",
    "https://www.bwi.de/karriere/stellenangebote/job/senior-system-engineer-planung-unified-communication-m-w-d-71827",
    "https://www.bwi.de/karriere/stellenangebote/job/senior-solution-architect-m-w-d-71811",
-   "https://www.bwi.de/karriere/stellenangebote/job/systems-engineer-m-w-d-71691"
+   "https://www.bwi.de/karriere/stellenangebote/job/systems-engineer-m-w-d-71691",
+   "https://www.bwi.de/karriere/stellenangebote/job/it-techniker-verlegefahige-rechenzentren-netzwerk-m-w-d-71880%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/elektrotechniker-dguv-prufungen-m-w-d-71876%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/it-security-expert-netzwerksicherheit-m-w-d-68916%0A%20%0AViele%20Gr%C3%BC%C3%9Fe%20",
+   "https://www.bwi.de/karriere/stellenangebote/job/it-techniker-verlegefahige-rechenzentren-netzwerk-m-w-d-71880",
+   "https://www.bwi.de/karriere/stellenangebote/job/elektrotechniker-dguv-prufungen-m-w-d-71876",
+   "https://www.bwi.de/karriere/stellenangebote/job/it-security-expert-netzwerksicherheit-m-w-d-68916"
   ],
   "was": "custom"
  },
@@ -2051,7 +2091,7 @@
   "was": "custom"
  },
  "CHECK24 GmbH": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -2233,9 +2273,11 @@
   "was": "none"
  },
  "DERTOUR Deutschland GmbH": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
-  "log": [],
+  "log": [
+   "crawl https://www.dertour-jobs.com/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
   "was": "custom"
  },
  "DIE ZEIT": {
@@ -2688,7 +2730,22 @@
    "https://www.deichmann-karriere.de/jobs/2026-39265",
    "https://www.deichmann-karriere.de/jobs/2026-39262",
    "https://www.deichmann-karriere.de/jobs/2023-17324",
-   "https://www.deichmann-karriere.de/jobs/2026-39261"
+   "https://www.deichmann-karriere.de/jobs/2026-39261",
+   "https://www.deichmann-karriere.de/jobs/2026-39330",
+   "https://www.deichmann-karriere.de/jobs/2026-39328",
+   "https://www.deichmann-karriere.de/jobs/2026-39325",
+   "https://www.deichmann-karriere.de/jobs/2026-39322",
+   "https://www.deichmann-karriere.de/jobs/2026-39320",
+   "https://www.deichmann-karriere.de/jobs/2026-39316",
+   "https://www.deichmann-karriere.de/jobs/2026-39314",
+   "https://www.deichmann-karriere.de/jobs/2026-39312",
+   "https://www.deichmann-karriere.de/jobs/2026-39310",
+   "https://www.deichmann-karriere.de/jobs/2026-39308",
+   "https://www.deichmann-karriere.de/jobs/2026-39306",
+   "https://www.deichmann-karriere.de/jobs/2026-39304",
+   "https://www.deichmann-karriere.de/jobs/2026-39301",
+   "https://www.deichmann-karriere.de/jobs/2026-39297",
+   "https://www.deichmann-karriere.de/jobs/2026-39295"
   ],
   "was": "custom"
  },
@@ -2884,7 +2941,8 @@
    "https://jobs.tagesspiegel.de/job/hausmeister-w-m-d-fuer-kommunale-einrichtungen.2087634395.html",
    "https://jobs.tagesspiegel.de/job/sachbearbeitung-gemeindeentwicklung-w-m-d.2087634375.html",
    "https://jobs.tagesspiegel.de/job/gemeindearbeiter-m-w-d.2087634355.html",
-   "https://jobs.tagesspiegel.de/job/senior-operations-manager-m-w-d-teleradiologie.2088331805.html"
+   "https://jobs.tagesspiegel.de/job/senior-operations-manager-m-w-d-teleradiologie.2088331805.html",
+   "https://jobs.tagesspiegel.de/job/schulleiter-m-w-d.2088785925.html"
   ],
   "was": "unknown"
  },
@@ -2960,9 +3018,11 @@
   "was": "custom"
  },
  "Deutscher Bundestag": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
-  "log": [],
+  "log": [
+   "crawl https://www.bundestag.de/services/karriere/stellenausschreibungen/stellen: 0 jobs, 0 in Germany, 0 match the board"
+  ],
   "was": "custom"
  },
  "Deutscher Volkshochschul-Verband": {
@@ -3033,7 +3093,9 @@
    "https://jobs.rossmann.de/stellenanzeige/mitarbeiter-m-w-d-technischer-leitstand-am-standort-landsberg-2-170072.html",
    "https://jobs.rossmann.de/stellenanzeige/release-manager-m-w-d-online-apotheke-am-standort-burgwedel-6-169231.html",
    "https://jobs.rossmann.de/stellenanzeige/service-owner-m-w-d-online-apotheke-am-standort-burgwedel-6-169228.html",
-   "https://jobs.rossmann.de/stellenanzeige/teamleiter-m-w-d-logistik-am-standort-landsberg-2-170068.html"
+   "https://jobs.rossmann.de/stellenanzeige/teamleiter-m-w-d-logistik-am-standort-landsberg-2-170068.html",
+   "https://jobs.rossmann.de/stellenanzeige/projektmanager-m-w-d-fachuebergreifende-logistikprozesse-am-standort-burgwedel-2-170442.html",
+   "https://jobs.rossmann.de/stellenanzeige/filialleiter-m-w-d-vollzeit-am-standort-hamburg-1-170479.html"
   ],
   "was": "custom"
  },
@@ -3236,7 +3298,22 @@
    "https://careers.munichre.com/de/stellenbeschreibung/garching-an-der-alz/sales-talent-im-versicherungsvertrieb-m-w-d/3193/27812844224",
    "https://careers.munichre.com/de/stellenbeschreibung/rosenheim/versicherungsprofi-im-vertrieb-m-w-d/3193/27812844160",
    "https://careers.munichre.com/de/stellenbeschreibung/dusseldorf/project-manager-group-legal-m-w-d/3382/47224086144",
-   "https://careers.munichre.com/de/stellenbeschreibung/dusseldorf/legal-operations-manager-m-w-d/3382/47224086080"
+   "https://careers.munichre.com/de/stellenbeschreibung/dusseldorf/legal-operations-manager-m-w-d/3382/47224086080",
+   "https://careers.munichre.com/de/stellenbeschreibung/dusseldorf/selbststandiger-kundenberater-im-versicherungsvertrieb/3193/47253056448",
+   "https://careers.munichre.com/de/stellenbeschreibung/monchengladbach/selbststandiger-kundenberater-im-versicherungsvertrieb/3193/47253056256",
+   "https://careers.munichre.com/de/stellenbeschreibung/aachen/selbststandiger-kundenberater-im-versicherungsvertrieb/3193/47253056128",
+   "https://careers.munichre.com/de/stellenbeschreibung/hannover/kundenberater-im-vertrieb/3193/47251727488",
+   "https://careers.munichre.com/de/stellenbeschreibung/kleve/agenturnachfolger-im-versicherungsvertrieb/3193/47251727296",
+   "https://careers.munichre.com/de/stellenbeschreibung/alfeld-leine/kundenberater-im-vertrieb/3193/47251727104",
+   "https://careers.munichre.com/de/stellenbeschreibung/dortmund/kundenberater-im-vertrieb/3193/47251727040",
+   "https://careers.munichre.com/de/stellenbeschreibung/bremen/agenturnachfolger-im-versicherungsvertrieb/3193/47251726976",
+   "https://careers.munichre.com/de/stellenbeschreibung/hamburg/kundenberater-im-vertrieb/3193/47251726848",
+   "https://careers.munichre.com/de/stellenbeschreibung/stade/kundenberater-im-vertrieb/3193/47251726720",
+   "https://careers.munichre.com/de/stellenbeschreibung/wilhelmshaven/kundenberater-im-vertrieb/3193/47251726656",
+   "https://careers.munichre.com/de/stellenbeschreibung/herzogenrath/herzogenrath-ausbildung-kaufleute-m-w-d-fur-versicherungen-und-finanzanlagen-agentur-nettusch/3194/47250267072",
+   "https://careers.munichre.com/de/stellenbeschreibung/trier/agenturnachfolger-im-versicherungsvertrieb/3193/47228239744",
+   "https://careers.munichre.com/de/stellenbeschreibung/nurnberg/spezialist-personalsysteme-m-w-d/3382/47228187200",
+   "https://careers.munichre.com/de/stellenbeschreibung/roetgen/roetgen-ausbildung-kaufleute-m-w-d-fur-versicherungen-und-finanzanlagen-agentur-naumann/3194/47228148608"
   ],
   "was": "custom"
  },
@@ -3463,10 +3540,10 @@
   "was": "custom"
  },
  "Ernst Klett Verlag GmbH": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [
-   "crawl https://www.klett-gruppe.de/karriere/stellenangebote: SiteChanged no job page with JobPosting data among 6 pages (site changed?)"
+   "crawl https://www.klett-gruppe.de/karriere/stellenangebote: 0 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -3604,7 +3681,8 @@
    "https://jobs.europapark.de/de/job/schneider-mwd-im-kostuematelier",
    "https://jobs.europapark.de/de/job/werkstatthelfer-mwd",
    "https://jobs.europapark.de/de/job/produktmanager-mwd-0",
-   "https://jobs.europapark.de/de/job/kommunikationsmanager-mwd"
+   "https://jobs.europapark.de/de/job/kommunikationsmanager-mwd",
+   "https://jobs.europapark.de/de/job/pressereferent-mwd-der-unternehmenskommunikation"
   ],
   "was": "custom"
  },
@@ -3872,7 +3950,11 @@
    "https://www.fitx.de/fitness-jobs/68901351",
    "https://www.fitx.de/fitness-jobs/68910021",
    "https://www.fitx.de/fitness-jobs/68952406",
-   "https://www.fitx.de/fitness-jobs/68111011"
+   "https://www.fitx.de/fitness-jobs/68111011",
+   "https://www.fitx.de/fitness-jobs/68963766",
+   "https://www.fitx.de/fitness-jobs/68963761",
+   "https://www.fitx.de/fitness-jobs/68963741",
+   "https://www.fitx.de/fitness-jobs/68963376"
   ],
   "was": "softgarden"
  },
@@ -4308,7 +4390,14 @@
    "https://www.globus-baumarkt.de/info/karriere/job/?id=68945716",
    "https://www.globus-baumarkt.de/info/karriere/job/?id=68944586",
    "https://www.globus-baumarkt.de/info/karriere/job/?id=68944341",
-   "https://www.globus-baumarkt.de/info/karriere/job/?id=68943391"
+   "https://www.globus-baumarkt.de/info/karriere/job/?id=68943391",
+   "https://www.globus-baumarkt.de/info/karriere/job/?id=69008716",
+   "https://www.globus-baumarkt.de/info/karriere/job/?id=69008356",
+   "https://www.globus-baumarkt.de/info/karriere/job/?id=69007631",
+   "https://www.globus-baumarkt.de/info/karriere/job/?id=68961916",
+   "https://www.globus-baumarkt.de/info/karriere/job/?id=68961616",
+   "https://www.globus-baumarkt.de/info/karriere/job/?id=68961391",
+   "https://www.globus-baumarkt.de/info/karriere/job/?id=68959841"
   ],
   "was": "custom"
  },
@@ -4417,7 +4506,42 @@
    "https://karriere.haema.de/jobs/teamleitung-m-w-d-fuer-medizinisches-fachpersonal-in-bayreuth/6d8a6ec2-f5f5-4648-a949-7f03635fd1df",
    "https://karriere.haema.de/jobs/medizinische-fachangestellte-m-w-d-in-vollzeit-in-bonn/b232a9f5-e36c-406f-9d82-4120e15c9e84",
    "https://karriere.haema.de/jobs/teamleitung-labor-schwerpunkt-immunhaematologie-m-w-d/93366aae-6f9d-42cc-bf9e-dc05c17560d3",
-   "https://karriere.haema.de/jobs/medizinische-fachkraft-m-w-d-fuer-die-venenpunktion/d3dc23ca-221f-4df8-af36-7599ea50961f"
+   "https://karriere.haema.de/jobs/medizinische-fachkraft-m-w-d-fuer-die-venenpunktion/d3dc23ca-221f-4df8-af36-7599ea50961f",
+   "https://karriere.haema.de/jobs/duales-studium-accounting-controlling-m-w-d/0a506ff5-f9d3-4f25-80ea-f1651a0f857a",
+   "https://karriere.haema.de/jobs/medizinische-fachangestellte-m-w-d-in-berlin-prenzlauer-berg/14071ca2-53d3-480a-a37c-f19c8d0433b1",
+   "https://karriere.haema.de/jobs/teamleitung-immunhaematologie-m-w-d/27545be6-14db-462b-85f9-ddb26188f6e7",
+   "https://karriere.haema.de/jobs/medizinische-fachkraft-m-w-d-fuer-die-punktion-in-leipzig/2adc580c-dc2c-4893-acd1-8f55ab061bf0",
+   "https://karriere.haema.de/jobs/medizinische-fachkraft-m-w-d-fuer-die-punktion-in-dresden/382e9e50-d148-4840-93f7-59058c0167ec",
+   "https://karriere.haema.de/jobs/medizinische-fachkraft-m-w-d-in-gera/46f69aee-7081-4662-beb1-1e2fe22fe08d",
+   "https://karriere.haema.de/jobs/rettungssanitaeter-m-w-d-zur-blut-plasmaspende-in-ingolstadt/4925c637-ec08-4f30-9265-a4bfa77ff73d",
+   "https://karriere.haema.de/jobs/arzt-m-w-d-mit-approbation-in-schwerin/4c59b6bb-ad67-47a5-a4ef-db6d59601ae8",
+   "https://karriere.haema.de/jobs/praktikum-bei-haema/5651aa5e-40fe-4a95-88a9-0ecab33687cb",
+   "https://karriere.haema.de/jobs/ausbildung-zur-medizinischen-fachangestellten-m-w-d-in-berlin-prenzlauer-berg/62d22b02-9ad8-4d9c-bbbf-09c56375e8e5",
+   "https://karriere.haema.de/jobs/medizinische-fachkraft-m-w-d-fuer-die-punktion/67883b8a-7c34-47ee-9eb4-f17e95d70860",
+   "https://karriere.haema.de/jobs/medizinische-fachangestellte-m-w-d-zur-venenpunktion-in-muenchen/6c926288-a69c-4eab-9f1e-ee0164fa1f50",
+   "https://karriere.haema.de/jobs/medizinische-fachkraft-m-w-d-fuer-blut-plasmaspende-in-gotha/7adcba4a-9c09-441f-a715-b183910a5bde",
+   "https://karriere.haema.de/jobs/teamleitung-m-w-d-fuer-medizinisches-fachpersonal-in-leipzig/7cfc29b5-e82b-4f1a-919c-220960a9ab84",
+   "https://karriere.haema.de/jobs/medizinische-fachkraft-m-w-d-vollzeit-in-dresden-fetscherplatz/7e29d4c1-8ec2-4b19-bb55-2e117c25e0ac",
+   "https://karriere.haema.de/jobs/medizinische-fachkraft-m-w-d-in-nuernberg/814d7fee-3b46-49a9-812d-9fc4a7e69bc8",
+   "https://karriere.haema.de/jobs/ausbildung-zur-medizinischen-fachangestellte-m-w-d-in-berlin-wedding/85ec031d-ebeb-441b-9fc2-592beb9384bf",
+   "https://karriere.haema.de/jobs/medizinische-fachkraft-m-w-d-fuer-die-venenpunktion-in-essen/8959620e-2a29-4315-8628-0134d24abfeb",
+   "https://karriere.haema.de/jobs/ausbildung-medizinische-fachangestellte-m-w-d-in-berlin-charlottenburg/8c36b63e-d306-451b-a5de-f6af475f9fbd",
+   "https://karriere.haema.de/jobs/medizinisch-technischer-laboratoriumsassistent-m-w-d/93366aae-6f9d-42cc-bf9e-dc05c17560d3",
+   "https://karriere.haema.de/jobs/it-application-specialist-m-w-d-pharma-healthcare/94f7ad08-52df-41ea-b53d-139914623274",
+   "https://karriere.haema.de/jobs/ausbildung-zur-medizinischen-fachangestellte-m-w-d-in-gotha/976e6e78-e7ea-4c68-a1c1-773dfb992abd",
+   "https://karriere.haema.de/jobs/medizinische-fachangestellt-m-w-d-venenpunktion-in-berlin-charlottenburg/9cf70f3a-9966-4dd9-b7c6-ab25114651ca",
+   "https://karriere.haema.de/jobs/arzt-m-w-d-mit-approbation-geregelte-arbeitszeiten-in-brandenburg-an-der-havel/a870c7c4-f1e2-48b7-abf7-21eb7d1e56b1",
+   "https://karriere.haema.de/jobs/medizinische-fachangestellte-m-w-d-fuer-die-venenpunktion/aaa9bea1-ceb9-4208-9fb7-365fff829974",
+   "https://karriere.haema.de/jobs/medizinische-fachangestellte-m-w-d-fuer-die-venenpunktion/b38abf48-f98d-454a-a2d3-fca4284ea71e",
+   "https://karriere.haema.de/jobs/wohnbereichsleitung-m-w-d-als-teamleitung-m-w-d-ohne-nacht-sonn-und-feiertag-in-schwerin/b46825ee-1e22-4e07-b648-2f8566028c68",
+   "https://karriere.haema.de/jobs/supply-chain-expert-bio-supplies-m-w-d-in-tz/b4759c90-1809-415c-8a53-ee1a66922f8b",
+   "https://karriere.haema.de/jobs/ausbildung-zur-medizinischen-fachangestellten-m-w-d-in-potsdam/c767c8fb-1892-4498-94a1-0ee10b73104b",
+   "https://karriere.haema.de/jobs/medizinische-fachangestellte-m-w-d-fuer-blut-plasmaspende-in-jena/c8292b54-1cd7-4d69-81b4-0870919e8e83",
+   "https://karriere.haema.de/jobs/medizinische-fachangestellte-m-w-d-fuer-die-venenpunktion/cb0bcf22-3275-45cb-a9ee-1b35bf6a7672",
+   "https://karriere.haema.de/jobs/arzt-m-w-d-teilzeit-in-bayreuth/d138c2b9-8ff1-4cf8-9207-23f346660d1f",
+   "https://karriere.haema.de/jobs/medizinische-fachangestellte-m-w-d-fuer-die-venenpunktion-in-erfurt/d1f48078-0204-457e-aec2-25ef561c0507",
+   "https://karriere.haema.de/jobs/mtl-mtla-als-laboratory-supervisor-m-w-d/d83fbf73-bd37-4fc5-9b0e-091071ea41d0",
+   "https://karriere.haema.de/jobs/arzt-aerztin-m-w-d-blutspendezentrum-jena/f5bc1eaf-1982-486a-a5e3-44ad8fefdaf3"
   ],
   "was": "custom"
  },
@@ -4523,7 +4647,8 @@
    "https://karriere.handelsblattgroup.com/Executive-Director-Technology-Transformation-gn-de-j3137.html",
    "https://karriere.handelsblattgroup.com/Enterprise-Architect-gn-de-j3142.html",
    "https://karriere.handelsblattgroup.com/Membership-Acquisition-Manager-gn-de-j3143.html",
-   "https://karriere.handelsblattgroup.com/Werkstudentin-Video-Editor-Social-Media-gn-de-j3150.html"
+   "https://karriere.handelsblattgroup.com/Werkstudentin-Video-Editor-Social-Media-gn-de-j3150.html",
+   "https://karriere.handelsblattgroup.com/Werkstudentin-im-Bereich-Kreation-gn-de-j3151.html"
   ],
   "was": "custom"
  },
@@ -4562,7 +4687,8 @@
    "https://bewerber-innendienst.hansemerkur.de/Sachbearbeiter-mwd-Lebensversicherung-de-j5025.html",
    "https://bewerber-innendienst.hansemerkur.de/Mitarbeiter-mwd-im-Partnermanagement-Bereich-Reiseversiche-de-j5031.html",
    "https://bewerber-innendienst.hansemerkur.de/Mitarbeiter-mwd-Kundenservice-Center-de-j5006.html",
-   "https://bewerber-innendienst.hansemerkur.de/Versicherungskaufmann-mwd-fuer-die-Bearbeitung-von-Schaden-de-j4936.html"
+   "https://bewerber-innendienst.hansemerkur.de/Versicherungskaufmann-mwd-fuer-die-Bearbeitung-von-Schaden-de-j4936.html",
+   "https://bewerber-innendienst.hansemerkur.de/Business-Analyst-Reiseversicherung-mwd-de-j5032.html"
   ],
   "was": "custom"
  },
@@ -5225,7 +5351,34 @@
    "https://jobs.hoermann.de/?yid=4683&sid=b39406026fbebfc133434c70481fce6c",
    "https://jobs.hoermann.de/?yid=4888&sid=b39406026fbebfc133434c70481fce6c",
    "https://jobs.hoermann.de/?yid=5065&sid=b39406026fbebfc133434c70481fce6c",
-   "https://jobs.hoermann.de/?yid=5052&sid=b39406026fbebfc133434c70481fce6c"
+   "https://jobs.hoermann.de/?yid=5052&sid=b39406026fbebfc133434c70481fce6c",
+   "https://jobs.hoermann.de/?yid=4963&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=5020&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=5032&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4910&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4737&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4940&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4975&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4911&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4929&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4977&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4936&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4976&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4999&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4670&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4841&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=5014&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4894&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=5066&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4903&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4997&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4870&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4967&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4735&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4683&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=4888&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=5065&sid=9bf9e3d82632be0fab7902c569383cfa",
+   "https://jobs.hoermann.de/?yid=5052&sid=9bf9e3d82632be0fab7902c569383cfa"
   ],
   "was": "custom"
  },
@@ -5318,7 +5471,8 @@
    "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/Organizer-strategische-Erschliessung-der-Medizintechnik-mw-de-j2122.html",
    "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/Politischer-Sekretaer-mwd-regionale-Personalteams-Bezirk-M-de-j2117.html",
    "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/Verwaltungsangestellter-mwd-de-j2124.html",
-   "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/Verwaltungsangestellter-mwd-de-j2131.html"
+   "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/Verwaltungsangestellter-mwd-de-j2131.html",
+   "https://www.igmetall.de/ueber-uns/karriere/offene-stellen-bei-der-ig-metall/Politischer-Sekretaer-mwd-de-j2126.html"
   ],
   "was": "custom"
  },
@@ -5433,7 +5587,8 @@
    "https://careers.ing.com/de/stellenbeschreibung/frankfurt-am-main/praktikant-asset-securitisation-w-m-d/3121/47050049216",
    "https://careers.ing.com/de/stellenbeschreibung/frankfurt-am-main/financial-crime-compliance-manager-aml-ctc-advisory-w-m-d/3121/47085242240",
    "https://careers.ing.com/de/stellenbeschreibung/frankfurt-am-main/werkstudent-talent-and-learning-human-resources-w-m-d/3121/47079301696",
-   "https://careers.ing.com/de/stellenbeschreibung/frankfurt-am-main/praktikant-transaction-advice-and-control-credit-risk-w-m-d/3121/47202475136"
+   "https://careers.ing.com/de/stellenbeschreibung/frankfurt-am-main/praktikant-transaction-advice-and-control-credit-risk-w-m-d/3121/47202475136",
+   "https://careers.ing.com/de/stellenbeschreibung/hannover/praktikant-workforce-management-w-m-d/3121/47226064064"
   ],
   "was": "custom"
  },
@@ -5458,7 +5613,7 @@
   "was": "custom"
  },
  "Immobilien Scout GmbH": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "https://www.immobilienscout24.de/karriere/",
   "log": [
    "load https://www.immobilienscout24.de/karriere/: HTTPError"
@@ -5482,9 +5637,11 @@
   "was": "join"
  },
  "JEANS FRITZ": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
-  "log": [],
+  "log": [
+   "crawl https://karriere.jeans-fritz.com/karriere/: 0 jobs, 0 in Germany, 0 match the board"
+  ],
   "was": "custom"
  },
  "Joyride GmbH": {
@@ -6364,7 +6521,13 @@
    "https://karriere.lvm.de/jobs/innendienstmitarbeiter-auch-quereinsteiger-m-w-d-in-voll-oder-teilzeit-10653",
    "https://karriere.lvm.de/jobs/vertriebsmitarbeiter-kundenberater-gerne-auch-als-quereinsteiger-m-w-d-fuer-den-aussendienst-10693",
    "https://karriere.lvm.de/jobs/vertriebsmitarbeiter-kundenberater-gerne-auch-als-quereinsteiger-m-w-d-fuer-den-aussendienst-10694",
-   "https://karriere.lvm.de/jobs/vertriebsmitarbeiter-kundenberater-m-w-d-fuer-den-aussendienst-10695"
+   "https://karriere.lvm.de/jobs/vertriebsmitarbeiter-kundenberater-m-w-d-fuer-den-aussendienst-10695",
+   "https://karriere.lvm.de/jobs/vertriebsmitarbeiter-kundenberater-gerne-auch-als-quereinsteiger-m-w-d-fuer-den-aussendienst-10698",
+   "https://karriere.lvm.de/jobs/versicherungskaufmann-oder-versicherungsfachmann-als-vertriebsmitarbeiter-kundenberater-m-w-d-10687",
+   "https://karriere.lvm.de/jobs/innendienstmitarbeiter-auch-quereinsteiger-m-w-d-in-teilzeit-20h-woche-10696",
+   "https://karriere.lvm.de/jobs/innendienstmitarbeiter-auch-quereinsteiger-m-w-d-in-teilzeit-20h-woche-10697",
+   "https://karriere.lvm.de/jobs/e-learning-designer-m-w-d-in-teilzeit-18-stunden-befristet-fuer-6-monate-10677",
+   "https://karriere.lvm.de/jobs/e-learning-designer-m-w-d-befristet-bis-zum-30-11-2028-10676"
   ],
   "was": "custom"
  },
@@ -6416,7 +6579,9 @@
    "https://www.l.de/karriere/stellenangebote/angebot/1669251-werkstudent-m-w-d-mitarbeitersicherheit-und-praevention/",
    "https://www.l.de/karriere/stellenangebote/angebot/1669252-werkstudent-m-w-d-regulierungsmanagement-oeffentliches-wirtschaftsrecht/",
    "https://www.l.de/karriere/stellenangebote/angebot/1669253-mitarbeiter-m-w-d-kanalinspektion/",
-   "https://www.l.de/karriere/stellenangebote/angebot/2224-1092-ausbildung-zur-fachkraft-m-w-d-fuer-metalltechnik-mit-weiterqualifizierung-zum-verteilnetztechniker-im-handlungsfeld-waerme/"
+   "https://www.l.de/karriere/stellenangebote/angebot/2224-1092-ausbildung-zur-fachkraft-m-w-d-fuer-metalltechnik-mit-weiterqualifizierung-zum-verteilnetztechniker-im-handlungsfeld-waerme/",
+   "https://www.l.de/karriere/stellenangebote/angebot/1669256--sachbearbeiter-m-w-d-grundstuecksrecht/",
+   "https://www.l.de/karriere/stellenangebote/angebot/1669255-werkstudent-m-w-d---technik-digitalisierung/"
   ],
   "was": "custom"
  },
@@ -6471,7 +6636,7 @@
   "was": "unknown"
  },
  "Lotum one GmbH": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [
    "job links too generic to crawl"
@@ -6479,7 +6644,7 @@
   "was": "custom"
  },
  "Lotum two GmbH": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [
    "crawl https://www.lotum.com: SiteChanged no job page with JobPosting data among 1 pages (site changed?)"
@@ -6504,9 +6669,11 @@
   "was": "custom"
  },
  "Luitpold-Apotheke": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
-  "log": [],
+  "log": [
+   "crawl https://www.medikamente-per-klick.de/karriere: 0 jobs, 0 in Germany, 0 match the board"
+  ],
   "was": "custom"
  },
  "Löwenstein Medical Technology GmbH + Co.KG": {
@@ -6968,7 +7135,9 @@
    "https://karriere.modepark.de/stellenangebote/Verkaeufer-m-w-d-Teilzeit-in-Brandenburg-an-der-Havel-Jetzt-bewerben---334366137",
    "https://karriere.modepark.de/stellenangebote/Duales-Studium-2027-Handel-Fashion-Management-m-w-d-Michelfeld-MODEPARK-ROeTHER--563269837",
    "https://karriere.modepark.de/stellenangebote/Verkaeufer-m-w-d-in-Teilzeit-Stuttgart-MODEPARK-ROeTHER--68445177",
-   "https://karriere.modepark.de/stellenangebote/Ausbildung-zum-Managementassistent-im-Einzelhandel-m-w-d-Aalen-MODEPARK-ROeTHER--567985405"
+   "https://karriere.modepark.de/stellenangebote/Ausbildung-zum-Managementassistent-im-Einzelhandel-m-w-d-Aalen-MODEPARK-ROeTHER--567985405",
+   "https://karriere.modepark.de/stellenangebote/Stellvertretender-Filialleiter-m-w-d-Rosenheim-Modepark-Roether--574433450",
+   "https://karriere.modepark.de/stellenangebote/IT-Support-Spezialist-m-w-d-Michelfeld-Modepark-Roether--589019896"
   ],
   "was": "custom"
  },
@@ -7280,23 +7449,18 @@
   "was": "unknown"
  },
  "Netto Marken-Discount Stiftung & Co. KG": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [
    "load https://www.netto-online.de/karriere/Stellenangebote.chtm: HTTPError",
-   "load https://www.netto-online.de/karriere/job/p6/aushilfe-m-w-d: HTTPError",
-   "load https://www.netto-online.de/karriere/job/p7/verkaeufer-m-w-d-teilzeit: HTTPError",
-   "load https://www.netto-online.de/karriere/job/p15/ausbildung-zum-kaufmann-im-einzelhandel-m-w-d: HTTPError",
-   "load https://www.netto-online.de/karriere/job/p14/ausbildung-zum-verkaeufer-m-w-d: HTTPError"
+   "crawl https://www.netto-online.de/karriere/Stellenangebote.chtm: 0 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
  "Neudorff": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
-  "log": [
-   "crawl https://www.neudorff.de/karriere: 0 jobs, 0 in Germany, 0 match the board"
-  ],
+  "log": [],
   "was": "custom"
  },
  "Neue Westfälische GmbH & Co. KG": {
@@ -7308,10 +7472,10 @@
   "was": "unknown"
  },
  "Nextcloud": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [
-   "crawl https://nextcloud.com/jobs/: SiteChanged no job page with JobPosting data among 46 pages (site changed?)"
+   "crawl https://nextcloud.com/jobs/: SiteChanged no job page with JobPosting data among 45 pages (site changed?)"
   ],
   "was": "custom"
  },
@@ -7585,10 +7749,10 @@
   "was": "custom"
  },
  "PAYBACK": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [
-   "crawl https://jobs.payback.group/de_DE/careers: 32 jobs, 0 in Germany, 0 match the board"
+   "crawl https://jobs.payback.group/de_DE/careers: 23 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -7640,7 +7804,8 @@
    "https://karriere.poco.de/component/concludis/jobad.html?id=con_1-36328",
    "https://karriere.poco.de/component/concludis/jobad.html?id=con_1-36324",
    "https://karriere.poco.de/component/concludis/jobad.html?id=con_1-36512",
-   "https://karriere.poco.de/component/concludis/jobad.html?id=con_1-36720"
+   "https://karriere.poco.de/component/concludis/jobad.html?id=con_1-36720",
+   "https://karriere.poco.de/component/concludis/jobad.html?id=con_1-36728"
   ],
   "was": "custom"
  },
@@ -8030,7 +8195,14 @@
    "https://careers.douglas.group/de/jobs/M%C3%BCnchen-Beauty-Expert-Kosmetik-M%C3%BCnchen-Kaufingerstr_-%28wmx%29/1378456555/",
    "https://careers.douglas.group/de/jobs/G%C3%B6ttingen-Beauty-Expert-G%C3%B6ttingen-Weender-Str_-%28wmx%29/1368629255/",
    "https://careers.douglas.group/de/jobs/F%C3%BCrth-Weihnachtsaushilfe-Beauty-Expert-F%C3%BCrth-%28wmx%29/1368816155/",
-   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Senior-Manager-Supply-Chain-Transformation-%28wmd%29/1373949455/"
+   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Senior-Manager-Supply-Chain-Transformation-%28wmd%29/1373949455/",
+   "https://careers.douglas.group/de/jobs/Neu-Ulm-Beauty-Expert-Neu-Ulm-%28wmx%29/1378616955/",
+   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Team-Lead-Supply-Planning-DACH-%28wmx%29/1377639255/",
+   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Junior-Category-Manager-%28fmx%29/1377674655/",
+   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Team-Lead-Supply-Planning-DACH-%28fmx%29/1377639155/",
+   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Junior-Category-Manager-%28wmx%29/1377674555/",
+   "https://careers.douglas.group/de/jobs/Parma-Store-Manager-Parma-%28fmx%29/1378481955/",
+   "https://careers.douglas.group/de/jobs/Neunkirchen-Beauty-Expert-Neunkirchen-%28wmx%29/1378480755/"
   ],
   "was": "custom"
  },
@@ -8519,12 +8691,19 @@
    "https://careers.douglas.group/de/jobs/F%C3%BCrth-Weihnachtsaushilfe-Beauty-Expert-F%C3%BCrth-%28wmx%29/1368816155/",
    "https://careers.douglas.group/en/jobs/D%C3%BCsseldorf-Senior-Manager-Supply-Chain-Transformation-%28fmx%29/1373949355/",
    "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Senior-Manager-Supply-Chain-Transformation-%28wmd%29/1373949455/",
-   "https://careers.douglas.group/de/jobs/M%C3%BCnchen-Beauty-Expert-Kosmetik-M%C3%BCnchen-Kaufingerstr_-%28wmx%29/1378456555/"
+   "https://careers.douglas.group/de/jobs/M%C3%BCnchen-Beauty-Expert-Kosmetik-M%C3%BCnchen-Kaufingerstr_-%28wmx%29/1378456555/",
+   "https://careers.douglas.group/de/jobs/Neunkirchen-Beauty-Expert-Neunkirchen-%28wmx%29/1378480755/",
+   "https://careers.douglas.group/it/jobs/Parma-Store-Manager-Parma-%28fmx%29/1378481955/",
+   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Junior-Category-Manager-%28wmx%29/1377674555/",
+   "https://careers.douglas.group/en/jobs/D%C3%BCsseldorf-Team-Lead-Supply-Planning-DACH-%28fmx%29/1377639155/",
+   "https://careers.douglas.group/en/jobs/D%C3%BCsseldorf-Junior-Category-Manager-%28fmx%29/1377674655/",
+   "https://careers.douglas.group/de/jobs/D%C3%BCsseldorf-Team-Lead-Supply-Planning-DACH-%28wmx%29/1377639255/",
+   "https://careers.douglas.group/de/jobs/Neu-Ulm-Beauty-Expert-Neu-Ulm-%28wmx%29/1378616955/"
   ],
   "was": "custom"
  },
  "Pflegecampus": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -8739,7 +8918,8 @@
    "https://jobs.rsggroup.com/Duale-Ausbildung-zum-Sport-und-Fitnesskaufmann-frau-wmd-de-j8058.html",
    "https://jobs.rsggroup.com/Duale-Ausbildung-zum-Sport-und-Fitnesskaufmann-frau-wmd-de-j8057.html",
    "https://jobs.rsggroup.com/Student-FitnessoekonomieFitnesstraining-wmd-de-j8065.html",
-   "https://jobs.rsggroup.com/Student-FitnessoekonomieFitnesstraining-wmd-de-j8064.html"
+   "https://jobs.rsggroup.com/Student-FitnessoekonomieFitnesstraining-wmd-de-j8064.html",
+   "https://jobs.rsggroup.com/Studioleitung-Filialleitung-wmd-Raum-Hamburg-de-j8071.html"
   ],
   "was": "custom"
  },
@@ -8807,9 +8987,11 @@
   "was": "unknown"
  },
  "Rheinbahn": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
-  "log": [],
+  "log": [
+   "crawl https://www.rheinbahn.de/karriere/stellenmarkt: 0 jobs, 0 in Germany, 0 match the board"
+  ],
   "was": "custom"
  },
  "Riverty GmbH": {
@@ -8985,7 +9167,10 @@
    "https://karriere.deka.de/job/Frankfurt-am-Main-Werkstudent-%28wmd%29-Datenbankinfrastruktur-HE-60315/1459821233/",
    "https://karriere.deka.de/job/Technischer-Asset-Manager-%28wmd%29-Real-Estate-D%C3%BCsseldorf/1372716333/",
    "https://karriere.deka.de/job/Frankfurt-am-Main-Praktikum-%28wmd%29-Produktmanagement-Zertifikate-HE-60315/1459813333/",
-   "https://karriere.deka.de/job/Frankfurt-am-Main-Incident-Responder-%28wmd%29-Security-Operations-Center-HE-60315/1460541933/"
+   "https://karriere.deka.de/job/Frankfurt-am-Main-Incident-Responder-%28wmd%29-Security-Operations-Center-HE-60315/1460541933/",
+   "https://karriere.deka.de/job/Frankfurt-am-Main-Praktikum-%28wmd%29-Interne-Kommunikation-&-Social-Media-HE-60315/1460726533/",
+   "https://karriere.deka.de/job/Frankfurt-am-Main-Werkstudent-%28wmd%29-Digital-Service-&-IT-HE-60315/1460718833/",
+   "https://karriere.deka.de/job/Frankfurt-am-Main-Spezialist-%28wmd%29-Risikodepots-Standort-Frankfurt%2C-befristet-f%C3%BCr-2-Jahre-HE-60315/1455501233/"
   ],
   "was": "custom"
  },
@@ -9171,7 +9356,10 @@
    "https://db.jobs/de-de/Suche/Projektleiter-in-Ausruestungstechnik-Elektrotechnik-Gleisfeldbe-13603784",
    "https://db.jobs/de-de/Suche/Forstwirt-in-Gaertner-in-als-Baumkontrolleur-in-13603790",
    "https://db.jobs/de-de/Suche/Quereinsteiger-in-als-Lokfuehrer-in-13982184",
-   "https://db.jobs/de-de/Suche/Praktikum-Keyaccountmanagement-und-Baustellenplanung-2027-w-m-d-14099402"
+   "https://db.jobs/de-de/Suche/Praktikum-Keyaccountmanagement-und-Baustellenplanung-2027-w-m-d-14099402",
+   "https://db.jobs/de-de/Suche/Sicherheitsmitarbeiter-in-Security-Mitarbeiter-in-Streckennetz-13119492",
+   "https://db.jobs/de-de/Suche/Leitender-Bauueberwacher-Leit-und-Sicherungstechnik-w-m-d--13618506",
+   "https://db.jobs/de-de/Suche/Forstwirt-in-Gaertner-in-als-Vegetationspfleger-in-am-Gleis-13618508"
   ],
   "was": "custom"
  },
@@ -9204,7 +9392,7 @@
   "was": "custom"
  },
  "SAP SE": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -9219,10 +9407,10 @@
   "was": "custom"
  },
  "SIGNAL IDUNA Allgemeine Versicherung AG": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [
-   "crawl https://karriere.signal-iduna.de/: 45 jobs, 0 in Germany, 0 match the board"
+   "crawl https://karriere.signal-iduna.de/: 0 jobs, 0 in Germany, 0 match the board"
   ],
   "was": "custom"
  },
@@ -9249,9 +9437,11 @@
   "was": "custom"
  },
  "SWK AG": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
-  "log": [],
+  "log": [
+   "crawl https://konzern.swk.de/de/karriere: 0 jobs, 0 in Germany, 0 match the board"
+  ],
   "was": "custom"
  },
  "SWM Services GmbH": {
@@ -9518,7 +9708,11 @@
    "https://jobs.schwarz/jobsearch/hr/senior-security-business-partner-fuer-schwarz-digits-m-w-d-GT5374",
    "https://jobs.schwarz/jobsearch/hr/sap-re-fx-consultant-immobilienwirtschaft-m-w-d-GT4696",
    "https://jobs.schwarz/jobsearch/hr/sachbearbeiter-finanzbuchhaltung-verwaltung-soziales-engagement-m-w-d-GT5325",
-   "https://jobs.schwarz/jobsearch/hr/sekretariat-der-geschaeftsfuehrung-premium-robotics-m-w-d-GT5134"
+   "https://jobs.schwarz/jobsearch/hr/sekretariat-der-geschaeftsfuehrung-premium-robotics-m-w-d-GT5134",
+   "https://jobs.schwarz/jobsearch/hr/active-sourcer-m-w-d-GT5345",
+   "https://jobs.schwarz/jobsearch/hr/inhouse-consultant-indirect-tax-umsatzsteuer-m-w-d-GT5290",
+   "https://jobs.schwarz/jobsearch/hr/jobrotation-consultant-indirect-tax-umsatzsteuer-GT5383",
+   "https://jobs.schwarz/jobsearch/hr/objektleiter-technisches-und-infrastrukturelles-facility-management-rechenzentrum-luebbenau-m-w-d-GT5375"
   ],
   "was": "custom"
  },
@@ -9704,7 +9898,7 @@
   "was": "custom"
  },
  "Siemens-Betriebskrankenkasse | SBK": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [
    "crawl https://www.sbk.org/karriere/stellenangebote/: SiteChanged no job page with JobPosting data among 26 pages (site changed?)"
@@ -9745,7 +9939,8 @@
    "https://www.sixt.jobs/de/jobs/55105c5f-d4a6-43ef-9087-a7725010d875",
    "https://www.sixt.jobs/de/jobs/ae3c9096-1d02-45a4-bf88-5e106f8e8d2e",
    "https://www.sixt.jobs/de/jobs/b9970d5c-6c41-4502-8fd4-039eeb0c1d4f",
-   "https://www.sixt.jobs/de/jobs/9b764177-b7b3-4c1d-aa7b-68b3affc0890"
+   "https://www.sixt.jobs/de/jobs/9b764177-b7b3-4c1d-aa7b-68b3affc0890",
+   "https://www.sixt.jobs/de/jobs/b212fa5d-53e5-418c-b903-ba8c741606b7"
   ],
   "was": "custom"
  },
@@ -9837,7 +10032,7 @@
   "was": "join"
  },
  "Star Finanz GmbH": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -10081,7 +10276,7 @@
   "was": "custom"
  },
  "Süwag Vertrieb AG & Co. KG": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [
    "load https://karriere.suewag.com/go/S%C3%BCwag-Karriere/3833301/: HTTPError",
@@ -10345,7 +10540,18 @@
    "https://careers.tuigroup.com/en/job/funchal/port-delivery-agent/2937/45695012288",
    "https://careers.tuigroup.com/en/job/kralendijk/retail-employee-bonaire-open-sollicitatie/2937/47201187520",
    "https://careers.tuigroup.com/en/job/benidorm/tui-hotel-rep-dutch-and-french-speaking-local-residents/2937/47053846784",
-   "https://careers.tuigroup.com/en/job/girona/tui-hotel-rep-dutch-speaking-local-residents/2937/47053846080"
+   "https://careers.tuigroup.com/en/job/girona/tui-hotel-rep-dutch-speaking-local-residents/2937/47053846080",
+   "https://careers.tuigroup.com/en/job/sunny-beach/activities-host-tui-blue-nevis-bulgaria-local-residents-s27/2937/47252894400",
+   "https://careers.tuigroup.com/en/job/flexible/key-account-manager-romandie-60-100-w-m-d/3118/47083909184",
+   "https://careers.tuigroup.com/en/job/thassos/tui-airport-rep-thassos-local-residents-s27/2937/47252149504",
+   "https://careers.tuigroup.com/en/job/cancun/strategic-partner-manager/2937/47046718336",
+   "https://careers.tuigroup.com/en/job/antalya/tui-airport-rep-german-speaking-local-residents/2937/47250056064",
+   "https://careers.tuigroup.com/en/job/mugla/register-your-interest-job-day-marmaris-08-12-2026/2937/47227660096",
+   "https://careers.tuigroup.com/en/job/antalya/register-your-interest-job-day-antalya-08-12-2026/2937/47227659968",
+   "https://careers.tuigroup.com/en/job/lucerne/reiseexperte-in-m-w-d-luzern-burgerstrasse-40-60/3117/46216132736",
+   "https://careers.tuigroup.com/en/job/rhodes/accommodation-revenue-coordinator/2937/47230978624",
+   "https://careers.tuigroup.com/en/job/heraklion/accommodation-revenue-coordinator/2937/47230978560",
+   "https://careers.tuigroup.com/en/job/luton/cabin-crew-demand-manager/2937/47230978432"
   ],
   "was": "custom"
  },
@@ -10830,7 +11036,11 @@
    "https://jobs.takko.com/de-de/bingen/2543/filialleiter",
    "https://jobs.takko.com/de-de/buchholzindernordheide/2516/verkaeufer",
    "https://jobs.takko.com/details/filialleiter-bingen-%28basilikastra%C3%9Fe-3%29-130764",
-   "https://jobs.takko.com/details/filialleiter-dessau--ro%C3%9Flau-%28luchplatz-1%29-130773"
+   "https://jobs.takko.com/details/filialleiter-dessau--ro%C3%9Flau-%28luchplatz-1%29-130773",
+   "https://jobs.takko.com/de-de/aschaffenburg/2527/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/offenburg/2551/minijob",
+   "https://jobs.takko.com/de-de/muenchen/2431/verkaeufer/teilzeit",
+   "https://jobs.takko.com/de-de/koeln/2564/minijob"
   ],
   "was": "custom"
  },
@@ -11254,7 +11464,7 @@
   "was": "custom"
  },
  "TeleClinic GmbH": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [
    "crawl https://jobs.teleclinic.com/de: SiteChanged no job page with JobPosting data among 14 pages (site changed?)"
@@ -11283,7 +11493,8 @@
    "https://jobs.telefonica.com/TelefonicaGermany/job/M%C3%BCnchen-Werkstudent-Corporate-Finance-%28mwd%29-BY-80992/1457230933/",
    "https://jobs.telefonica.com/TelefonicaGermany/job/Kaiserslautern-Shop-Manager-%28mwd%29-o2-Shop-Kaiserslautern-RP-67655/1458759833/",
    "https://jobs.telefonica.com/TelefonicaGermany/job/Berlin-Verk%C3%A4ufer-Kundenberater-%28mwd%29-o2-Shop-Berlin-Marzahn-BE-12679/1454652333/",
-   "https://jobs.telefonica.com/TelefonicaGermany/job/M%C3%BCnchen-Werkstudent-%28mwd%29-Finance-&-Transformation-BY-80992/1460557433/"
+   "https://jobs.telefonica.com/TelefonicaGermany/job/M%C3%BCnchen-Werkstudent-%28mwd%29-Finance-&-Transformation-BY-80992/1460557433/",
+   "https://jobs.telefonica.com/TelefonicaGermany/job/D%C3%BCsseldorf-Werkstudent-%28mwd%29-KI-Agenten-&-Multi-Agenten-Systeme-im-HR-NW-40474/1460932933/"
   ],
   "was": "custom"
  },
@@ -11757,7 +11968,10 @@
    "https://jobs.thalia.de/offer/buchhandler-m-w-d/daf72420-8167-49ae-baf7-822d4815a225",
    "https://jobs.thalia.de/offer/hr-manager-personalentwicklung-coac/1ae115ff-aed3-4e1e-a665-f581e0b94296",
    "https://jobs.thalia.de/offer/buchhandler-m-w-d/305c7127-2be4-4d89-83b9-9fa569f7b1ed",
-   "https://jobs.thalia.de/offer/stellvertretender-filialleiter-m-w-/d424735f-edcc-4709-8e75-fae57fb26037"
+   "https://jobs.thalia.de/offer/stellvertretender-filialleiter-m-w-/d424735f-edcc-4709-8e75-fae57fb26037",
+   "https://jobs.thalia.de/offer/mitarbeiter-im-verkauf-m-w-d-in-tei/32538c29-1654-451e-bb98-7ccd66c5c7a6",
+   "https://jobs.thalia.de/offer/mitarbeiter-im-verkauf-m-w-d/57a2cfae-0aeb-476b-b3e9-63842c62dda4",
+   "https://jobs.thalia.de/offer/leitung-der-buchhandlung-m-w-d-in-t/87225400-5aea-43bb-a70d-b48f1dc63501"
   ],
   "was": "custom"
  },
@@ -11982,7 +12196,8 @@
    "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/ingenieurin-elektrotechnik-maschinenbau-im-bereich-foerdertechnische-anlagen-12185/",
    "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/ingenieurin-im-bereich-explosionsschutz--12190/",
    "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/leitung-profit-center-gebaeudetechnik-12181/",
-   "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/fahrzeugbewerterin-schadengutachtrin-paderborn--12192/"
+   "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/fahrzeugbewerterin-schadengutachtrin-paderborn--12192/",
+   "https://www.tuev-nord-group.com/de/karriere/jobs/detail-page/job-detail/kaufmaennischer-mitarbeiterin-kundenservice-auftragsnachbereitung-12197/"
   ],
   "was": "custom"
  },
@@ -12122,7 +12337,8 @@
    "https://www.peek-und-cloppenburg.de/de/karriere/jobs/stellenangebote/Store-Manager-wmd-de-j6197.html",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6b018b6118cc6*/",
    "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6b02de337163f*/",
-   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6b0449162e03a*/"
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6b0449162e03a*/",
+   "https://www.peek-und-cloppenburg.de/*wp_block_styles_on_demand_placeholder:6b0836a4b040f*/"
   ],
   "was": "unknown"
  },
@@ -12133,7 +12349,7 @@
   "was": "custom"
  },
  "VHV Versicherungen": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [
    "softgarden https://www.vhv-gruppe.de/jobs.feed.json: HTTPError HTTP Error 404: Not Found"
@@ -12364,7 +12580,22 @@
    "https://careers.vattenfall.com/job/senior-technical-safety-specialist-in-kolding-jid-53476",
    "https://careers.vattenfall.com/job/tekniker-belysning-in-mjoelby-jid-53475",
    "https://careers.vattenfall.com/job/underhallsledare-stationsunderhall-norra-norrland-vattenfall-eldistribution-in-jokkmokk-jid-53474",
-   "https://careers.vattenfall.com/job/underhallsledare-stationsunderhall-norra-norrland-vattenfall-eldistribution-in-lulea-jid-51385"
+   "https://careers.vattenfall.com/job/underhallsledare-stationsunderhall-norra-norrland-vattenfall-eldistribution-in-lulea-jid-51385",
+   "https://careers.vattenfall.com/job/senior-power-system-studies-engineer-in-kolding-jid-53495",
+   "https://careers.vattenfall.com/job/senior-power-system-studies-engineer-in-amsterdam-jid-53494",
+   "https://careers.vattenfall.com/job/systemspecialist-automation-in-trollhaettan-jid-53486",
+   "https://careers.vattenfall.com/job/systemspecialist-automation-in-lulea-jid-53489",
+   "https://careers.vattenfall.com/job/manager-offensive-security-and-threat-intelligence-team-in-umea-jid-53493",
+   "https://careers.vattenfall.com/job/manager-offensive-security-and-threat-intelligence-team-in-gothenburg-jid-53492",
+   "https://careers.vattenfall.com/job/systemspecialist-automation-in-vaesteras-jid-53491",
+   "https://careers.vattenfall.com/job/manager-offensive-security-and-threat-intelligence-team-in-lulea-jid-53490",
+   "https://careers.vattenfall.com/job/manager-offensive-security-and-threat-intelligence-team-in-uppsala-jid-53488",
+   "https://careers.vattenfall.com/job/manager-offensive-security-and-threat-intelligence-team-in-katowice-jid-53487",
+   "https://careers.vattenfall.com/job/manager-offensive-security-and-threat-intelligence-team-in-stockholm-jid-53485",
+   "https://careers.vattenfall.com/job/finance-consultant-mit-schwerpunkt-automatisierung-und-prozesse-m-w-d-in-berlin-jid-53484",
+   "https://careers.vattenfall.com/job/fachliche-leitung-customer-service-mit-schwerpunkt-kunden-und-marktmanagement-m-w-d-in-berlin-jid-53483",
+   "https://careers.vattenfall.com/job/fachliche-leitung-customer-service-mit-schwerpunkt-kunden-und-marktmanagement-m-w-d-in-hamburg-jid-53482",
+   "https://careers.vattenfall.com/job/sachbearbeiter-in-maschinentechnik-in-hohenwarte-jid-53481"
   ],
   "was": "custom"
  },
@@ -12433,7 +12664,7 @@
   "was": "unknown"
  },
  "Vinted": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "https://careers.vinted.com/jobs",
   "log": [
    "crawl https://careers.vinted.com/: SiteChanged no job page with JobPosting data among 25 pages (site changed?)"
@@ -12492,7 +12723,8 @@
    "https://jobs.volkswagen-group.com/Volkswagen/job/Wolfsburg-Rechtsreferendariat-Integrit%C3%A4t-&-Recht-%28wmd%29-38436/1074619901/",
    "https://jobs.volkswagen-group.com/VWFS/job/Braunschweig-Referendarin-%28mwd%29-in-der-Wahlstation-38112/1074454901/",
    "https://jobs.volkswagen-group.com/Porsche_Holding_Portugal/job/Barreiro-Pintor-Auto-%28fmd%29-Barreiro-2835-803/1373141633/",
-   "https://jobs.volkswagen-group.com/Zenda/job/Wedemark-Instandhalter-%28all-gender%29-30900/1373043233/"
+   "https://jobs.volkswagen-group.com/Zenda/job/Wedemark-Instandhalter-%28all-gender%29-30900/1373043233/",
+   "https://jobs.volkswagen-group.com/Volkswagen/job/Wolfsburg-Werkstudentin-Werkstudent-Multimodale-Testautomatisierung-HMI-&-Akustik-%28wmd%29-38436/1455141033/"
   ],
   "was": "custom"
  },
@@ -12569,7 +12801,9 @@
    "https://www.united-internet.de/jobs-karriere/stellenangebot/5012542101-sales-controller-wmd/",
    "https://www.united-internet.de/jobs-karriere/stellenangebot/sf-6031-junior-regional-marketing-manager-glasfaser-mwd/",
    "https://www.united-internet.de/jobs-karriere/stellenangebot/6036-werkstudent-wmd-software-entwicklung-core-customer-app-ios/",
-   "https://www.united-internet.de/jobs-karriere/stellenangebot/5956-mitarbeiter-wmd-customer-care/"
+   "https://www.united-internet.de/jobs-karriere/stellenangebot/5956-mitarbeiter-wmd-customer-care/",
+   "https://www.united-internet.de/jobs-karriere/stellenangebot/6024-head-of-regulatory-affairs-wmd/",
+   "https://www.united-internet.de/jobs-karriere/stellenangebot/sf-5956-mitarbeiter-wmd-customer-care/"
   ],
   "was": "custom"
  },
@@ -12583,7 +12817,7 @@
   "was": "unknown"
  },
  "WGV-Informatik und Media GmbH": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [],
   "was": "custom"
@@ -12811,16 +13045,16 @@
  },
  "_dead": {},
  "_nodesc": {
-  "https://finanzfluss.jobs.personio.de/job/2647926": "2026-11-12",
+  "https://finanzfluss.jobs.personio.de/job/2647926": "2026-11-26",
   "https://finanzfluss.jobs.personio.de/job/2845792": "2026-11-25",
-  "https://finanzfluss.jobs.personio.de/job/2884590": "2026-11-12",
-  "https://finanzfluss.jobs.personio.de/job/2884880": "2026-11-12",
+  "https://finanzfluss.jobs.personio.de/job/2884590": "2026-11-26",
+  "https://finanzfluss.jobs.personio.de/job/2884880": "2026-11-26",
   "https://finanzfluss.jobs.personio.de/job/2890966": "2026-11-19",
   "https://finanzfluss.jobs.personio.de/job/2893393": "2026-11-18",
   "https://finanztip.jobs.personio.de/job/2726949": "2026-11-22",
   "https://finanztip.jobs.personio.de/job/2767381": "2026-11-22",
   "https://finanztip.jobs.personio.de/job/2786154": "2026-11-22",
-  "https://finanztip.jobs.personio.de/job/2862489": "2026-11-12",
+  "https://finanztip.jobs.personio.de/job/2862489": "2026-11-26",
   "https://finanztip.jobs.personio.de/job/2876537": "2026-11-13",
   "https://finanztip.jobs.personio.de/job/2876611": "2026-11-13",
   "https://finanztip.jobs.personio.de/job/2889871": "2026-11-17",
@@ -13126,7 +13360,7 @@
   "was": "custom"
  },
  "freenet.de GmbH": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [
    "crawl https://karriere.freenet-group.de/: SiteChanged no job page with JobPosting data among 1 pages (site changed?)"
@@ -13207,7 +13441,7 @@
   "was": "custom"
  },
  "klarmobil": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [
    "crawl https://karriere.freenet-group.de/: SiteChanged no job page with JobPosting data among 1 pages (site changed?)"
@@ -13389,7 +13623,7 @@
   "was": "custom"
  },
  "petaFuel GmbH": {
-  "checked": "2026-10-27",
+  "checked": "2026-11-26",
   "feed_was": "",
   "log": [],
   "was": "custom"
